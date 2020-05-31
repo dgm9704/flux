@@ -22,7 +22,7 @@
 		<AIFMNationalCode>474286</AIFMNationalCode>
 		<AIFMName>AIFM 1</AIFMName>
 		<AIFMEEAFlag>true</AIFMEEAFlag>
-		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>
+		<AIFMNoReportingFlag>true</AIFMNoReportingFlag>
 		<AIFMCompleteDescription>
 			<AIFMIdentifier>
 				<AIFMIdentifierLEI>969500AA77L4ZJXJ0T02</AIFMIdentifierLEI>
