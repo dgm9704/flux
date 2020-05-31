@@ -13,4 +13,9 @@
     <PackageReference Include="coverlet.collector" Version="1.2.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Include="*.xml" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="*.xsl" CopyToOutputDirectory="PreserveNewest" />
+  </ItemGroup>
+
 </Project>
