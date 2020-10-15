@@ -14,8 +14,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Content Include="*.xml" CopyToOutputDirectory="PreserveNewest" />
-    <Content Include="*.xsl" CopyToOutputDirectory="PreserveNewest" />
+    <Content Include="*.xml" CopyToOutputDirectory="Always" />
+    <Content Include="*.xsl" CopyToOutputDirectory="Always" />
   </ItemGroup>
 
 </Project>

@@ -16,23 +16,15 @@
 				<QuestionNumber>25</QuestionNumber>
 				<AssumptionDescription>Free text</AssumptionDescription>
 			</Assumption>
-			<Assumption>
-				<QuestionNumber>26</QuestionNumber>
-			</Assumption>
-			<Assumption>
-				<AssumptionDescription>Foo</AssumptionDescription>
-			</Assumption>
 		</Assumptions>
 		<AIFMReportingCode>4</AIFMReportingCode>
 		<AIFMJurisdiction>GB</AIFMJurisdiction>
 		<AIFMNationalCode>474286</AIFMNationalCode>
 		<AIFMName>AIFM 1</AIFMName>
 		<AIFMEEAFlag>true</AIFMEEAFlag>
-		<AIFMNoReportingFlag>true</AIFMNoReportingFlag>
+		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>
 		<AIFMCompleteDescription>
 			<AIFMIdentifier>
-				<ReportingMemberState>FI</ReportingMemberState>
-				<AIFMNationalCode>12345678</AIFMNationalCode>
 				<AIFMIdentifierLEI>969500AA77L4ZJXJ0T02</AIFMIdentifierLEI>
 				<AIFMIdentifierBIC>TESTGB21XXX</AIFMIdentifierBIC>
 			</AIFMIdentifier>
