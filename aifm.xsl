@@ -56,12 +56,12 @@
         <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo">
             <xsl:choose> 
                 <xsl:when test = "AIFMNoReportingFlag = 'false' "> 
-                    <xsl:if test='not(AIFMCompleteDescription/AIFMPrincipalMarkets)'>
+                    <xsl:if test="not(AIFMCompleteDescription/AIFMPrincipalMarkets)">
             ERROR 21.a
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
-                    <xsl:if test='AIFMCompleteDescription/AIFMPrincipalMarkets'>
+                    <xsl:if test="AIFMCompleteDescription/AIFMPrincipalMarkets">
             ERROR 21.b
                     </xsl:if>
                 </xsl:otherwise> 
@@ -71,10 +71,25 @@
         <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/AIFMCompleteDescription/AIFMIdentifier">
             <xsl:choose> 
                 <xsl:when test = "ReportingMemberState"> 
-                    <xsl:if test='not(AIFMNationalCode)'>
+                    <xsl:if test="not(AIFMNationalCode)">
             ERROR 25
                     </xsl:if>
                 </xsl:when> 
+            </xsl:choose>
+        </xsl:for-each>
+
+        <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket/MarketIdentification">
+            <xsl:choose> 
+                <xsl:when test = "MarketCodeType = 'MIC'"> 
+                    <xsl:if test="not(MarketCode)">
+            ERROR 28.a
+                    </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:if test="MarketCode">
+            ERROR 28.b
+                    </xsl:if>
+                </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
 
