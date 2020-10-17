@@ -93,6 +93,16 @@
             </xsl:choose>
         </xsl:for-each>
 
+        <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket">
+            <xsl:choose> 
+                <xsl:when test = "not(MarketIdentification/MarketCodeType = 'NOT')"> 
+                    <xsl:if test="not(AggregatedValueAmount)">
+            ERROR 29
+                    </xsl:if>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>

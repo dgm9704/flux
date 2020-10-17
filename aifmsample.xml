@@ -43,7 +43,7 @@
 						<MarketCodeType>XXX</MarketCodeType>
 						<MarketCode>XNAS</MarketCode>
 					</MarketIdentification>
-					<AggregatedValueAmount>452000000</AggregatedValueAmount>
+					<!-- <AggregatedValueAmount>452000000</AggregatedValueAmount> -->
 				</AIFMFivePrincipalMarket>
 				<AIFMFivePrincipalMarket>
 					<Ranking>2</Ranking>
