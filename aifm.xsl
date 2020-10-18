@@ -1,10 +1,5 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
 <xsl:output method="text" />
-<!-- <xsl:template match="/">
-    <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket">
-        <xsl:value-of select = "Ranking" />
-    </xsl:for-each>
-</xsl:template> -->
 
     <xsl:template match="/">
 
@@ -123,6 +118,21 @@
                 <xsl:otherwise>
                     <xsl:if test="not(FXEURReferenceRateType)">
             ERROR 36.b
+                    </xsl:if>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+
+        <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/AIFMCompleteDescription/AIFMBaseCurrencyDescription">
+            <xsl:choose> 
+                <xsl:when test = "BaseCurrency = 'EUR'"> 
+                    <xsl:if test="FXEURRate">
+            ERROR 37.a
+                    </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:if test="not(FXEURRate)">
+            ERROR 37.b
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>

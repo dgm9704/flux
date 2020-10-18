@@ -104,7 +104,7 @@
 			</AIFMPrincipalInstruments>
 			<AUMAmountInEuro>5500000</AUMAmountInEuro>
 			<AIFMBaseCurrencyDescription>
-				<BaseCurrency>USD</BaseCurrency>
+				<BaseCurrency>EUR</BaseCurrency>
 				<AUMAmountInBaseCurrency>7253950</AUMAmountInBaseCurrency>
 				<FXEURReferenceRateType>ECB</FXEURReferenceRateType>
 				<FXEURRate>12345678901234.7535</FXEURRate>
