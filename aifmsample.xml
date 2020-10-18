@@ -17,7 +17,7 @@
 		</Assumptions>
 		<AIFMReportingCode>4</AIFMReportingCode>
 		<AIFMJurisdiction>GB</AIFMJurisdiction>
-		<AIFMNationalCode>474286</AIFMNationalCode>
+		<AIFMNationalCode>111111</AIFMNationalCode>
 		<AIFMName>AIFM 1</AIFMName>
 		<AIFMEEAFlag>true</AIFMEEAFlag>
 		<AIFMNoReportingFlag>true</AIFMNoReportingFlag>
@@ -121,7 +121,7 @@
 		</Assumptions>
 		<AIFMReportingCode>4</AIFMReportingCode>
 		<AIFMJurisdiction>GB</AIFMJurisdiction>
-		<AIFMNationalCode>111111</AIFMNationalCode>
+		<AIFMNationalCode>222222</AIFMNationalCode>
 		<AIFMName>AIFM 2</AIFMName>
 		<AIFMEEAFlag>true</AIFMEEAFlag>
 		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>
@@ -221,7 +221,7 @@
 		</Assumptions>
 		<AIFMReportingCode>4</AIFMReportingCode>
 		<AIFMJurisdiction>GB</AIFMJurisdiction>
-		<AIFMNationalCode>111111</AIFMNationalCode>
+		<AIFMNationalCode>333333</AIFMNationalCode>
 		<AIFMName>AIFM 3</AIFMName>
 		<AIFMEEAFlag>true</AIFMEEAFlag>
 		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>

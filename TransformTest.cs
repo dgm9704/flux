@@ -21,5 +21,13 @@ namespace flux
             xslt.Transform("aifmsample.xml", "aifmoutput.txt");
         }
 
+        [Fact]
+        public void AifTest()
+        {
+            XslCompiledTransform xslt = new XslCompiledTransform();
+            xslt.Load("aif.xsl");
+            xslt.Transform("aifsample.xml", "aifoutput.txt");
+        }
+
     }
 }

@@ -89,10 +89,7 @@
                     <xsl:if test="FXEURRate">
             ERROR 37.a
                     </xsl:if>
-                </xsl:when>
-                <xsl:otherwise>
-                    <xsl:if test="not(FXEURRate)">
-            ERROR 37.b
+                </xsl:when>111111
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
