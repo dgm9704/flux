@@ -644,6 +644,7 @@
 			</AIFIndividualInfo> -->
 
 			<AIFLeverageInfo>
+
 				<AIFLeverageArticle24-2>
 					<AllCounterpartyCollateralRehypothecationFlag>true</AllCounterpartyCollateralRehypothecationFlag>
 					<AllCounterpartyCollateralRehypothecatedRate>12.34</AllCounterpartyCollateralRehypothecatedRate>
@@ -685,6 +686,7 @@
 						<CommitmentMethodRate>907485</CommitmentMethodRate>
 					</LeverageAIF>
 				</AIFLeverageArticle24-2>
+
 				<AIFLeverageArticle24-4>
 					<BorrowingSource>
 						<Ranking>1</Ranking>
