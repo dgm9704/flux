@@ -108,6 +108,7 @@
 				<AUMAmountInBaseCurrency>7253950</AUMAmountInBaseCurrency>
 				<FXEURReferenceRateType>ECB</FXEURReferenceRateType>
 				<FXEURRate>12345678901234.7535</FXEURRate>
+				<FXEUROtherReferenceRateDescription>Foo</FXEUROtherReferenceRateDescription>
 			</AIFMBaseCurrencyDescription>
 		</AIFMCompleteDescription>
 	</AIFMRecordInfo>

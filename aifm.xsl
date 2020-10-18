@@ -138,6 +138,21 @@
             </xsl:choose>
         </xsl:for-each>
 
+        <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/AIFMCompleteDescription/AIFMBaseCurrencyDescription">
+            <xsl:choose> 
+                <xsl:when test = "BaseCurrency = 'EUR' and FXEURReferenceRateType = 'OTH'"> 
+                    <xsl:if test="not(FXEUROtherReferenceRateDescription)">
+            ERROR 38.a
+                    </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:if test="FXEUROtherReferenceRateDescription">
+            ERROR 38.b
+                    </xsl:if>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
