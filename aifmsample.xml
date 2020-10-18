@@ -9,18 +9,14 @@
 		<ReportingPeriodType>Q4</ReportingPeriodType>
 		<ReportingPeriodYear>2014</ReportingPeriodYear>
 		<AIFMReportingObligationChangeFrequencyCode>QH</AIFMReportingObligationChangeFrequencyCode>
-		<AIFMReportingObligationChangeQuarter>Q4</AIFMReportingObligationChangeQuarter>
+		<!-- <AIFMReportingObligationChangeQuarter>Q4</AIFMReportingObligationChangeQuarter> -->
 		<LastReportingFlag>false</LastReportingFlag>
 		<Assumptions>
-			<Assumption>
-				<QuestionNumber>25</QuestionNumber>
+			<!-- <Assumption>
 				<AssumptionDescription>Free text</AssumptionDescription>
-			</Assumption>
+			</Assumption> -->
 			<Assumption>
-				<QuestionNumber>26</QuestionNumber>
-			</Assumption>
-			<Assumption>
-				<AssumptionDescription>Foo</AssumptionDescription>
+				<QuestionNumber>42</QuestionNumber>
 			</Assumption>
 		</Assumptions>
 		<AIFMReportingCode>4</AIFMReportingCode>
@@ -32,7 +28,7 @@
 		<AIFMCompleteDescription>
 			<AIFMIdentifier>
 				<ReportingMemberState>FI</ReportingMemberState>
-				<AIFMNationalCode>12345678</AIFMNationalCode>
+				<!-- <AIFMNationalCode>12345678</AIFMNationalCode> -->
 				<AIFMIdentifierLEI>969500AA77L4ZJXJ0T02</AIFMIdentifierLEI>
 				<AIFMIdentifierBIC>TESTGB21XXX</AIFMIdentifierBIC>
 			</AIFMIdentifier>
@@ -106,12 +102,77 @@
 			<AIFMBaseCurrencyDescription>
 				<BaseCurrency>EUR</BaseCurrency>
 				<AUMAmountInBaseCurrency>7253950</AUMAmountInBaseCurrency>
-				<FXEURReferenceRateType>ECB</FXEURReferenceRateType>
+				<FXEURReferenceRateType>OTH</FXEURReferenceRateType>
 				<FXEURRate>12345678901234.7535</FXEURRate>
+				<!-- <FXEUROtherReferenceRateDescription>Foo</FXEUROtherReferenceRateDescription> -->
+			</AIFMBaseCurrencyDescription>
+		</AIFMCompleteDescription>
+	</AIFMRecordInfo>
+
+	<AIFMRecordInfo>
+		<FilingType>INIT</FilingType>
+		<AIFMContentType>2</AIFMContentType>
+		<ReportingPeriodStartDate>2014-10-01</ReportingPeriodStartDate>
+		<ReportingPeriodEndDate>2014-12-31</ReportingPeriodEndDate>
+		<ReportingPeriodType>Q4</ReportingPeriodType>
+		<ReportingPeriodYear>2014</ReportingPeriodYear>
+		<!-- <AIFMReportingObligationChangeFrequencyCode>QH</AIFMReportingObligationChangeFrequencyCode> -->
+		<AIFMReportingObligationChangeQuarter>Q4</AIFMReportingObligationChangeQuarter>
+		<LastReportingFlag>false</LastReportingFlag>
+		<Assumptions>
+			<Assumption>
+				<!-- <QuestionNumber>25</QuestionNumber> -->
+				<AssumptionDescription>Free text</AssumptionDescription>
+			</Assumption>
+		</Assumptions>
+		<AIFMReportingCode>4</AIFMReportingCode>
+		<AIFMJurisdiction>GB</AIFMJurisdiction>
+		<AIFMNationalCode>111111</AIFMNationalCode>
+		<AIFMName>AIFM 2</AIFMName>
+		<AIFMEEAFlag>true</AIFMEEAFlag>
+		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>
+		<AIFMCompleteDescription>
+			<AIFMIdentifier>
+				<AIFMIdentifierLEI>969500AA77L4ZJXJ0T02</AIFMIdentifierLEI>
+				<AIFMIdentifierBIC>TESTGB21XXX</AIFMIdentifierBIC>
+			</AIFMIdentifier>
+			<AIFMPrincipalInstruments>
+				<AIFMPrincipalInstrument>
+				<Ranking>1</Ranking>
+				<SubAssetType>SEC_LEQ_OTHR</SubAssetType>
+				<AggregatedValueAmount>248478000</AggregatedValueAmount>
+				</AIFMPrincipalInstrument>
+				<AIFMPrincipalInstrument>
+				<Ranking>2</Ranking>
+				<SubAssetType>DER_FID_FIXI</SubAssetType>
+				<AggregatedValueAmount>145786532</AggregatedValueAmount>
+				</AIFMPrincipalInstrument>
+				<AIFMPrincipalInstrument>
+				<Ranking>3</Ranking>
+				<SubAssetType>PHY_TIM_PTIM</SubAssetType>
+				<AggregatedValueAmount>14473914</AggregatedValueAmount>
+				</AIFMPrincipalInstrument>
+				<AIFMPrincipalInstrument>
+				<Ranking>4</Ranking>
+				<SubAssetType>CIU_OAM_OTHR</SubAssetType>
+				<AggregatedValueAmount>7214939</AggregatedValueAmount>
+				</AIFMPrincipalInstrument>
+				<AIFMPrincipalInstrument>
+				<Ranking>5</Ranking>
+				<SubAssetType>NTA_NTA_NOTA</SubAssetType>
+				</AIFMPrincipalInstrument>
+			</AIFMPrincipalInstruments>
+			<AUMAmountInEuro>5500000</AUMAmountInEuro>
+			<AIFMBaseCurrencyDescription>
+				<BaseCurrency>USD</BaseCurrency>
+				<AUMAmountInBaseCurrency>7253950</AUMAmountInBaseCurrency>
+				<!-- <FXEURReferenceRateType>ECB</FXEURReferenceRateType> -->
+				<!-- <FXEURRate>12345678901234.7535</FXEURRate> -->
 				<FXEUROtherReferenceRateDescription>Foo</FXEUROtherReferenceRateDescription>
 			</AIFMBaseCurrencyDescription>
 		</AIFMCompleteDescription>
 	</AIFMRecordInfo>
+
 	<CancellationAIFMRecordInfo>
 		<CancelledAIFMNationalCode>Id2</CancelledAIFMNationalCode>
 		<CancelledReportingPeriodType>X1</CancelledReportingPeriodType>
