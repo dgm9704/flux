@@ -18,7 +18,7 @@
             </xsl:choose>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/Assumptions/Assumption">
+        <!-- <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/Assumptions/Assumption">
             <xsl:choose> 
                 <xsl:when test="AssumptionDescription"> 
                     <xsl:if test="not(QuestionNumber)">
@@ -46,7 +46,7 @@
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
-        </xsl:for-each>
+        </xsl:for-each> -->
 
         <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo">
             <xsl:choose> 

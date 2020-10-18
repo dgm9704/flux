@@ -12,11 +12,9 @@
 		<!-- <AIFMReportingObligationChangeQuarter>Q4</AIFMReportingObligationChangeQuarter> -->
 		<LastReportingFlag>false</LastReportingFlag>
 		<Assumptions>
-			<!-- <Assumption>
-				<AssumptionDescription>Free text</AssumptionDescription>
-			</Assumption> -->
 			<Assumption>
 				<QuestionNumber>42</QuestionNumber>
+				<AssumptionDescription>Free text</AssumptionDescription>
 			</Assumption>
 		</Assumptions>
 		<AIFMReportingCode>4</AIFMReportingCode>
@@ -121,7 +119,7 @@
 		<LastReportingFlag>false</LastReportingFlag>
 		<Assumptions>
 			<Assumption>
-				<!-- <QuestionNumber>25</QuestionNumber> -->
+				<QuestionNumber>25</QuestionNumber>
 				<AssumptionDescription>Free text</AssumptionDescription>
 			</Assumption>
 		</Assumptions>
