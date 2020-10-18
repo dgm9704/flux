@@ -18,36 +18,6 @@
             </xsl:choose>
         </xsl:for-each>
 
-        <!-- <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/Assumptions/Assumption">
-            <xsl:choose> 
-                <xsl:when test="AssumptionDescription"> 
-                    <xsl:if test="not(QuestionNumber)">
-            ERROR 14.a
-                    </xsl:if>
-                </xsl:when> 
-                <xsl:otherwise> 
-                    <xsl:if test="QuestionNumber">
-            ERROR 14.b
-                    </xsl:if>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:for-each>
-
-        <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/Assumptions/Assumption">
-            <xsl:choose> 
-                <xsl:when test="QuestionNumber"> 
-                    <xsl:if test="not(AssumptionDescription)">
-            ERROR 15.a
-                    </xsl:if>
-                </xsl:when> 
-                <xsl:otherwise> 
-                    <xsl:if test="AssumptionDescription">
-            ERROR 15.b
-                    </xsl:if>
-                </xsl:otherwise>
-            </xsl:choose>
-        </xsl:for-each> -->
-
         <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo">
             <xsl:choose> 
                 <xsl:when test = "AIFMNoReportingFlag = 'false' "> 
@@ -60,16 +30,6 @@
             ERROR 21.b
                     </xsl:if>
                 </xsl:otherwise> 
-            </xsl:choose>
-        </xsl:for-each>
-
-        <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/AIFMCompleteDescription/AIFMIdentifier">
-            <xsl:choose> 
-                <xsl:when test = "ReportingMemberState"> 
-                    <xsl:if test="not(AIFMNationalCode)">
-            ERROR 25
-                    </xsl:if>
-                </xsl:when> 
             </xsl:choose>
         </xsl:for-each>
 
