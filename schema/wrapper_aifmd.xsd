@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema elementFormDefault="qualified" xmlns="http://www.w3.org/2001/XMLSchema">
+  <include schemaLocation="AIFMD_DATAIF_V1.2.xsd"/>
+  <include schemaLocation="AIFMD_DATMAN_V1.2.xsd"/>
+  <include schemaLocation="AIFMD_REPORTING_DataTypes_V1.2.xsd"/>
+</schema>
