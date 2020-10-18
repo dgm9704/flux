@@ -78,28 +78,28 @@
 			</AIFMPrincipalMarkets>
 			<AIFMPrincipalInstruments>
 				<AIFMPrincipalInstrument>
-				<Ranking>1</Ranking>
-				<SubAssetType>SEC_LEQ_OTHR</SubAssetType>
-				<AggregatedValueAmount>248478000</AggregatedValueAmount>
+					<Ranking>1</Ranking>
+					<SubAssetType>SEC_LEQ_OTHR</SubAssetType>
+					<AggregatedValueAmount>248478000</AggregatedValueAmount>
 				</AIFMPrincipalInstrument>
 				<AIFMPrincipalInstrument>
-				<Ranking>2</Ranking>
-				<SubAssetType>DER_FID_FIXI</SubAssetType>
-				<AggregatedValueAmount>145786532</AggregatedValueAmount>
+					<Ranking>2</Ranking>
+					<SubAssetType>DER_FID_FIXI</SubAssetType>
+					<AggregatedValueAmount>145786532</AggregatedValueAmount>
+				</AIFMPrincipalInstrument>
+					<AIFMPrincipalInstrument>
+					<Ranking>3</Ranking>
+					<SubAssetType>PHY_TIM_PTIM</SubAssetType>
+					<AggregatedValueAmount>14473914</AggregatedValueAmount>
 				</AIFMPrincipalInstrument>
 				<AIFMPrincipalInstrument>
-				<Ranking>3</Ranking>
-				<SubAssetType>PHY_TIM_PTIM</SubAssetType>
-				<AggregatedValueAmount>14473914</AggregatedValueAmount>
+					<Ranking>4</Ranking>
+					<SubAssetType>CIU_OAM_OTHR</SubAssetType>
+					<!-- <AggregatedValueAmount>7214939</AggregatedValueAmount> -->
 				</AIFMPrincipalInstrument>
 				<AIFMPrincipalInstrument>
-				<Ranking>4</Ranking>
-				<SubAssetType>CIU_OAM_OTHR</SubAssetType>
-				<AggregatedValueAmount>7214939</AggregatedValueAmount>
-				</AIFMPrincipalInstrument>
-				<AIFMPrincipalInstrument>
-				<Ranking>5</Ranking>
-				<SubAssetType>NTA_NTA_NOTA</SubAssetType>
+					<Ranking>5</Ranking>
+					<SubAssetType>NTA_NTA_NOTA</SubAssetType>
 				</AIFMPrincipalInstrument>
 			</AIFMPrincipalInstruments>
 			<AUMAmountInEuro>5500000</AUMAmountInEuro>

@@ -103,6 +103,16 @@
             </xsl:choose>
         </xsl:for-each>
 
+        <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo/AIFMCompleteDescription/AIFMPrincipalInstruments/AIFMPrincipalInstrument">
+            <xsl:choose> 
+                <xsl:when test = "not(SubAssetType = 'NTA_NTA_NOTA')"> 
+                    <xsl:if test="not(AggregatedValueAmount)">
+            ERROR 32
+                    </xsl:if>
+                </xsl:when>
+            </xsl:choose>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
