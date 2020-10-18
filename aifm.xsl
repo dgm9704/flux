@@ -20,13 +20,13 @@
 
         <xsl:for-each select = "AIFMReportingInfo/AIFMRecordInfo">
             <xsl:choose> 
-                <xsl:when test = "AIFMNoReportingFlag = 'false' "> 
-                    <xsl:if test="not(AIFMCompleteDescription/AIFMPrincipalMarkets)">
+                <xsl:when test = "AIFMNoReportingFlag = 'true' "> 
+                    <xsl:if test="AIFMCompleteDescription">
             ERROR 21.a
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
-                    <xsl:if test="AIFMCompleteDescription/AIFMPrincipalMarkets">
+                    <xsl:if test="not(AIFMCompleteDescription)">
             ERROR 21.b
                     </xsl:if>
                 </xsl:otherwise> 
