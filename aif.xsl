@@ -149,6 +149,16 @@
             </xsl:choose>
         </xsl:for-each>
 
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:choose> 
+                <xsl:when test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER')"> 
+                    <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
+            ERROR 43
+                    </xsl:if>
+                </xsl:when> 
+            </xsl:choose>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
