@@ -10,7 +10,7 @@
 		<ReportingPeriodYear>2014</ReportingPeriodYear>
 		<AIFReportingObligationChangeFrequencyCode>QH</AIFReportingObligationChangeFrequencyCode>
 		<AIFReportingObligationChangeContentsCode>5</AIFReportingObligationChangeContentsCode>
-		<AIFReportingObligationChangeQuarter>Q4</AIFReportingObligationChangeQuarter>
+		<!-- <AIFReportingObligationChangeQuarter>Q4</AIFReportingObligationChangeQuarter> -->
 		<LastReportingFlag>false</LastReportingFlag>
 		<Assumptions>
 			<Assumption>
@@ -739,6 +739,7 @@
 		<ReportingPeriodEndDate>2014-12-31</ReportingPeriodEndDate>
 		<ReportingPeriodType>Y1</ReportingPeriodType>
 		<ReportingPeriodYear>2014</ReportingPeriodYear>
+		<AIFReportingObligationChangeQuarter>Q4</AIFReportingObligationChangeQuarter>
 		<LastReportingFlag>false</LastReportingFlag>
 		<AIFMNationalCode>474286</AIFMNationalCode>
 		<AIFNationalCode>111114</AIFNationalCode>
