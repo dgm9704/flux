@@ -109,6 +109,15 @@
             </xsl:choose>
         </xsl:for-each>
 
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:choose> 
+                <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
+                    <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierRIC">
+            ERROR 39
+                    </xsl:if>
+                </xsl:when> 
+            </xsl:choose>
+        </xsl:for-each>
 
     </xsl:template>
 

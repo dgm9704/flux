@@ -769,6 +769,7 @@
 						<ShareClassIdentifierCUSIP>123456789</ShareClassIdentifierCUSIP>
 						<ShareClassIdentifierSEDOL>1234567</ShareClassIdentifierSEDOL>
 						<ShareClassIdentifierTicker>AAAA</ShareClassIdentifierTicker>
+						<ShareClassIdentifierRIC>AAAAAA</ShareClassIdentifierRIC>
 						<ShareClassName>Share Class 1</ShareClassName>
 					</ShareClassIdentifier>
 
