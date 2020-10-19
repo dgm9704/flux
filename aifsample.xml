@@ -768,6 +768,7 @@
 						<ShareClassIdentifierISIN>AA0000000000</ShareClassIdentifierISIN>
 						<ShareClassIdentifierCUSIP>123456789</ShareClassIdentifierCUSIP>
 						<ShareClassIdentifierSEDOL>1234567</ShareClassIdentifierSEDOL>
+						<ShareClassIdentifierTicker>AAAA</ShareClassIdentifierTicker>
 						<ShareClassName>Share Class 1</ShareClassName>
 					</ShareClassIdentifier>
 
