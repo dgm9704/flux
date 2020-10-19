@@ -50,7 +50,7 @@
 					<AIFBaseCurrencyDescription>
 						<BaseCurrency>USD</BaseCurrency>
 						<AUMAmountInBaseCurrency>12345678</AUMAmountInBaseCurrency>
-						<FXEURReferenceRateType>ECB</FXEURReferenceRateType>
+						<!-- <FXEURReferenceRateType>ECB</FXEURReferenceRateType> -->
 						<!-- <FXEURRate>0.7534</FXEURRate> -->
 					</AIFBaseCurrencyDescription>
 					<AIFNetAssetValue>10000000</AIFNetAssetValue>
