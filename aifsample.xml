@@ -1416,7 +1416,7 @@
 		<AIFNoReportingFlag>true</AIFNoReportingFlag>
 		<AIFCompleteDescription>
 			<AIFPrincipalInfo>
-				<ShareClassFlag>false</ShareClassFlag>
+				<ShareClassFlag>true</ShareClassFlag>
 				<AIFDescription>
 					<AIFMasterFeederStatus>NONE</AIFMasterFeederStatus>
 					<PrimeBrokers>
