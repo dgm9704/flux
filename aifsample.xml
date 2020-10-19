@@ -479,6 +479,7 @@
 						<AUMAmountInBaseCurrency>12345678</AUMAmountInBaseCurrency>
 						<FXEURReferenceRateType>ECB</FXEURReferenceRateType>
 						<FXEURRate>0.7534</FXEURRate>
+						<FXEUROtherReferenceRateDescription>Foo</FXEUROtherReferenceRateDescription>
 					</AIFBaseCurrencyDescription>
 					<AIFNetAssetValue>10000000</AIFNetAssetValue>
 					<FirstFundingSourceCountry>US</FirstFundingSourceCountry>
@@ -1117,7 +1118,7 @@
 						<AUMAmountInBaseCurrency>12345678658</AUMAmountInBaseCurrency>
 						<FXEURReferenceRateType>OTH</FXEURReferenceRateType>
 						<FXEURRate>13.7194</FXEURRate>
-						<FXEUROtherReferenceRateDescription>Free description</FXEUROtherReferenceRateDescription>
+						<!-- <FXEUROtherReferenceRateDescription>Free description</FXEUROtherReferenceRateDescription> -->
 					</AIFBaseCurrencyDescription>
 					<AIFNetAssetValue>10000000</AIFNetAssetValue>
 					<FirstFundingSourceCountry>US</FirstFundingSourceCountry>
