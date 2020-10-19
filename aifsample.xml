@@ -31,6 +31,12 @@
 				<AIFIdentification>
 					<AIFIdentifierSEDOL>XXF8678</AIFIdentifierSEDOL>
 					<AIFIdentifierTicker>MPCSRAC XX</AIFIdentifierTicker>
+
+					<!-- <OldAIFIdentifierNCA>
+						<ReportingMemberState>FI</ReportingMemberState>
+						<AIFNationalCode>222222</AIFNationalCode>
+					</OldAIFIdentifierNCA> -->
+
 				</AIFIdentification>
 				<ShareClassFlag>1</ShareClassFlag>
 				<AIFDescription>
@@ -754,14 +760,16 @@
 				<AIFIdentification>
 					<AIFIdentifierLEI>ZNHTL6O2WODTKMPF1Z48</AIFIdentifierLEI>
 				</AIFIdentification>
-				<ShareClassFlag>true</ShareClassFlag>
+				<ShareClassFlag>false</ShareClassFlag>
 				<ShareClassIdentification>
+
 					<ShareClassIdentifier>
+						<ShareClassNationalCode>aaaaaa</ShareClassNationalCode>
+						<ShareClassIdentifierISIN>AA0000000000</ShareClassIdentifierISIN>
+						<ShareClassIdentifierSEDOL>1234567</ShareClassIdentifierSEDOL>
 						<ShareClassName>Share Class 1</ShareClassName>
 					</ShareClassIdentifier>
-					<ShareClassIdentifier>
-						<ShareClassName>Share Class 2</ShareClassName>
-					</ShareClassIdentifier>
+
 				</ShareClassIdentification>
 				<AIFDescription>
 					<AIFMasterFeederStatus>NONE</AIFMasterFeederStatus>

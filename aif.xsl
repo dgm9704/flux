@@ -44,7 +44,7 @@
             </xsl:choose>
         </xsl:for-each>
 
-                <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'true'"> 
                     <xsl:if test="AIFCompleteDescription">
@@ -56,6 +56,26 @@
             ERROR 23.b
                     </xsl:if>
                 </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:choose> 
+                <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
+                    <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassNationalCode">
+            ERROR 34
+                    </xsl:if>
+                </xsl:when> 
+            </xsl:choose>
+        </xsl:for-each>
+
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:choose> 
+                <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
+                    <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierISIN">
+            ERROR 35
+                    </xsl:if>
+                </xsl:when> 
             </xsl:choose>
         </xsl:for-each>
 
