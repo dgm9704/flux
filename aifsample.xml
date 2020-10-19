@@ -15,7 +15,7 @@
 		<Assumptions>
 			<Assumption>
 				<QuestionNumber>45</QuestionNumber>
-				<!-- <AssumptionDescription>Free text</AssumptionDescription> -->
+				<AssumptionDescription>Free text</AssumptionDescription>
 			</Assumption>
 		</Assumptions>
 		<AIFMNationalCode>474286</AIFMNationalCode>
@@ -1386,6 +1386,7 @@
 			</AIFLeverageInfo>
 		</AIFCompleteDescription>
 	</AIFRecordInfo>
+
 	<AIFRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFContentType>2</AIFContentType>
@@ -1401,7 +1402,7 @@
 		<AIFReportingCode>11</AIFReportingCode>
 		<AIFDomicile>FR</AIFDomicile>
 		<InceptionDate>2006-12-01</InceptionDate>
-		<AIFNoReportingFlag>false</AIFNoReportingFlag>
+		<AIFNoReportingFlag>true</AIFNoReportingFlag>
 		<AIFCompleteDescription>
 			<AIFPrincipalInfo>
 				<ShareClassFlag>false</ShareClassFlag>
@@ -2024,6 +2025,29 @@
 			</AIFIndividualInfo>
 		</AIFCompleteDescription>
 	</AIFRecordInfo>
+
+	<AIFRecordInfo>
+		<FilingType>INIT</FilingType>
+		<AIFContentType>2</AIFContentType>
+		<ReportingPeriodStartDate>2014-07-01</ReportingPeriodStartDate>
+		<ReportingPeriodEndDate>2014-12-31</ReportingPeriodEndDate>
+		<ReportingPeriodType>H2</ReportingPeriodType>
+		<ReportingPeriodYear>2014</ReportingPeriodYear>
+		<LastReportingFlag>false</LastReportingFlag>
+		<AIFMNationalCode>474286</AIFMNationalCode>
+		<AIFNationalCode>111113</AIFNationalCode>
+		<AIFName>AIF4</AIFName>
+		<AIFEEAFlag>true</AIFEEAFlag>
+		<AIFReportingCode>11</AIFReportingCode>
+		<AIFDomicile>FR</AIFDomicile>
+		<InceptionDate>2006-12-01</InceptionDate>
+		<AIFNoReportingFlag>false</AIFNoReportingFlag>
+
+	</AIFRecordInfo>
+
+
+
+
 	<CancellationAIFRecordInfo>
 		<CancelledAIFNationalCode>Id21</CancelledAIFNationalCode>
 		<CancelledAIFMNationalCode>Id2</CancelledAIFMNationalCode>

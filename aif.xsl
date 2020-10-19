@@ -44,6 +44,21 @@
             </xsl:choose>
         </xsl:for-each>
 
+                <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:choose> 
+                <xsl:when test="AIFNoReportingFlag = 'true'"> 
+                    <xsl:if test="AIFCompleteDescription">
+            ERROR 23.a
+                    </xsl:if>
+                </xsl:when> 
+                <xsl:otherwise>
+                    <xsl:if test="not(AIFCompleteDescription)">
+            ERROR 23.b
+                    </xsl:if>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
