@@ -33,12 +33,12 @@
             <xsl:choose> 
                 <xsl:when test="AIFReportingObligationChangeFrequencyCode or AIFReportingObligationChangeContentsCode"> 
                     <xsl:if test="not(AIFReportingObligationChangeQuarter)">
-            ERROR 18.a
+            ERROR 12.a
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:if test="AIFReportingObligationChangeQuarter">
-            ERROR 18.b
+            ERROR 12.b
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>

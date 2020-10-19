@@ -15,7 +15,7 @@
 		<Assumptions>
 			<Assumption>
 				<QuestionNumber>45</QuestionNumber>
-				<AssumptionDescription>Free text</AssumptionDescription>
+				<!-- <AssumptionDescription>Free text</AssumptionDescription> -->
 			</Assumption>
 		</Assumptions>
 		<AIFMNationalCode>474286</AIFMNationalCode>
