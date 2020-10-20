@@ -233,6 +233,19 @@
             </xsl:choose>
         </xsl:for-each>
 
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:choose> 
+                <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType = 'MULT_REST'"> 
+                <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType[.!='MULT_REST'])"/>
+                    <xsl:choose>
+                        <xsl:when test="$count &lt; 2">
+            ERROR 58.c
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:when> 
+            </xsl:choose>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:transform>
