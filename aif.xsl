@@ -209,11 +209,28 @@
 
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:choose> 
+                <xsl:when test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType = 'NONE')"> 
+                <xsl:variable 
+                    name="count" 
+                    select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies 
+                                | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies
+                                | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies
+                                | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies
+                                | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies) "/>
+                    <xsl:if test="$count &gt; 1">
+            ERROR 58.a
+                    </xsl:if>
+                </xsl:when> 
+            </xsl:choose>
+        </xsl:for-each>
+
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType = 'MULT_HFND'"> 
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType[.!='MULT_HFND'])"/>
                     <xsl:choose>
                         <xsl:when test="$count &lt; 2">
-            ERROR 58.a
+            ERROR 58.b
                         </xsl:when>
                     </xsl:choose>
                 </xsl:when> 
@@ -226,7 +243,7 @@
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType[.!='MULT_PEQF'])"/>
                     <xsl:choose>
                         <xsl:when test="$count &lt; 2">
-            ERROR 58.b
+            ERROR 58.c
                         </xsl:when>
                     </xsl:choose>
                 </xsl:when> 
@@ -239,7 +256,7 @@
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType[.!='MULT_REST'])"/>
                     <xsl:choose>
                         <xsl:when test="$count &lt; 2">
-            ERROR 58.c
+            ERROR 58.d
                         </xsl:when>
                     </xsl:choose>
                 </xsl:when> 

@@ -1119,7 +1119,7 @@
 					<AIFNetAssetValue>10000000</AIFNetAssetValue>
 					<FirstFundingSourceCountry>US</FirstFundingSourceCountry>
 					<SecondFundingSourceCountry>GB</SecondFundingSourceCountry>
-					<PredominantAIFType>NONE</PredominantAIFType>
+					<PredominantAIFType>HFND</PredominantAIFType>
 					<HedgeFundInvestmentStrategies>
 						<HedgeFundStrategy>
 							<HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType>
@@ -1749,7 +1749,7 @@
 		<CancelledReportingPeriodYear>2014</CancelledReportingPeriodYear>
 		<CancelledRecordFlag>C</CancelledRecordFlag>
 	</CancellationAIFRecordInfo>
-	
+
 	<CancellationAIFRecordInfo>
 		<CancelledAIFNationalCode>Id22</CancelledAIFNationalCode>
 		<CancelledAIFMNationalCode>Id2</CancelledAIFMNationalCode>
