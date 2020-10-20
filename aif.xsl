@@ -247,6 +247,86 @@ ERROR 59.c
             </xsl:if>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:variable 
+            name="strategies" 
+            select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[not(HedgeFundStrategyType = 'MULT_HFND')] " />
+            <xsl:if test="$strategies">
+                <xsl:for-each select="$strategies">
+                    <xsl:if test="not(StrategyNAVRate)">
+ERROR 60.a.I
+                    </xsl:if>
+                </xsl:for-each>
+                <xsl:if test="not(sum($strategies/StrategyNAVRate) = 100)">
+ERROR 60.a.II
+                </xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:variable 
+            name="strategies" 
+            select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[not(PrivateEquityFundStrategyType = 'MULT_PEQF')] " />
+            <xsl:if test="$strategies">
+                <xsl:for-each select="$strategies">
+                    <xsl:if test="not(StrategyNAVRate)">
+ERROR 60.b.I
+                    </xsl:if>
+                </xsl:for-each>
+                <xsl:if test="not(sum($strategies/StrategyNAVRate) = 100)">
+ERROR 60.b.II
+                </xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:variable 
+            name="strategies" 
+            select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy[not(RealEstateFundStrategyType = 'MULT_REST')] " />
+            <xsl:if test="$strategies">
+                <xsl:for-each select="$strategies">
+                    <xsl:if test="not(StrategyNAVRate)">
+ERROR 60.c.I
+                    </xsl:if>
+                </xsl:for-each>
+                <xsl:if test="not(sum($strategies/StrategyNAVRate) = 100)">
+ERROR 60.c.II
+                </xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:variable 
+            name="strategies" 
+            select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy" />
+            <xsl:if test="$strategies">
+                <xsl:for-each select="$strategies">
+                    <xsl:if test="not(StrategyNAVRate)">
+ERROR 60.d.I
+                    </xsl:if>
+                </xsl:for-each>
+                <xsl:if test="not(sum($strategies/StrategyNAVRate) = 100)">
+ERROR 60.d.II
+                </xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:variable 
+            name="strategies" 
+            select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies/OtherFundStrategy" />
+            <xsl:if test="$strategies">
+                <xsl:for-each select="$strategies">
+                    <xsl:if test="not(StrategyNAVRate)">
+ERROR 60.e.I
+                    </xsl:if>
+                </xsl:for-each>
+                <xsl:if test="not(sum($strategies/StrategyNAVRate) = 100)">
+ERROR 60.e.II
+                </xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
