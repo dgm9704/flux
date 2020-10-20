@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AIFReportingInfo ReportingMemberState="FR" Version="1.2" CreationDateAndTime="2001-12-17T09:30:47.0Z" xsi:noNamespaceSchemaLocation="AIFMD_DATAIF_V1.2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
 	<AIFRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFContentType>2</AIFContentType>
@@ -18,7 +19,7 @@
 		</Assumptions>
 		<AIFMNationalCode>474286</AIFMNationalCode>
 		<AIFNationalCode>111112</AIFNationalCode>
-		<AIFName>AIF TEST2</AIFName>
+		<AIFName>AIF 1</AIFName>
 		<AIFEEAFlag>true</AIFEEAFlag>
 		<AIFReportingCode>11</AIFReportingCode>
 		<AIFDomicile>LU</AIFDomicile>
@@ -421,7 +422,7 @@
 		<LastReportingFlag>false</LastReportingFlag>
 		<AIFMNationalCode>474286</AIFMNationalCode>
 		<AIFNationalCode>111114</AIFNationalCode>
-		<AIFName>AIFM 1 - Currency Fund 2</AIFName>
+		<AIFName>AIF 2</AIFName>
 		<AIFEEAFlag>true</AIFEEAFlag>
 		<AIFReportingCode>17</AIFReportingCode>
 		<AIFDomicile>LU</AIFDomicile>
@@ -1087,7 +1088,7 @@
 		<LastReportingFlag>false</LastReportingFlag>
 		<AIFMNationalCode>474286</AIFMNationalCode>
 		<AIFNationalCode>111113</AIFNationalCode>
-		<AIFName>AIF - Fund 1</AIFName>
+		<AIFName>AIF 3</AIFName>
 		<AIFEEAFlag>true</AIFEEAFlag>
 		<AIFReportingCode>11</AIFReportingCode>
 		<AIFDomicile>FR</AIFDomicile>
@@ -1732,7 +1733,7 @@
 		<LastReportingFlag>false</LastReportingFlag>
 		<AIFMNationalCode>474286</AIFMNationalCode>
 		<AIFNationalCode>111113</AIFNationalCode>
-		<AIFName>AIF4</AIFName>
+		<AIFName>AIF 4</AIFName>
 		<AIFEEAFlag>true</AIFEEAFlag>
 		<AIFReportingCode>11</AIFReportingCode>
 		<AIFDomicile>FR</AIFDomicile>
@@ -1741,9 +1742,6 @@
 
 	</AIFRecordInfo>
 
-
-
-
 	<CancellationAIFRecordInfo>
 		<CancelledAIFNationalCode>Id21</CancelledAIFNationalCode>
 		<CancelledAIFMNationalCode>Id2</CancelledAIFMNationalCode>
@@ -1751,6 +1749,7 @@
 		<CancelledReportingPeriodYear>2014</CancelledReportingPeriodYear>
 		<CancelledRecordFlag>C</CancelledRecordFlag>
 	</CancellationAIFRecordInfo>
+	
 	<CancellationAIFRecordInfo>
 		<CancelledAIFNationalCode>Id22</CancelledAIFNationalCode>
 		<CancelledAIFMNationalCode>Id2</CancelledAIFMNationalCode>

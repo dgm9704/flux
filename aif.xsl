@@ -252,7 +252,6 @@
             </xsl:if>
         </xsl:for-each>
 
-
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[HedgeFundStrategyType = 'MULT_HFND' and not(PrimaryStrategyFlag = 'true')]"> 
             ERROR 59.b
