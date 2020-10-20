@@ -61,7 +61,7 @@
 					<HedgeFundInvestmentStrategies>
 						<HedgeFundStrategy>
 							<HedgeFundStrategyType>MULT_HFND</HedgeFundStrategyType>
-							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
+							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>100</StrategyNAVRate>
 						</HedgeFundStrategy>
 						<HedgeFundStrategy>
@@ -494,11 +494,11 @@
 					<PrivateEquityFundInvestmentStrategies>
 						<PrivateEquityFundInvestmentStrategy>
 							<PrivateEquityFundStrategyType>MULT_PEQF</PrivateEquityFundStrategyType>
-							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
+							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 						</PrivateEquityFundInvestmentStrategy>
 						<PrivateEquityFundInvestmentStrategy>
 							<PrivateEquityFundStrategyType>MZNE_CAPL</PrivateEquityFundStrategyType>
-							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
+							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
 							<StrategyNAVRate>40</StrategyNAVRate>
 						</PrivateEquityFundInvestmentStrategy>
 					</PrivateEquityFundInvestmentStrategies>
@@ -1134,7 +1134,7 @@
 					<RealEstateFundInvestmentStrategies>
 						<RealEstateFundStrategy>
 							<RealEstateFundStrategyType>MULT_REST</RealEstateFundStrategyType>
-							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
+							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 						</RealEstateFundStrategy>
 					</RealEstateFundInvestmentStrategies>
 					<FundOfFundsInvestmentStrategies>

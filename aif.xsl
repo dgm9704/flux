@@ -246,6 +246,25 @@
             </xsl:choose>
         </xsl:for-each>
 
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_PEQF' and not(PrimaryStrategyFlag = 'true')]"> 
+            ERROR 59.a
+            </xsl:for-each>
+        </xsl:for-each>
+
+
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[HedgeFundStrategyType = 'MULT_HFND' and not(PrimaryStrategyFlag = 'true')]"> 
+            ERROR 59.b
+            </xsl:for-each>
+        </xsl:for-each>
+
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy[RealEstateFundStrategyType = 'MULT_REST' and not(PrimaryStrategyFlag = 'true')]"> 
+            ERROR 59.c
+            </xsl:for-each>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:transform>
