@@ -60,6 +60,12 @@
 					<PredominantAIFType>HFND</PredominantAIFType>
 					<HedgeFundInvestmentStrategies>
 						<HedgeFundStrategy>
+							<!-- <HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType> -->
+							<HedgeFundStrategyType>MULT_HFND</HedgeFundStrategyType>
+							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
+							<StrategyNAVRate>100</StrategyNAVRate>
+						</HedgeFundStrategy>
+						<HedgeFundStrategy>
 							<HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
 							<StrategyNAVRate>100</StrategyNAVRate>

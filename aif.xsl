@@ -1,4 +1,7 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+<?xml version="1.0"?>
+<xsl:transform xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+  version="2.0">
+
 <xsl:output method="text" />
 
     <xsl:template match="/">
@@ -189,7 +192,7 @@
             </xsl:choose>
         </xsl:for-each>
 
-                <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType = 'OTH'"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEUROtherReferenceRateDescription)">
@@ -204,6 +207,19 @@
             </xsl:choose>
         </xsl:for-each>
 
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:choose> 
+                <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType = 'MULT_HFND'"> 
+                <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType[.!='MULT_HFND'])"/>
+                    <xsl:choose>
+                        <xsl:when test="$count &lt; 2">
+            ERROR 58.a
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:when> 
+            </xsl:choose>
+        </xsl:for-each>
+
     </xsl:template>
 
-</xsl:stylesheet>
+</xsl:transform>
