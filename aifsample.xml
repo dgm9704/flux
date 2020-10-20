@@ -60,7 +60,6 @@
 					<PredominantAIFType>HFND</PredominantAIFType>
 					<HedgeFundInvestmentStrategies>
 						<HedgeFundStrategy>
-							<!-- <HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType> -->
 							<HedgeFundStrategyType>MULT_HFND</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
 							<StrategyNAVRate>100</StrategyNAVRate>
@@ -501,16 +500,6 @@
 							<PrivateEquityFundStrategyType>MZNE_CAPL</PrivateEquityFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>40</StrategyNAVRate>
-						</PrivateEquityFundInvestmentStrategy>
-						<PrivateEquityFundInvestmentStrategy>
-							<PrivateEquityFundStrategyType>GRTH_CAPL</PrivateEquityFundStrategyType>
-							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
-							<StrategyNAVRate>40</StrategyNAVRate>
-						</PrivateEquityFundInvestmentStrategy>
-						<PrivateEquityFundInvestmentStrategy>
-							<PrivateEquityFundStrategyType>VENT_CAPL</PrivateEquityFundStrategyType>
-							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
-							<StrategyNAVRate>20</StrategyNAVRate>
 						</PrivateEquityFundInvestmentStrategy>
 					</PrivateEquityFundInvestmentStrategies>
 				</AIFDescription>

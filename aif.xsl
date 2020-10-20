@@ -220,6 +220,19 @@
             </xsl:choose>
         </xsl:for-each>
 
+        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+            <xsl:choose> 
+                <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType = 'MULT_PEQF'"> 
+                <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType[.!='MULT_PEQF'])"/>
+                    <xsl:choose>
+                        <xsl:when test="$count &lt; 2">
+            ERROR 58.b
+                        </xsl:when>
+                    </xsl:choose>
+                </xsl:when> 
+            </xsl:choose>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:transform>
