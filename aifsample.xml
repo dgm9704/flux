@@ -99,7 +99,7 @@
 						<InstrumentCodeType>NONE</InstrumentCodeType>
 						<InstrumentName>Building name</InstrumentName>
 						<PositionValue>3000000</PositionValue>
-						<PositionType>L</PositionType>
+						<!-- <PositionType>L</PositionType> -->
 					</MainInstrumentTraded>
 					<MainInstrumentTraded>
 						<Ranking>4</Ranking>
