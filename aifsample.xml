@@ -291,7 +291,7 @@
 							<AggregatedValueRate>8</AggregatedValueRate>
 						</PortfolioConcentration>
 						<PortfolioConcentration>
-							<Ranking>5</Ranking>
+							<Ranking>1</Ranking>
 							<AssetType>NTA_NTA</AssetType>
 						</PortfolioConcentration>
 					</PortfolioConcentrations>

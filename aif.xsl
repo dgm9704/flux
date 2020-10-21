@@ -649,9 +649,6 @@ ERROR 86_93
             select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/Ranking" />
             <xsl:if test="$ranks and not($ranks[.='1'] and $ranks[.='2'] and $ranks[.='3'] and $ranks[.='4'] and $ranks[.='5'] and $ranks[.='6'] and $ranks[.='7'] and $ranks[.='8'] and $ranks[.='9'] and $ranks[.='10'])">
 ERROR 94
-                <!-- <xsl:for-each select="$ranks">
-                    <xsl:value-of select="." />
-                </xsl:for-each> -->
             </xsl:if>
         </xsl:for-each>
 
@@ -721,6 +718,15 @@ ERROR 99.b
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:variable 
+            name="ranks" 
+            select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/Ranking" />
+            <xsl:if test="$ranks and not($ranks[.='1'] and $ranks[.='2'] and $ranks[.='3'] and $ranks[.='4'] and $ranks[.='5'])">
+ERROR 103
+            </xsl:if>
         </xsl:for-each>
 
     </xsl:template>
