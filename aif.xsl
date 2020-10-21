@@ -814,6 +814,17 @@ ERROR 109.b
             </xsl:for-each>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
+                <xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC')">
+                    <xsl:if test="CounterpartyIdentification/EntityName">
+ERROR 110_112
+                    </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+
+
     </xsl:template>
 
 </xsl:stylesheet>
