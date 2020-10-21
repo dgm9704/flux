@@ -248,10 +248,10 @@
 							<Ranking>1</Ranking>
 							<AssetType>DER_EQD</AssetType>
 							<!-- <PositionType>L</PositionType> -->
-							<MarketIdentification>
+							<!-- <MarketIdentification>
 								<MarketCodeType>MIC</MarketCodeType>
 								<MarketCode>XPAR</MarketCode>
-							</MarketIdentification>
+							</MarketIdentification> -->
 							<AggregatedValueAmount>120000000</AggregatedValueAmount>
 							<AggregatedValueRate>47</AggregatedValueRate>
 						</PortfolioConcentration>
@@ -294,6 +294,10 @@
 							<Ranking>1</Ranking>
 							<AssetType>NTA_NTA</AssetType>
 							<PositionType>L</PositionType>
+							<MarketIdentification>
+								<MarketCodeType>MIC</MarketCodeType>
+								<MarketCode>XPAR</MarketCode>
+							</MarketIdentification>
 						</PortfolioConcentration>
 					</PortfolioConcentrations>
 					<AIFPrincipalMarkets>

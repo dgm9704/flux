@@ -746,6 +746,23 @@ ERROR 105.b
             </xsl:for-each>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
+                <xsl:choose>
+                    <xsl:when test="not(AssetType = 'NTA_NTA')">
+                        <xsl:if test="not(MarketIdentification/MarketCodeType)">
+ERROR 106.a
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="MarketIdentification/MarketCodeType">
+ERROR 106.b
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
