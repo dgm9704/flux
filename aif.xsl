@@ -733,6 +733,16 @@ ERROR 101
             </xsl:for-each>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification">
+                <xsl:if test="not(EntityName)">
+                    <xsl:if test="EntityIdentificationBIC">
+ERROR 102
+                    </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
