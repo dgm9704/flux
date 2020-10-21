@@ -106,14 +106,14 @@
 						<SubAssetType>DER_IRD_INTR</SubAssetType>
 						<InstrumentCodeType>AII</InstrumentCodeType>
 						<InstrumentName>Buy 10 Instrument Dec 2014 160 Calls through Bclear (NYSE Liffe)</InstrumentName>
-						<AIIInstrumentIdentification>
-							<!-- <AIIExchangeCode>XLIF</AIIExchangeCode> -->
+						<!-- <AIIInstrumentIdentification>
+							<AIIExchangeCode>XLIF</AIIExchangeCode>
 							<AIIProductCode>XXX</AIIProductCode>
 							<AIIDerivativeType>O</AIIDerivativeType>
 							<AIIPutCallIdentifier>C</AIIPutCallIdentifier>
 							<AIIExpiryDate>2014-12-16</AIIExpiryDate>
 							<AIIStrikePrice>1.60</AIIStrikePrice>
-						</AIIInstrumentIdentification>
+						</AIIInstrumentIdentification> -->
 						<PositionValue>2900000</PositionValue>
 						<PositionType>S</PositionType>
 						<ShortPositionHedgingRate>1.26</ShortPositionHedgingRate>
