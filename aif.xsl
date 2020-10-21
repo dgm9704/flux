@@ -413,6 +413,18 @@ ERROR 61.e.II
         </xsl:for-each>
 
         <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:variable 
+            name="ranks" 
+            select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded/Ranking" />
+            <xsl:if test="$ranks and not($ranks[.='1'] and $ranks[.='2'] and $ranks[.='3'] and $ranks[.='4'] and $ranks[.='5'])">
+ERROR 64
+                <xsl:for-each select="$ranks">
+                    <xsl:value-of select="." />
+                </xsl:for-each>
+            </xsl:if>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
