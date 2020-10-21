@@ -232,7 +232,7 @@
 						</CounterpartyIdentification>
 					</PrincipalExposure>
 					<PrincipalExposure>
-						<Ranking>10</Ranking>
+						<Ranking>1</Ranking>
 						<AssetMacroType>NTA</AssetMacroType>
 				</PrincipalExposure>
 				</PrincipalExposures>

@@ -93,7 +93,7 @@
                 <xsl:otherwise>
                     <xsl:if test="not(FXEURRate)">
             ERROR 37.b
-                    </xsl:if>
+                    </xsl:if>   
                 </xsl:otherwise>
             </xsl:choose>
         </xsl:for-each>
