@@ -227,9 +227,9 @@
 						<AggregatedValueAmount>14500000</AggregatedValueAmount>
 						<AggregatedValueRate>24</AggregatedValueRate>
 						<CounterpartyIdentification>
-							<!-- <EntityName>Entity 2</EntityName> -->
-							<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
+							<EntityName>Entity 2</EntityName>
 							<EntityIdentificationBIC>TESTFRPPXXX</EntityIdentificationBIC>
+							<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
 						</CounterpartyIdentification>
 					</PrincipalExposure>
 					<PrincipalExposure>
