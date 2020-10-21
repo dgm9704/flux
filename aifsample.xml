@@ -115,7 +115,7 @@
 							<AIIStrikePrice>1.60</AIIStrikePrice>
 						</AIIInstrumentIdentification> -->
 						<PositionValue>2900000</PositionValue>
-						<PositionType>S</PositionType>
+						<PositionType>L</PositionType>
 						<ShortPositionHedgingRate>1.26</ShortPositionHedgingRate>
 					</MainInstrumentTraded>
 					<MainInstrumentTraded>

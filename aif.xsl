@@ -599,6 +599,16 @@ ERROR 76.b
             </xsl:for-each>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
+                <xsl:if test="not(PositionType = 'S')">
+                    <xsl:if test="ShortPositionHedgingRate">
+ERROR 77
+                    </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
