@@ -137,7 +137,7 @@
 					<MiddleEastNAVRate>0</MiddleEastNAVRate>
 					<NorthAmericaNAVRate>10</NorthAmericaNAVRate>
 					<SouthAmericaNAVRate>20</SouthAmericaNAVRate>
-					<SupraNationalNAVRate>0</SupraNationalNAVRate>
+					<SupraNationalNAVRate>50</SupraNationalNAVRate>
 				</NAVGeographicalFocus>
 				<AUMGeographicalFocus>
 					<AfricaAUMRate>0</AfricaAUMRate>

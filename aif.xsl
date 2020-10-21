@@ -609,6 +609,17 @@ ERROR 77
             </xsl:for-each>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:variable 
+            name="regions" 
+            select="AIFCompleteDescription/AIFPrincipalInfo/NAVGeographicalFocus/*" />
+            <xsl:if test="$regions">
+                <xsl:if test="not(sum($regions) = 100)">
+ERROR 78_85
+                </xsl:if>
+            </xsl:if>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
