@@ -235,6 +235,7 @@
 						<Ranking>1</Ranking>
 						<AssetMacroType>NTA</AssetMacroType>
 						<SubAssetType>CIU_NAM_AETF</SubAssetType>
+						<PositionType>L</PositionType>
 				</PrincipalExposure>
 				</PrincipalExposures>
 
