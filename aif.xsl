@@ -729,6 +729,23 @@ ERROR 103
             </xsl:if>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
+                <xsl:choose>
+                    <xsl:when test="not(AssetType = 'NTA_NTA')">
+                        <xsl:if test="not(PositionType)">
+ERROR 105.a
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="PositionType">
+ERROR 105.b
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>

@@ -247,7 +247,7 @@
 						<PortfolioConcentration>
 							<Ranking>1</Ranking>
 							<AssetType>DER_EQD</AssetType>
-							<PositionType>L</PositionType>
+							<!-- <PositionType>L</PositionType> -->
 							<MarketIdentification>
 								<MarketCodeType>MIC</MarketCodeType>
 								<MarketCode>XPAR</MarketCode>
@@ -293,6 +293,7 @@
 						<PortfolioConcentration>
 							<Ranking>1</Ranking>
 							<AssetType>NTA_NTA</AssetType>
+							<PositionType>L</PositionType>
 						</PortfolioConcentration>
 					</PortfolioConcentrations>
 					<AIFPrincipalMarkets>
