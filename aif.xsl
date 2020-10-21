@@ -763,6 +763,23 @@ ERROR 106.b
             </xsl:for-each>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/MarketIdentification">
+                <xsl:choose>
+                    <xsl:when test="MarketCodeType = 'MIC'">
+                        <xsl:if test="not(MarketCode)">
+ERROR 107.a
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="MarketCode">
+ERROR 107.b
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>

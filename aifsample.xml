@@ -261,7 +261,7 @@
 							<PositionType>L</PositionType>
 							<MarketIdentification>
 								<MarketCodeType>MIC</MarketCodeType>
-								<MarketCode>ECAG</MarketCode>
+								<!-- <MarketCode>ECAG</MarketCode> -->
 							</MarketIdentification>
 							<AggregatedValueAmount>98000000</AggregatedValueAmount>
 							<AggregatedValueRate>38</AggregatedValueRate>
@@ -286,6 +286,7 @@
 							<PositionType>L</PositionType>
 							<MarketIdentification>
 								<MarketCodeType>OTC</MarketCodeType>
+								<MarketCode>ECAG</MarketCode>
 							</MarketIdentification>
 							<AggregatedValueAmount>21000000</AggregatedValueAmount>
 							<AggregatedValueRate>8</AggregatedValueRate>
