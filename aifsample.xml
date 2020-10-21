@@ -227,7 +227,8 @@
 						<AggregatedValueAmount>14500000</AggregatedValueAmount>
 						<AggregatedValueRate>24</AggregatedValueRate>
 						<CounterpartyIdentification>
-							<EntityName>Entity 2</EntityName>
+							<!-- <EntityName>Entity 2</EntityName> -->
+							<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
 							<EntityIdentificationBIC>TESTFRPPXXX</EntityIdentificationBIC>
 						</CounterpartyIdentification>
 					</PrincipalExposure>
@@ -237,6 +238,7 @@
 						<SubAssetType>CIU_NAM_AETF</SubAssetType>
 						<PositionType>L</PositionType>
 						<AggregatedValueAmount>100000000</AggregatedValueAmount>
+						<AggregatedValueRate>39</AggregatedValueRate>
 				</PrincipalExposure>
 				</PrincipalExposures>
 

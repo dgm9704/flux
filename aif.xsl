@@ -693,16 +693,43 @@ ERROR 97.b
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
                 <xsl:choose>
                     <xsl:when test="not(AssetMacroType = 'NTA')">
-                        <xsl:if test="not(PositionType)">
+                        <xsl:if test="not(AggregatedValueAmount)">
 ERROR 98.a
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:if test="PositionType">
+                        <xsl:if test="AggregatedValueAmount">
 ERROR 98.b
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
+                <xsl:choose>
+                    <xsl:when test="not(AssetMacroType = 'NTA')">
+                        <xsl:if test="not(AggregatedValueRate)">
+ERROR 99.a
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="AggregatedValueRate">
+ERROR 99.b
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification">
+                <xsl:if test="not(EntityName)">
+                    <xsl:if test="EntityIdentificationLEI">
+ERROR 101
+                    </xsl:if>
+                </xsl:if>
             </xsl:for-each>
         </xsl:for-each>
 
