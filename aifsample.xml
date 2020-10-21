@@ -263,8 +263,8 @@
 								<MarketCodeType>MIC</MarketCodeType>
 								<!-- <MarketCode>ECAG</MarketCode> -->
 							</MarketIdentification>
-							<AggregatedValueAmount>98000000</AggregatedValueAmount>
-							<AggregatedValueRate>38</AggregatedValueRate>
+							<!-- <AggregatedValueAmount>98000000</AggregatedValueAmount>
+							<AggregatedValueRate>38</AggregatedValueRate> -->
 						</PortfolioConcentration>
 						<PortfolioConcentration>
 							<Ranking>3</Ranking>
@@ -299,6 +299,8 @@
 								<MarketCodeType>MIC</MarketCodeType>
 								<MarketCode>XPAR</MarketCode>
 							</MarketIdentification>
+							<AggregatedValueAmount>98000000</AggregatedValueAmount>
+							<AggregatedValueRate>38</AggregatedValueRate>
 						</PortfolioConcentration>
 					</PortfolioConcentrations>
 					<AIFPrincipalMarkets>
