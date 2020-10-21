@@ -514,6 +514,23 @@ ERROR 71.b
             </xsl:for-each>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
+                <xsl:choose>
+                    <xsl:when test="InstrumentCodeType = 'AII'">
+                        <xsl:if test="not(AIIInstrumentIdentification/AIIPutCallIdentifier)">
+ERROR 72.a
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="AIIInstrumentIdentification/AIIPutCallIdentifier">
+ERROR 72.b
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
