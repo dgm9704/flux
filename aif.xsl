@@ -649,10 +649,27 @@ ERROR 86_93
             select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/Ranking" />
             <xsl:if test="$ranks and not($ranks[.='1'] and $ranks[.='2'] and $ranks[.='3'] and $ranks[.='4'] and $ranks[.='5'] and $ranks[.='6'] and $ranks[.='7'] and $ranks[.='8'] and $ranks[.='9'] and $ranks[.='10'])">
 ERROR 94
-                <xsl:for-each select="$ranks">
+                <!-- <xsl:for-each select="$ranks">
                     <xsl:value-of select="." />
-                </xsl:for-each>
+                </xsl:for-each> -->
             </xsl:if>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
+                <xsl:choose>
+                    <xsl:when test="not(AssetMacroType = 'NTA')">
+                        <xsl:if test="not(SubAssetType)">
+ERROR 96.a
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="SubAssetType">
+ERROR 96.b
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
         </xsl:for-each>
 
     </xsl:template>

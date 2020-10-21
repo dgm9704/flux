@@ -162,10 +162,10 @@
 					<PrincipalExposure>
 						<Ranking>2</Ranking>
 						<AssetMacroType>DER</AssetMacroType>
-						<SubAssetType>DER_CDS_EXOT</SubAssetType>
+						<!-- <SubAssetType>DER_CDS_EXOT</SubAssetType>
 						<PositionType>L</PositionType>
 						<AggregatedValueAmount>100000000</AggregatedValueAmount>
-						<AggregatedValueRate>39</AggregatedValueRate>
+						<AggregatedValueRate>39</AggregatedValueRate> -->
 					</PrincipalExposure>
 					<PrincipalExposure>
 						<Ranking>3</Ranking>
@@ -234,6 +234,7 @@
 					<PrincipalExposure>
 						<Ranking>1</Ranking>
 						<AssetMacroType>NTA</AssetMacroType>
+						<SubAssetType>CIU_NAM_AETF</SubAssetType>
 				</PrincipalExposure>
 				</PrincipalExposures>
 
