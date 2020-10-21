@@ -107,7 +107,7 @@
 						<InstrumentCodeType>AII</InstrumentCodeType>
 						<InstrumentName>Buy 10 Instrument Dec 2014 160 Calls through Bclear (NYSE Liffe)</InstrumentName>
 						<AIIInstrumentIdentification>
-							<AIIExchangeCode>XLIF</AIIExchangeCode>
+							<!-- <AIIExchangeCode>XLIF</AIIExchangeCode> -->
 							<AIIProductCode>XXX</AIIProductCode>
 							<AIIDerivativeType>O</AIIDerivativeType>
 							<AIIPutCallIdentifier>C</AIIPutCallIdentifier>
