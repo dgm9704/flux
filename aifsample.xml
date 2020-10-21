@@ -1205,7 +1205,7 @@
 						<Ranking>1</Ranking>
 						<SubAssetType>SEC_LEQ_IFIN</SubAssetType>
 						<InstrumentCodeType>ISIN</InstrumentCodeType>
-						<InstrumentName>BNP Paribas</InstrumentName>
+						<!-- <InstrumentName>BNP Paribas</InstrumentName> -->
 						<ISINInstrumentIdentification>FR0000131104</ISINInstrumentIdentification>
 						<PositionValue>10000000</PositionValue>
 						<PositionType>L</PositionType>
@@ -1246,7 +1246,7 @@
 					</MainInstrumentTraded>
 					<MainInstrumentTraded>
 						<Ranking>5</Ranking>
-						<SubAssetType>DER_EQD_OTHD</SubAssetType>
+						<SubAssetType>NTA_NTA_NOTA</SubAssetType>
 						<InstrumentCodeType>ISIN</InstrumentCodeType>
 						<InstrumentName>CAC 40 Index Future Jun 2014</InstrumentName>
 						<ISINInstrumentIdentification>EUFR01069954</ISINInstrumentIdentification>
