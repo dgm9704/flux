@@ -446,6 +446,23 @@ ERROR 67.b
             </xsl:for-each>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
+                <xsl:choose>
+                    <xsl:when test="InstrumentCodeType = 'ISIN'">
+                        <xsl:if test="not(ISINInstrumentIdentification)">
+ERROR 68.a
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="ISINInstrumentIdentification">
+ERROR 68.b
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>

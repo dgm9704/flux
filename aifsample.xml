@@ -1224,6 +1224,7 @@
 						<SubAssetType>PHY_RES_COML</SubAssetType>
 						<InstrumentCodeType>NONE</InstrumentCodeType>
 						<InstrumentName>Building name</InstrumentName>
+						<ISINInstrumentIdentification>FR0118153370</ISINInstrumentIdentification>
 						<PositionValue>3000000</PositionValue>
 						<PositionType>L</PositionType>
 					</MainInstrumentTraded>
@@ -1249,7 +1250,7 @@
 						<SubAssetType>NTA_NTA_NOTA</SubAssetType>
 						<InstrumentCodeType>ISIN</InstrumentCodeType>
 						<InstrumentName>CAC 40 Index Future Jun 2014</InstrumentName>
-						<ISINInstrumentIdentification>EUFR01069954</ISINInstrumentIdentification>
+						<!-- <ISINInstrumentIdentification>EUFR01069954</ISINInstrumentIdentification> -->
 						<PositionValue>2100000</PositionValue>
 						<PositionType>S</PositionType>
 						<ShortPositionHedgingRate>1</ShortPositionHedgingRate>
