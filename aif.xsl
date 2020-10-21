@@ -582,6 +582,23 @@ ERROR 75.b
             </xsl:for-each>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
+                <xsl:choose>
+                    <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
+                        <xsl:if test="not(PositionValue)">
+ERROR 76.a
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="PositionValue">
+ERROR 76.b
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
