@@ -416,6 +416,23 @@ ERROR 61.e.II
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
+                        <xsl:if test="not(InstrumentCodeType)">
+ERROR 66.a
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="InstrumentCodeType">
+ERROR 66.b
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
+                <xsl:choose>
+                    <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
                         <xsl:if test="not(InstrumentName)">
 ERROR 67.a
                         </xsl:if>

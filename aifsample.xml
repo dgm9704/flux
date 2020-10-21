@@ -1230,7 +1230,7 @@
 					<MainInstrumentTraded>
 						<Ranking>4</Ranking>
 						<SubAssetType>DER_IRD_INTR</SubAssetType>
-						<InstrumentCodeType>AII</InstrumentCodeType>
+						<!-- <InstrumentCodeType>AII</InstrumentCodeType> -->
 						<InstrumentName>Buy 10 Instrument Dec 2014 160 Calls through Bclear (NYSE Liffe)</InstrumentName>
 						<AIIInstrumentIdentification>
 							<AIIExchangeCode>XLIF</AIIExchangeCode>
