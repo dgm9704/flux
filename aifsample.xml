@@ -496,6 +496,7 @@
 						<PrivateEquityFundInvestmentStrategy>
 							<PrivateEquityFundStrategyType>MULT_PEQF</PrivateEquityFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
+							<StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription>
 						</PrivateEquityFundInvestmentStrategy>
 						<PrivateEquityFundInvestmentStrategy>
 							<PrivateEquityFundStrategyType>MZNE_CAPL</PrivateEquityFundStrategyType>
@@ -503,7 +504,7 @@
 							<StrategyNAVRate>40</StrategyNAVRate>
 						</PrivateEquityFundInvestmentStrategy>
 						<PrivateEquityFundInvestmentStrategy>
-							<PrivateEquityFundStrategyType>MZNE_CAPL</PrivateEquityFundStrategyType>
+							<PrivateEquityFundStrategyType>OTHR_PEQF</PrivateEquityFundStrategyType>
 							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
 							<!-- <StrategyNAVRate>40</StrategyNAVRate> -->
 						</PrivateEquityFundInvestmentStrategy>
@@ -1130,6 +1131,7 @@
 							<HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>25</StrategyNAVRate>
+							<StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription>
 						</HedgeFundStrategy>
 						<HedgeFundStrategy>
 							<HedgeFundStrategyType>EQTY_STBS</HedgeFundStrategyType>
@@ -1139,7 +1141,11 @@
 						<HedgeFundStrategy>
 							<HedgeFundStrategyType>EQTY_STBS</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
-							<!-- <StrategyNAVRate>25</StrategyNAVRate> -->
+						</HedgeFundStrategy>
+						<HedgeFundStrategy>
+							<HedgeFundStrategyType>OTHR_HFND</HedgeFundStrategyType>
+							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
+							<StrategyNAVRate>0</StrategyNAVRate>
 						</HedgeFundStrategy>
 					</HedgeFundInvestmentStrategies>
 					<RealEstateFundInvestmentStrategies>
@@ -1150,6 +1156,11 @@
 						<RealEstateFundStrategy>
 							<RealEstateFundStrategyType>RESL_REST</RealEstateFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
+							<StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription>
+						</RealEstateFundStrategy>
+						<RealEstateFundStrategy>
+							<RealEstateFundStrategyType>OTHR_REST</RealEstateFundStrategyType>
+							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 						</RealEstateFundStrategy>
 					</RealEstateFundInvestmentStrategies>
 					<FundOfFundsInvestmentStrategies>
@@ -1157,6 +1168,7 @@
 							<FundOfFundsStrategyType>FOFS_FHFS</FundOfFundsStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>25</StrategyNAVRate>
+							<StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription>
 						</FundOfFundsStrategy>
 						<FundOfFundsStrategy>
 							<FundOfFundsStrategyType>OTHR_FOFS</FundOfFundsStrategyType>
@@ -1166,7 +1178,6 @@
 						<FundOfFundsStrategy>
 							<FundOfFundsStrategyType>OTHR_FOFS</FundOfFundsStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
-							<!-- <StrategyNAVRate>15</StrategyNAVRate> -->
 						</FundOfFundsStrategy>
 					</FundOfFundsInvestmentStrategies>
 					<OtherFundInvestmentStrategies>
@@ -1183,7 +1194,7 @@
 						<OtherFundStrategy>
 							<OtherFundStrategyType>OTHR_FXIF</OtherFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
-							<!-- <StrategyNAVRate>-10</StrategyNAVRate> -->
+							<StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription>
 						</OtherFundStrategy>
 					</OtherFundInvestmentStrategies>
 					<HFTTransactionNumber>100</HFTTransactionNumber>

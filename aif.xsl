@@ -327,6 +327,91 @@ ERROR 60.e.II
             </xsl:if>
         </xsl:for-each>
 
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy">
+                <xsl:choose>
+                    <xsl:when test="HedgeFundStrategyType = 'OTHR_HFND'">
+                        <xsl:if test="not(StrategyTypeOtherDescription)">
+ERROR 61.a.I
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="StrategyTypeOtherDescription">
+ERROR 61.a.II
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy">
+                <xsl:choose>
+                    <xsl:when test="PrivateEquityFundStrategyType = 'OTHR_PEQF'">
+                        <xsl:if test="not(StrategyTypeOtherDescription)">
+ERROR 61.b.I
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="StrategyTypeOtherDescription">
+ERROR 61.b.II
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy">
+                <xsl:choose>
+                    <xsl:when test="RealEstateFundStrategyType = 'OTHR_REST'">
+                        <xsl:if test="not(StrategyTypeOtherDescription)">
+ERROR 61.c.I
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="StrategyTypeOtherDescription">
+ERROR 61.c.II
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy">
+                <xsl:choose>
+                    <xsl:when test="FundOfFundsStrategyType = 'OTHR_FOFS'">
+                        <xsl:if test="not(StrategyTypeOtherDescription)">
+ERROR 61.d.I
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="StrategyTypeOtherDescription">
+ERROR 61.d.II
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies/OtherFundStrategy">
+                <xsl:choose>
+                    <xsl:when test="OtherFundStrategyType = 'OTHR_OTHF'">
+                        <xsl:if test="not(StrategyTypeOtherDescription)">
+ERROR 61.e.I
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="StrategyTypeOtherDescription">
+ERROR 61.e.II
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+        </xsl:for-each>
+
     </xsl:template>
 
 </xsl:stylesheet>
