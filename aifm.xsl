@@ -2,8 +2,8 @@
 <xsl:output method="text" />
 
     <xsl:template match="/AIFMReportingInfo">
-
         <xsl:for-each select="AIFMRecordInfo">
+     
             <xsl:variable name="year" select="substring(ReportingPeriodStartDate,1,4)" />
             <xsl:variable name="month" select="substring(ReportingPeriodStartDate,6,2)" />
             <xsl:variable name="day" select="substring(ReportingPeriodStartDate,9,2)" />
@@ -33,12 +33,12 @@ CAM-002 <xsl:value-of select="AIFMNationalCode"/> The reporting period start dat
             <xsl:choose> 
                 <xsl:when test="AIFMReportingObligationChangeFrequencyCode or AIFMReportingObligationChangeContentsCode"> 
                     <xsl:if test="not(AIFMReportingObligationChangeQuarter)">
-CAM-004
+CAM-004 <xsl:value-of select="AIFMNationalCode"/> The quarter for the AIMF reporting obligation change should be reported
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFMReportingObligationChangeQuarter">
-CAM-004
+CAM-004 <xsl:value-of select="AIFMNationalCode"/> The quarter for the AIMF reporting obligation change should be reported
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
@@ -78,7 +78,7 @@ CAM-004
             <xsl:choose> 
                 <xsl:when test = "not(MarketIdentification/MarketCodeType = 'NOT')"> 
                     <xsl:if test="not(AggregatedValueAmount)">
-CAM-011
+CAM-011 <xsl:value-of select="AIFMNationalCode"/> The field is mandatory for market code type different from  “NOT”.
                     </xsl:if>
                 </xsl:when>
             </xsl:choose>
@@ -88,7 +88,7 @@ CAM-011
             <xsl:choose> 
                 <xsl:when test = "not(SubAssetType = 'NTA_NTA_NOTA')"> 
                     <xsl:if test="not(AggregatedValueAmount)">
-CAM-013
+CAM-013 <xsl:value-of select="AIFMNationalCode"/> The aggregated value is not consistent with the sub-asset type. 
                     </xsl:if>
                 </xsl:when>
             </xsl:choose>
@@ -128,12 +128,12 @@ CAM-013
             <xsl:choose> 
                 <xsl:when test = "BaseCurrency = 'EUR' and FXEURReferenceRateType = 'OTH'"> 
                     <xsl:if test="not(FXEUROtherReferenceRateDescription)">
-CAM-020
+CAM-020 <xsl:value-of select="AIFMNationalCode"/> The reference rate description is not consistent with the reference rate type.
                     </xsl:if>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:if test="FXEUROtherReferenceRateDescription">
-CAM-020
+CAM-020 <xsl:value-of select="AIFMNationalCode"/> The reference rate description is not consistent with the reference rate type.
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
