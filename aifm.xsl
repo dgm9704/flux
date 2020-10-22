@@ -1,8 +1,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
-<xsl:output method="text" />
-
+    <xsl:output method="text" />
+      
     <xsl:template match="/AIFMReportingInfo">
-
         <xsl:for-each select="AIFMRecordInfo">
 
             <xsl:variable name="manager" select="AIFMNationalCode" />     
@@ -42,6 +41,11 @@ CAM-004 <xsl:value-of select="$manager"/> The quarter for the AIMF reporting obl
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
+
+            <xsl:variable name ="jurisdiction" select="AIFMJurisdiction" />
+            <xsl:if test="not($countrycodes[. = $jurisdiction])" >
+CAM-005 <xsl:value-of select="$manager"/> The jurisdiction of the AIF is not correct.
+            </xsl:if>
 
             <xsl:choose> 
                 <xsl:when test = "AIFMNoReportingFlag = 'true' "> 
