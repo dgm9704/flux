@@ -112,6 +112,11 @@ CAM-016 <xsl:value-of select="$manager"/> The total AuM amount in base currency 
                 </xsl:if>
             </xsl:if>
 
+            <xsl:variable name="currency" select="AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency" />
+            <xsl:if test="$currency and not($currencycodes[. = $currency])">
+CAM-017 <xsl:value-of select="$manager"/> The currency code exists in the reference table of countries
+            </xsl:if>
+
             <xsl:for-each select = "AIFMCompleteDescription/AIFMBaseCurrencyDescription">
                 <xsl:choose> 
                     <xsl:when test = "BaseCurrency = 'EUR'"> 

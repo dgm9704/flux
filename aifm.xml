@@ -197,7 +197,7 @@
 			</AIFMPrincipalInstruments>
 			<AUMAmountInEuro>5500000</AUMAmountInEuro>
 			<AIFMBaseCurrencyDescription>
-				<BaseCurrency>USD</BaseCurrency>
+				<BaseCurrency>FOO</BaseCurrency>
 				<AUMAmountInBaseCurrency>7253950</AUMAmountInBaseCurrency>
 				<FXEURRate>1.4189</FXEURRate>
 				<FXEUROtherReferenceRateDescription>Foo</FXEUROtherReferenceRateDescription>
