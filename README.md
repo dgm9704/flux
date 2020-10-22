@@ -14,6 +14,9 @@
 - ESMA also has validation codes and error messages for these rules, but for some reason they are not available on their website. 
  When I asked about this, I was told to contact the relevant National Compentent Authority.
  I sent a question to FIN-FSA, the Finnish Financial Supervisory Authority, and I am waiting for an answer from them.
+### UPDATE 
+Found some version of the validation specifications from Polish Financial Supervision Authority (UKNF) site:
+https://www.knf.gov.pl/knf/pl/komponenty/img/2013-ITMG-65_opis_regul_walidacyjnych_plikow_DATMAN_DATAIF_71002.xlsx
  
 ## Environment
 - [Visual Studio Code](https://code.visualstudio.com/) on [Arch Linux](https://www.archlinux.org/) for development
