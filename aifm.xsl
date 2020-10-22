@@ -60,6 +60,11 @@ ERROR 21.b <xsl:value-of select="$manager"/>
                 </xsl:otherwise> 
             </xsl:choose>
 
+            <xsl:variable name="state" select="AIFMCompleteDescription/AIFMIdentifier/OldAIFMIdentifierNCA/ReportingMemberState" />
+            <xsl:if test="$state and not($countrycodes[. = $state])">
+CAM-008 <xsl:value-of select="$manager"/> The country code exists in the reference table of countries
+            </xsl:if>
+
             <xsl:for-each select = "AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket/MarketIdentification">
                 <xsl:choose> 
                     <xsl:when test = "MarketCodeType = 'MIC'"> 

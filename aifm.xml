@@ -26,7 +26,7 @@
 				<AIFMIdentifierLEI>969500AA77L4ZJXJ0T02</AIFMIdentifierLEI>
 				<AIFMIdentifierBIC>TESTGB21XXX</AIFMIdentifierBIC>
 				<OldAIFMIdentifierNCA>
-					<ReportingMemberState>FI</ReportingMemberState>
+					<ReportingMemberState>ZZ</ReportingMemberState>
 					<AIFMNationalCode>12345678</AIFMNationalCode>
 				</OldAIFMIdentifierNCA>
 			</AIFMIdentifier>
