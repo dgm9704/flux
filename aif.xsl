@@ -480,12 +480,12 @@ CAF-045
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
                         <xsl:if test="not(AIIInstrumentIdentification/AIIExchangeCode)">
-ERROR 69.a
+CAF-047
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="AIIInstrumentIdentification/AIIExchangeCode">
-ERROR 69.b
+CAF-047
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -497,12 +497,12 @@ ERROR 69.b
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
                         <xsl:if test="not(AIIInstrumentIdentification/AIIProductCode)">
-ERROR 70.a
+CAF-048
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="AIIInstrumentIdentification/AIIProductCode">
-ERROR 70.b
+CAF-048
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -514,12 +514,12 @@ ERROR 70.b
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
                         <xsl:if test="not(AIIInstrumentIdentification/AIIDerivativeType)">
-ERROR 71.a
+CAF-049
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="AIIInstrumentIdentification/AIIDerivativeType">
-ERROR 71.b
+CAF-049
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -531,12 +531,12 @@ ERROR 71.b
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
                         <xsl:if test="not(AIIInstrumentIdentification/AIIPutCallIdentifier)">
-ERROR 72.a
+CAF-050
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="AIIInstrumentIdentification/AIIPutCallIdentifier">
-ERROR 72.b
+CAF-050
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -548,12 +548,12 @@ ERROR 72.b
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
                         <xsl:if test="not(AIIInstrumentIdentification/AIIExpiryDate)">
-ERROR 73.a
+CAF-051
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="AIIInstrumentIdentification/AIIExpiryDate">
-ERROR 73.b
+CAF-051
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -565,12 +565,12 @@ ERROR 73.b
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
                         <xsl:if test="not(AIIInstrumentIdentification/AIIStrikePrice)">
-ERROR 74.a
+CAF-052
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="AIIInstrumentIdentification/AIIStrikePrice">
-ERROR 74.b
+CAF-052
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -582,12 +582,12 @@ ERROR 74.b
                 <xsl:choose>
                     <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
                         <xsl:if test="not(PositionType)">
-ERROR 75.a
+CAF-053
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="PositionType">
-ERROR 75.b
+CAF-053
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -599,12 +599,12 @@ ERROR 75.b
                 <xsl:choose>
                     <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
                         <xsl:if test="not(PositionValue)">
-ERROR 76.a
+CAF-054
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="PositionValue">
-ERROR 76.b
+CAF-054
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -615,7 +615,7 @@ ERROR 76.b
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:if test="not(PositionType = 'S')">
                     <xsl:if test="ShortPositionHedgingRate">
-ERROR 77
+CAF-056
                     </xsl:if>
                 </xsl:if>
             </xsl:for-each>
