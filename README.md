@@ -27,31 +27,39 @@ https://www.knf.gov.pl/knf/pl/komponenty/img/2013-ITMG-65_opis_regul_walidacyjny
 1) Always validate your XML against the schema first.
 
 If this gives errors, stop and correct them.
-(The wrapper is just to help with loading multiple schemafiles)
 ``` 
-xmllint aifsample.xml --schema schema/wrapper_aifmd.xsd --noout
+xmllint aifm.xml --schema schema/aifmd.xsd --noout
 ``` 
-OR
+or
 ``` 
-xmllint aifmsample.xml --schema schema/wrapper_aifmd.xsd --noout
+xmllint aif.xml --schema schema/aifmd.xsd --noout
 ``` 
 
 2) Run the transformation:
 
-(Separate stylesheets for now until all cases are covered)
 ``` 
-xsltproc aifm.xsl aifmsample.xml
+xsltproc aifmd.xsl aifm.xml
 ``` 
-OR
+or
 ``` 
-xsltproc aif.xsl aifsample.xml
+xsltproc aifmd.xsl aif.xml
 ``` 
 
 Sample output for aifmsample.xml:
+(this changes as I try out different things)
 
 "CAM-004" is ESMA error code
+
 "ERROR 21.a" means error for Id 12 in the ESMA document, and first part of multipart check, where the implemented check doesn't match ESMA specificatin for some reason. 
+
+111111, 222222, 333333 is the AIFMNationalCode of the offending manager
 ```
+CAM-002 111111 The reporting period start date is not allowed.
+
+CAM-002 222222 The reporting period start date is not allowed.
+
+CAM-002 333333 The reporting period start date is not allowed.
+
 CAM-004
 
 CAM-004
@@ -84,17 +92,14 @@ CAM-020
 ```
 
 ## Status
-- All AIFM cases have been implemented
-- roughly 1/2 of AIF cases are implemented
+- most? AIFM cases are done
+- maybe 1/3 of AIF cases are done
 - output is rough and minimal
 - OK to file bugs on results for implemented cases
 
 ## Next steps 
 - Implement the rest of AIF cases
 - Using the official error codes and messages where available
-- Figure out the best way of combining or separating stuff into files
-  
-  (Most likely everything in one file)
 - Add manager/fund identification and other info about the error location
 - Figure out the output format (CSV, XML, ?)
 - Optimization if needed (it's easy to read and write when every case is explicitly "spelled out", but might perform badly)
