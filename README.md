@@ -48,13 +48,15 @@ xsltproc aif.xsl aifsample.xml
 ``` 
 
 Sample output for aifmsample.xml:
-"12.a" means Id 12 in the ESMA document, and first part of multipart check
+
+"CAM-004" is ESMA error code
+"ERROR 21.a" means error for Id 12 in the ESMA document, and first part of multipart check, where the implemented check doesn't match ESMA specificatin for some reason. 
 ```
-            ERROR 12.a
+CAM-004
 
-            ERROR 12.b
+CAM-004
 
-            ERROR 12.b
+CAM-004
 
             ERROR 21.a
 
@@ -64,9 +66,9 @@ Sample output for aifmsample.xml:
 
             ERROR 28.a
 
-            ERROR 29
+CAM-011
 
-            ERROR 32
+CAM-013
 
             ERROR 36.a
 
@@ -76,24 +78,23 @@ Sample output for aifmsample.xml:
 
             ERROR 37.b
 
-            ERROR 38.a
+CAM-020
 
-            ERROR 38.b
+CAM-020
 ```
 
 ## Status
 - All AIFM cases have been implemented
-- roughly 1/3 of AIF cases are implemented
+- roughly 1/2 of AIF cases are implemented
 - output is rough and minimal
 - OK to file bugs on results for implemented cases
 
 ## Next steps 
 - Implement the rest of AIF cases
+- Using the official error codes and messages where available
 - Figure out the best way of combining or separating stuff into files
   
   (Most likely everything in one file)
 - Add manager/fund identification and other info about the error location
 - Figure out the output format (CSV, XML, ?)
 - Optimization if needed (it's easy to read and write when every case is explicitly "spelled out", but might perform badly)
-
-- Use the the "official" error coding and messages, if (or hopefully when) I get them from FIN-FSA, ESMA, or somewhere else.
