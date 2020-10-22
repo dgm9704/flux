@@ -627,7 +627,7 @@ CAF-056
             select="AIFCompleteDescription/AIFPrincipalInfo/NAVGeographicalFocus/*" />
             <xsl:if test="$regions">
                 <xsl:if test="not(sum($regions) = 100)">
-ERROR 78_85
+CAF-057
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
@@ -638,7 +638,7 @@ ERROR 78_85
             select="AIFCompleteDescription/AIFPrincipalInfo/AUMGeographicalFocus/*" />
             <xsl:if test="$regions">
                 <xsl:if test="not(sum($regions) = 100)">
-ERROR 86_93
+CAF-058
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
@@ -657,12 +657,12 @@ ERROR 94
                 <xsl:choose>
                     <xsl:when test="not(AssetMacroType = 'NTA')">
                         <xsl:if test="not(SubAssetType)">
-ERROR 96.a
+CAF-059
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="SubAssetType">
-ERROR 96.b
+CAF-059
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -674,12 +674,12 @@ ERROR 96.b
                 <xsl:choose>
                     <xsl:when test="not(AssetMacroType = 'NTA')">
                         <xsl:if test="not(PositionType)">
-ERROR 97.a
+CAF-060
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="PositionType">
-ERROR 97.b
+CAF-060
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -691,12 +691,12 @@ ERROR 97.b
                 <xsl:choose>
                     <xsl:when test="not(AssetMacroType = 'NTA')">
                         <xsl:if test="not(AggregatedValueAmount)">
-ERROR 98.a
+CAF-061
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="AggregatedValueAmount">
-ERROR 98.b
+CAF-061
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -708,12 +708,12 @@ ERROR 98.b
                 <xsl:choose>
                     <xsl:when test="not(AssetMacroType = 'NTA')">
                         <xsl:if test="not(AggregatedValueRate)">
-ERROR 99.a
+CAF-063
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="AggregatedValueRate">
-ERROR 99.b
+CAF-063
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -734,12 +734,12 @@ ERROR 103
                 <xsl:choose>
                     <xsl:when test="not(AssetType = 'NTA_NTA')">
                         <xsl:if test="not(PositionType)">
-ERROR 105.a
+CAF-067
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="PositionType">
-ERROR 105.b
+CAF-067
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
