@@ -30,12 +30,12 @@ ERROR 5.c
             <xsl:choose> 
                 <xsl:when test="AIFReportingObligationChangeFrequencyCode or AIFReportingObligationChangeContentsCode"> 
                     <xsl:if test="not(AIFReportingObligationChangeQuarter)">
-ERROR 12.a
+CAF-006
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:if test="AIFReportingObligationChangeQuarter">
-ERROR 12.b
+CAF-006
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
@@ -45,7 +45,7 @@ ERROR 12.b
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'true'"> 
                     <xsl:if test="AIFCompleteDescription">
-ERROR 23.a
+CAF-012
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise>
@@ -59,7 +59,7 @@ ERROR 23.b
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassNationalCode">
-ERROR 34
+CAF-016
                 </xsl:if>
             </xsl:if> 
         </xsl:for-each>
@@ -67,7 +67,7 @@ ERROR 34
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierISIN">
-ERROR 35
+CAF-018
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
@@ -75,7 +75,7 @@ ERROR 35
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierCUSIP">
-ERROR 36
+CAF-019
                 </xsl:if>
             </xsl:if> 
         </xsl:for-each>
@@ -83,7 +83,7 @@ ERROR 36
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierSEDOL">
-ERROR 37
+CAF-020
                 </xsl:if>
             </xsl:if> 
         </xsl:for-each>
@@ -91,7 +91,7 @@ ERROR 37
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierTicker">
-ERROR 38
+CAF-021
                 </xsl:if>
             </xsl:if> 
         </xsl:for-each>
@@ -99,7 +99,7 @@ ERROR 38
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierRIC">
-ERROR 39
+CAF-022
                 </xsl:if>
             </xsl:if> 
         </xsl:for-each>
@@ -108,12 +108,12 @@ ERROR 39
             <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassName)">
-ERROR 40.a
+CAF-023
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassName">
-ERROR 40.b
+CAF-023
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
@@ -123,12 +123,12 @@ ERROR 40.b
             <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER'"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName)">
-ERROR 42.a
+CAF-024
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName">
-ERROR 42.b
+CAF-024
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
@@ -137,7 +137,7 @@ ERROR 42.b
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER')"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
-ERROR 43
+CAF-026
                 </xsl:if>
             </xsl:if> 
         </xsl:for-each>
@@ -146,12 +146,12 @@ ERROR 43
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'false' and not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/BaseCurrency = 'EUR')"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURRate)">
-ERROR 50.a
+CAF-030
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURRate">
-ERROR 50.b
+CAF-030
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
@@ -161,12 +161,12 @@ ERROR 50.b
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'false' and not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/BaseCurrency = 'EUR')"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType)">
-ERROR 51.a
+CAF-031
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType">
-ERROR 51.b
+CAF-031
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
@@ -176,12 +176,12 @@ ERROR 51.b
             <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType = 'OTH'"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEUROtherReferenceRateDescription)">
-ERROR 52.a
+CAF-032
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEUROtherReferenceRateDescription">
-ERROR 52.b
+CAF-032
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
