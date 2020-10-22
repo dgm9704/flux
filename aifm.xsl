@@ -100,6 +100,18 @@ CAM-013 <xsl:value-of select="$manager"/> The aggregated value is not consistent
                 </xsl:choose>
             </xsl:for-each>
 
+            <xsl:if test = "AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency and not(AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency = 'EUR')">
+                <xsl:variable name="amountbase" select="AIFMCompleteDescription/AIFMBaseCurrencyDescription/AUMAmountInBaseCurrency" />
+                <xsl:variable name="amounteuro" select="AIFMCompleteDescription/AUMAmountInEuro" />
+                <xsl:variable name="rateeuro" select="AIFMCompleteDescription/AIFMBaseCurrencyDescription/FXEURRate"/>
+                <xsl:variable name="result" select="$amounteuro * $rateeuro" />
+                <xsl:if test="not($amountbase = $result)">
+CAM-016 <xsl:value-of select="$manager"/> The total AuM amount in base currency is not consistent with the total AuM amount in Euro.
+    given: <xsl:value-of select="$amountbase" />  
+    calculated: <xsl:value-of select="$amounteuro" /> * <xsl:value-of select="$rateeuro" /> = <xsl:value-of select="$result" />
+                </xsl:if>
+            </xsl:if>
+
             <xsl:for-each select = "AIFMCompleteDescription/AIFMBaseCurrencyDescription">
                 <xsl:choose> 
                     <xsl:when test = "BaseCurrency = 'EUR'"> 

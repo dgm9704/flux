@@ -99,7 +99,7 @@
 				<BaseCurrency>EUR</BaseCurrency>
 				<AUMAmountInBaseCurrency>7253950</AUMAmountInBaseCurrency>
 				<FXEURReferenceRateType>OTH</FXEURReferenceRateType>
-				<FXEURRate>12345678901234.7535</FXEURRate>
+				<FXEURRate>1.4189</FXEURRate>
 			</AIFMBaseCurrencyDescription>
 		</AIFMCompleteDescription>
 	</AIFMRecordInfo>
@@ -130,7 +130,7 @@
 				<AIFMIdentifierLEI>969500AA77L4ZJXJ0T02</AIFMIdentifierLEI>
 				<AIFMIdentifierBIC>TESTGB21XXX</AIFMIdentifierBIC>
 			</AIFMIdentifier>
-						<AIFMPrincipalMarkets>
+			<AIFMPrincipalMarkets>
 				<AIFMFivePrincipalMarket>
 				<Ranking>1</Ranking>
 				<MarketIdentification>
@@ -199,6 +199,7 @@
 			<AIFMBaseCurrencyDescription>
 				<BaseCurrency>USD</BaseCurrency>
 				<AUMAmountInBaseCurrency>7253950</AUMAmountInBaseCurrency>
+				<FXEURRate>1.4189</FXEURRate>
 				<FXEUROtherReferenceRateDescription>Foo</FXEUROtherReferenceRateDescription>
 			</AIFMBaseCurrencyDescription>
 		</AIFMCompleteDescription>
