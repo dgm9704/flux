@@ -79,7 +79,7 @@ Sample output for aifmsample.xml:
 ```
 
 ## Status
-- All AIFM cases are be implemented
+- All AIFM cases have been implemented
 - roughly 1/3 of AIF cases are implemented
 - output is rough and minimal
 - OK to file bugs on results for implemented cases
