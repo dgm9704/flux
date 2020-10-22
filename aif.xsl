@@ -231,19 +231,19 @@ ERROR 58.d
 
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_PEQF' and not(PrimaryStrategyFlag = 'true')]"> 
-ERROR 59.a
+CAF-038
             </xsl:if>
         </xsl:for-each>
 
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[HedgeFundStrategyType = 'MULT_HFND' and not(PrimaryStrategyFlag = 'true')]"> 
-ERROR 59.b
+CAF-038
             </xsl:if>
         </xsl:for-each>
 
         <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy[RealEstateFundStrategyType = 'MULT_REST' and not(PrimaryStrategyFlag = 'true')]"> 
-ERROR 59.c
+CAF-038
             </xsl:if>
         </xsl:for-each>
 
@@ -274,7 +274,7 @@ ERROR 60.b.I
                     </xsl:if>
                 </xsl:for-each>
                 <xsl:if test="not(sum($strategies/StrategyNAVRate) = 100)">
-ERROR 60.b.II
+CAF-039
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
@@ -290,7 +290,7 @@ ERROR 60.c.I
                     </xsl:if>
                 </xsl:for-each>
                 <xsl:if test="not(sum($strategies/StrategyNAVRate) = 100)">
-ERROR 60.c.II
+CAF-039
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
@@ -306,7 +306,7 @@ ERROR 60.d.I
                     </xsl:if>
                 </xsl:for-each>
                 <xsl:if test="not(sum($strategies/StrategyNAVRate) = 100)">
-ERROR 60.d.II
+CAF-039
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
@@ -322,7 +322,7 @@ ERROR 60.e.I
                     </xsl:if>
                 </xsl:for-each>
                 <xsl:if test="not(sum($strategies/StrategyNAVRate) = 100)">
-ERROR 60.e.II
+CAF-039
                 </xsl:if>
             </xsl:if>
         </xsl:for-each>
@@ -332,7 +332,7 @@ ERROR 60.e.II
                 <xsl:choose>
                     <xsl:when test="HedgeFundStrategyType = 'OTHR_HFND'">
                         <xsl:if test="not(StrategyTypeOtherDescription)">
-ERROR 61.a.I
+CAF-041
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
@@ -349,7 +349,7 @@ ERROR 61.a.II
                 <xsl:choose>
                     <xsl:when test="PrivateEquityFundStrategyType = 'OTHR_PEQF'">
                         <xsl:if test="not(StrategyTypeOtherDescription)">
-ERROR 61.b.I
+CAF-041
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
@@ -366,7 +366,7 @@ ERROR 61.b.II
                 <xsl:choose>
                     <xsl:when test="RealEstateFundStrategyType = 'OTHR_REST'">
                         <xsl:if test="not(StrategyTypeOtherDescription)">
-ERROR 61.c.I
+CAF-041
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
@@ -383,7 +383,7 @@ ERROR 61.c.II
                 <xsl:choose>
                     <xsl:when test="FundOfFundsStrategyType = 'OTHR_FOFS'">
                         <xsl:if test="not(StrategyTypeOtherDescription)">
-ERROR 61.d.I
+CAF-041
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
@@ -400,7 +400,7 @@ ERROR 61.d.II
                 <xsl:choose>
                     <xsl:when test="OtherFundStrategyType = 'OTHR_OTHF'">
                         <xsl:if test="not(StrategyTypeOtherDescription)">
-ERROR 61.e.I
+CAF-041
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
@@ -429,12 +429,12 @@ ERROR 64
                 <xsl:choose>
                     <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
                         <xsl:if test="not(InstrumentCodeType)">
-ERROR 66.a
+CAF-042
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="InstrumentCodeType">
-ERROR 66.b
+CAF-042
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -446,12 +446,12 @@ ERROR 66.b
                 <xsl:choose>
                     <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
                         <xsl:if test="not(InstrumentName)">
-ERROR 67.a
+CAF-043
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="InstrumentName">
-ERROR 67.b
+CAF-043
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -463,12 +463,12 @@ ERROR 67.b
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'ISIN'">
                         <xsl:if test="not(ISINInstrumentIdentification)">
-ERROR 68.a
+CAF-045
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="ISINInstrumentIdentification">
-ERROR 68.b
+CAF-045
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
