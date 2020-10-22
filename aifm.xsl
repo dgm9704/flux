@@ -7,12 +7,12 @@
             <xsl:choose> 
                 <xsl:when test="AIFMReportingObligationChangeFrequencyCode or AIFMReportingObligationChangeContentsCode"> 
                     <xsl:if test="not(AIFMReportingObligationChangeQuarter)">
-            ERROR 12.a
+CAM-004
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFMReportingObligationChangeQuarter">
-            ERROR 12.b
+CAM-004
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
@@ -52,7 +52,7 @@
             <xsl:choose> 
                 <xsl:when test = "not(MarketIdentification/MarketCodeType = 'NOT')"> 
                     <xsl:if test="not(AggregatedValueAmount)">
-            ERROR 29
+CAM-011
                     </xsl:if>
                 </xsl:when>
             </xsl:choose>
@@ -62,7 +62,7 @@
             <xsl:choose> 
                 <xsl:when test = "not(SubAssetType = 'NTA_NTA_NOTA')"> 
                     <xsl:if test="not(AggregatedValueAmount)">
-            ERROR 32
+CAM-013
                     </xsl:if>
                 </xsl:when>
             </xsl:choose>
@@ -102,12 +102,12 @@
             <xsl:choose> 
                 <xsl:when test = "BaseCurrency = 'EUR' and FXEURReferenceRateType = 'OTH'"> 
                     <xsl:if test="not(FXEUROtherReferenceRateDescription)">
-            ERROR 38.a
+CAM-020
                     </xsl:if>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:if test="FXEUROtherReferenceRateDescription">
-            ERROR 38.b
+CAM-020
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
