@@ -751,12 +751,12 @@ CAF-067
                 <xsl:choose>
                     <xsl:when test="not(AssetType = 'NTA_NTA')">
                         <xsl:if test="not(MarketIdentification/MarketCodeType)">
-ERROR 106.a
+CAF-068
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="MarketIdentification/MarketCodeType">
-ERROR 106.b
+CAF-068
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -768,29 +768,29 @@ ERROR 106.b
                 <xsl:choose>
                     <xsl:when test="MarketCodeType = 'MIC'">
                         <xsl:if test="not(MarketCode)">
-ERROR 107.a
+CAF-070
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="MarketCode">
-ERROR 107.b
+CAF-070
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
             </xsl:for-each>
         </xsl:for-each>
 
-<xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
                 <xsl:choose>
                     <xsl:when test="not(AssetType = 'NTA_NTA')">
                         <xsl:if test="not(AggregatedValueAmount)">
-ERROR 108.a
+CAF-071
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="AggregatedValueAmount">
-ERROR 108.b
+CAF-071
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -802,12 +802,12 @@ ERROR 108.b
                 <xsl:choose>
                     <xsl:when test="not(AssetType = 'NTA_NTA')">
                         <xsl:if test="not(AggregatedValueRate)">
-ERROR 109.a
+CAF-073
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="AggregatedValueRate">
-ERROR 109.b
+CAF-073
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
