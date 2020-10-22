@@ -3,7 +3,7 @@
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
-		<ReportingPeriodStartDate>2014-10-01</ReportingPeriodStartDate>
+		<ReportingPeriodStartDate>2014-09-01</ReportingPeriodStartDate>
 		<ReportingPeriodEndDate>2014-12-31</ReportingPeriodEndDate>
 		<ReportingPeriodType>Q4</ReportingPeriodType>
 		<ReportingPeriodYear>2014</ReportingPeriodYear>
@@ -109,7 +109,7 @@
 		<AIFMContentType>2</AIFMContentType>
 		<ReportingPeriodStartDate>2014-10-01</ReportingPeriodStartDate>
 		<ReportingPeriodEndDate>2014-12-31</ReportingPeriodEndDate>
-		<ReportingPeriodType>Q4</ReportingPeriodType>
+		<ReportingPeriodType>Y1</ReportingPeriodType>
 		<ReportingPeriodYear>2014</ReportingPeriodYear>
 		<AIFMReportingObligationChangeQuarter>Q4</AIFMReportingObligationChangeQuarter>
 		<LastReportingFlag>false</LastReportingFlag>
@@ -207,7 +207,7 @@
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
-		<ReportingPeriodStartDate>2014-10-01</ReportingPeriodStartDate>
+		<ReportingPeriodStartDate>2014-10-02</ReportingPeriodStartDate>
 		<ReportingPeriodEndDate>2014-12-31</ReportingPeriodEndDate>
 		<ReportingPeriodType>Q4</ReportingPeriodType>
 		<ReportingPeriodYear>2014</ReportingPeriodYear>

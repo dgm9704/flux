@@ -2,9 +2,9 @@
 
     <xsl:output method="text" />
 
-    <xsl:template match="/">
+    <xsl:template match="AIFReportingInfo">
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFNoReportingFlag = 'false'"> 
                 <xsl:if test="AIFContentType = '2' or AIFContentType = '4'">
                     <xsl:if test="not(AIFCompleteDescription/AIFIndividualInfo)">
@@ -26,7 +26,7 @@ ERROR 5.c
             </xsl:if> 
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:choose> 
                 <xsl:when test="AIFReportingObligationChangeFrequencyCode or AIFReportingObligationChangeContentsCode"> 
                     <xsl:if test="not(AIFReportingObligationChangeQuarter)">
@@ -41,7 +41,7 @@ CAF-006
             </xsl:choose>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'true'"> 
                     <xsl:if test="AIFCompleteDescription">
@@ -56,7 +56,7 @@ ERROR 23.b
             </xsl:choose>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassNationalCode">
 CAF-016
@@ -64,7 +64,7 @@ CAF-016
             </xsl:if> 
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierISIN">
 CAF-018
@@ -72,7 +72,7 @@ CAF-018
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierCUSIP">
 CAF-019
@@ -80,7 +80,7 @@ CAF-019
             </xsl:if> 
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierSEDOL">
 CAF-020
@@ -88,7 +88,7 @@ CAF-020
             </xsl:if> 
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierTicker">
 CAF-021
@@ -96,7 +96,7 @@ CAF-021
             </xsl:if> 
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierRIC">
 CAF-022
@@ -104,7 +104,7 @@ CAF-022
             </xsl:if> 
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassName)">
@@ -119,7 +119,7 @@ CAF-023
             </xsl:choose>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER'"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName)">
@@ -134,7 +134,7 @@ CAF-024
             </xsl:choose>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER')"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
 CAF-026
@@ -142,7 +142,7 @@ CAF-026
             </xsl:if> 
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'false' and not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/BaseCurrency = 'EUR')"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURRate)">
@@ -157,7 +157,7 @@ CAF-030
             </xsl:choose>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'false' and not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/BaseCurrency = 'EUR')"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType)">
@@ -172,7 +172,7 @@ CAF-031
             </xsl:choose>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType = 'OTH'"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEUROtherReferenceRateDescription)">
@@ -187,7 +187,7 @@ CAF-032
             </xsl:choose>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType = 'NONE')"> 
                 <xsl:variable 
                     name="count" 
@@ -202,7 +202,7 @@ ERROR 58.a
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType = 'MULT_HFND'"> 
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType[.!='MULT_HFND'])"/>
                 <xsl:if test="$count &lt; 2">
@@ -211,7 +211,7 @@ ERROR 58.b
             </xsl:if> 
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType = 'MULT_PEQF'"> 
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType[.!='MULT_PEQF'])"/>
                 <xsl:if test="$count &lt; 2">
@@ -220,7 +220,7 @@ ERROR 58.c
             </xsl:if> 
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType = 'MULT_REST'"> 
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType[.!='MULT_REST'])"/>
                 <xsl:if test="$count &lt; 2">
@@ -229,25 +229,25 @@ ERROR 58.d
             </xsl:if> 
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_PEQF' and not(PrimaryStrategyFlag = 'true')]"> 
 CAF-038
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[HedgeFundStrategyType = 'MULT_HFND' and not(PrimaryStrategyFlag = 'true')]"> 
 CAF-038
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select = "AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select = "AIFRecordInfo">
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy[RealEstateFundStrategyType = 'MULT_REST' and not(PrimaryStrategyFlag = 'true')]"> 
 CAF-038
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:variable 
             name="strategies" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[not(HedgeFundStrategyType = 'MULT_HFND')] " />
@@ -263,7 +263,7 @@ ERROR 60.a.II
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:variable 
             name="strategies" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[not(PrivateEquityFundStrategyType = 'MULT_PEQF')] " />
@@ -279,7 +279,7 @@ CAF-039
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:variable 
             name="strategies" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy[not(RealEstateFundStrategyType = 'MULT_REST')] " />
@@ -295,7 +295,7 @@ CAF-039
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:variable 
             name="strategies" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy" />
@@ -311,7 +311,7 @@ CAF-039
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:variable 
             name="strategies" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies/OtherFundStrategy" />
@@ -327,7 +327,7 @@ CAF-039
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy">
                 <xsl:choose>
                     <xsl:when test="HedgeFundStrategyType = 'OTHR_HFND'">
@@ -344,7 +344,7 @@ ERROR 61.a.II
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy">
                 <xsl:choose>
                     <xsl:when test="PrivateEquityFundStrategyType = 'OTHR_PEQF'">
@@ -361,7 +361,7 @@ ERROR 61.b.II
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy">
                 <xsl:choose>
                     <xsl:when test="RealEstateFundStrategyType = 'OTHR_REST'">
@@ -378,7 +378,7 @@ ERROR 61.c.II
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy">
                 <xsl:choose>
                     <xsl:when test="FundOfFundsStrategyType = 'OTHR_FOFS'">
@@ -395,7 +395,7 @@ ERROR 61.d.II
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies/OtherFundStrategy">
                 <xsl:choose>
                     <xsl:when test="OtherFundStrategyType = 'OTHR_OTHF'">
@@ -412,7 +412,7 @@ ERROR 61.e.II
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:variable 
             name="ranks" 
             select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded/Ranking" />
@@ -424,7 +424,7 @@ ERROR 64
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
@@ -441,7 +441,7 @@ CAF-042
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
@@ -458,7 +458,7 @@ CAF-043
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'ISIN'">
@@ -475,7 +475,7 @@ CAF-045
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
@@ -492,7 +492,7 @@ CAF-047
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
@@ -509,7 +509,7 @@ CAF-048
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
@@ -526,7 +526,7 @@ CAF-049
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
@@ -543,7 +543,7 @@ CAF-050
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
@@ -560,7 +560,7 @@ CAF-051
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="InstrumentCodeType = 'AII'">
@@ -577,7 +577,7 @@ CAF-052
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
@@ -594,7 +594,7 @@ CAF-053
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:choose>
                     <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
@@ -611,7 +611,7 @@ CAF-054
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
                 <xsl:if test="not(PositionType = 'S')">
                     <xsl:if test="ShortPositionHedgingRate">
@@ -621,7 +621,7 @@ CAF-056
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:variable 
             name="regions" 
             select="AIFCompleteDescription/AIFPrincipalInfo/NAVGeographicalFocus/*" />
@@ -632,7 +632,7 @@ CAF-057
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:variable 
             name="regions" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AUMGeographicalFocus/*" />
@@ -643,7 +643,7 @@ CAF-058
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:variable 
             name="ranks" 
             select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/Ranking" />
@@ -652,7 +652,7 @@ ERROR 94
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
                 <xsl:choose>
                     <xsl:when test="not(AssetMacroType = 'NTA')">
@@ -669,7 +669,7 @@ CAF-059
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
                 <xsl:choose>
                     <xsl:when test="not(AssetMacroType = 'NTA')">
@@ -686,7 +686,7 @@ CAF-060
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
                 <xsl:choose>
                     <xsl:when test="not(AssetMacroType = 'NTA')">
@@ -703,7 +703,7 @@ CAF-061
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
                 <xsl:choose>
                     <xsl:when test="not(AssetMacroType = 'NTA')">
@@ -720,7 +720,7 @@ CAF-063
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:variable 
             name="ranks" 
             select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/Ranking" />
@@ -729,7 +729,7 @@ ERROR 103
             </xsl:if>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
                 <xsl:choose>
                     <xsl:when test="not(AssetType = 'NTA_NTA')">
@@ -746,7 +746,7 @@ CAF-067
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
                 <xsl:choose>
                     <xsl:when test="not(AssetType = 'NTA_NTA')">
@@ -763,7 +763,7 @@ CAF-068
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/MarketIdentification">
                 <xsl:choose>
                     <xsl:when test="MarketCodeType = 'MIC'">
@@ -780,7 +780,7 @@ CAF-070
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
                 <xsl:choose>
                     <xsl:when test="not(AssetType = 'NTA_NTA')">
@@ -797,7 +797,7 @@ CAF-071
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
                 <xsl:choose>
                     <xsl:when test="not(AssetType = 'NTA_NTA')">
@@ -814,7 +814,7 @@ CAF-073
             </xsl:for-each>
         </xsl:for-each>
 
-        <xsl:for-each select="AIFReportingInfo/AIFRecordInfo">
+        <xsl:for-each select="AIFRecordInfo">
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
                 <xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC')">
                     <xsl:if test="CounterpartyIdentification/EntityName">
