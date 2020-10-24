@@ -157,6 +157,15 @@ CAM-013 <xsl:value-of select="$manager"/> The aggregated value is not consistent
                 </xsl:choose>
             </xsl:for-each>
 
+            <xsl:variable name="instrument1" select="AIFMCompleteDescription/AIFMPrincipalInstruments/AIFMPrincipalInstrument[Ranking='1']/AggregatedValueAmount" />
+            <xsl:variable name="instrument2" select="AIFMCompleteDescription/AIFMPrincipalInstruments/AIFMPrincipalInstrument[Ranking='2']/AggregatedValueAmount" />
+            <xsl:variable name="instrument3" select="AIFMCompleteDescription/AIFMPrincipalInstruments/AIFMPrincipalInstrument[Ranking='3']/AggregatedValueAmount" />
+            <xsl:variable name="instrument4" select="AIFMCompleteDescription/AIFMPrincipalInstruments/AIFMPrincipalInstrument[Ranking='4']/AggregatedValueAmount" />
+            <xsl:variable name="instrument5" select="AIFMCompleteDescription/AIFMPrincipalInstruments/AIFMPrincipalInstrument[Ranking='5']/AggregatedValueAmount" />
+            <xsl:if test="$instrument5>$instrument4 or $instrument4>$instrument3 or $instrument3>$instrument2 or $instrument2>$instrument1">
+CAM-014 <xsl:value-of select="$manager"/> The reported value is not consistent with the rank.          
+            </xsl:if>
+
             <xsl:if test = "AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency and not(AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency = 'EUR')">
                 <xsl:variable name="amountbase" select="AIFMCompleteDescription/AIFMBaseCurrencyDescription/AUMAmountInBaseCurrency" />
                 <xsl:variable name="amounteuro" select="AIFMCompleteDescription/AUMAmountInEuro" />
