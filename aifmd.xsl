@@ -2,6 +2,7 @@
     <xsl:variable name="countrycodes" select="document('iso-3166-1.xml')/codes/code" />
     <xsl:variable name="currencycodes" select="document('iso-4217.xml')/codes/code" />
     <xsl:variable name="eeacountrycodes" select="document('eea-countries.xml')/codes/code" />
+    <xsl:variable name="aifmregister" select="document('aifmregister.xml')/codes/code" />
     <xsl:include href="aifm.xsl" />
     <xsl:include href="aif.xsl" />
 </xsl:stylesheet>

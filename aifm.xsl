@@ -92,6 +92,10 @@ CAM-004 <xsl:value-of select="$manager"/> The quarter for the AIMF reporting obl
 CAM-005 <xsl:value-of select="$manager"/> The jurisdiction of the AIF is not correct.
             </xsl:if>
 
+            <xsl:if test="not($aifmregister[. = $manager])" >
+CAM-006 <xsl:value-of select="$manager"/> The AIFM national code does not exist in the ESMA Register.
+            </xsl:if>
+
             <xsl:choose> 
                 <xsl:when test = "AIFMNoReportingFlag = 'true' "> 
                     <xsl:if test="AIFMCompleteDescription">

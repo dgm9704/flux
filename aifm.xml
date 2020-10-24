@@ -291,14 +291,14 @@
 		</Assumptions>
 		<AIFMReportingCode>4</AIFMReportingCode>
 		<AIFMJurisdiction>GB</AIFMJurisdiction>
-		<AIFMNationalCode>666666</AIFMNationalCode>
+		<AIFMNationalCode>777777</AIFMNationalCode>
 		<AIFMName>AIFM 6</AIFMName>
 		<AIFMEEAFlag>true</AIFMEEAFlag>
 		<AIFMNoReportingFlag>true</AIFMNoReportingFlag>
 	</AIFMRecordInfo>
 
 	<CancellationAIFMRecordInfo>
-		<CancelledAIFMNationalCode>Id2</CancelledAIFMNationalCode>
+		<CancelledAIFMNationalCode>666666</CancelledAIFMNationalCode>
 		<CancelledReportingPeriodType>X1</CancelledReportingPeriodType>
 		<CancelledReportingPeriodYear>2014</CancelledReportingPeriodYear>
 		<CancelledRecordFlag>C</CancelledRecordFlag>
