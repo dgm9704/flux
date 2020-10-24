@@ -228,6 +228,29 @@
 		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>
 	</AIFMRecordInfo>
 
+	<AIFMRecordInfo>
+		<FilingType>INIT</FilingType>
+		<AIFMContentType>2</AIFMContentType>
+		<ReportingPeriodStartDate>2014-10-02</ReportingPeriodStartDate>
+		<ReportingPeriodEndDate>2014-12-31</ReportingPeriodEndDate>
+		<ReportingPeriodType>Q3</ReportingPeriodType>
+		<ReportingPeriodYear>2014</ReportingPeriodYear>
+		<AIFMReportingObligationChangeQuarter>Q4</AIFMReportingObligationChangeQuarter>
+		<LastReportingFlag>false</LastReportingFlag>
+		<Assumptions>
+			<Assumption>
+				<QuestionNumber>25</QuestionNumber>
+				<AssumptionDescription>Free text</AssumptionDescription>
+			</Assumption>
+		</Assumptions>
+		<AIFMReportingCode>4</AIFMReportingCode>
+		<AIFMJurisdiction>GB</AIFMJurisdiction>
+		<AIFMNationalCode>444444</AIFMNationalCode>
+		<AIFMName>AIFM 4</AIFMName>
+		<AIFMEEAFlag>true</AIFMEEAFlag>
+		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>
+	</AIFMRecordInfo>
+
 	<CancellationAIFMRecordInfo>
 		<CancelledAIFMNationalCode>Id2</CancelledAIFMNationalCode>
 		<CancelledReportingPeriodType>X1</CancelledReportingPeriodType>

@@ -10,29 +10,64 @@ FIL-015  The authority key file attribute is invalid and should an EU or EEA cou
 
         <xsl:for-each select="AIFMRecordInfo">
 
-            <xsl:variable name="manager" select="AIFMNationalCode" />     
-            <xsl:variable name="year" select="substring(ReportingPeriodStartDate,1,4)" />
-            <xsl:variable name="month" select="substring(ReportingPeriodStartDate,6,2)" />
-            <xsl:variable name="day" select="substring(ReportingPeriodStartDate,9,2)" />
+            <xsl:variable name="manager" select="AIFMNationalCode" />
+            <xsl:variable name="startdate" select="ReportingPeriodStartDate" />
+            <xsl:variable name="year" select="substring($startdate,1,4)" />
+            <xsl:variable name="month" select="substring($startdate,6,2)" />
+            <xsl:variable name="day" select="substring($startdate,9,2)" />
+            <xsl:variable name="periodtype" select="ReportingPeriodType" />
+            <xsl:variable name="reportingyear" select="ReportingPeriodYear" />
             <xsl:choose>
-                <xsl:when test="not($day='01')">
-CAM-002 <xsl:value-of select="$manager"/> The reporting period start date is not allowed.
+                <xsl:when test="not($day='01') or not($year=$reportingyear)">
+CAM-002 <xsl:value-of select="$manager"/> The reporting period start date is not allowed. 
                 </xsl:when>
-                <xsl:when test="ReportingPeriodType='Q1' or ReportingPeriodType='Q2' or ReportingPeriodType='Q3' or ReportingPeriodType='Q4'">
+                <xsl:when test="$periodtype='Q1' or $periodtype='Q2' or $periodtype='Q3' or $periodtype='Q4'">
                     <xsl:if test="not($month='10' or $month='07' or $month='01')">
-CAM-002 <xsl:value-of select="$manager"/> The reporting period start date is not allowed.
+CAM-002 <xsl:value-of select="$manager"/> The reporting period start date is not allowed. 
                     </xsl:if>
                 </xsl:when>
-                <xsl:when test="ReportingPeriodType='H1' or ReportingPeriodType='H2'">
+                <xsl:when test="$periodtype='H1' or $periodtype='H2'">
                     <xsl:if test="not($month='07' or $month='01')">
-CAM-002 <xsl:value-of select="$manager"/> The reporting period start date is not allowed.
+CAM-002 <xsl:value-of select="$manager"/> The reporting period start date is not allowed. 
                     </xsl:if>
                 </xsl:when>
-                <xsl:when test="ReportingPeriodType='Y1'">
+                <xsl:when test="$periodtype='Y1'">
                     <xsl:if test="not($month='01')">
-CAM-002 <xsl:value-of select="$manager"/> The reporting period start date is not allowed.
+CAM-002 <xsl:value-of select="$manager"/> The reporting period start date is not allowed. 
                     </xsl:if>
                 </xsl:when>
+            </xsl:choose>
+
+            <xsl:variable name="enddate" select="ReportingPeriodEndDate" />
+            <xsl:variable name="q1end" select="concat($year,'-03-31')" />
+            <xsl:variable name="q2end" select="concat($year,'-06-30')" />
+            <xsl:variable name="q3end" select="concat($year,'-09-30')" />
+            <xsl:variable name="q4end" select="concat($year,'-12-31')" />
+            <xsl:choose>
+                <xsl:when test="$periodtype='Q1'">
+                    <xsl:if test="not($enddate&lt;=$q1end)">
+CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed
+                    </xsl:if>
+                </xsl:when>
+
+                <xsl:when test="$periodtype='Q2' or $periodtype='H1'">
+                    <xsl:if test="not($enddate&lt;=$q2end)">
+CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed
+                    </xsl:if>
+                </xsl:when>
+
+                <xsl:when test="$periodtype='Q3'">
+                    <xsl:if test="not($enddate&lt;=$q3end)">
+CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed
+                    </xsl:if>
+                </xsl:when>
+
+                <xsl:when test="$periodtype='Q4' or $periodtype='H2' or $periodtype='Y1'">
+                    <xsl:if test="not($enddate&lt;=$q4end)">
+CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed
+                    </xsl:if>
+                </xsl:when>
+
             </xsl:choose>
 
             <xsl:choose> 
