@@ -44,37 +44,28 @@ CAM-002 <xsl:value-of select="$manager"/> The reporting period start date is not
             <xsl:variable name="q3end" select="concat($year,'0930')" />
             <xsl:variable name="q4end" select="concat($year,'1231')" />
             <xsl:variable name="transition" select="LastReportingFlag='true'" />
-            <!-- <xsl:value-of select="$transition" /> -->
             <xsl:choose>
                 <xsl:when test="$periodtype='Q1'">
                     <xsl:if test="not($enddate=$q1end or ($transition and $enddate&lt;$q1end))">
-CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed 1
+CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed
                     </xsl:if>
                 </xsl:when>
 
                 <xsl:when test="$periodtype='Q2' or $periodtype='H1'">
                     <xsl:if test="not($enddate=$q2end or ($transition and $enddate&lt;$q2end))">
-CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed 2
+CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed
                     </xsl:if>
                 </xsl:when>
 
                 <xsl:when test="$periodtype='Q3'">
                     <xsl:if test="not($enddate=$q3end or ($transition and $enddate&lt;$q3end))">
-CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed 3
+CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed
                     </xsl:if>
                 </xsl:when>
 
                 <xsl:when test="$periodtype='Q4' or $periodtype='H2' or $periodtype='Y1'">
                     <xsl:if test="not($enddate=$q4end or ($transition and $enddate&lt;$q4end))">
-CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed 4
-            <!-- transition: <xsl:value-of select="$transition" />
-            enddate   : <xsl:value-of select="$enddate" />
-            q4end     : <xsl:value-of select="$q4end" />
-comparison1 <xsl:value-of select="$enddate=$q4end" />
-comparison2 <xsl:value-of select="$enddate&lt;$q4end" />
-comparison3 <xsl:value-of select="transition and ($enddate&lt;$q4end)" /> 
-inner comparison <xsl:value-of select="$enddate=$q4end or (transition and $enddate&lt;$q4end)" />
-whole comparison <xsl:value-of select="not($enddate=$q4end or (transition and $enddate&lt;$q4end))" /> -->
+CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed
                     </xsl:if>
                 </xsl:when>
 
