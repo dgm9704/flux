@@ -11,10 +11,10 @@ FIL-015  The authority key file attribute is invalid and should an EU or EEA cou
         <xsl:for-each select="AIFMRecordInfo">
 
             <xsl:variable name="manager" select="AIFMNationalCode" />
-            <xsl:variable name="startdate" select="ReportingPeriodStartDate" />
+            <xsl:variable name="startdate" select="translate(ReportingPeriodStartDate,'-','')" />
             <xsl:variable name="year" select="substring($startdate,1,4)" />
-            <xsl:variable name="month" select="substring($startdate,6,2)" />
-            <xsl:variable name="day" select="substring($startdate,9,2)" />
+            <xsl:variable name="month" select="substring($startdate,5,2)" />
+            <xsl:variable name="day" select="substring($startdate,7,2)" />
             <xsl:variable name="periodtype" select="ReportingPeriodType" />
             <xsl:variable name="reportingyear" select="ReportingPeriodYear" />
             <xsl:choose>
@@ -45,6 +45,10 @@ CAM-002 <xsl:value-of select="$manager"/> The reporting period start date is not
             <xsl:variable name="q4end" select="concat($year,'1231')" />
             <xsl:variable name="transition" select="LastReportingFlag='true'" />
             <xsl:choose>
+                <xsl:when test="not($enddate&gt;$startdate)">    
+CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed
+                </xsl:when>
+
                 <xsl:when test="$periodtype='Q1'">
                     <xsl:if test="not($enddate=$q1end or ($transition and $enddate&lt;$q1end))">
 CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed
@@ -68,7 +72,6 @@ CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not a
 CAM-003 <xsl:value-of select="$manager"/> The reporting period end date is not allowed
                     </xsl:if>
                 </xsl:when>
-
             </xsl:choose>
 
             <xsl:choose> 
