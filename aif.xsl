@@ -824,6 +824,7 @@ ERROR 110_112
             </xsl:for-each>
         </xsl:for-each>
 
+        <xsl:text>&#xA;</xsl:text>
 
     </xsl:template>
 

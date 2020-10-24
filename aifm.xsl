@@ -163,7 +163,7 @@ CAM-020 <xsl:value-of select="$manager"/> The reference rate description is not 
             </xsl:for-each>
 
         </xsl:for-each>
-
+        <xsl:text>&#xA;</xsl:text>
     </xsl:template>
 
 </xsl:stylesheet>
