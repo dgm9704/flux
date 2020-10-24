@@ -183,36 +183,6 @@ CAM-017 <xsl:value-of select="$manager"/> The currency code exists in the refere
 
             <xsl:for-each select = "AIFMCompleteDescription/AIFMBaseCurrencyDescription">
                 <xsl:choose> 
-                    <xsl:when test = "BaseCurrency = 'EUR'"> 
-                        <xsl:if test="FXEURReferenceRateType">
-ERROR 36.a <xsl:value-of select="$manager"/>
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="not(FXEURReferenceRateType)">
-ERROR 36.b <xsl:value-of select="$manager"/>
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:for-each>
-
-            <xsl:for-each select = "AIFMCompleteDescription/AIFMBaseCurrencyDescription">
-                <xsl:choose> 
-                    <xsl:when test = "BaseCurrency = 'EUR'"> 
-                        <xsl:if test="FXEURRate">
-ERROR 37.a <xsl:value-of select="$manager"/>
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="not(FXEURRate)">
-ERROR 37.b <xsl:value-of select="$manager"/>
-                        </xsl:if>   
-                    </xsl:otherwise>
-                </xsl:choose>
-            </xsl:for-each>
-
-            <xsl:for-each select = "AIFMCompleteDescription/AIFMBaseCurrencyDescription">
-                <xsl:choose> 
                     <xsl:when test = "BaseCurrency = 'EUR' and FXEURReferenceRateType = 'OTH'"> 
                         <xsl:if test="not(FXEUROtherReferenceRateDescription)">
 CAM-020 <xsl:value-of select="$manager"/> The reference rate description is not consistent with the reference rate type.
