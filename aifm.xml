@@ -126,48 +126,50 @@
 		<AIFMName>AIFM 2</AIFMName>
 		<AIFMEEAFlag>true</AIFMEEAFlag>
 		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>
-		<AIFMCompleteDescription>streamraiders
+		<AIFMCompleteDescription>
 			<AIFMIdentifier>
 				<AIFMIdentifierLEI>969500AA77L4ZJXJ0T02</AIFMIdentifierLEI>
 				<AIFMIdentifierBIC>TESTGB21XXX</AIFMIdentifierBIC>
 			</AIFMIdentifier>
 			<AIFMPrincipalMarkets>
 				<AIFMFivePrincipalMarket>
-				<Ranking>1</Ranking>
-				<MarketIdentification>
-					<MarketCodeType>XXX</MarketCodeType>
-				</MarketIdentification>
-				<AggregatedValueAmount>452000000</AggregatedValueAmount>
+					<Ranking>1</Ranking>
+					<MarketIdentification>
+						<MarketCodeType>XXX</MarketCodeType>
+					</MarketIdentification>
+					<AggregatedValueAmount>452000000</AggregatedValueAmount>
 				</AIFMFivePrincipalMarket>
 				<AIFMFivePrincipalMarket>
-				<Ranking>2</Ranking>
-				<MarketIdentification>
-					<MarketCodeType>MIC</MarketCodeType>
-					<MarketCode>XEUR</MarketCode>
-				</MarketIdentification>
-					<AggregatedValueAmount>42800000</AggregatedValueAmount>
-				</AIFMFivePrincipalMarket>
-				<AIFMFivePrincipalMarket>
-				<Ranking>3</Ranking>
-				<MarketIdentification>
-					<MarketCodeType>MIC</MarketCodeType>
-					<MarketCode>XNAS</MarketCode>
-				</MarketIdentification>
+					<Ranking>2</Ranking>
+					<MarketIdentification>
+						<MarketCodeType>MIC</MarketCodeType>
+						<MarketCode>XEUR</MarketCode>
+					</MarketIdentification>
 					<AggregatedValueAmount>22782456</AggregatedValueAmount>
+						<!-- <AggregatedValueAmount>42800000</AggregatedValueAmount> -->
 				</AIFMFivePrincipalMarket>
 				<AIFMFivePrincipalMarket>
-				<Ranking>4</Ranking>
-				<MarketIdentification>
-					<MarketCodeType>MIC</MarketCodeType>
-					<MarketCode>XBRO</MarketCode>
-				</MarketIdentification>
+					<Ranking>3</Ranking>
+					<MarketIdentification>
+						<MarketCodeType>MIC</MarketCodeType>
+						<MarketCode>XNAS</MarketCode>
+					</MarketIdentification>
+					<AggregatedValueAmount>42800000</AggregatedValueAmount>
+					<!-- <AggregatedValueAmount>22782456</AggregatedValueAmount> -->
+				</AIFMFivePrincipalMarket>
+				<AIFMFivePrincipalMarket>
+					<Ranking>4</Ranking>
+					<MarketIdentification>
+						<MarketCodeType>MIC</MarketCodeType>
+						<MarketCode>XBRO</MarketCode>
+					</MarketIdentification>
 					<AggregatedValueAmount>11478685</AggregatedValueAmount>
 				</AIFMFivePrincipalMarket>
 				<AIFMFivePrincipalMarket>
-				<Ranking>5</Ranking>
-				<MarketIdentification>
-					<MarketCodeType>NOT</MarketCodeType>
-				</MarketIdentification>
+					<Ranking>5</Ranking>
+					<MarketIdentification>
+						<MarketCodeType>NOT</MarketCodeType>
+					</MarketIdentification>
 				</AIFMFivePrincipalMarket>
 			</AIFMPrincipalMarkets>
 			<AIFMPrincipalInstruments>

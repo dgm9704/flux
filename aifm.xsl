@@ -96,19 +96,6 @@ CAM-005 <xsl:value-of select="$manager"/> The jurisdiction of the AIF is not cor
 CAM-006 <xsl:value-of select="$manager"/> The AIFM national code does not exist in the ESMA Register.
             </xsl:if>
 
-            <!-- <xsl:choose> 
-                <xsl:when test = "AIFMNoReportingFlag = 'true' "> 
-                    <xsl:if test="AIFMCompleteDescription">
-ERROR 21.a <xsl:value-of select="$manager"/>
-                    </xsl:if>
-                </xsl:when> 
-                <xsl:otherwise> 
-                    <xsl:if test="not(AIFMCompleteDescription)">
-ERROR 21.b <xsl:value-of select="$manager"/>
-                    </xsl:if>
-                </xsl:otherwise> 
-            </xsl:choose> -->
-
             <xsl:variable name="state" select="AIFMCompleteDescription/AIFMIdentifier/OldAIFMIdentifierNCA/ReportingMemberState" />
             <xsl:if test="$state and not($countrycodes[. = $state])">
 CAM-008 <xsl:value-of select="$manager"/> The country code exists in the reference table of countries
@@ -126,16 +113,16 @@ CAM-009 <xsl:value-of select="$manager"/> The field is mandatory when the  old A
                 <xsl:choose> 
                     <xsl:when test="MarketCodeType = 'MIC'"> 
                        <xsl:if test="not($mic)">
-CAM-010 <xsl:value-of select="$manager"/> The MIC code is not correct <xsl:value-of select="$mic"/>
+CAM-010 <xsl:value-of select="$manager"/> The MIC code is not correct
                         </xsl:if>
                         
                         <xsl:if test="$mic and not($micregister[. = $mic])" >
-CAM-010 <xsl:value-of select="$manager"/> The MIC code is not correct <xsl:value-of select="$mic"/>
+CAM-010 <xsl:value-of select="$manager"/> The MIC code is not correct
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
                         <xsl:if test="$mic">
-CAM-010 <xsl:value-of select="$manager"/> The MIC code is not correct <xsl:value-of select="$mic"/>
+CAM-010 <xsl:value-of select="$manager"/> The MIC code is not correct
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -150,6 +137,15 @@ CAM-011 <xsl:value-of select="$manager"/> The field is mandatory for market code
                     </xsl:when>
                 </xsl:choose>
             </xsl:for-each>
+
+            <xsl:variable name="market1" select="AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket[Ranking='1']/AggregatedValueAmount" />
+            <xsl:variable name="market2" select="AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket[Ranking='2']/AggregatedValueAmount" />
+            <xsl:variable name="market3" select="AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket[Ranking='3']/AggregatedValueAmount" />
+            <xsl:variable name="market4" select="AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket[Ranking='4']/AggregatedValueAmount" />
+            <xsl:variable name="market5" select="AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket[Ranking='5']/AggregatedValueAmount" />
+            <xsl:if test="$market5>$market4 or $market4>$market3 or $market3>$market2 or $market2>$market1">
+CAM-012 <xsl:value-of select="$manager"/> The reported value is not consistent with the rank.          
+            </xsl:if>
 
             <xsl:for-each select = "AIFMCompleteDescription/AIFMPrincipalInstruments/AIFMPrincipalInstrument">
                 <xsl:choose> 
@@ -168,8 +164,6 @@ CAM-013 <xsl:value-of select="$manager"/> The aggregated value is not consistent
                 <xsl:variable name="result" select="$amounteuro * $rateeuro" />
                 <xsl:if test="not($amountbase = $result)">
 CAM-016 <xsl:value-of select="$manager"/> The total AuM amount in base currency is not consistent with the total AuM amount in Euro.
-    <!-- given: <xsl:value-of select="$amountbase" />  
-    calculated: <xsl:value-of select="$amounteuro" /> * <xsl:value-of select="$rateeuro" /> = <xsl:value-of select="$result" /> -->
                 </xsl:if>
             </xsl:if>
 
