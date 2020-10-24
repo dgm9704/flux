@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AIFMReportingInfo CreationDateAndTime="2014-01-26T15:55:02" Version="1.2" ReportingMemberState="GB" xsi:noNamespaceSchemaLocation="AIFMD_DATMAN_V1.2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+	
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
@@ -125,7 +126,7 @@
 		<AIFMName>AIFM 2</AIFMName>
 		<AIFMEEAFlag>true</AIFMEEAFlag>
 		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>
-		<AIFMCompleteDescription>
+		<AIFMCompleteDescription>streamraiders
 			<AIFMIdentifier>
 				<AIFMIdentifierLEI>969500AA77L4ZJXJ0T02</AIFMIdentifierLEI>
 				<AIFMIdentifierBIC>TESTGB21XXX</AIFMIdentifierBIC>
@@ -158,7 +159,7 @@
 				<Ranking>4</Ranking>
 				<MarketIdentification>
 					<MarketCodeType>MIC</MarketCodeType>
-					<MarketCode>XBRU</MarketCode>
+					<MarketCode>XBRO</MarketCode>
 				</MarketIdentification>
 					<AggregatedValueAmount>11478685</AggregatedValueAmount>
 				</AIFMFivePrincipalMarket>
@@ -251,7 +252,7 @@
 		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>
 	</AIFMRecordInfo>
 
-		<AIFMRecordInfo>
+	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
 		<ReportingPeriodStartDate>2014-10-02</ReportingPeriodStartDate>
@@ -274,7 +275,7 @@
 		<AIFMNoReportingFlag>true</AIFMNoReportingFlag>
 	</AIFMRecordInfo>
 
-		<AIFMRecordInfo>
+	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
 		<ReportingPeriodStartDate>2014-10-01</ReportingPeriodStartDate>

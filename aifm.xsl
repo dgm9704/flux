@@ -114,22 +114,28 @@ ERROR 21.b <xsl:value-of select="$manager"/>
 CAM-008 <xsl:value-of select="$manager"/> The country code exists in the reference table of countries
             </xsl:if>
 
-            <xsl:if test="AIFMCompleteDescription/AIFMIdentifier/OldAIFMIdentifierNCA/ReportingMemberState" />
+            <xsl:if test="AIFMCompleteDescription/AIFMIdentifier/OldAIFMIdentifierNCA/ReportingMemberState" >
                 <xsl:if test="not(AIFMCompleteDescription/AIFMIdentifier/OldAIFMIdentifierNCA/AIFMNationalCode)">
+                <!-- This case is actually covered by schema, but included here for completeness -->
 CAM-009 <xsl:value-of select="$manager"/> The field is mandatory when the  old AIFM national identifier - Reporting Member State is filled in.
                 </xsl:if>
             </xsl:if>
 
-            <xsl:for-each select = "AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket/MarketIdentification">
+            <xsl:for-each select="AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket/MarketIdentification">
+                <xsl:variable name="mic" select="MarketCode" />
                 <xsl:choose> 
-                    <xsl:when test = "MarketCodeType = 'MIC'"> 
-                        <xsl:if test="not(MarketCode)">
-ERROR 28.a <xsl:value-of select="$manager"/>
+                    <xsl:when test="MarketCodeType = 'MIC'"> 
+                       <xsl:if test="not($mic)">
+CAM-010 <xsl:value-of select="$manager"/> The MIC code is not correct <xsl:value-of select="$mic"/>
+                        </xsl:if>
+                        
+                        <xsl:if test="$mic and not($micregister[. = $mic])" >
+CAM-010 <xsl:value-of select="$manager"/> The MIC code is not correct <xsl:value-of select="$mic"/>
                         </xsl:if>
                     </xsl:when>
                     <xsl:otherwise>
-                        <xsl:if test="MarketCode">
-ERROR 28.b <xsl:value-of select="$manager"/>
+                        <xsl:if test="$mic">
+CAM-010 <xsl:value-of select="$manager"/> The MIC code is not correct <xsl:value-of select="$mic"/>
                         </xsl:if>
                     </xsl:otherwise>
                 </xsl:choose>
@@ -162,8 +168,8 @@ CAM-013 <xsl:value-of select="$manager"/> The aggregated value is not consistent
                 <xsl:variable name="result" select="$amounteuro * $rateeuro" />
                 <xsl:if test="not($amountbase = $result)">
 CAM-016 <xsl:value-of select="$manager"/> The total AuM amount in base currency is not consistent with the total AuM amount in Euro.
-    given: <xsl:value-of select="$amountbase" />  
-    calculated: <xsl:value-of select="$amounteuro" /> * <xsl:value-of select="$rateeuro" /> = <xsl:value-of select="$result" />
+    <!-- given: <xsl:value-of select="$amountbase" />  
+    calculated: <xsl:value-of select="$amounteuro" /> * <xsl:value-of select="$rateeuro" /> = <xsl:value-of select="$result" /> -->
                 </xsl:if>
             </xsl:if>
 
