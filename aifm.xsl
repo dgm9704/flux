@@ -96,7 +96,7 @@ CAM-005 <xsl:value-of select="$manager"/> The jurisdiction of the AIF is not cor
 CAM-006 <xsl:value-of select="$manager"/> The AIFM national code does not exist in the ESMA Register.
             </xsl:if>
 
-            <xsl:choose> 
+            <!-- <xsl:choose> 
                 <xsl:when test = "AIFMNoReportingFlag = 'true' "> 
                     <xsl:if test="AIFMCompleteDescription">
 ERROR 21.a <xsl:value-of select="$manager"/>
@@ -107,11 +107,17 @@ ERROR 21.a <xsl:value-of select="$manager"/>
 ERROR 21.b <xsl:value-of select="$manager"/>
                     </xsl:if>
                 </xsl:otherwise> 
-            </xsl:choose>
+            </xsl:choose> -->
 
             <xsl:variable name="state" select="AIFMCompleteDescription/AIFMIdentifier/OldAIFMIdentifierNCA/ReportingMemberState" />
             <xsl:if test="$state and not($countrycodes[. = $state])">
 CAM-008 <xsl:value-of select="$manager"/> The country code exists in the reference table of countries
+            </xsl:if>
+
+            <xsl:if test="AIFMCompleteDescription/AIFMIdentifier/OldAIFMIdentifierNCA/ReportingMemberState" />
+                <xsl:if test="not(AIFMCompleteDescription/AIFMIdentifier/OldAIFMIdentifierNCA/AIFMNationalCode)">
+CAM-009 <xsl:value-of select="$manager"/> The field is mandatory when the  old AIFM national identifier - Reporting Member State is filled in.
+                </xsl:if>
             </xsl:if>
 
             <xsl:for-each select = "AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket/MarketIdentification">
