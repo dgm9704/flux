@@ -2,6 +2,12 @@
     <xsl:output method="text" />
       
     <xsl:template match="/AIFMReportingInfo">
+
+        <xsl:variable name="reportingmemberstate" select="@ReportingMemberState" />
+        <xsl:if test="not($eeacountrycodes[. = $reportingmemberstate])" >
+FIL-015  The authority key file attribute is invalid and should an EU or EEA country
+        </xsl:if>
+
         <xsl:for-each select="AIFMRecordInfo">
 
             <xsl:variable name="manager" select="AIFMNationalCode" />     
