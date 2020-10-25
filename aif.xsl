@@ -1,10 +1,15 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-
     <xsl:output method="text" />
 
     <xsl:template match="AIFReportingInfo">
 
+        <xsl:variable name="reportingmemberstate" select="@ReportingMemberState" />
+        <xsl:if test="not($eeacountrycodes[. = $reportingmemberstate])" >
+FIL-015  The authority key file attribute is invalid and should an EU or EEA country
+        </xsl:if>
+
         <xsl:for-each select = "AIFRecordInfo">
+
             <xsl:if test="AIFNoReportingFlag = 'false'"> 
                 <xsl:if test="AIFContentType = '2' or AIFContentType = '4'">
                     <xsl:if test="not(AIFCompleteDescription/AIFIndividualInfo)">

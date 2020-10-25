@@ -1,7 +1,7 @@
 <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform" >
     <xsl:output method="text" />
       
-    <xsl:template match="/AIFMReportingInfo">
+    <xsl:template match="AIFMReportingInfo">
 
         <xsl:variable name="reportingmemberstate" select="@ReportingMemberState" />
         <xsl:if test="not($eeacountrycodes[. = $reportingmemberstate])" >
