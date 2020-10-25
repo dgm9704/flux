@@ -22,7 +22,7 @@
 		<AIFName>AIF 1</AIFName>
 		<AIFEEAFlag>true</AIFEEAFlag>
 		<AIFReportingCode>11</AIFReportingCode>
-		<AIFDomicile>LU</AIFDomicile>
+		<AIFDomicile>ZZ</AIFDomicile>
 		<InceptionDate>2006-12-01</InceptionDate>
 		<AIFNoReportingFlag>false</AIFNoReportingFlag>
 		<AIFCompleteDescription>
@@ -438,7 +438,7 @@
 		<AIFMNationalCode>111111</AIFMNationalCode>
 		<AIFNationalCode>111111#002</AIFNationalCode>
 		<AIFName>AIF 2</AIFName>
-		<AIFEEAFlag>true</AIFEEAFlag>
+		<AIFEEAFlag>false</AIFEEAFlag>
 		<AIFReportingCode>17</AIFReportingCode>
 		<AIFDomicile>LU</AIFDomicile>
 		<InceptionDate>2006-12-01</InceptionDate>

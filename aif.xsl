@@ -117,6 +117,26 @@ CAF-007 <xsl:value-of select="$manager"/> The AIFM national code does not exist 
 CAF-008 <xsl:value-of select="$fund"/> The AIF national code does not exist in the ESMA Register.
             </xsl:if>
 
+            <xsl:variable name="eeaflag" select="boolean(AIFEEAFlag='true')" />
+            <xsl:variable name="domicile" select="AIFDomicile" />
+            <xsl:variable name="iseea" select="boolean($eeacountrycodes[.=$domicile])" />
+            <xsl:choose>
+                <xsl:when test="$eeaflag">
+                    <xsl:if test="not($iseea)">
+CAF-009 <xsl:value-of select="$fund"/> The EEA flag is not correct.
+                    </xsl:if>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:if test="$iseea">
+CAF-009 <xsl:value-of select="$fund"/> The EEA flag is not correct.
+                    </xsl:if>
+                </xsl:otherwise>
+            </xsl:choose>
+
+            <xsl:if test="not($countrycodes[. = $domicile])" >
+CAF-010 <xsl:value-of select="$fund"/> The domicile of the AIF is not correct.
+            </xsl:if>
+
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'true'"> 
                     <xsl:if test="AIFCompleteDescription">
