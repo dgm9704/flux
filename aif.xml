@@ -17,8 +17,8 @@
 				<AssumptionDescription>Free text</AssumptionDescription>
 			</Assumption>
 		</Assumptions>
-		<AIFMNationalCode>474286</AIFMNationalCode>
-		<AIFNationalCode>111111</AIFNationalCode>
+		<AIFMNationalCode>111111</AIFMNationalCode>
+		<AIFNationalCode>111111#001</AIFNationalCode>
 		<AIFName>AIF 1</AIFName>
 		<AIFEEAFlag>true</AIFEEAFlag>
 		<AIFReportingCode>11</AIFReportingCode>
@@ -435,8 +435,8 @@
 		<ReportingPeriodYear>2014</ReportingPeriodYear>
 		<AIFReportingObligationChangeQuarter>Q4</AIFReportingObligationChangeQuarter>
 		<LastReportingFlag>false</LastReportingFlag>
-		<AIFMNationalCode>474286</AIFMNationalCode>
-		<AIFNationalCode>222222</AIFNationalCode>
+		<AIFMNationalCode>111111</AIFMNationalCode>
+		<AIFNationalCode>111111#002</AIFNationalCode>
 		<AIFName>AIF 2</AIFName>
 		<AIFEEAFlag>true</AIFEEAFlag>
 		<AIFReportingCode>17</AIFReportingCode>
@@ -1107,8 +1107,8 @@
 		<ReportingPeriodType>H2</ReportingPeriodType>
 		<ReportingPeriodYear>2014</ReportingPeriodYear>
 		<LastReportingFlag>false</LastReportingFlag>
-		<AIFMNationalCode>474286</AIFMNationalCode>
-		<AIFNationalCode>333333</AIFNationalCode>
+		<AIFMNationalCode>111111</AIFMNationalCode>
+		<AIFNationalCode>111111#003</AIFNationalCode>
 		<AIFName>AIF 3</AIFName>
 		<AIFEEAFlag>true</AIFEEAFlag>
 		<AIFReportingCode>11</AIFReportingCode>
@@ -1782,8 +1782,8 @@
 		<ReportingPeriodType>H2</ReportingPeriodType>
 		<ReportingPeriodYear>2014</ReportingPeriodYear>
 		<LastReportingFlag>false</LastReportingFlag>
-		<AIFMNationalCode>474286</AIFMNationalCode>
-		<AIFNationalCode>444444</AIFNationalCode>
+		<AIFMNationalCode>111111</AIFMNationalCode>
+		<AIFNationalCode>111111#004</AIFNationalCode>
 		<AIFName>AIF 4</AIFName>
 		<AIFEEAFlag>true</AIFEEAFlag>
 		<AIFReportingCode>11</AIFReportingCode>
@@ -1794,16 +1794,16 @@
 	</AIFRecordInfo>
 
 	<CancellationAIFRecordInfo>
-		<CancelledAIFNationalCode>Id21</CancelledAIFNationalCode>
-		<CancelledAIFMNationalCode>Id2</CancelledAIFMNationalCode>
+		<CancelledAIFNationalCode>111111#005</CancelledAIFNationalCode>
+		<CancelledAIFMNationalCode>111111</CancelledAIFMNationalCode>
 		<CancelledReportingPeriodType>Q1</CancelledReportingPeriodType>
 		<CancelledReportingPeriodYear>2014</CancelledReportingPeriodYear>
 		<CancelledRecordFlag>C</CancelledRecordFlag>
 	</CancellationAIFRecordInfo>
 
 	<CancellationAIFRecordInfo>
-		<CancelledAIFNationalCode>Id22</CancelledAIFNationalCode>
-		<CancelledAIFMNationalCode>Id2</CancelledAIFMNationalCode>
+		<CancelledAIFNationalCode>222222#001</CancelledAIFNationalCode>
+		<CancelledAIFMNationalCode>222222</CancelledAIFMNationalCode>
 		<CancelledReportingPeriodType>Q1</CancelledReportingPeriodType>
 		<CancelledReportingPeriodYear>2014</CancelledReportingPeriodYear>
 		<CancelledRecordFlag>C</CancelledRecordFlag>

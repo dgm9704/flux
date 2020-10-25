@@ -98,15 +98,24 @@ CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allo
             <xsl:choose> 
                 <xsl:when test="AIFReportingObligationChangeFrequencyCode or AIFReportingObligationChangeContentsCode"> 
                     <xsl:if test="not(AIFReportingObligationChangeQuarter)">
-    CAF-006
+CAF-006 <xsl:value-of select="$fund"/> The quarter for the AIF reporting obligation change should be reported
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:if test="AIFReportingObligationChangeQuarter">
-    CAF-006
+CAF-006 <xsl:value-of select="$fund"/> The quarter for the AIF reporting obligation change should be reported
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
+
+            <xsl:variable name="manager" select="AIFMNationalCode" />
+            <xsl:if test="not($aifmregister[. = $manager])" >
+CAF-007 <xsl:value-of select="$manager"/> The AIFM national code does not exist in the ESMA Register.
+            </xsl:if>
+
+            <xsl:if test="not($aifregister[. = $fund])" >
+CAF-008 <xsl:value-of select="$fund"/> The AIF national code does not exist in the ESMA Register.
+            </xsl:if>
 
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'true'"> 

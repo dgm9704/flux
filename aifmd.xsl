@@ -3,6 +3,7 @@
     <xsl:variable name="currencycodes" select="document('register/iso-4217.xml')/codes/code" />
     <xsl:variable name="eeacountrycodes" select="document('register/eea-countries.xml')/codes/code" />
     <xsl:variable name="aifmregister" select="document('register/aifm-register.xml')/codes/code" />
+    <xsl:variable name="aifregister" select="document('register/aif-register.xml')/codes/code" />
     <xsl:variable name="micregister" select="document('register/mic-register.xml')/codes/code" />    
     <xsl:variable name="leiregister" select="document('register/lei-register.xml')/codes/code" />    
     <xsl:include href="aifm.xsl" />
