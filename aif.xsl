@@ -137,15 +137,20 @@ CAF-009 <xsl:value-of select="$fund"/> The EEA flag is not correct.
 CAF-010 <xsl:value-of select="$fund"/> The domicile of the AIF is not correct.
             </xsl:if>
 
+            <xsl:variable name="inceptiondate" select="translate(InceptionDate,'-','')" />
+            <xsl:if test="not($inceptiondate &lt; $startdate)">
+CAF-011 <xsl:value-of select="$fund"/> The inception date is not allowed as it should be before the reporting start date
+            </xsl:if>            
+
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'true'"> 
                     <xsl:if test="AIFCompleteDescription">
-    CAF-012
+CAF-012 <xsl:value-of select="$fund"/> The AIF no reporting flag is not consistent with the reported information.
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:if test="not(AIFCompleteDescription)">
-    ERROR 23.b
+CAF-012 <xsl:value-of select="$fund"/> The AIF no reporting flag is not consistent with the reported information.
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
