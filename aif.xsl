@@ -59,6 +59,42 @@ CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not al
                 </xsl:when>
             </xsl:choose>
 
+            <xsl:variable name="enddate" select="translate(ReportingPeriodEndDate,'-','')" />
+            <xsl:variable name="q1end" select="concat($year,'0331')" />
+            <xsl:variable name="q2end" select="concat($year,'0630')" />
+            <xsl:variable name="q3end" select="concat($year,'0930')" />
+            <xsl:variable name="q4end" select="concat($year,'1231')" />
+            <xsl:variable name="transition" select="LastReportingFlag='true'" />
+            <xsl:choose>
+                <xsl:when test="not($enddate&gt;$startdate)">    
+CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allowed
+                </xsl:when>
+
+                <xsl:when test="$periodtype='Q1'">
+                    <xsl:if test="not($enddate=$q1end or ($transition and $enddate&lt;$q1end))">
+CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allowed
+                    </xsl:if>
+                </xsl:when>
+
+                <xsl:when test="$periodtype='Q2' or $periodtype='H1'">
+                    <xsl:if test="not($enddate=$q2end or ($transition and $enddate&lt;$q2end))">
+CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allowed
+                    </xsl:if>
+                </xsl:when>
+
+                <xsl:when test="$periodtype='Q3'">
+                    <xsl:if test="not($enddate=$q3end or ($transition and $enddate&lt;$q3end))">
+CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allowed
+                    </xsl:if>
+                </xsl:when>
+
+                <xsl:when test="$periodtype='Q4' or $periodtype='H2' or $periodtype='Y1'">
+                    <xsl:if test="not($enddate=$q4end or ($transition and $enddate&lt;$q4end))">
+CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allowed
+                    </xsl:if>
+                </xsl:when>
+            </xsl:choose>
+
             <xsl:choose> 
                 <xsl:when test="AIFReportingObligationChangeFrequencyCode or AIFReportingObligationChangeContentsCode"> 
                     <xsl:if test="not(AIFReportingObligationChangeQuarter)">
