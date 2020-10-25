@@ -10,22 +10,24 @@ FIL-015  The authority key file attribute is invalid and should an EU or EEA cou
 
         <xsl:for-each select = "AIFRecordInfo">
 
+            <xsl:variable name="fund" select="AIFNationalCode" />
+
             <xsl:if test="AIFNoReportingFlag = 'false'"> 
                 <xsl:if test="AIFContentType = '2' or AIFContentType = '4'">
                     <xsl:if test="not(AIFCompleteDescription/AIFIndividualInfo)">
-ERROR 5.a
+CAF-002 <xsl:value-of select="$fund" /> The reported AIF information does not correspond to the AIF content type.
                     </xsl:if>
                 </xsl:if>
 
                 <xsl:if test="AIFContentType = '2' or AIFContentType = '4'">
                     <xsl:if test="not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2)">
-ERROR 5.b
+CAF-002 <xsl:value-of select="$fund" /> The reported AIF information does not correspond to the AIF content type.
                     </xsl:if>
                 </xsl:if>
 
                 <xsl:if test="AIFContentType = '4' or AIFContentType = '5'">
                     <xsl:if test="not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4)">
-ERROR 5.c
+CAF-002 <xsl:value-of select="$fund" /> The reported AIF information does not correspond to the AIF content type.
                     </xsl:if>
                 </xsl:if>
             </xsl:if> 
