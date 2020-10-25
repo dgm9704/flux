@@ -59,9 +59,11 @@ CAM-002 333333 The reporting period start date is not allowed.
 ```
 
 ## Status
-- All AIFM checks with error codes are implemented, except:
--- FIL-009 requires access to filename which isn't available for XSLT 1.0
--- CAM-007 requires check digit calculation, which may not be possible/sane to do with XSLT 1.0
+- All AIFM checks with error codes are implemented, except FIL-009 requires access to filename which isn't available for XSLT 1.0
+- Because CAM-007 requires check digit calculation, which may not be possible/sane to do with XSLT 1.0, 
+
+   I circumvent this with looking up the LEI from a list of allowed values.
+
 - decided _for now_ to drop checks without error code
 - maybe 1/3 of AIF cases are done to some degree
 - output is rough and minimal

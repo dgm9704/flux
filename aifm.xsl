@@ -96,6 +96,11 @@ CAM-005 <xsl:value-of select="$manager"/> The jurisdiction of the AIF is not cor
 CAM-006 <xsl:value-of select="$manager"/> The AIFM national code does not exist in the ESMA Register.
             </xsl:if>
 
+            <xsl:variable name="lei" select="AIFMCompleteDescription/AIFMIdentifier/AIFMIdentifierLEI" />
+            <xsl:if test="$lei and not($leiregister[. = $lei])" >
+CAM-007 <xsl:value-of select="$manager"/> Verify the correctness of the LEI code format rules following the calculation methodology of the 2-last check digits
+            </xsl:if>
+
             <xsl:variable name="state" select="AIFMCompleteDescription/AIFMIdentifier/OldAIFMIdentifierNCA/ReportingMemberState" />
             <xsl:if test="$state and not($countrycodes[. = $state])">
 CAM-008 <xsl:value-of select="$manager"/> The country code exists in the reference table of countries
