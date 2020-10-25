@@ -40,21 +40,21 @@ CAF-002 <xsl:value-of select="$fund" /> The reported AIF information does not co
             <xsl:variable name="reportingyear" select="ReportingPeriodYear" />
             <xsl:choose>
                 <xsl:when test="not($day='01') or not($year=$reportingyear)">
-    CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
+CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
                 </xsl:when>
                 <xsl:when test="$periodtype='Q1' or $periodtype='Q2' or $periodtype='Q3' or $periodtype='Q4'">
                     <xsl:if test="not($month='10' or $month='07' or $month='01')">
-    CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
+CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
                     </xsl:if>
                 </xsl:when>
                 <xsl:when test="$periodtype='H1' or $periodtype='H2'">
                     <xsl:if test="not($month='07' or $month='01')">
-    CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
+CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
                     </xsl:if>
                 </xsl:when>
                 <xsl:when test="$periodtype='Y1'">
                     <xsl:if test="not($month='01')">
-    CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
+CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
                     </xsl:if>
                 </xsl:when>
             </xsl:choose>
