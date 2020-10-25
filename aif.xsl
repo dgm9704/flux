@@ -209,7 +209,7 @@ CAF-015 <xsl:value-of select="$fund"/> The country of the old AIF national code 
 
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassNationalCode">
-    CAF-016
+CAF-016 <xsl:value-of select="$fund"/> The share class national code is not consistent with the share class flag.
                 </xsl:if>
             </xsl:if>
 
