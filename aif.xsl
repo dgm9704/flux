@@ -213,6 +213,14 @@ CAF-016 <xsl:value-of select="$fund"/> The share class national code is not cons
                 </xsl:if>
             </xsl:if>
 
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierISIN">
+                <xsl:variable name="isin" select="." />
+                <xsl:if test="$isin and not($isinregister[. = $isin])" >
+CAF-017 <xsl:value-of select="$fund"/> The check digit of the ISIN code is not correct.
+                </xsl:if>
+            </xsl:for-each>
+
+
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierISIN">
     CAF-018
