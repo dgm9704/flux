@@ -34,6 +34,15 @@
 				<ShareClassFlag>1</ShareClassFlag>
 				<AIFDescription>
 					<AIFMasterFeederStatus>FEEDER</AIFMasterFeederStatus>
+					<MasterAIFsIdentification>
+						<MasterAIFIdentification>
+							<!-- <AIFName>Foo</AIFName> -->
+							<AIFIdentifierNCA>
+								<ReportingMemberState>ZZ</ReportingMemberState>
+								<AIFNationalCode>123456</AIFNationalCode>
+							</AIFIdentifierNCA>
+						</MasterAIFIdentification>
+					</MasterAIFsIdentification>
 					<PrimeBrokers>
 						<PrimeBrokerIdentification>
 							<EntityName>Prime broker 1</EntityName>

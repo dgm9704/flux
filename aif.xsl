@@ -200,14 +200,15 @@ CAF-014 <xsl:value-of select="$fund"/> The check digit of the ISIN code is not c
                 </xsl:if>
             </xsl:for-each>
 
-        <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
-            <xsl:variable name="aifmemberstate" select="." />
-            <xsl:if test="not($eeacountrycodes[. = $aifmemberstate])" >
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
+                <xsl:variable name="aifmemberstate" select="." />
+                <xsl:if test="not($eeacountrycodes[. = $aifmemberstate])" >
 CAF-015 <xsl:value-of select="$fund"/> The country of the old AIF national code is not correct and should be an EEA or EU country.
-            </xsl:if>
-        </xsl:for-each>
+                </xsl:if>
+            </xsl:for-each>
 
-            <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
+            <xsl:variable name="shareclassflag" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'" />
+            <xsl:if test="not($shareclassflag)"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassNationalCode">
 CAF-016 <xsl:value-of select="$fund"/> The share class national code is not consistent with the share class flag.
                 </xsl:if>
@@ -220,46 +221,45 @@ CAF-017 <xsl:value-of select="$fund"/> The check digit of the ISIN code is not c
                 </xsl:if>
             </xsl:for-each>
 
-
-            <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
+            <xsl:if test="not($shareclassflag)"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierISIN">
-    CAF-018
+CAF-018 <xsl:value-of select="$fund"/> The share class ISIN code is not consistent with the share class flag.
                 </xsl:if>
             </xsl:if>
 
-            <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
+            <xsl:if test="not($shareclassflag)"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierCUSIP">
-    CAF-019
+CAF-019 <xsl:value-of select="$fund"/> The share class SEDOL code is not consistent with the share class flag.
                 </xsl:if>
             </xsl:if> 
 
-            <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
+            <xsl:if test="not($shareclassflag)"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierSEDOL">
-    CAF-020
+CAF-020 <xsl:value-of select="$fund"/> The share class CUSIP code is not consistent with the share class flag.
                 </xsl:if>
             </xsl:if> 
 
-            <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
+            <xsl:if test="not($shareclassflag)"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierTicker">
-    CAF-021
+CAF-021 <xsl:value-of select="$fund"/> The share class Bloomberg code is not consistent with the share class flag.
                 </xsl:if>
             </xsl:if> 
 
-            <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
+            <xsl:if test="not($shareclassflag)"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierRIC">
-    CAF-022
+CAF-022 <xsl:value-of select="$fund"/> The share class Reuters code is not consistent with the share class flag.
                 </xsl:if>
             </xsl:if> 
 
             <xsl:choose> 
-                <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'"> 
+                <xsl:when test="$shareclassflag"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassName)">
-    CAF-023
+CAF-023 <xsl:value-of select="$fund"/> The share class name is not consistent with the share class flag.
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassName">
-    CAF-023
+CAF-023 <xsl:value-of select="$fund"/> The share class name is not consistent with the share class flag.
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
@@ -267,31 +267,36 @@ CAF-017 <xsl:value-of select="$fund"/> The check digit of the ISIN code is not c
             <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER'"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName)">
-    CAF-024
+CAF-024 <xsl:value-of select="$fund"/> The master AIF name is not consistent with the master feeder status.
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName">
-    CAF-024
+CAF-024 <xsl:value-of select="$fund"/> The master AIF name is not consistent with the master feeder status.
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
 
+            <xsl:variable name="aifmemberstate" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState" />
+            <xsl:if test="$aifmemberstate and not($eeacountrycodes[. = $aifmemberstate])" >
+CAF-025 <xsl:value-of select="$fund"/> The country of the master AIF national code is not correct and should be an EEA or EU country.
+            </xsl:if>
+
             <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER')"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
-    CAF-026
+CAF-026 <xsl:value-of select="$fund"/> The master AIF name* is not consistent with the master feeder status.
                 </xsl:if>
             </xsl:if> 
 
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'false' and not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/BaseCurrency = 'EUR')"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURRate)">
-    CAF-030
+CAF-030
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURRate">
-    CAF-030
+CAF-030
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
@@ -299,12 +304,12 @@ CAF-017 <xsl:value-of select="$fund"/> The check digit of the ISIN code is not c
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'false' and not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/BaseCurrency = 'EUR')"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType)">
-    CAF-031
+CAF-031
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType">
-    CAF-031
+CAF-031
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
@@ -312,12 +317,12 @@ CAF-017 <xsl:value-of select="$fund"/> The check digit of the ISIN code is not c
             <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType = 'OTH'"> 
                     <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEUROtherReferenceRateDescription)">
-    CAF-032
+CAF-032
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
                     <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEUROtherReferenceRateDescription">
-    CAF-032
+CAF-032
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
