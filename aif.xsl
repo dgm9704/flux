@@ -200,6 +200,13 @@ CAF-014 <xsl:value-of select="$fund"/> The check digit of the ISIN code is not c
                 </xsl:if>
             </xsl:for-each>
 
+        <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
+            <xsl:variable name="aifmemberstate" select="." />
+            <xsl:if test="not($eeacountrycodes[. = $aifmemberstate])" >
+CAF-015 <xsl:value-of select="$fund"/> The country of the old AIF national code is not correct and should be an EEA or EU country.
+            </xsl:if>
+        </xsl:for-each>
+
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassNationalCode">
     CAF-016

@@ -468,7 +468,7 @@
 						<MasterAIFIdentification>
 							<AIFName>AIF2</AIFName>
 							<AIFIdentifierNCA>
-								<ReportingMemberState>FR</ReportingMemberState>
+								<ReportingMemberState>ZZ</ReportingMemberState>
 								<AIFNationalCode>AIF2</AIFNationalCode>
 							</AIFIdentifierNCA>
 						</MasterAIFIdentification>
