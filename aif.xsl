@@ -155,6 +155,11 @@ CAF-012 <xsl:value-of select="$fund"/> The AIF no reporting flag is not consiste
                 </xsl:otherwise>
             </xsl:choose>
 
+            <xsl:variable name="lei" select="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierLEI" />
+            <xsl:if test="$lei and not($leiregister[. = $lei])" >
+CAF-013 <xsl:value-of select="$fund"/> The check digits of the LEI code are not correct.
+            </xsl:if>
+
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'false'"> 
                 <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassNationalCode">
     CAF-016
