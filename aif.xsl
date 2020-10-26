@@ -1,5 +1,5 @@
-<xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
-    <xsl:output method="text" />
+<xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> 
+    <xsl:output method="xml" />
 
     <xsl:template match="AIFReportingInfo">
 
@@ -882,4 +882,4 @@ CAF-032
 
     </xsl:template>
 
-</xsl:stylesheet>
+</xsl:transform>
