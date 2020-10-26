@@ -2,37 +2,59 @@
     <xsl:output method="xml" />
 
     <xsl:template match="AIFReportingInfo">
-
+<aif>
         <xsl:variable name="reportingmemberstate" select="@ReportingMemberState" />
         <xsl:if test="not($eeacountrycodes[. = $reportingmemberstate])" >
-FIL-015  The authority key file attribute is invalid and should an EU or EEA country
+                <error>
+                    <record></record>
+                    <code>FIL-015</code>
+                    <message>The authority key file attribute is invalid and should an EU or EEA country</message>
+                    <field>ReportingMemberState</field>
+                    <value><xsl:value-of select="$reportingmemberstate" /></value>
+                </error>
         </xsl:if>
-
         <xsl:for-each select = "AIFRecordInfo">
-
             <xsl:variable name="fund" select="AIFNationalCode" />
-
             <xsl:if test="AIFNoReportingFlag = 'false'"> 
                 <xsl:if test="AIFContentType = '2' or AIFContentType = '4'">
                     <xsl:if test="not(AIFCompleteDescription/AIFIndividualInfo)">
-CAF-002 <xsl:value-of select="$fund" /> The reported AIF information does not correspond to the AIF content type.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-002</code>
+                    <message>The reported AIF information does not correspond to the AIF content type.</message>
+                    <field>AIFContentType</field>
+                    <value><xsl:value-of select="AIFContentType" /></value>
+                </error>
                     </xsl:if>
                 </xsl:if>
 
                 <xsl:if test="AIFContentType = '2' or AIFContentType = '4'">
                     <xsl:if test="not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2)">
-CAF-002 <xsl:value-of select="$fund" /> The reported AIF information does not correspond to the AIF content type.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-002</code>
+                    <message>The reported AIF information does not correspond to the AIF content type.</message>
+                    <field>AIFContentType</field>
+                    <value><xsl:value-of select="AIFContentType" /></value>
+                </error>
                     </xsl:if>
                 </xsl:if>
 
                 <xsl:if test="AIFContentType = '4' or AIFContentType = '5'">
                     <xsl:if test="not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4)">
-CAF-002 <xsl:value-of select="$fund" /> The reported AIF information does not correspond to the AIF content type.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-002</code>
+                    <message>The reported AIF information does not correspond to the AIF content type.</message>
+                    <field>AIFContentType</field>
+                    <value><xsl:value-of select="AIFContentType" /></value>
+                </error>
                     </xsl:if>
                 </xsl:if>
             </xsl:if> 
 
-            <xsl:variable name="startdate" select="translate(ReportingPeriodStartDate,'-','')" />
+            <xsl:variable name="reportingperiodstartdate" select="ReportingPeriodStartDate" />
+            <xsl:variable name="startdate" select="translate($reportingperiodstartdate,'-','')" />
             <xsl:variable name="year" select="substring($startdate,1,4)" />
             <xsl:variable name="month" select="substring($startdate,5,2)" />
             <xsl:variable name="day" select="substring($startdate,7,2)" />
@@ -40,26 +62,51 @@ CAF-002 <xsl:value-of select="$fund" /> The reported AIF information does not co
             <xsl:variable name="reportingyear" select="ReportingPeriodYear" />
             <xsl:choose>
                 <xsl:when test="not($day='01') or not($year=$reportingyear)">
-CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-003</code>
+                    <message>The reporting period start date is not allowed. </message>
+                    <field>ReportingPeriodStartDate</field>
+                    <value><xsl:value-of select="$reportingperiodstartdate" /></value>
+                </error>
                 </xsl:when>
                 <xsl:when test="$periodtype='Q1' or $periodtype='Q2' or $periodtype='Q3' or $periodtype='Q4'">
                     <xsl:if test="not($month='10' or $month='07' or $month='01')">
-CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-003</code>
+                    <message>The reporting period start date is not allowed. </message>
+                    <field>ReportingPeriodStartDate</field>
+                    <value><xsl:value-of select="$reportingperiodstartdate" /></value>
+                </error>
                     </xsl:if>
                 </xsl:when>
                 <xsl:when test="$periodtype='H1' or $periodtype='H2'">
                     <xsl:if test="not($month='07' or $month='01')">
-CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-003</code>
+                    <message>The reporting period start date is not allowed. </message>
+                    <field>ReportingPeriodStartDate</field>
+                    <value><xsl:value-of select="$reportingperiodstartdate" /></value>
+                </error>
                     </xsl:if>
                 </xsl:when>
                 <xsl:when test="$periodtype='Y1'">
                     <xsl:if test="not($month='01')">
-CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not allowed. 
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-003</code>
+                    <message>The reporting period start date is not allowed. </message>
+                    <field>ReportingPeriodStartDate</field>
+                    <value><xsl:value-of select="$reportingperiodstartdate" /></value>
+                </error>
                     </xsl:if>
                 </xsl:when>
             </xsl:choose>
 
-            <xsl:variable name="enddate" select="translate(ReportingPeriodEndDate,'-','')" />
+            <xsl:variable name="reportingperiodenddate" select="ReportingPeriodEndDate" />
+            <xsl:variable name="enddate" select="translate(reportingperiodenddate,'-','')" />
             <xsl:variable name="q1end" select="concat($year,'0331')" />
             <xsl:variable name="q2end" select="concat($year,'0630')" />
             <xsl:variable name="q3end" select="concat($year,'0930')" />
@@ -67,30 +114,59 @@ CAF-003 <xsl:value-of select="$fund"/> The reporting period start date is not al
             <xsl:variable name="transition" select="LastReportingFlag='true'" />
             <xsl:choose>
                 <xsl:when test="not($enddate&gt;$startdate)">    
-CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allowed
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-004</code>
+                    <message>The reporting period end date is not allowed</message>
+                    <field>ReportingPeriodEndDate</field>
+                    <value><xsl:value-of select="$reportingperiodenddate" /></value>
+                </error>
                 </xsl:when>
-
                 <xsl:when test="$periodtype='Q1'">
                     <xsl:if test="not($enddate=$q1end or ($transition and $enddate&lt;$q1end))">
-CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allowed
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-004</code>
+                    <message>The reporting period end date is not allowed</message>
+                    <field>ReportingPeriodEndDate</field>
+                    <value><xsl:value-of select="$reportingperiodenddate" /></value>
+                </error>
                     </xsl:if>
                 </xsl:when>
 
                 <xsl:when test="$periodtype='Q2' or $periodtype='H1'">
                     <xsl:if test="not($enddate=$q2end or ($transition and $enddate&lt;$q2end))">
-CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allowed
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-004</code>
+                    <message>The reporting period end date is not allowed</message>
+                    <field>ReportingPeriodEndDate</field>
+                    <value><xsl:value-of select="$reportingperiodenddate" /></value>
+                </error>
                     </xsl:if>
                 </xsl:when>
 
                 <xsl:when test="$periodtype='Q3'">
                     <xsl:if test="not($enddate=$q3end or ($transition and $enddate&lt;$q3end))">
-CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allowed
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-004</code>
+                    <message>The reporting period end date is not allowed</message>
+                    <field>ReportingPeriodEndDate</field>
+                    <value><xsl:value-of select="$reportingperiodenddate" /></value>
+                </error>
                     </xsl:if>
                 </xsl:when>
 
                 <xsl:when test="$periodtype='Q4' or $periodtype='H2' or $periodtype='Y1'">
                     <xsl:if test="not($enddate=$q4end or ($transition and $enddate&lt;$q4end))">
-CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allowed
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-004</code>
+                    <message>The reporting period end date is not allowed</message>
+                    <field>ReportingPeriodEndDate</field>
+                    <value><xsl:value-of select="$reportingperiodenddate" /></value>
+                </error>
                     </xsl:if>
                 </xsl:when>
             </xsl:choose>
@@ -98,23 +174,47 @@ CAF-004 <xsl:value-of select="$fund"/> The reporting period end date is not allo
             <xsl:choose> 
                 <xsl:when test="AIFReportingObligationChangeFrequencyCode or AIFReportingObligationChangeContentsCode"> 
                     <xsl:if test="not(AIFReportingObligationChangeQuarter)">
-CAF-006 <xsl:value-of select="$fund"/> The quarter for the AIF reporting obligation change should be reported
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-006</code>
+                    <message>The quarter for the AIF reporting obligation change should be reported</message>
+                    <field>AIFReportingObligationChangeQuarter</field>
+                    <value><xsl:value-of select="AIFReportingObligationChangeQuarter" /></value>
+                </error>
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:if test="AIFReportingObligationChangeQuarter">
-CAF-006 <xsl:value-of select="$fund"/> The quarter for the AIF reporting obligation change should be reported
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-006</code>
+                    <message>The quarter for the AIF reporting obligation change should not be reported</message>
+                    <field>AIFReportingObligationChangeQuarter</field>
+                    <value><xsl:value-of select="AIFReportingObligationChangeQuarter" /></value>
+                </error>
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
 
             <xsl:variable name="manager" select="AIFMNationalCode" />
             <xsl:if test="not($aifmregister[. = $manager])" >
-CAF-007 <xsl:value-of select="$manager"/> The AIFM national code does not exist in the ESMA Register.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-007</code>
+                    <message>The AIFM national code does not exist in the ESMA Register.</message>
+                    <field>AIFMNationalCode</field>
+                    <value><xsl:value-of select="$manager" /></value>
+                </error>
             </xsl:if>
 
             <xsl:if test="not($aifregister[. = $fund])" >
-CAF-008 <xsl:value-of select="$fund"/> The AIF national code does not exist in the ESMA Register.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-008</code>
+                    <message>The AIF national code does not exist in the ESMA Register.</message>
+                    <field>AIFMNationalCode</field>
+                    <value><xsl:value-of select="$fund" /></value>
+                </error>
             </xsl:if>
 
             <xsl:variable name="eeaflag" select="boolean(AIFEEAFlag='true')" />
@@ -879,7 +979,7 @@ CAF-032
 
         </xsl:for-each>
         <xsl:text>&#xA;</xsl:text>
-
+</aif>
     </xsl:template>
 
 </xsl:transform>

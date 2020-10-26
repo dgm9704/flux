@@ -4,12 +4,12 @@
 <aifm>
         <xsl:variable name="reportingmemberstate" select="@ReportingMemberState" />
         <xsl:if test="not($eeacountrycodes[. = $reportingmemberstate])" >
-<error>
-    <code>FIL-015</code>
-    <message>The authority key file attribute is invalid and should an EU or EEA country</message>
-    <field>ReportingMemberState</field>
-    <value><xsl:value-of select="$reportingmemberstate" /></value>
-</error>
+    <error>
+        <code>FIL-015</code>
+        <message>The authority key file attribute is invalid and should an EU or EEA country</message>
+        <field>ReportingMemberState</field>
+        <value><xsl:value-of select="$reportingmemberstate" /></value>
+    </error>
         </xsl:if>
         <xsl:for-each select="AIFMRecordInfo">
             <xsl:text>&#xA;</xsl:text>
