@@ -1,5 +1,5 @@
 <xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"> 
-    <xsl:output method="xml" />
+    <xsl:output indent="yes" method="xml" />
 
     <xsl:template match="AIFReportingInfo">
 <aif>
@@ -73,7 +73,8 @@
                 <xsl:when test="$periodtype='Q1' or $periodtype='Q2' or $periodtype='Q3' or $periodtype='Q4'">
                     <xsl:if test="not($month='10' or $month='07' or $month='01')">
                 <error>
-                    <record><xsl:value-of select="$fund" /></record>
+                    <record><xsl:value-of select="$fund" /></record>FI
+
                     <code>CAF-003</code>
                     <message>The reporting period start date is not allowed. </message>
                     <field>ReportingPeriodStartDate</field>
@@ -223,41 +224,83 @@
             <xsl:choose>
                 <xsl:when test="$eeaflag">
                     <xsl:if test="not($iseea)">
-CAF-009 <xsl:value-of select="$fund"/> The EEA flag is not correct.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-009</code>
+                    <message>The EEA flag is not correct.</message>
+                    <field>AIFEEAFlag</field>
+                    <value><xsl:value-of select="AIFEEAFlag" /></value>
+                </error>
                     </xsl:if>
                 </xsl:when>
                 <xsl:otherwise>
                     <xsl:if test="$iseea">
-CAF-009 <xsl:value-of select="$fund"/> The EEA flag is not correct.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-009</code>
+                    <message>The EEA flag is not correct.</message>
+                    <field>AIFEEAFlag</field>
+                    <value><xsl:value-of select="AIFEEAFlag" /></value>
+                </error>
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
 
             <xsl:if test="not($countrycodes[. = $domicile])" >
-CAF-010 <xsl:value-of select="$fund"/> The domicile of the AIF is not correct.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-010</code>
+                    <message>The domicile of the AIF is not correct.</message>
+                    <field>AIFDomicile</field>
+                    <value><xsl:value-of select="$domicile" /></value>
+                </error>
             </xsl:if>
 
             <xsl:variable name="inceptiondate" select="translate(InceptionDate,'-','')" />
             <xsl:if test="not($inceptiondate &lt; $startdate)">
-CAF-011 <xsl:value-of select="$fund"/> The inception date is not allowed as it should be before the reporting start date
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-011</code>
+                    <message>The inception date is not allowed as it should be before the reporting start date</message>
+                    <field>InceptionDate</field>
+                    <value><xsl:value-of select="InceptionDate" /></value>
+                </error>
             </xsl:if>            
 
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'true'"> 
                     <xsl:if test="AIFCompleteDescription">
-CAF-012 <xsl:value-of select="$fund"/> The AIF no reporting flag is not consistent with the reported information.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-012</code>
+                    <message>The AIF no reporting flag is not consistent with the reported information.</message>
+                    <field>AIFNoReportingFlag</field>
+                    <value><xsl:value-of select="AIFNoReportingFlag" /></value>
+                </error>
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise>
                     <xsl:if test="not(AIFCompleteDescription)">
-CAF-012 <xsl:value-of select="$fund"/> The AIF no reporting flag is not consistent with the reported information.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-012</code>
+                    <message>The AIF no reporting flag is not consistent with the reported information.</message>
+                    <field>AIFNoReportingFlag</field>
+                    <value><xsl:value-of select="AIFNoReportingFlag" /></value>
+                </error>
                     </xsl:if>
                 </xsl:otherwise>
             </xsl:choose>
 
             <xsl:variable name="lei" select="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierLEI" />
             <xsl:if test="$lei and not($leiregister[. = $lei])" >
-CAF-013 <xsl:value-of select="$fund"/> The check digits of the LEI code are not correct.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-013</code>
+                    <message>The check digits of the LEI code are not correct.</message>
+                    <field>AIFIdentifierLEI</field>
+                    <value><xsl:value-of select="$lei" /></value>
+                </error>
             </xsl:if>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded/ISINInstrumentIdentification">
@@ -296,14 +339,26 @@ CAF-013 <xsl:value-of select="$fund"/> The check digits of the LEI code are not 
                 <xsl:variable name="c11" select="substring($isin,11,1)" />
                 <xsl:variable name="v11" select="$substitution[char=$c11]/num" /><xsl:value-of select="$c11"/>-><xsl:value-of select="$v11"/>, -->
                 <xsl:if test="$isin and not($isinregister[. = $isin])" >
-CAF-014 <xsl:value-of select="$fund"/> The check digit of the ISIN code is not correct.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-014</code>
+                    <message>The check digit of the ISIN code is not correct.</message>
+                    <field>ISINInstrumentIdentification</field>
+                    <value><xsl:value-of select="$isin" /></value>
+                </error>
                 </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
                 <xsl:variable name="aifmemberstate" select="." />
                 <xsl:if test="not($eeacountrycodes[. = $aifmemberstate])" >
-CAF-015 <xsl:value-of select="$fund"/> The country of the old AIF national code is not correct and should be an EEA or EU country.
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-015</code>
+                    <message>The country of the old AIF national code is not correct and should be an EEA or EU country.</message>
+                    <field>ReportingMemberState</field>
+                    <value><xsl:value-of select="$aifmemberstate" /></value>
+                </error>
                 </xsl:if>
             </xsl:for-each>
 
