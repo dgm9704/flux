@@ -332,7 +332,7 @@
             <xsl:variable name="shareclassflag" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'" />
             <xsl:if test="not($shareclassflag)"> 
                 <xsl:variable name="shareclassnationalcode" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassNationalCode" />
-                <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassNationalCode">
+                <xsl:if test="$shareclassnationalcode">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-016</code>
@@ -354,10 +354,9 @@
                     <value><xsl:value-of select="$isin" /></value>
                 </error>
                 </xsl:if>
-            </xsl:for-each>
 
             <xsl:if test="not($shareclassflag)"> 
-                <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierISIN">
+                <xsl:if test="$isin">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-018</code>
@@ -369,99 +368,106 @@
             </xsl:if>
 
             <xsl:if test="not($shareclassflag)"> 
-                <xsl:variable name="cusip" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierCUSIP">
+                <xsl:variable name="cusip" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierCUSIP" />
                 <xsl:if test="$cusip">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-019</code>
                     <message>The share class CUSIP code is not consistent with the share class flag.</message>
                     <field>ShareClassIdentifierCUSIP</field>
-                    <value><xsl:value-of select="ShareClassIdentifierCUSIP" /></value>
+                    <value><xsl:value-of select="$cusip" /></value>
                 </error>
                 </xsl:if>
             </xsl:if> 
 
             <xsl:if test="not($shareclassflag)"> 
-                <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierSEDOL">
+                <xsl:variable name="sedol" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierSEDOL" />
+                <xsl:if test="$sedol">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-020</code>
                     <message>The share class SEDOL code is not consistent with the share class flag.</message>
                     <field>ShareClassIdentifierSEDOL</field>
-                    <value><xsl:value-of select="ShareClassIdentifierCUSIP" /></value>
+                    <value><xsl:value-of select="$sedol" /></value>
                 </error>
                 </xsl:if>
             </xsl:if> 
 
             <xsl:if test="not($shareclassflag)"> 
-                <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierTicker">
+                <xsl:variable name="ticker" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierTicker" />
+                <xsl:if test="$ticker">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-021</code>
                     <message>The share class Bloomberg code is not consistent with the share class flag.</message>
                     <field>ShareClassIdentifierTicker</field>
-                    <value><xsl:value-of select="ShareClassIdentifierTicker" /></value>
+                    <value><xsl:value-of select="$ticker" /></value>
                 </error>
                 </xsl:if>
             </xsl:if> 
 
             <xsl:if test="not($shareclassflag)"> 
-                <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierRIC">
+                <xsl:variable name="ric" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierRIC" />
+                <xsl:if test="$ric">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-022</code>
                     <message>The share class Reuters code is not consistent with the share class flag.</message>
                     <field>ShareClassIdentifierRIC</field>
-                    <value><xsl:value-of select="ShareClassIdentifierRIC" /></value>
+                    <value><xsl:value-of select="$ric" /></value>
                 </error>
                 </xsl:if>
             </xsl:if> 
 
+            <xsl:variable name="shareclassname" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassName" />
             <xsl:choose> 
                 <xsl:when test="$shareclassflag"> 
-                    <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassName)">
+                    <xsl:if test="not($shareclassname)">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-023</code>
                     <message>The share class name is not consistent with the share class flag.</message>
                     <field>ShareClassName</field>
-                    <value><xsl:value-of select="ShareClassName" /></value>
+                    <value><xsl:value-of select="$shareclassname" /></value>
                 </error>
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
-                    <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassName">
+                    <xsl:if test="$shareclassname">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-023</code>
                     <message>The share class name is not consistent with the share class flag.</message>
                     <field>ShareClassName</field>
-                    <value><xsl:value-of select="ShareClassName" /></value>
+                    <value><xsl:value-of select="$shareclassname" /></value>
                 </error>
                     </xsl:if>
                 </xsl:otherwise> 
             </xsl:choose>
+            </xsl:for-each>
 
+
+            <xsl:variable name="aifname" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName" />
             <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER'"> 
-                    <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName)">
+                    <xsl:if test="not($aifname)">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-024</code>
                     <message>The master AIF name is not consistent with the master feeder status.</message>
                     <field>AIFName</field>
-                    <value><xsl:value-of select="AIFName" /></value>
+                    <value><xsl:value-of select="$aifname" /></value>
                 </error>
                     </xsl:if>
                 </xsl:when> 
                 <xsl:otherwise> 
-                    <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName">
+                    <xsl:if test="$aifname">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-024</code>
                     <message>The master AIF name is not consistent with the master feeder status.</message>
                     <field>AIFName</field>
-                    <value><xsl:value-of select="AIFName" /></value>
+                    <value><xsl:value-of select="$aifname" /></value>
                 </error>
                     </xsl:if>
                 </xsl:otherwise> 

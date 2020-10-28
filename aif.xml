@@ -36,7 +36,7 @@
 					<AIFMasterFeederStatus>FEEDER</AIFMasterFeederStatus>
 					<MasterAIFsIdentification>
 						<MasterAIFIdentification>
-							<!-- <AIFName>Foo</AIFName> -->
+							<AIFName>Foo</AIFName>
 							<AIFIdentifierNCA>
 								<ReportingMemberState>ZZ</ReportingMemberState>
 								<AIFNationalCode>123456</AIFNationalCode>
@@ -459,6 +459,16 @@
 				</AIFIdentification>
 				<ShareClassFlag>false</ShareClassFlag>
 				<ShareClassIdentification>
+
+					<ShareClassIdentifier>
+						<ShareClassNationalCode>aaaaaa</ShareClassNationalCode>
+						<ShareClassIdentifierISIN>AA0000000000</ShareClassIdentifierISIN>
+						<ShareClassIdentifierCUSIP>123456789</ShareClassIdentifierCUSIP>
+						<ShareClassIdentifierSEDOL>1234567</ShareClassIdentifierSEDOL>
+						<ShareClassIdentifierTicker>AAAA</ShareClassIdentifierTicker>
+						<ShareClassIdentifierRIC>AAAAAA</ShareClassIdentifierRIC>
+						<ShareClassName>Share Class 1</ShareClassName>
+					</ShareClassIdentifier>
 
 					<ShareClassIdentifier>
 						<ShareClassNationalCode>aaaaaa</ShareClassNationalCode>
