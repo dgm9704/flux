@@ -532,11 +532,11 @@
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>100</StrategyNAVRate>
 						</HedgeFundStrategy>
-						<HedgeFundStrategy>
+						<!-- <HedgeFundStrategy>
 							<HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
 							<StrategyNAVRate>100</StrategyNAVRate>
-						</HedgeFundStrategy>
+						</HedgeFundStrategy> -->
 					</HedgeFundInvestmentStrategies>
 					<PrivateEquityFundInvestmentStrategies>
 						<!-- <PrivateEquityFundInvestmentStrategy>
