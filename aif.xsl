@@ -571,7 +571,40 @@
                 </xsl:otherwise> 
             </xsl:choose>
 
-            <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType = 'NONE')"> 
+            <xsl:variable name="firstfundingsourcecountry" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FirstFundingSourceCountry" />
+            <xsl:if test="$firstfundingsourcecountry and not($countrycodes[. = $firstfundingsourcecountry])" >
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-033</code>
+                    <message>The first funding country is not correct.</message>
+                    <field>FirstFundingSourceCountry</field>
+                    <value><xsl:value-of select="$firstfundingsourcecountry" /></value>
+                </error>
+            </xsl:if>
+
+            <xsl:variable name="secondfundingsourcecountry" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/SecondFundingSourceCountry" />
+            <xsl:if test="$secondfundingsourcecountry and not($countrycodes[. = $secondfundingsourcecountry])" >
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-034</code>
+                    <message>The second funding country is not correct.</message>
+                    <field>SecondFundingSourceCountry</field>
+                    <value><xsl:value-of select="$secondfundingsourcecountry" /></value>
+                </error>
+            </xsl:if>
+
+            <xsl:variable name="thirdfundingsourcecountry" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/ThirdFundingSourceCountry" />
+            <xsl:if test="$thirdfundingsourcecountry and not($countrycodes[. = $thirdfundingsourcecountry])" >
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-035</code>
+                    <message>The third funding country is not correct.</message>
+                    <field>ThirdFundingSourceCountry</field>
+                    <value><xsl:value-of select="$thirdfundingsourcecountry" /></value>
+                </error>
+            </xsl:if>
+
+            <!-- <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType = 'NONE')"> 
                 <xsl:variable 
                     name="count" 
                     select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies 
@@ -582,28 +615,28 @@
                 <xsl:if test="$count &gt; 1">
     ERROR 58.a
                 </xsl:if>
-            </xsl:if>
+            </xsl:if> -->
 
-            <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType = 'MULT_HFND'"> 
+            <!-- <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType = 'MULT_HFND'"> 
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType[.!='MULT_HFND'])"/>
                 <xsl:if test="$count &lt; 2">
     ERROR 58.b
                 </xsl:if>
-            </xsl:if> 
+            </xsl:if>  -->
 
-            <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType = 'MULT_PEQF'"> 
+            <!-- <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType = 'MULT_PEQF'"> 
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType[.!='MULT_PEQF'])"/>
                 <xsl:if test="$count &lt; 2">
     ERROR 58.c
                 </xsl:if>
-            </xsl:if> 
+            </xsl:if>  -->
 
-            <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType = 'MULT_REST'"> 
+            <!-- <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType = 'MULT_REST'"> 
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType[.!='MULT_REST'])"/>
                 <xsl:if test="$count &lt; 2">
     ERROR 58.d
                 </xsl:if>
-            </xsl:if> 
+            </xsl:if>  -->
 
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_PEQF' and not(PrimaryStrategyFlag = 'true')]"> 
     CAF-038
@@ -617,7 +650,7 @@
     CAF-038
             </xsl:if>
 
-            <xsl:variable 
+            <!-- <xsl:variable 
             name="hstrategies" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[not(HedgeFundStrategyType = 'MULT_HFND')] " />
             <xsl:if test="$hstrategies">
@@ -629,7 +662,7 @@
                 <xsl:if test="not(sum($hstrategies/StrategyNAVRate) = 100)">
     ERROR 60.a.II
                 </xsl:if>
-            </xsl:if>
+            </xsl:if> -->
 
             <xsl:variable 
             name="pstrategies" 

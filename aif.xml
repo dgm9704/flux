@@ -64,7 +64,7 @@
 						<!-- <FXEURRate>0.7534</FXEURRate> -->
 					</AIFBaseCurrencyDescription>
 					<AIFNetAssetValue>10000000</AIFNetAssetValue>
-					<FirstFundingSourceCountry>US</FirstFundingSourceCountry>
+					<FirstFundingSourceCountry>ZY</FirstFundingSourceCountry>
 					<SecondFundingSourceCountry>GB</SecondFundingSourceCountry>
 					<ThirdFundingSourceCountry>IE</ThirdFundingSourceCountry>
 					<PredominantAIFType>HFND</PredominantAIFType>
@@ -523,7 +523,7 @@
 					</AIFBaseCurrencyDescription>
 					<AIFNetAssetValue>10000000</AIFNetAssetValue>
 					<FirstFundingSourceCountry>US</FirstFundingSourceCountry>
-					<SecondFundingSourceCountry>GB</SecondFundingSourceCountry>
+					<SecondFundingSourceCountry>ZX</SecondFundingSourceCountry>
 					<ThirdFundingSourceCountry>IE</ThirdFundingSourceCountry>
 					<PredominantAIFType>PEQF</PredominantAIFType>
 					<PrivateEquityFundInvestmentStrategies>
@@ -1159,6 +1159,7 @@
 					<AIFNetAssetValue>10000000</AIFNetAssetValue>
 					<FirstFundingSourceCountry>US</FirstFundingSourceCountry>
 					<SecondFundingSourceCountry>GB</SecondFundingSourceCountry>
+					<ThirdFundingSourceCountry>ZZ</ThirdFundingSourceCountry>
 					<PredominantAIFType>HFND</PredominantAIFType>
 					<HedgeFundInvestmentStrategies>
 						<HedgeFundStrategy>
