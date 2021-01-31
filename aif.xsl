@@ -695,19 +695,33 @@
                 </xsl:if>
             </xsl:if> 
 
-            <!-- <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType = 'MULT_PEQF'"> 
+            <xsl:variable name="privateequityfundinvestmentstrategy" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType" />
+            <xsl:if test="$privateequityfundinvestmentstrategy = 'MULT_HFND'"> 
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType[.!='MULT_PEQF'])"/>
                 <xsl:if test="$count &lt; 2">
-    ERROR 58.c
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-037</code>
+                    <message>The investment strategy code is not allowed.</message>
+                    <field>PrivateEquityFundStrategyType</field>
+                    <value><xsl:value-of select="$privateequityfundinvestmentstrategy" /></value>
+                </error>
                 </xsl:if>
-            </xsl:if>  -->
+            </xsl:if> 
 
-            <!-- <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType = 'MULT_REST'"> 
+            <xsl:variable name="realestatefundStrategytype" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType" />
+            <xsl:if test="$realestatefundStrategytype = 'MULT_HFND'"> 
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType[.!='MULT_REST'])"/>
                 <xsl:if test="$count &lt; 2">
-    ERROR 58.d
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-037</code>
+                    <message>The investment strategy code is not allowed.</message>
+                    <field>RealEstateFundStrategyType</field>
+                    <value><xsl:value-of select="$realestatefundStrategytype" /></value>
+                </error>
                 </xsl:if>
-            </xsl:if>  -->
+            </xsl:if> 
 
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_PEQF' and not(PrimaryStrategyFlag = 'true')]"> 
     CAF-038
