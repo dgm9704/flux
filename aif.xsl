@@ -724,15 +724,33 @@
             </xsl:if> 
 
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_PEQF' and not(PrimaryStrategyFlag = 'true')]"> 
-    CAF-038
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-038</code>
+                    <message>Multi strategies investment strategies should be primary strategies.</message>
+                    <field>PrimaryStrategyFlag</field>
+                    <value></value>
+                </error>
             </xsl:if>
 
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[HedgeFundStrategyType = 'MULT_HFND' and not(PrimaryStrategyFlag = 'true')]"> 
-    CAF-038
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-038</code>
+                    <message>Multi strategies investment strategies should be primary strategies.</message>
+                    <field>PrimaryStrategyFlag</field>
+                    <value></value>
+                </error>
             </xsl:if>
 
             <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy[RealEstateFundStrategyType = 'MULT_REST' and not(PrimaryStrategyFlag = 'true')]"> 
-    CAF-038
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-038</code>
+                    <message>Multi strategies investment strategies should be primary strategies.</message>
+                    <field>PrimaryStrategyFlag</field>
+                    <value></value>
+                </error>
             </xsl:if>
 
             <!-- <xsl:variable 
