@@ -446,7 +446,6 @@
             </xsl:choose>
             </xsl:for-each>
 
-
             <xsl:variable name="aifname" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName" />
             <xsl:choose> 
                 <xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER'"> 
@@ -603,6 +602,65 @@
                     <value><xsl:value-of select="$thirdfundingsourcecountry" /></value>
                 </error>
             </xsl:if>
+
+            <xsl:variable name="predominantaiftype" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType" />
+            <xsl:choose>
+                <xsl:when test="$predominantaiftype = 'HFND'">
+                    <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-036</code>
+                    <message>The investment strategy code is not consistent with the predominant AIF type.</message>
+                    <field>HedgeFundStrategy</field>
+                    <value></value>
+                </error>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:when test="$predominantaiftype = 'PEQF'">
+                    <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-036</code>
+                    <message>The investment strategy code is not consistent with the predominant AIF type.</message>
+                    <field>PrivateEquityFundInvestmentStrategy</field>
+                    <value></value>
+                </error>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:when test="$predominantaiftype = 'RESF'">
+                    <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-036</code>
+                    <message>The investment strategy code is not consistent with the predominant AIF type.</message>
+                    <field>RealEstateFundStrategy</field>
+                    <value></value>
+                </error>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:when test="$predominantaiftype = 'FOFS'">
+                    <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-036</code>
+                    <message>The investment strategy code is not consistent with the predominant AIF type.</message>
+                    <field>FundOfFundsStrategy</field>
+                    <value></value>
+                </error>
+                    </xsl:if>
+                </xsl:when>
+                <xsl:when test="$predominantaiftype = 'OTHR'">
+                    <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies/OtherFundStrategy)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-036</code>
+                    <message>The investment strategy code is not consistent with the predominant AIF type.</message>
+                    <field>OtherFundStrategy</field>
+                    <value></value>
+                </error>
+                    </xsl:if> 
+                </xsl:when>
+            </xsl:choose>
 
             <!-- <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType = 'NONE')"> 
                 <xsl:variable 

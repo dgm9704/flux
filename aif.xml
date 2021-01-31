@@ -527,7 +527,7 @@
 					<ThirdFundingSourceCountry>IE</ThirdFundingSourceCountry>
 					<PredominantAIFType>PEQF</PredominantAIFType>
 					<PrivateEquityFundInvestmentStrategies>
-						<PrivateEquityFundInvestmentStrategy>
+						<!-- <PrivateEquityFundInvestmentStrategy>
 							<PrivateEquityFundStrategyType>MULT_PEQF</PrivateEquityFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription>
@@ -540,8 +540,8 @@
 						<PrivateEquityFundInvestmentStrategy>
 							<PrivateEquityFundStrategyType>OTHR_PEQF</PrivateEquityFundStrategyType>
 							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
-							<!-- <StrategyNAVRate>40</StrategyNAVRate> -->
-						</PrivateEquityFundInvestmentStrategy>
+							<StrategyNAVRate>40</StrategyNAVRate> 
+						</PrivateEquityFundInvestmentStrategy> -->
 					</PrivateEquityFundInvestmentStrategies>
 				</AIFDescription>
 				<MainInstrumentsTraded>
@@ -1162,7 +1162,7 @@
 					<ThirdFundingSourceCountry>ZZ</ThirdFundingSourceCountry>
 					<PredominantAIFType>HFND</PredominantAIFType>
 					<HedgeFundInvestmentStrategies>
-						<HedgeFundStrategy>
+						<!-- <HedgeFundStrategy>
 							<HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>25</StrategyNAVRate>
@@ -1181,7 +1181,7 @@
 							<HedgeFundStrategyType>OTHR_HFND</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>0</StrategyNAVRate>
-						</HedgeFundStrategy>
+						</HedgeFundStrategy> -->
 					</HedgeFundInvestmentStrategies>
 					<RealEstateFundInvestmentStrategies>
 						<RealEstateFundStrategy>

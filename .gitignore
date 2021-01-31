@@ -292,3 +292,5 @@ __pycache__/
 
 # Libreoffice lock file
 *.~lock.*
+
+output_*.xml
