@@ -662,7 +662,7 @@
                 </xsl:when>
             </xsl:choose>
 
-            <!-- <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType = 'NONE')"> 
+            <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType = 'NONE')"> 
                 <xsl:variable 
                     name="count" 
                     select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies 
@@ -671,9 +671,15 @@
                                 | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies
                                 | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies) "/>
                 <xsl:if test="$count &gt; 1">
-    ERROR 58.a
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-037</code>
+                    <message>The investment strategy code is not allowed.</message>
+                    <field></field>
+                    <value></value>
+                </error>
                 </xsl:if>
-            </xsl:if> -->
+            </xsl:if>
 
             <!-- <xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType = 'MULT_HFND'"> 
                 <xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType[.!='MULT_HFND'])"/>
