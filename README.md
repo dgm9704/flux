@@ -1,8 +1,8 @@
 # flux
 
-## XML document validation using XSLT
+## AIFMD report validation using XSLT
 
-- Main focus are ESMA XML reports (AIMFD, CSDR, MMF etc)
+- Main focus are ESMA AIFMD XML reports, but the same structure should be viable for other formats also (CSDR, MMF etc)
 - The purpose is to implement validation of rules that are not covered by an XSD schema.
 - These are mostly conditional existence checks based on the existence or value of another element.
 - The actual "product" is the *.xsl files, anything else is just for testing or documentation
@@ -12,8 +12,6 @@
 ## Specifications
 - ESMA provides [technical rules for the fields](https://www.esma.europa.eu/document/aifmd-reporting-it-technical-guidance-rev-4-updated)
 - ESMA also has validation codes and error messages for these rules, but for some reason they are not available on their website. 
- When I asked about this, I was told to contact the relevant National Compentent Authority.
- I sent a question to FIN-FSA, the Finnish Financial Supervisory Authority, and I am waiting for an answer from them.
 - Found some version of the validation specifications from Polish Financial Supervision Authority (UKNF) site:
 https://www.knf.gov.pl/knf/pl/komponenty/img/2013-ITMG-65_opis_regul_walidacyjnych_plikow_DATMAN_DATAIF_71002.xlsx
  
@@ -59,7 +57,7 @@ CAM-002 333333 The reporting period start date is not allowed.
 ```
 
 ## Status
-- All AIFM checks with error codes are implemented, except:
+- All AIFM checks with error codes (CAM) are implemented, except:
 
     FIL-009 requires access to filename which isn't available for XSLT 1.0
 
@@ -68,15 +66,15 @@ CAM-002 333333 The reporting period start date is not allowed.
     CAM-007 requires check digit calculation, which may not be possible/sane to do with XSLT 1.0, I circumvent this with looking up the LEI from a list of allowed values.
 
 - decided for now to drop checks without error code
-- maybe 1/3 of AIF cases are done to some degree
+- roughly 1/3 of AIF (CAF) cases are done
 - output is rough and minimal
 - OK to file bugs on results for implemented cases
 
 ## Next steps 
-- Figure out smartest version of XSLT to use (and XPath, Xquery)
-- Figure out best tool to use for XSLT
-- Implement the rest of AIF cases
-- Using the official error codes and messages where available
-- Add manager/fund identification and other info about the error location
-- Figure out the output format (CSV, XML, ?)
-- Optimization if needed (it's easy to read and write when every case is explicitly "spelled out", but might perform badly)
+- ~~Figure out smartest version of XSLT to use (and XPath, Xquery)~~ Will use XSLT 1.0 for now since tooling options are very limited
+- ~~Figure out best tool to use for XSLT~~ Will use mainly xsltproc for now. Also test with .NET (Core)
+- Implement the rest of AIF cases - ongoing
+- Using the official error codes and messages where available - ongoing
+- ~~Add manager/fund identification and other info about the error location~~ implemented
+- ~~Figure out the output format (CSV, XML, ?)~~ settled on simple XML format for now
+- Optimization if needed (it's easy to read and write when every case is explicitly "spelled out", but might perform badly) - ongoing
