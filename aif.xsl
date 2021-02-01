@@ -753,9 +753,18 @@
                 </error>
             </xsl:if>
 
-            <!-- <xsl:variable 
-            name="hstrategies" 
-            select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[not(HedgeFundStrategyType = 'MULT_HFND')] " />
+            <xsl:variable name="strategynavrates" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/*/*/StrategyNAVRate" />
+            <xsl:if test="not(sum($strategynavrates) = 100)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-039</code>
+                    <message>For the reported AIF, the sum of all the reported investment strategy NAV percentages should be 100%</message>
+                    <field>StrategyNAVRate</field>
+                    <value><xsl:value-of select="sum($strategynavrates)" /></value>
+                </error>
+            </xsl:if>
+
+            <!-- <xsl:variable name="hstrategies" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[not(HedgeFundStrategyType = 'MULT_HFND')] " />
             <xsl:if test="$hstrategies">
                 <xsl:for-each select="$hstrategies">
                     <xsl:if test="not(StrategyNAVRate)">
@@ -767,7 +776,7 @@
                 </xsl:if>
             </xsl:if> -->
 
-            <xsl:variable 
+            <!-- <xsl:variable 
             name="pstrategies" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[not(PrivateEquityFundStrategyType = 'MULT_PEQF')] " />
             <xsl:if test="$pstrategies">
@@ -779,9 +788,9 @@
                 <xsl:if test="not(sum($pstrategies/StrategyNAVRate) = 100)">
     CAF-039
                 </xsl:if>
-            </xsl:if>
+            </xsl:if> -->
 
-            <xsl:variable 
+            <!-- <xsl:variable 
             name="rstrategies" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy[not(RealEstateFundStrategyType = 'MULT_REST')] " />
             <xsl:if test="$rstrategies">
@@ -793,9 +802,9 @@
                 <xsl:if test="not(sum($rstrategies/StrategyNAVRate) = 100)">
     CAF-039
                 </xsl:if>
-            </xsl:if>
+            </xsl:if> -->
 
-            <xsl:variable 
+            <!-- <xsl:variable 
             name="fstrategies" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy" />
             <xsl:if test="$fstrategies">
@@ -807,9 +816,9 @@
                 <xsl:if test="not(sum($fstrategies/StrategyNAVRate) = 100)">
     CAF-039
                 </xsl:if>
-            </xsl:if>
+            </xsl:if> -->
 
-            <xsl:variable 
+            <!-- <xsl:variable 
             name="ostrategies" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies/OtherFundStrategy" />
             <xsl:if test="$ostrategies">
@@ -821,7 +830,7 @@
                 <xsl:if test="not(sum($ostrategies/StrategyNAVRate) = 100)">
     CAF-039
                 </xsl:if>
-            </xsl:if>
+            </xsl:if> -->
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy">
                 <xsl:choose>
