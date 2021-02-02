@@ -58,7 +58,7 @@
 						</PrimeBrokerIdentification>
 					</PrimeBrokers>
 					<AIFBaseCurrencyDescription>
-						<BaseCurrency>USD</BaseCurrency>
+						<BaseCurrency>FOO</BaseCurrency>
 						<AUMAmountInBaseCurrency>12345678</AUMAmountInBaseCurrency>
 						<!-- <FXEURReferenceRateType>ECB</FXEURReferenceRateType> -->
 						<!-- <FXEURRate>0.7534</FXEURRate> -->

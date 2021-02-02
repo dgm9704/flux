@@ -479,7 +479,7 @@
                     <code>CAF-025</code>
                     <message>The country of the master AIF national code is not correct and should be an EEA or EU country.</message>
                     <field>ReportingMemberState</field>
-                    <value><xsl:value-of select="@aifmemberstate" /></value>
+                    <value><xsl:value-of select="$aifmemberstate" /></value>
                 </error>
             </xsl:if>
 
@@ -488,12 +488,38 @@
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-026</code>
-                    <message>The master AIF national code is not consistent with the master feeder status.</message>
+                    <message>The master AIF reporting member state is not consistent with the master feeder status.</message>
                     <field>ReportingMemberState</field>
-                    <value><xsl:value-of select="@aifmemberstate" /></value>
+                    <value><xsl:value-of select="$aifmemberstate" /></value>
                 </error>
                 </xsl:if>
             </xsl:if> 
+
+            <xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER')"> 
+            <xsl:variable name="aifnationalcode" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/AIFNationalCode" />
+                <xsl:if test="$aifnationalcode">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-027</code>
+                    <message>The master AIF national code is not consistent with the master feeder status.</message>
+                    <field>AIFNationalCode</field>
+                    <value><xsl:value-of select="$aifnationalcode" /></value>
+                </error>
+                </xsl:if>
+            </xsl:if> 
+
+            <!-- CAF-028 The check digits of the LEI code are not correct. -->
+
+            <xsl:variable name="basecurrency" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/BaseCurrency" />
+            <xsl:if test="not($currencycodes[. = $basecurrency])" >
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-029</code>
+                    <message>The currency code is not correct.</message>
+                    <field>BaseCurrency</field>
+                    <value><xsl:value-of select="$basecurrency" /></value>
+                </error>
+            </xsl:if>
 
             <xsl:choose> 
                 <xsl:when test="AIFNoReportingFlag = 'false' and not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/BaseCurrency = 'EUR')"> 
