@@ -790,31 +790,53 @@
                 </error>
             </xsl:if>
 
-            <!-- <xsl:variable name="hstrategies" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[not(HedgeFundStrategyType = 'MULT_HFND')] " />
+            <xsl:variable name="hstrategies" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[HedgeFundStrategyType = 'MULT_HFND'] " />
             <xsl:if test="$hstrategies">
                 <xsl:for-each select="$hstrategies">
-                    <xsl:if test="not(StrategyNAVRate)">
-    ERROR 60.a.I
+                    <xsl:variable name="strategynavrate" select="StrategyNAVRate"/>
+                    <xsl:if test="$strategynavrate">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-040</code>
+                    <message>There is no NAV percentage reported for multi strategies investment strategies.</message>
+                    <field>StrategyNAVRate</field>
+                    <value><xsl:value-of select="$strategynavrate" /></value>
+                </error>
                     </xsl:if>
                 </xsl:for-each>
-                <xsl:if test="not(sum($hstrategies/StrategyNAVRate) = 100)">
-    ERROR 60.a.II
-                </xsl:if>
-            </xsl:if> -->
+            </xsl:if>
 
-            <!-- <xsl:variable 
-            name="pstrategies" 
-            select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[not(PrivateEquityFundStrategyType = 'MULT_PEQF')] " />
+            <xsl:variable name="pstrategies" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_HFND'] " />
             <xsl:if test="$pstrategies">
                 <xsl:for-each select="$pstrategies">
-                    <xsl:if test="not(StrategyNAVRate)">
-    ERROR 60.b.I
+                    <xsl:variable name="strategynavrate" select="StrategyNAVRate"/>
+                    <xsl:if test="$ptrategynavrate">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-040</code>
+                    <message>There is no NAV percentage reported for multi strategies investment strategies.</message>
+                    <field>StrategyNAVRate</field>
+                    <value><xsl:value-of select="$strategynavrate" /></value>
+                </error>
                     </xsl:if>
                 </xsl:for-each>
-                <xsl:if test="not(sum($pstrategies/StrategyNAVRate) = 100)">
-    CAF-039
-                </xsl:if>
-            </xsl:if> -->
+            </xsl:if>
+
+            <xsl:variable name="rstrategies" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy[RealEstateFundStrategyType = 'MULT_REST'] " />
+            <xsl:if test="$rstrategies">
+                <xsl:for-each select="$rstrategies">
+                    <xsl:variable name="strategynavrate" select="StrategyNAVRate"/>
+                    <xsl:if test="$rtrategynavrate">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-040</code>
+                    <message>There is no NAV percentage reported for multi strategies investment strategies.</message>
+                    <field>StrategyNAVRate</field>
+                    <value><xsl:value-of select="$strategynavrate" /></value>
+                </error>
+                    </xsl:if>
+                </xsl:for-each>
+            </xsl:if>
 
             <!-- <xsl:variable 
             name="rstrategies" 
