@@ -47,13 +47,10 @@ Sample output for aifmsample.xml:
 
 "CAM-002" is ESMA error code
 
-111111, 222222, 333333 is the AIFMNationalCode of the offending manager
+111111 AIFMNationalCode of the offending manager
 ```
-CAM-002 111111 The reporting period start date is not allowed.
+<error><record>111111</record><code>CAM-002</code><message>The reporting period start date is not allowed.</message><field>ReportingPeriodStartDate</field><value>2014-09-01</value></error>
 
-CAM-002 222222 The reporting period start date is not allowed.
-
-CAM-002 333333 The reporting period start date is not allowed.
 ```
 
 ## Status
