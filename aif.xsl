@@ -913,29 +913,23 @@
                 </xsl:if>
             </xsl:for-each>
 
-            <xsl:variable 
-            name="instrumentranks" 
-            select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded/Ranking" />
-            <xsl:if test="$instrumentranks and not($instrumentranks[.='1'] and $instrumentranks[.='2'] and $instrumentranks[.='3'] and $instrumentranks[.='4'] and $instrumentranks[.='5'])">
-    ERROR 64
-                <xsl:for-each select="$instrumentranks">
-                    <xsl:value-of select="." />
-                </xsl:for-each>
-            </xsl:if>
-
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-                <xsl:choose>
-                    <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
-                        <xsl:if test="not(InstrumentCodeType)">
-    CAF-042
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="InstrumentCodeType">
-    CAF-042
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:variable name="subassettype" select="SubAssetType" />
+                <xsl:variable name="isnota" select="$subassettype = 'NTA_NTA_NOTA'" />
+
+                <xsl:variable name="instrumentcodetype" select="InstrumentCodeType" />
+                <xsl:variable name="hascodetype" select="boolean($instrumentcodetype)" />
+
+                <xsl:if test="$hascodetype = $isnota">
+
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-042</code>
+                    <message>The instrument code type is not consistent with the sub-asset type.</message>
+                    <field>InstrumentCodeType</field>
+                    <value><xsl:value-of select="$instrumentcodetype" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">

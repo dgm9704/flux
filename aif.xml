@@ -604,6 +604,7 @@
 					<MainInstrumentTraded>
 						<Ranking>5</Ranking>
 						<SubAssetType>NTA_NTA_NOTA</SubAssetType>
+						<InstrumentCodeType>AII</InstrumentCodeType>
 					</MainInstrumentTraded>
 				</MainInstrumentsTraded>
 				<NAVGeographicalFocus>
