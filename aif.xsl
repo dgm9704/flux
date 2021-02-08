@@ -1074,18 +1074,15 @@
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-                <xsl:choose>
-                    <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
-                        <xsl:if test="not(PositionValue)">
-    CAF-054
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="PositionValue">
-    CAF-054
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="boolean(SubAssetType = 'NTA_NTA_NOTA') = boolean(PositionValue)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-054</code>
+                    <message>The position value is not consistent with the sub-asset type.</message>
+                    <field>PositionValue</field>
+                    <value><xsl:value-of select="PositionValue" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
