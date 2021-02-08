@@ -1013,20 +1013,16 @@
                 </xsl:if>
             </xsl:for-each>
 
-
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-                <xsl:choose>
-                    <xsl:when test="InstrumentCodeType = 'AII'">
-                        <xsl:if test="not(AIIInstrumentIdentification/AIIDerivativeType)">
-    CAF-049
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="AIIInstrumentIdentification/AIIDerivativeType">
-    CAF-049
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIDerivativeType)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-049</code>
+                    <message>The instrument AII exchange product code is not consistent with the instrument code type.</message>
+                    <field>AIIDerivativeType</field>
+                    <value><xsl:value-of select="AIIInstrumentIdentification/AIIDerivativeType" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
