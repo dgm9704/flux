@@ -965,18 +965,15 @@
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-                <xsl:choose>
-                    <xsl:when test="InstrumentCodeType = 'ISIN'">
-                        <xsl:if test="not(ISINInstrumentIdentification)">
-    CAF-045
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="ISINInstrumentIdentification">
-    CAF-045
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="boolean(InstrumentCodeType = 'ISIN') != boolean(ISINInstrumentIdentification)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-045</code>
+                    <message>The instrument ISIN code is not consistent with the instrument code type.</message>
+                    <field>ISINInstrumentIdentification</field>
+                    <value><xsl:value-of select="ISINInstrumentIdentification" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
