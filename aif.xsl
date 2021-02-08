@@ -933,18 +933,22 @@
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-                <xsl:choose>
-                    <xsl:when test="not(SubAssetType = 'NTA_NTA_NOTA')">
-                        <xsl:if test="not(InstrumentName)">
-    CAF-043
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="InstrumentName">
-    CAF-043
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:variable name="subassettype" select="SubAssetType" />
+                <xsl:variable name="isnota" select="$subassettype = 'NTA_NTA_NOTA'" />
+
+                <xsl:variable name="instrumentname" select="InstrumentName" />
+                <xsl:variable name="hasname" select="boolean($instrumentname)" />
+
+                <xsl:if test="$hasname = $isnota">
+
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-043</code>
+                    <message>The instrument name is not consistent with the sub-asset type.</message>
+                    <field>InstrumentName</field>
+                    <value><xsl:value-of select="$instrumentname" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
