@@ -457,6 +457,7 @@
 			<AIFPrincipalInfo>
 				<AIFIdentification>
 					<AIFIdentifierLEI>ZNHTL6O2WODTKMPF1Z48</AIFIdentifierLEI>
+					<AIFIdentifierISIN>AB1234567890</AIFIdentifierISIN>
 				</AIFIdentification>
 				<ShareClassFlag>false</ShareClassFlag>
 				<ShareClassIdentification>

@@ -303,14 +303,14 @@
                 </error>
             </xsl:if>
 
-            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded/ISINInstrumentIdentification">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierISIN">
                 <xsl:variable name="isin" select="." />
                 <xsl:if test="$isin and not($isinregister[. = $isin])" >
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-014</code>
                     <message>The check digit of the ISIN code is not correct.</message>
-                    <field>ISINInstrumentIdentification</field>
+                    <field>AIFIdentifierISIN</field>
                     <value><xsl:value-of select="$isin" /></value>
                 </error>
                 </xsl:if>
@@ -947,6 +947,19 @@
                     <message>The instrument name is not consistent with the sub-asset type.</message>
                     <field>InstrumentName</field>
                     <value><xsl:value-of select="$instrumentname" /></value>
+                </error>
+                </xsl:if>
+            </xsl:for-each>
+
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded/ISINInstrumentIdentification">
+                <xsl:variable name="isin" select="." />
+                <xsl:if test="$isin and not($isinregister[. = $isin])" >
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-044</code>
+                    <message>The check digit of the ISIN code is not correct.</message>
+                    <field>ISINInstrumentIdentification</field>
+                    <value><xsl:value-of select="$isin" /></value>
                 </error>
                 </xsl:if>
             </xsl:for-each>
