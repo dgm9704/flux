@@ -1018,7 +1018,7 @@
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-049</code>
-                    <message>The instrument AII exchange product code is not consistent with the instrument code type.</message>
+                    <message>The instrument AII derivative type is not consistent with the instrument code type.</message>
                     <field>AIIDerivativeType</field>
                     <value><xsl:value-of select="AIIInstrumentIdentification/AIIDerivativeType" /></value>
                 </error>
@@ -1026,18 +1026,15 @@
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-                <xsl:choose>
-                    <xsl:when test="InstrumentCodeType = 'AII'">
-                        <xsl:if test="not(AIIInstrumentIdentification/AIIPutCallIdentifier)">
-    CAF-050
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="AIIInstrumentIdentification/AIIPutCallIdentifier">
-    CAF-050
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIPutCallIdentifier)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-050</code>
+                    <message>The instrument put/call identifier is not consistent with the instrument code type.</message>
+                    <field>AIIPutCallIdentifier</field>
+                    <value><xsl:value-of select="AIIInstrumentIdentification/AIIPutCallIdentifier" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
