@@ -78,6 +78,7 @@
 							<HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
 							<StrategyNAVRate>100</StrategyNAVRate>
+							<StrategyTypeOtherDescription>Description</StrategyTypeOtherDescription>
 						</HedgeFundStrategy>
 					</HedgeFundInvestmentStrategies>
 					<HFTTransactionNumber>100</HFTTransactionNumber>
@@ -539,21 +540,21 @@
 						</HedgeFundStrategy> -->
 					</HedgeFundInvestmentStrategies>
 					<PrivateEquityFundInvestmentStrategies>
-						<!-- <PrivateEquityFundInvestmentStrategy>
-							<PrivateEquityFundStrategyType>MULT_PEQF</PrivateEquityFundStrategyType>
+						<PrivateEquityFundInvestmentStrategy>
+							<PrivateEquityFundStrategyType>MZNE_CAPL</PrivateEquityFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription>
 						</PrivateEquityFundInvestmentStrategy>
-						<PrivateEquityFundInvestmentStrategy>
+						<!-- <PrivateEquityFundInvestmentStrategy>
 							<PrivateEquityFundStrategyType>MZNE_CAPL</PrivateEquityFundStrategyType>
 							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
 							<StrategyNAVRate>40</StrategyNAVRate>
-						</PrivateEquityFundInvestmentStrategy>
+						</PrivateEquityFundInvestmentStrategy> -->
 						<PrivateEquityFundInvestmentStrategy>
 							<PrivateEquityFundStrategyType>OTHR_PEQF</PrivateEquityFundStrategyType>
 							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
 							<StrategyNAVRate>40</StrategyNAVRate> 
-						</PrivateEquityFundInvestmentStrategy> -->
+						</PrivateEquityFundInvestmentStrategy>
 					</PrivateEquityFundInvestmentStrategies>
 				</AIFDescription>
 				<MainInstrumentsTraded>
@@ -1188,12 +1189,12 @@
 						<HedgeFundStrategy>
 							<HedgeFundStrategyType>EQTY_STBS</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
-						</HedgeFundStrategy>
+						</HedgeFundStrategy>-->
 						<HedgeFundStrategy>
 							<HedgeFundStrategyType>OTHR_HFND</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>0</StrategyNAVRate>
-						</HedgeFundStrategy> -->
+						</HedgeFundStrategy> 
 					</HedgeFundInvestmentStrategies>
 					<RealEstateFundInvestmentStrategies>
 						<RealEstateFundStrategy>
