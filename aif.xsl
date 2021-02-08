@@ -1050,18 +1050,15 @@
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-                <xsl:choose>
-                    <xsl:when test="InstrumentCodeType = 'AII'">
-                        <xsl:if test="not(AIIInstrumentIdentification/AIIStrikePrice)">
-    CAF-052
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="AIIInstrumentIdentification/AIIStrikePrice">
-    CAF-052
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIStrikePrice)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-052</code>
+                    <message>The instrument AII strike price is not consistent with the instrument code type.</message>
+                    <field>AIIStrikePrice</field>
+                    <value><xsl:value-of select="AIIInstrumentIdentification/AIIStrikePrice" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
