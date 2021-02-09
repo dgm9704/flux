@@ -1187,6 +1187,19 @@
                 </xsl:if>
             </xsl:for-each>
 
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification/EntityIdentificationLEI">
+                <xsl:variable name="cplei" select="." />
+                <xsl:if test="$cplei and not($leiregister[. = $cplei])" >
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-065</code>
+                    <message>The check digits of the LEI code are not correct.</message>
+                    <field>EntityIdentificationLEI</field>
+                    <value><xsl:value-of select="$cplei" /></value>
+                </error>
+                </xsl:if>
+            </xsl:for-each>
+
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
                 <xsl:choose>
                     <xsl:when test="not(AssetType = 'NTA_NTA')">
