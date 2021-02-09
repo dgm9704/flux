@@ -1125,26 +1125,16 @@
                 </error>
             </xsl:if>
 
-            <xsl:variable 
-            name="exposureranks" 
-            select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/Ranking" />
-            <xsl:if test="$exposureranks and not($exposureranks[.='1'] and $exposureranks[.='2'] and $exposureranks[.='3'] and $exposureranks[.='4'] and $exposureranks[.='5'] and $exposureranks[.='6'] and $exposureranks[.='7'] and $exposureranks[.='8'] and $exposureranks[.='9'] and $exposureranks[.='10'])">
-    ERROR 94
-            </xsl:if>
-
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
-                <xsl:choose>
-                    <xsl:when test="not(AssetMacroType = 'NTA')">
-                        <xsl:if test="not(SubAssetType)">
-    CAF-059
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="SubAssetType">
-    CAF-059
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(SubAssetType)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-059</code>
+                    <message>The sub-asset type is not consistent with the macro-asset type.</message>
+                    <field>SubAssetType</field>
+                    <value><xsl:value-of select="SubAssetType" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
