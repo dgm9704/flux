@@ -1236,6 +1236,20 @@
                 </xsl:if>
             </xsl:for-each>
 
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/MarketIdentification/MarketCode">
+                <xsl:variable name="mic" select="." />
+                <xsl:if test="$mic and not($micregister[. = $mic])" >
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-069</code>
+                    <message>The MIC code is not correct</message>
+                    <field>MarketIdentification</field>
+                    <value><xsl:value-of select="$mic" /></value>
+                </error>
+                </xsl:if>
+            </xsl:for-each>
+
+
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/MarketIdentification">
                 <xsl:choose>
                     <xsl:when test="MarketCodeType = 'MIC'">
