@@ -1288,15 +1288,18 @@
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-                <xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC')">
-                    <xsl:if test="CounterpartyIdentification/EntityName">
-    ERROR 110_112
-                    </xsl:if>
+                <xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC') and boolean(CounterpartyIdentification/EntityName)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-074</code>
+                    <message>The counterparty name is not consistent with the market code type.</message>
+                    <field>EntityName</field>
+                    <value><xsl:value-of select="EntityName" /></value>
+                </error>
                 </xsl:if>
             </xsl:for-each>
 
         </xsl:for-each>
-        <xsl:text>&#xA;</xsl:text>
 </aif>
     </xsl:template>
 
