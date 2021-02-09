@@ -1175,12 +1175,17 @@
                 </xsl:if>
             </xsl:for-each>
 
-            <xsl:variable 
-            name="ranks" 
-            select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/Ranking" />
-            <xsl:if test="$ranks and not($ranks[.='1'] and $ranks[.='2'] and $ranks[.='3'] and $ranks[.='4'] and $ranks[.='5'])">
-    ERROR 103
-            </xsl:if>
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification">
+                <xsl:if test="not(EntityName) and EntityIdentificationLEI">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-064</code>
+                    <message>The LEI code is not consistent with the counterparty name.</message>
+                    <field>EntityIdentificationLEI</field>
+                    <value><xsl:value-of select="EntityIdentificationLEI" /></value>
+                </error>
+                </xsl:if>
+            </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
                 <xsl:choose>
