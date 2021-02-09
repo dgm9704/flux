@@ -1273,19 +1273,18 @@
                 </xsl:if>
             </xsl:for-each>
 
+<!-- skip CAF-072 for now -->
+
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-                <xsl:choose>
-                    <xsl:when test="not(AssetType = 'NTA_NTA')">
-                        <xsl:if test="not(AggregatedValueRate)">
-    CAF-073
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="AggregatedValueRate">
-    CAF-073
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(AggregatedValueRate)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-073</code>
+                    <message>The aggregated value percentage is not consistent with the asset type.</message>
+                    <field>AggregatedValueRate</field>
+                    <value><xsl:value-of select="AggregatedValueRate" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
