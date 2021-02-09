@@ -63,7 +63,7 @@ Sample output for aifmsample.xml:
     CAM-007 requires check digit calculation, which may not be possible/sane to do with XSLT 1.0, I circumvent this with looking up the LEI from a list of allowed values.
 
 - decided for now to drop checks without error code
-- roughly 1/3 of AIF (CAF) cases are done
+- roughly 1/2 of AIF (CAF) cases are implemented
 - output is rough and minimal
 - OK to file bugs on results for implemented cases
 
@@ -72,6 +72,10 @@ Sample output for aifmsample.xml:
 - ~~Figure out best tool to use for XSLT~~ Will use mainly xsltproc for now. Also test with .NET (Core)
 - Implement the rest of AIF cases - ongoing
 - Using the official error codes and messages where available - ongoing
-- ~~Add manager/fund identification and other info about the error location~~ implemented
+- ~~Add manager/fund identification~~ implemented
+- Add other info about the error location
 - ~~Figure out the output format (CSV, XML, ?)~~ settled on simple XML format for now
 - Optimization if needed (it's easy to read and write when every case is explicitly "spelled out", but might perform badly) - ongoing
+- Perhaps add "Control" text also, as it could help correct the error
+- There are some warnings also (WAF-*) - do they go into a "warning" element, or should there be a severity value?
+- If possible, find out the format that ESMA uses! Could be smart to use the same.
