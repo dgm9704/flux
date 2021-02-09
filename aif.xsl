@@ -1102,19 +1102,27 @@
             <xsl:variable 
             name="navregions" 
             select="AIFCompleteDescription/AIFPrincipalInfo/NAVGeographicalFocus/*" />
-            <xsl:if test="$navregions">
-                <xsl:if test="not(sum($navregions) = 100)">
-    CAF-057
-                </xsl:if>
+            <xsl:if test="$navregions and not(sum($navregions) = 100)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-057</code>
+                    <message>The sum of the percentages should be equal to 100%.</message>
+                    <field>NAVGeographicalFocus</field>
+                    <value><xsl:value-of select="sum($navregions)" /></value>
+                </error>
             </xsl:if>
 
             <xsl:variable 
             name="aumregions" 
             select="AIFCompleteDescription/AIFPrincipalInfo/AUMGeographicalFocus/*" />
-            <xsl:if test="$aumregions">
-                <xsl:if test="not(sum($aumregions) = 100)">
-    CAF-058
-                </xsl:if>
+            <xsl:if test="$aumregions and not(sum($aumregions) = 100)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-058</code>
+                    <message>The sum of the percentages should be equal to 100%.</message>
+                    <field>AUMGeographicalFocus</field>
+                    <value><xsl:value-of select="sum($aumregions)" /></value>
+                </error>
             </xsl:if>
 
             <xsl:variable 
