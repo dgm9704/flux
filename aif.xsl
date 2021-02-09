@@ -1085,11 +1085,17 @@
                 </xsl:if>
             </xsl:for-each>
 
+<!-- skip CAF-055 for now -->
+
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-                <xsl:if test="not(PositionType = 'S')">
-                    <xsl:if test="ShortPositionHedgingRate">
-    CAF-056
-                    </xsl:if>
+                <xsl:if test="not(PositionType = 'S') and boolean(ShortPositionHedgingRate)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-056</code>
+                    <message>The position value is not consistent with the position type.</message>
+                    <field>ShortPositionHedgingRate</field>
+                    <value><xsl:value-of select="ShortPositionHedgingRate" /></value>
+                </error>
                 </xsl:if>
             </xsl:for-each>
 
