@@ -1161,19 +1161,18 @@
                 </xsl:if>
             </xsl:for-each>
 
+<!-- skip CAF-062 for now -->
+
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
-                <xsl:choose>
-                    <xsl:when test="not(AssetMacroType = 'NTA')">
-                        <xsl:if test="not(AggregatedValueRate)">
-    CAF-063
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="AggregatedValueRate">
-    CAF-063
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(AggregatedValueRate)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-063</code>
+                    <message>The aggregated value percentage is not consistent with the macro-asset type.</message>
+                    <field>AggregatedValueRate</field>
+                    <value><xsl:value-of select="AggregatedValueRate" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:variable 
