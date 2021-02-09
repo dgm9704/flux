@@ -1213,33 +1213,27 @@
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-                <xsl:choose>
-                    <xsl:when test="not(AssetType = 'NTA_NTA')">
-                        <xsl:if test="not(PositionType)">
-    CAF-067
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="PositionType">
-    CAF-067
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(PositionType)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-067</code>
+                    <message>The position type is not consistent with the asset type.</message>
+                    <field>PositionType</field>
+                    <value><xsl:value-of select="PositionType" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-                <xsl:choose>
-                    <xsl:when test="not(AssetType = 'NTA_NTA')">
-                        <xsl:if test="not(MarketIdentification/MarketCodeType)">
-    CAF-068
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="MarketIdentification/MarketCodeType">
-    CAF-068
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(MarketIdentification/MarketCodeType)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-068</code>
+                    <message>TThe market code type is not consistent with the asset type.</message>
+                    <field>MarketCodeType</field>
+                    <value><xsl:value-of select="MarketIdentification/MarketCodeType" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/MarketIdentification">
