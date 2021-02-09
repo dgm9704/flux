@@ -1200,6 +1200,18 @@
                 </xsl:if>
             </xsl:for-each>
 
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification">
+                <xsl:if test="not(EntityName) and EntityIdentificationBIC">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-066</code>
+                    <message>The BIC code is not consistent with the counterparty name.</message>
+                    <field>EntityIdentificationBIC</field>
+                    <value><xsl:value-of select="EntityIdentificationBIC" /></value>
+                </error>
+                </xsl:if>
+            </xsl:for-each>
+
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
                 <xsl:choose>
                     <xsl:when test="not(AssetType = 'NTA_NTA')">
