@@ -1249,20 +1249,16 @@
                 </xsl:if>
             </xsl:for-each>
 
-
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/MarketIdentification">
-                <xsl:choose>
-                    <xsl:when test="MarketCodeType = 'MIC'">
-                        <xsl:if test="not(MarketCode)">
-    CAF-070
-                        </xsl:if>
-                    </xsl:when>
-                    <xsl:otherwise>
-                        <xsl:if test="MarketCode">
-    CAF-070
-                        </xsl:if>
-                    </xsl:otherwise>
-                </xsl:choose>
+                <xsl:if test="boolean(MarketCodeType = 'MIC') != boolean(MarketCode)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-070</code>
+                    <message>The MIC code is not consistent with the market code type.</message>
+                    <field>MarketCode</field>
+                    <value><xsl:value-of select="MarketCode" /></value>
+                </error>
+                </xsl:if>
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
