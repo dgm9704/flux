@@ -1348,6 +1348,18 @@
                 </xsl:if>
             </xsl:for-each>
 
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo">
+                <xsl:if test="boolean(AIFDescription/PredominantAIFType = 'PEQF') != boolean(MostImportantConcentration/TypicalPositionSize)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-079</code>
+                    <message>The position size type is not consistent with the predominant AIF type.</message>
+                    <field>TypicalPositionSize</field>
+                    <value><xsl:value-of select="MostImportantConcentration/TypicalPositionSize" /></value>
+                </error>
+                </xsl:if>
+            </xsl:for-each>
+
         </xsl:for-each>
 </aif>
     </xsl:template>
