@@ -1397,6 +1397,21 @@
                 </xsl:if>
             </xsl:for-each>
 
+<!-- skip CAF-083 for now -->
+
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/InvestorConcentration">
+                <xsl:variable name="ratesum" select="ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate" />
+                <xsl:if test="$ratesum != 100 and $ratesum != 0">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-084</code>
+                    <message>The sum of the percentages should be equal to 0% or 100%.</message>
+                    <field>ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate</field>
+                    <value><xsl:value-of select="$ratesum" /></value>
+                </error>
+                </xsl:if>
+            </xsl:for-each>
+
         </xsl:for-each>
 </aif>
     </xsl:template>
