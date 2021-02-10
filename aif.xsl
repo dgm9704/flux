@@ -1385,6 +1385,18 @@
                 </xsl:if>
             </xsl:for-each>
 
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/AIFPrincipalMarkets/AIFPrincipalMarket">
+                <xsl:if test="boolean(MarketIdentification/MarketCodeType = 'NOT') = boolean(AggregatedValueAmount)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-082</code>
+                    <message>The aggregated value is not consistent with the market code type.</message>
+                    <field>AggregatedValueAmount</field>
+                    <value><xsl:value-of select="AggregatedValueAmount" /></value>
+                </error>
+                </xsl:if>
+            </xsl:for-each>
+
         </xsl:for-each>
 </aif>
     </xsl:template>
