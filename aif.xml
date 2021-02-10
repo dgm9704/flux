@@ -1497,7 +1497,7 @@
 					<InvestorConcentration>
 						<MainBeneficialOwnersRate>45</MainBeneficialOwnersRate>
 						<ProfessionalInvestorConcentrationRate>45</ProfessionalInvestorConcentrationRate>
-						<RetailInvestorConcentrationRate>55</RetailInvestorConcentrationRate>
+						<RetailInvestorConcentrationRate>56</RetailInvestorConcentrationRate>
 					</InvestorConcentration>
 				</MostImportantConcentration>
 			</AIFPrincipalInfo>
