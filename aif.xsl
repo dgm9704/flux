@@ -1311,7 +1311,7 @@
                 </xsl:if>
             </xsl:for-each>
 
-            <!-- <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/CounterpartyIdentification/EntityIdentificationLEI">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/CounterpartyIdentification/EntityIdentificationLEI">
                 <xsl:variable name="cplei" select="." />
                 <xsl:if test="$cplei and not($leiregister[. = $cplei])" >
                 <error>
@@ -1322,7 +1322,7 @@
                     <value><xsl:value-of select="$cplei" /></value>
                 </error>
                 </xsl:if>
-            </xsl:for-each> -->
+            </xsl:for-each>
 
         </xsl:for-each>
 </aif>
