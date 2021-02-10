@@ -1299,14 +1299,14 @@
                 </xsl:if>
             </xsl:for-each>
 
-            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/CounterpartyIdentification">
-                <xsl:if test="not(EntityName) and EntityIdentificationLEI">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
+                <xsl:if test="(not(CounterpartyIdentification/EntityName) or not(MarketIdentification/MarketCodeType = 'OTC')) and boolean(CounterpartyIdentification/EntityIdentificationLEI)">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-075</code>
                     <message>The LEI code is not consistent with the counterparty name.</message>
                     <field>EntityIdentificationLEI</field>
-                    <value><xsl:value-of select="EntityIdentificationLEI" /></value>
+                    <value><xsl:value-of select="CounterpartyIdentification/EntityIdentificationLEI" /></value>
                 </error>
                 </xsl:if>
             </xsl:for-each>
@@ -1324,8 +1324,8 @@
                 </xsl:if>
             </xsl:for-each>
 
-            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/CounterpartyIdentification">
-                <xsl:if test="not(EntityName) and EntityIdentificationBIC">
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
+                <xsl:if test="(not(CounterpartyIdentification/EntityName) or not(MarketIdentification/MarketCodeType = 'OTC')) and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-077</code>
