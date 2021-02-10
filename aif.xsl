@@ -1325,13 +1325,25 @@
             </xsl:for-each>
 
             <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-                <xsl:if test="(not(CounterpartyIdentification/EntityName) or not(MarketIdentification/MarketCodeType = 'OTC')) and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
+                <xsl:if test="not(CounterpartyIdentification/EntityName) and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
                 <error>
                     <record><xsl:value-of select="$fund" /></record>
                     <code>CAF-077</code>
                     <message>The BIC code is not consistent with the counterparty name.</message>
                     <field>EntityIdentificationBIC</field>
-                    <value><xsl:value-of select="EntityIdentificationBIC" /></value>
+                    <value><xsl:value-of select="CounterpartyIdentification/EntityIdentificationBIC" /></value>
+                </error>
+                </xsl:if>
+            </xsl:for-each>
+
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
+                <xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC') and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-078</code>
+                    <message>The counterparty BIC code is not consistent with the counterparty name.</message>
+                    <field>EntityIdentificationBIC</field>
+                    <value><xsl:value-of select="CounterpartyIdentification/EntityIdentificationBIC" /></value>
                 </error>
                 </xsl:if>
             </xsl:for-each>
