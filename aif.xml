@@ -1459,6 +1459,9 @@
 							</MarketIdentification>
 							<AggregatedValueAmount>21000000</AggregatedValueAmount>
 							<AggregatedValueRate>8</AggregatedValueRate>
+							<CounterpartyIdentification>
+								<EntityIdentificationLEI>TESTFRPPXXX</EntityIdentificationLEI>
+							</CounterpartyIdentification>
 						</PortfolioConcentration>
 						<PortfolioConcentration>
 							<Ranking>5</Ranking>

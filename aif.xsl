@@ -1299,6 +1299,31 @@
                 </xsl:if>
             </xsl:for-each>
 
+            <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/CounterpartyIdentification">
+                <xsl:if test="not(EntityName) and EntityIdentificationLEI">
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-075</code>
+                    <message>The LEI code is not consistent with the counterparty name.</message>
+                    <field>EntityIdentificationLEI</field>
+                    <value><xsl:value-of select="EntityIdentificationLEI" /></value>
+                </error>
+                </xsl:if>
+            </xsl:for-each>
+
+            <!-- <xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/CounterpartyIdentification/EntityIdentificationLEI">
+                <xsl:variable name="cplei" select="." />
+                <xsl:if test="$cplei and not($leiregister[. = $cplei])" >
+                <error>
+                    <record><xsl:value-of select="$fund" /></record>
+                    <code>CAF-076</code>
+                    <message>The counterparty LEI code is not consistent with the counterparty name.</message>
+                    <field>EntityIdentificationLEI</field>
+                    <value><xsl:value-of select="$cplei" /></value>
+                </error>
+                </xsl:if>
+            </xsl:for-each> -->
+
         </xsl:for-each>
 </aif>
     </xsl:template>
