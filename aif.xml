@@ -456,7 +456,7 @@
 		<AIFCompleteDescription>
 			<AIFPrincipalInfo>
 				<AIFIdentification>
-					<AIFIdentifierLEI>ZNHTL6O2WODTKMPF1Z48</AIFIdentifierLEI>
+					<AIFIdentifierLEI>ZNHTL6O2WODTKMPF1Z49</AIFIdentifierLEI>
 					<AIFIdentifierISIN>AB1234567890</AIFIdentifierISIN>
 				</AIFIdentification>
 				<ShareClassFlag>false</ShareClassFlag>
@@ -751,13 +751,14 @@
 					<AssetTypeExposures>
 						<AssetTypeExposure>
 							<SubAssetType>SEC_SBD_EUBY</SubAssetType>
+							<GrossValue>1000000</GrossValue>
 							<LongValue>800000</LongValue>
 							<ShortValue>600000</ShortValue>
 						</AssetTypeExposure>
 						<AssetTypeExposure>
-							<SubAssetType>DER_EQD_OTHD</SubAssetType>
-							<LongValue>800000</LongValue>
-							<ShortValue>600000</ShortValue>
+							<SubAssetType>DER_FEX_INVT</SubAssetType>
+							<LongValue>1111111</LongValue>
+							<ShortValue>2222222</ShortValue>
 						</AssetTypeExposure>
 						<AssetTypeExposure>
 							<SubAssetType>DER_FEX_INVT</SubAssetType>

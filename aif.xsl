@@ -1412,6 +1412,42 @@
                 </xsl:if>
             </xsl:for-each>
 
+            <xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/AssetTypeExposures/AssetTypeExposure">
+                <xsl:choose>
+                    <xsl:when test="SubAssetType='DER_FEX_INVT' or SubAssetType='DER_FEX_HEDG' or SubAssetType='DER_IRD_INTR'">
+                        <xsl:if test="LongValue">
+                        <error>
+                            <record><xsl:value-of select="$fund" /></record>
+                            <code>CAF-086</code>
+                            <message>The long value is not consistent with the sub-asset type.</message>
+                            <field>LongValue</field>
+                            <value><xsl:value-of select="LongValue" /></value>
+                        </error>
+                        </xsl:if>
+                        <xsl:if test="ShortValue">
+                        <error>
+                            <record><xsl:value-of select="$fund" /></record>
+                            <code>CAF-087</code>
+                            <message>The short value is not consistent with the sub-asset type.</message>
+                            <field>ShortValue</field>
+                            <value><xsl:value-of select="ShortValue" /></value>
+                        </error>
+                        </xsl:if>
+                    </xsl:when>                
+                    <xsl:otherwise>
+                        <xsl:if test="GrossValue">
+                        <error>
+                            <record><xsl:value-of select="$fund" /></record>
+                            <code>CAF-085</code>
+                            <message>The gross value is not consistent with the sub-asset type.</message>
+                            <field>GrossValue</field>
+                            <value><xsl:value-of select="GrossValue" /></value>
+                        </error>
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
+            </xsl:for-each>
+
         </xsl:for-each>
 </aif>
     </xsl:template>
