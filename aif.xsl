@@ -1463,7 +1463,18 @@
                 </xsl:if>
             </xsl:for-each>
 
-
+            <xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CurrencyExposures/CurrencyExposure/ExposureCurrency">
+                 <xsl:variable name="currency" select="." />
+                 <xsl:if test="not($currencycodes[. = $currency])" >
+                    <error>
+                        <record><xsl:value-of select="$fund" /></record>
+                        <code>CAF-089</code>
+                        <message>The currency code is not correct.</message>
+                        <field>ExposureCurrency</field>
+                        <value><xsl:value-of select="$currency" /></value>
+                    </error>
+                </xsl:if>
+            </xsl:for-each>
         </xsl:for-each>
 </aif>
     </xsl:template>
