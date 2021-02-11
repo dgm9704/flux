@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<AIFReportingInfo ReportingMemberState="FR" Version="1.2" CreationDateAndTime="2001-12-17T09:30:47.0Z" xsi:noNamespaceSchemaLocation="AIFMD_DATAIF_V1.2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	
+<AIFReportingInfo ReportingMemberState="FR" Version="1.2" CreationDateAndTime="2001-12-17T09:30:47.0Z" xsi:noNamespaceSchemaLocation="schema/AIFMD_DATAIF_V1.2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+
 	<AIFRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFContentType>2</AIFContentType>
@@ -159,7 +159,7 @@
 					<SouthAmericaAUMRate>10</SouthAmericaAUMRate>
 					<SupraNationalAUMRate>0</SupraNationalAUMRate>
 				</AUMGeographicalFocus>
-				
+
 				<PrincipalExposures>
 					<PrincipalExposure>
 						<Ranking>1</Ranking>
@@ -183,7 +183,7 @@
 						<SubAssetType>DER_FEX_HEDG</SubAssetType>
 						<PositionType>S</PositionType>
 						<AggregatedValueAmount>85000000</AggregatedValueAmount>
-						<AggregatedValueRate>33</AggregatedValueRate>									
+						<AggregatedValueRate>33</AggregatedValueRate>
 					</PrincipalExposure>
 					<PrincipalExposure>
 						<Ranking>4</Ranking>
@@ -192,8 +192,8 @@
 						<PositionType>L</PositionType>
 						<AggregatedValueAmount>84500000</AggregatedValueAmount>
 						<AggregatedValueRate>13</AggregatedValueRate>
-				</PrincipalExposure>
-				<PrincipalExposure>
+					</PrincipalExposure>
+					<PrincipalExposure>
 						<Ranking>5</Ranking>
 						<AssetMacroType>DER</AssetMacroType>
 						<SubAssetType>DER_EQD_FINI</SubAssetType>
@@ -227,9 +227,9 @@
 						<SubAssetType>SEC_MBN_MNPL</SubAssetType>
 						<PositionType>L</PositionType>
 						<AggregatedValueAmount>24500000</AggregatedValueAmount>
-					<AggregatedValueRate>13</AggregatedValueRate>
-				</PrincipalExposure>
-				<PrincipalExposure>
+						<AggregatedValueRate>13</AggregatedValueRate>
+					</PrincipalExposure>
+					<PrincipalExposure>
 						<Ranking>9</Ranking>
 						<AssetMacroType>DER</AssetMacroType>
 						<SubAssetType>DER_EQD_FINI</SubAssetType>
@@ -249,7 +249,7 @@
 						<PositionType>L</PositionType>
 						<AggregatedValueAmount>100000000</AggregatedValueAmount>
 						<AggregatedValueRate>39</AggregatedValueRate>
-				</PrincipalExposure>
+					</PrincipalExposure>
 				</PrincipalExposures>
 
 				<MostImportantConcentration>
@@ -435,7 +435,7 @@
 
 		</AIFCompleteDescription>
 	</AIFRecordInfo>
-	
+
 	<AIFRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFContentType>4</AIFContentType>
@@ -527,7 +527,7 @@
 					<FirstFundingSourceCountry>US</FirstFundingSourceCountry>
 					<SecondFundingSourceCountry>ZX</SecondFundingSourceCountry>
 					<ThirdFundingSourceCountry>IE</ThirdFundingSourceCountry>
-					<PredominantAIFType>PEQF</PredominantAIFType>
+					<PredominantAIFType>HFND</PredominantAIFType>
 					<HedgeFundInvestmentStrategies>
 						<HedgeFundStrategy>
 							<HedgeFundStrategyType>MULT_HFND</HedgeFundStrategyType>
@@ -554,7 +554,7 @@
 						<PrivateEquityFundInvestmentStrategy>
 							<PrivateEquityFundStrategyType>OTHR_PEQF</PrivateEquityFundStrategyType>
 							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
-							<StrategyNAVRate>40</StrategyNAVRate> 
+							<StrategyNAVRate>40</StrategyNAVRate>
 						</PrivateEquityFundInvestmentStrategy>
 					</PrivateEquityFundInvestmentStrategies>
 				</AIFDescription>
@@ -647,13 +647,13 @@
 					</PrincipalExposure>
 					<PrincipalExposure>
 						<Ranking>3</Ranking>
-						<AssetMacroType>NTA</AssetMacroType>								
+						<AssetMacroType>NTA</AssetMacroType>
 					</PrincipalExposure>
 					<PrincipalExposure>
 						<Ranking>4</Ranking>
 						<AssetMacroType>NTA</AssetMacroType>
-				</PrincipalExposure>
-				<PrincipalExposure>
+					</PrincipalExposure>
+					<PrincipalExposure>
 						<Ranking>5</Ranking>
 						<AssetMacroType>NTA</AssetMacroType>
 					</PrincipalExposure>
@@ -668,15 +668,15 @@
 					<PrincipalExposure>
 						<Ranking>8</Ranking>
 						<AssetMacroType>NTA</AssetMacroType>
-				</PrincipalExposure>
-				<PrincipalExposure>
+					</PrincipalExposure>
+					<PrincipalExposure>
 						<Ranking>9</Ranking>
 						<AssetMacroType>NTA</AssetMacroType>
 					</PrincipalExposure>
 					<PrincipalExposure>
 						<Ranking>10</Ranking>
 						<AssetMacroType>NTA</AssetMacroType>
-				</PrincipalExposure>
+					</PrincipalExposure>
 				</PrincipalExposures>
 				<MostImportantConcentration>
 					<PortfolioConcentrations>
@@ -786,7 +786,7 @@
 							<ShortPositionValue>8765</ShortPositionValue> -->
 						</CurrencyExposure>
 						<CurrencyExposure>
-							<!-- <ExposureCurrency>CHF</ExposureCurrency> -->
+							<ExposureCurrency>CHF</ExposureCurrency>
 							<LongPositionValue>12345</LongPositionValue>
 							<ShortPositionValue>67890</ShortPositionValue>
 						</CurrencyExposure>
@@ -795,6 +795,8 @@
 						<CompanyDominantInfluence>
 							<CompanyIdentification>
 								<EntityName>Company X</EntityName>
+								<EntityIdentificationLEI>00000000000000000099</EntityIdentificationLEI>
+								<!-- <EntityIdentificationBIC>BARBAR</EntityIdentificationBIC> -->
 							</CompanyIdentification>
 							<TransactionType>CONS</TransactionType>
 							<VotingRightsRate>61</VotingRightsRate>
@@ -822,9 +824,9 @@
 							<MarketRiskMeasure>
 								<RiskMeasureType>NET_CS01</RiskMeasureType>
 								<BucketRiskMeasureValues>
-									<LessFiveYearsRiskMeasureValue>123</LessFiveYearsRiskMeasureValue >
-									<FifthteenYearsRiskMeasureValue>123</FifthteenYearsRiskMeasureValue >
-									<MoreFifthteenYearsRiskMeasureValue>123</MoreFifthteenYearsRiskMeasureValue >
+									<LessFiveYearsRiskMeasureValue>123</LessFiveYearsRiskMeasureValue>
+									<FifthteenYearsRiskMeasureValue>123</FifthteenYearsRiskMeasureValue>
+									<MoreFifthteenYearsRiskMeasureValue>123</MoreFifthteenYearsRiskMeasureValue>
 								</BucketRiskMeasureValues>
 							</MarketRiskMeasure>
 						</MarketRiskMeasures>
@@ -857,7 +859,7 @@
 						<FundToCounterpartyExposures>
 							<FundToCounterpartyExposure>
 								<Ranking>1</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 4</EntityName>
 									<EntityIdentificationBIC>TESTUS3NXXX</EntityIdentificationBIC>
@@ -867,7 +869,7 @@
 							</FundToCounterpartyExposure>
 							<FundToCounterpartyExposure>
 								<Ranking>2</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 6</EntityName>
 									<EntityIdentificationBIC>TESTNL22XXX</EntityIdentificationBIC>
@@ -876,7 +878,7 @@
 							</FundToCounterpartyExposure>
 							<FundToCounterpartyExposure>
 								<Ranking>3</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 5</EntityName>
 									<EntityIdentificationBIC>TESTFRPPXXX</EntityIdentificationBIC>
@@ -885,17 +887,17 @@
 							</FundToCounterpartyExposure>
 							<FundToCounterpartyExposure>
 								<Ranking>4</Ranking>
-								<CounterpartyExposureFlag>false</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 							</FundToCounterpartyExposure>
 							<FundToCounterpartyExposure>
 								<Ranking>5</Ranking>
-								<CounterpartyExposureFlag>false</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 							</FundToCounterpartyExposure>
 						</FundToCounterpartyExposures>
 						<CounterpartyToFundExposures>
 							<CounterpartyToFundExposure>
 								<Ranking>1</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 7</EntityName>
 									<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
@@ -904,7 +906,7 @@
 							</CounterpartyToFundExposure>
 							<CounterpartyToFundExposure>
 								<Ranking>2</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 8 Clearnet SA</EntityName>
 									<EntityIdentificationBIC>TESTFRPPXXX</EntityIdentificationBIC>
@@ -913,15 +915,15 @@
 							</CounterpartyToFundExposure>
 							<CounterpartyToFundExposure>
 								<Ranking>3</Ranking>
-								<CounterpartyExposureFlag>false</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 							</CounterpartyToFundExposure>
 							<CounterpartyToFundExposure>
 								<Ranking>4</Ranking>
-								<CounterpartyExposureFlag>false</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 							</CounterpartyToFundExposure>
 							<CounterpartyToFundExposure>
 								<Ranking>5</Ranking>
-								<CounterpartyExposureFlag>false</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 							</CounterpartyToFundExposure>
 						</CounterpartyToFundExposures>
 						<ClearTransactionsThroughCCPFlag>true</ClearTransactionsThroughCCPFlag>
@@ -989,16 +991,16 @@
 							<InvestorGroup>
 								<InvestorGroupType>BANK</InvestorGroupType>
 								<InvestorGroupRate>42</InvestorGroupRate>
-							</InvestorGroup >
+							</InvestorGroup>
 							<InvestorGroup>
 								<InvestorGroupType>GENG</InvestorGroupType>
 								<InvestorGroupRate>30</InvestorGroupRate>
-							</InvestorGroup >
+							</InvestorGroup>
 							<InvestorGroup>
 								<InvestorGroupType>INSC</InvestorGroupType>
 								<InvestorGroupRate>1</InvestorGroupRate>
-							</InvestorGroup >
-						</InvestorGroups >
+							</InvestorGroup>
+						</InvestorGroups>
 						<FinancingLiquidityProfile>
 							<TotalFinancingAmount>12345</TotalFinancingAmount>
 							<TotalFinancingInDays0to1Rate>0</TotalFinancingInDays0to1Rate>
@@ -1198,7 +1200,7 @@
 							<HedgeFundStrategyType>OTHR_HFND</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>0</StrategyNAVRate>
-						</HedgeFundStrategy> 
+						</HedgeFundStrategy>
 					</HedgeFundInvestmentStrategies>
 					<RealEstateFundInvestmentStrategies>
 						<RealEstateFundStrategy>
@@ -1351,7 +1353,7 @@
 						<SubAssetType>DER_FEX_HEDG</SubAssetType>
 						<PositionType>S</PositionType>
 						<AggregatedValueAmount>85000000</AggregatedValueAmount>
-						<AggregatedValueRate>33</AggregatedValueRate>									
+						<AggregatedValueRate>33</AggregatedValueRate>
 					</PrincipalExposure>
 					<PrincipalExposure>
 						<Ranking>4</Ranking>
@@ -1360,8 +1362,8 @@
 						<PositionType>L</PositionType>
 						<AggregatedValueAmount>84500000</AggregatedValueAmount>
 						<AggregatedValueRate>13</AggregatedValueRate>
-				</PrincipalExposure>
-				<PrincipalExposure>
+					</PrincipalExposure>
+					<PrincipalExposure>
 						<Ranking>5</Ranking>
 						<AssetMacroType>DER</AssetMacroType>
 						<SubAssetType>DER_EQD_FINI</SubAssetType>
@@ -1395,9 +1397,9 @@
 						<SubAssetType>SEC_MBN_MNPL</SubAssetType>
 						<PositionType>L</PositionType>
 						<AggregatedValueAmount>24500000</AggregatedValueAmount>
-					<AggregatedValueRate>13</AggregatedValueRate>
-				</PrincipalExposure>
-				<PrincipalExposure>
+						<AggregatedValueRate>13</AggregatedValueRate>
+					</PrincipalExposure>
+					<PrincipalExposure>
 						<Ranking>9</Ranking>
 						<AssetMacroType>DER</AssetMacroType>
 						<SubAssetType>DER_EQD_FINI</SubAssetType>
@@ -1412,7 +1414,7 @@
 					<PrincipalExposure>
 						<Ranking>10</Ranking>
 						<AssetMacroType>NTA</AssetMacroType>
-				</PrincipalExposure>
+					</PrincipalExposure>
 				</PrincipalExposures>
 				<MostImportantConcentration>
 					<PortfolioConcentrations>
@@ -1567,17 +1569,17 @@
 							<MarketRiskMeasure>
 								<RiskMeasureType>NET_DV01</RiskMeasureType>
 								<BucketRiskMeasureValues>
-									<LessFiveYearsRiskMeasureValue>12345678901234</LessFiveYearsRiskMeasureValue >
-									<FifthteenYearsRiskMeasureValue>12345678901234</FifthteenYearsRiskMeasureValue >
-									<MoreFifthteenYearsRiskMeasureValue>123</MoreFifthteenYearsRiskMeasureValue >
+									<LessFiveYearsRiskMeasureValue>12345678901234</LessFiveYearsRiskMeasureValue>
+									<FifthteenYearsRiskMeasureValue>12345678901234</FifthteenYearsRiskMeasureValue>
+									<MoreFifthteenYearsRiskMeasureValue>123</MoreFifthteenYearsRiskMeasureValue>
 								</BucketRiskMeasureValues>
 							</MarketRiskMeasure>
 							<MarketRiskMeasure>
 								<RiskMeasureType>NET_CS01</RiskMeasureType>
 								<BucketRiskMeasureValues>
-									<LessFiveYearsRiskMeasureValue>123</LessFiveYearsRiskMeasureValue >
-									<FifthteenYearsRiskMeasureValue>123</FifthteenYearsRiskMeasureValue >
-									<MoreFifthteenYearsRiskMeasureValue>123</MoreFifthteenYearsRiskMeasureValue >
+									<LessFiveYearsRiskMeasureValue>123</LessFiveYearsRiskMeasureValue>
+									<FifthteenYearsRiskMeasureValue>123</FifthteenYearsRiskMeasureValue>
+									<MoreFifthteenYearsRiskMeasureValue>123</MoreFifthteenYearsRiskMeasureValue>
 								</BucketRiskMeasureValues>
 							</MarketRiskMeasure>
 							<MarketRiskMeasure>
@@ -1617,7 +1619,7 @@
 						<FundToCounterpartyExposures>
 							<FundToCounterpartyExposure>
 								<Ranking>1</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 7</EntityName>
 									<EntityIdentificationBIC>TESTUS3NXXX</EntityIdentificationBIC>
@@ -1626,7 +1628,7 @@
 							</FundToCounterpartyExposure>
 							<FundToCounterpartyExposure>
 								<Ranking>2</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 4</EntityName>
 									<EntityIdentificationBIC>TESTNL22XXX</EntityIdentificationBIC>
@@ -1635,7 +1637,7 @@
 							</FundToCounterpartyExposure>
 							<FundToCounterpartyExposure>
 								<Ranking>3</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 5</EntityName>
 									<EntityIdentificationBIC>TESTFRPPXXX</EntityIdentificationBIC>
@@ -1644,17 +1646,17 @@
 							</FundToCounterpartyExposure>
 							<FundToCounterpartyExposure>
 								<Ranking>4</Ranking>
-								<CounterpartyExposureFlag>false</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 							</FundToCounterpartyExposure>
 							<FundToCounterpartyExposure>
 								<Ranking>5</Ranking>
-								<CounterpartyExposureFlag>false</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 							</FundToCounterpartyExposure>
 						</FundToCounterpartyExposures>
 						<CounterpartyToFundExposures>
 							<CounterpartyToFundExposure>
 								<Ranking>1</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 7</EntityName>
 									<EntityIdentificationBIC>TESTNL22XXX</EntityIdentificationBIC>
@@ -1663,7 +1665,7 @@
 							</CounterpartyToFundExposure>
 							<CounterpartyToFundExposure>
 								<Ranking>2</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 7</EntityName>
 									<EntityIdentificationBIC>TESTFRPPXXX</EntityIdentificationBIC>
@@ -1672,15 +1674,15 @@
 							</CounterpartyToFundExposure>
 							<CounterpartyToFundExposure>
 								<Ranking>3</Ranking>
-								<CounterpartyExposureFlag>false</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 							</CounterpartyToFundExposure>
 							<CounterpartyToFundExposure>
 								<Ranking>4</Ranking>
-								<CounterpartyExposureFlag>false</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 							</CounterpartyToFundExposure>
 							<CounterpartyToFundExposure>
 								<Ranking>5</Ranking>
-								<CounterpartyExposureFlag>false</CounterpartyExposureFlag >
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 							</CounterpartyToFundExposure>
 						</CounterpartyToFundExposures>
 						<ClearTransactionsThroughCCPFlag>true</ClearTransactionsThroughCCPFlag>
@@ -1756,16 +1758,16 @@
 							<InvestorGroup>
 								<InvestorGroupType>BANK</InvestorGroupType>
 								<InvestorGroupRate>42</InvestorGroupRate>
-							</InvestorGroup >
+							</InvestorGroup>
 							<InvestorGroup>
 								<InvestorGroupType>GENG</InvestorGroupType>
 								<InvestorGroupRate>30</InvestorGroupRate>
-							</InvestorGroup >
+							</InvestorGroup>
 							<InvestorGroup>
 								<InvestorGroupType>INSC</InvestorGroupType>
 								<InvestorGroupRate>1</InvestorGroupRate>
-							</InvestorGroup >
-						</InvestorGroups >
+							</InvestorGroup>
+						</InvestorGroups>
 						<FinancingLiquidityProfile>
 							<TotalFinancingAmount>12345</TotalFinancingAmount>
 							<TotalFinancingInDays0to1Rate>0</TotalFinancingInDays0to1Rate>
