@@ -1465,15 +1465,39 @@
 
             <xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CurrencyExposures/CurrencyExposure">
                  <xsl:variable name="currency" select="ExposureCurrency" />
-                 <xsl:if test="not($currencycodes[. = $currency])" >
-                    <error>
-                        <record><xsl:value-of select="$fund" /></record>
-                        <code>CAF-089</code>
-                        <message>The currency code is not correct.</message>
-                        <field>ExposureCurrency</field>
-                        <value><xsl:value-of select="$currency" /></value>
-                    </error>
-                </xsl:if>
+                 <xsl:choose>
+                    <xsl:when test="$currency">
+                        <xsl:if test="not($currencycodes[. = $currency])" >
+                        <error>
+                            <record><xsl:value-of select="$fund" /></record>
+                            <code>CAF-089</code>
+                            <message>The currency code is not correct.</message>
+                            <field>ExposureCurrency</field>
+                            <value><xsl:value-of select="$currency" /></value>
+                        </error>
+                        </xsl:if>
+                    </xsl:when>
+                    <xsl:otherwise>
+                        <xsl:if test="LongPositionValue">
+                        <error>
+                            <record><xsl:value-of select="$fund" /></record>
+                            <code>CAF-090</code>
+                            <message>The long position value is not consistent with the currency of exposure.</message>
+                            <field>LongPositionValue</field>
+                            <value><xsl:value-of select="LongPositionValue" /></value>
+                        </error>
+                        </xsl:if>
+                        <xsl:if test="ShortPositionValue">
+                        <error>
+                            <record><xsl:value-of select="$fund" /></record>
+                            <code>CAF-091</code>
+                            <message>The short position value is not consistent with the currency of exposure.</message>
+                            <field>ShortPositionValue</field>
+                            <value><xsl:value-of select="ShortPositionValue" /></value>
+                        </error>
+                        </xsl:if>
+                    </xsl:otherwise>
+                </xsl:choose>
             </xsl:for-each>
         </xsl:for-each>
 </aif>

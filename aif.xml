@@ -782,12 +782,13 @@
 					<CurrencyExposures>
 						<CurrencyExposure>
 							<ExposureCurrency>FOO</ExposureCurrency>
-							<LongPositionValue>12345</LongPositionValue>
-							<ShortPositionValue>8765</ShortPositionValue>
+							<!-- <LongPositionValue>12345</LongPositionValue>
+							<ShortPositionValue>8765</ShortPositionValue> -->
 						</CurrencyExposure>
 						<CurrencyExposure>
-							<ExposureCurrency>CHF</ExposureCurrency>
+							<!-- <ExposureCurrency>CHF</ExposureCurrency> -->
 							<LongPositionValue>12345</LongPositionValue>
+							<ShortPositionValue>67890</ShortPositionValue>
 						</CurrencyExposure>
 					</CurrencyExposures>
 					<CompaniesDominantInfluence>
