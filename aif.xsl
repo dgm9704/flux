@@ -1463,8 +1463,8 @@
                 </xsl:if>
             </xsl:for-each>
 
-            <xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CurrencyExposures/CurrencyExposure/ExposureCurrency">
-                 <xsl:variable name="currency" select="." />
+            <xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CurrencyExposures/CurrencyExposure">
+                 <xsl:variable name="currency" select="ExposureCurrency" />
                  <xsl:if test="not($currencycodes[. = $currency])" >
                     <error>
                         <record><xsl:value-of select="$fund" /></record>
