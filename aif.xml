@@ -768,11 +768,11 @@
 					<AssetTypeTurnovers>
 						<AssetTypeTurnover>
 							<TurnoverSubAssetType>SEC_SBD_NEU</TurnoverSubAssetType>
-							<MarketValue>400000</MarketValue>
+							<NotionalValue>400000</NotionalValue>
 						</AssetTypeTurnover>
 						<AssetTypeTurnover>
 							<TurnoverSubAssetType>DER_EQD_EQD</TurnoverSubAssetType>
-							<NotionalValue>400000</NotionalValue>
+							<MarketValue>400000</MarketValue>
 						</AssetTypeTurnover>
 						<AssetTypeTurnover>
 							<TurnoverSubAssetType>DER_FEX_INV</TurnoverSubAssetType>

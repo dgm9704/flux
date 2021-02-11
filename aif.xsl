@@ -1448,6 +1448,22 @@
                 </xsl:choose>
             </xsl:for-each>
 
+            <xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/AssetTypeTurnovers/AssetTypeTurnover">
+                 <xsl:variable name="t" select="TurnoverSubAssetType" />
+                 <xsl:if test="not($t='DER_EQD_EQD' or $t='DER_FEX_INV' or $t='DER_EQD_EQD' or $t='DER_CDS_CDS' or $t='DER_FEX_HED' or $t='DER_IRD_IRD' or $t='DER_CTY_CTY' or $t='DER_OTH_OTH')"> 
+                    <xsl:if test="NotionalValue">
+                        <error>
+                            <record><xsl:value-of select="$fund" /></record>
+                            <code>CAF-088</code>
+                            <message>The notional value is not consistent with the sub-asset type.</message>
+                            <field>NotionalValue</field>
+                            <value><xsl:value-of select="NotionalValue" /></value>
+                        </error>
+                    </xsl:if>
+                </xsl:if>
+            </xsl:for-each>
+
+
         </xsl:for-each>
 </aif>
     </xsl:template>
