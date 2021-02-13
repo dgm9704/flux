@@ -2009,7 +2009,19 @@
                             </value>
                         </error>
                     </xsl:if>
-
+                    <xsl:if test="boolean($predominantaiftype='PEQF') != boolean(VotingRightsRate)">
+                        <error>
+                            <record>
+                                <xsl:value-of select="$fund" />
+                            </record>
+                            <code>CAF-098</code>
+                            <message>The percentage of voting rights is not consistent with the AIF predominant type.</message>
+                            <field>VotingRightsRate</field>
+                            <value>
+                                <xsl:value-of select="VotingRightsRate" />
+                            </value>
+                        </error>
+                    </xsl:if>
                 </xsl:for-each>
 
             </xsl:for-each>
