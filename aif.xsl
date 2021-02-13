@@ -1996,6 +1996,20 @@
                             </value>
                         </error>
                     </xsl:if>
+                    <xsl:if test="boolean($predominantaiftype='PEQF') != boolean(TransactionType)">
+                        <error>
+                            <record>
+                                <xsl:value-of select="$fund" />
+                            </record>
+                            <code>CAF-096</code>
+                            <message>The transaction type is not consistent with the AIF predominant type.</message>
+                            <field>TransactionType</field>
+                            <value>
+                                <xsl:value-of select="TransactionType" />
+                            </value>
+                        </error>
+                    </xsl:if>
+
                 </xsl:for-each>
 
             </xsl:for-each>
