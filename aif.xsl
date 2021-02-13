@@ -2009,6 +2009,19 @@
                             </value>
                         </error>
                     </xsl:if>
+                    <xsl:if test="boolean(TransactionType='OTHR') != boolean(OtherTransactionTypeDescription)">
+                        <error>
+                            <record>
+                                <xsl:value-of select="$fund" />
+                            </record>
+                            <code>CAF-097</code>
+                            <message>The description for other transaction type is not consistent with the transaction type.</message>
+                            <field>OtherTransactionTypeDescription</field>
+                            <value>
+                                <xsl:value-of select="OtherTransactionTypeDescription" />
+                            </value>
+                        </error>
+                    </xsl:if>
                     <xsl:if test="boolean($predominantaiftype='PEQF') != boolean(VotingRightsRate)">
                         <error>
                             <record>

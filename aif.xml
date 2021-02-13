@@ -813,6 +813,14 @@
 								<EntityName>Company Z</EntityName>
 							</CompanyIdentification>
 							<TransactionType>ESOP</TransactionType>
+							<OtherTransactionTypeDescription>Foo</OtherTransactionTypeDescription>
+							<VotingRightsRate>55</VotingRightsRate>
+						</CompanyDominantInfluence>
+						<CompanyDominantInfluence>
+							<CompanyIdentification>
+								<EntityName>FooBar</EntityName>
+							</CompanyIdentification>
+							<TransactionType>OTHR</TransactionType>
 							<VotingRightsRate>55</VotingRightsRate>
 						</CompanyDominantInfluence>
 					</CompaniesDominantInfluence>
