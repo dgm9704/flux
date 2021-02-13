@@ -2036,6 +2036,21 @@
                         </error>
                     </xsl:if>
                 </xsl:for-each>
+                <xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/MarketRiskProfile/MarketRiskMeasures/MarketRiskMeasure">
+                    <xsl:if test="not(RiskMeasureType='NET_EQTY_DELTA' or RiskMeasureType='NET_FX_DELTA' or RiskMeasureType='NET_CTY_DELTA') and boolean(RiskMeasureValue)">
+                        <error>
+                            <record>
+                                <xsl:value-of select="$fund" />
+                            </record>
+                            <code>CAF-099</code>
+                            <message>The risk measure value is not consistent with the risk measure type.</message>
+                            <field>RiskMeasureValue</field>
+                            <value>
+                                <xsl:value-of select="RiskMeasureValue" />
+                            </value>
+                        </error>
+                    </xsl:if>
+                </xsl:for-each>
 
             </xsl:for-each>
         </aif>
