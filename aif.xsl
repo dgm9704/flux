@@ -2050,7 +2050,6 @@
                             </value>
                         </error>
                     </xsl:if>
-
                     <xsl:if test="not(RiskMeasureType='NET_DV01' or RiskMeasureType='NET_CS01') and boolean(BucketRiskMeasureValues/LessFiveYearsRiskMeasureValue)">
                         <error>
                             <record>
@@ -2060,11 +2059,23 @@
                             <message>The risk measure value is not consistent with the risk measure type.</message>
                             <field>LessFiveYearsRiskMeasureValue</field>
                             <value>
-                                <xsl:value-of select="LessFiveYearsRiskMeasureValue" />
+                                <xsl:value-of select="BucketRiskMeasureValues/LessFiveYearsRiskMeasureValue" />
                             </value>
                         </error>
                     </xsl:if>
-
+                    <xsl:if test="not(RiskMeasureType='NET_DV01' or RiskMeasureType='NET_CS01') and boolean(BucketRiskMeasureValues/FifthteenYearsRiskMeasureValue)">
+                        <error>
+                            <record>
+                                <xsl:value-of select="$fund" />
+                            </record>
+                            <code>CAF-101</code>
+                            <message>The risk measure value is not consistent with the risk measure type.</message>
+                            <field>FifthteenYearsRiskMeasureValue</field>
+                            <value>
+                                <xsl:value-of select="BucketRiskMeasureValues/FifthteenYearsRiskMeasureValue" />
+                            </value>
+                        </error>
+                    </xsl:if>
                 </xsl:for-each>
 
             </xsl:for-each>

@@ -1575,7 +1575,7 @@
 								<RiskMeasureDescription>Free text</RiskMeasureDescription>
 							</MarketRiskMeasure>
 							<MarketRiskMeasure>
-								<RiskMeasureType>NET_DV01</RiskMeasureType>
+								<RiskMeasureType>NET_EQTY_DELTA</RiskMeasureType>
 								<BucketRiskMeasureValues>
 									<LessFiveYearsRiskMeasureValue>12345678901234</LessFiveYearsRiskMeasureValue>
 									<FifthteenYearsRiskMeasureValue>12345678901234</FifthteenYearsRiskMeasureValue>
