@@ -1539,7 +1539,7 @@
 							<MarketRiskMeasure>
 								<RiskMeasureType>NET_EQTY_DELTA</RiskMeasureType>
 								<RiskMeasureValue>0</RiskMeasureValue>
-								<RiskMeasureDescription>Free text</RiskMeasureDescription>
+								<!-- <RiskMeasureDescription>Free text</RiskMeasureDescription> -->
 							</MarketRiskMeasure>
 							<MarketRiskMeasure>
 								<RiskMeasureType>NET_EQTY_DELTA</RiskMeasureType>

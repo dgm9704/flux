@@ -90,7 +90,7 @@
 							<error>
 								<record>
 									<xsl:value-of select="$fund" />
-								</record>                                FI                                																																																																								
+								</record>                                FI                                																																																																																								
 								<code>CAF-003</code>
 								<message>The reporting period start date is not allowed. </message>
 								<field>ReportingPeriodStartDate</field>
@@ -2039,6 +2039,19 @@
 							<field>VARCalculationMethodCodeType</field>
 							<value>
 								<xsl:value-of select="VARRiskMeasureValues/VARCalculationMethodCodeType" />
+							</value>
+						</error>
+					</xsl:if>
+					<xsl:if test="RiskMeasureValue=0 and not(RiskMeasureDescription)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-108</code>
+							<message>The Risk measure description is not consistent with the risk measure value.</message>
+							<field>RiskMeasureDescription</field>
+							<value>
+								<xsl:value-of select="RiskMeasureDescription" />
 							</value>
 						</error>
 					</xsl:if>
