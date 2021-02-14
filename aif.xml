@@ -533,7 +533,7 @@
 						<InstrumentCodeType>ISIN</InstrumentCodeType>
 						<InstrumentName>Entity 1</InstrumentName>
 						<ISINInstrumentIdentification>XX0000131104</ISINInstrumentIdentification>
-						<PositionValue>10000000</PositionValue>
+						<PositionValue>111</PositionValue>
 						<PositionType>L</PositionType>
 					</MainInstrumentTraded>
 					<MainInstrumentTraded>
@@ -542,7 +542,7 @@
 						<InstrumentCodeType>ISIN</InstrumentCodeType>
 						<InstrumentName>BTAN 0.75% 20 Sept 2012</InstrumentName>
 						<ISINInstrumentIdentification>XX0118153370</ISINInstrumentIdentification>
-						<PositionValue>3500000</PositionValue>
+						<PositionValue>222</PositionValue>
 						<PositionType>L</PositionType>
 					</MainInstrumentTraded>
 					<MainInstrumentTraded>
@@ -550,7 +550,7 @@
 						<SubAssetType>PHY_RES_COML</SubAssetType>
 						<InstrumentCodeType>NONE</InstrumentCodeType>
 						<InstrumentName>Building name</InstrumentName>
-						<PositionValue>3000000</PositionValue>
+						<PositionValue>333</PositionValue>
 						<PositionType>L</PositionType>
 					</MainInstrumentTraded>
 					<MainInstrumentTraded>
@@ -566,7 +566,7 @@
 							<AIIExpiryDate>2014-12-16</AIIExpiryDate>
 							<AIIStrikePrice>1.60</AIIStrikePrice>
 						</AIIInstrumentIdentification>
-						<PositionValue>2900000</PositionValue>
+						<PositionValue>444</PositionValue>
 						<PositionType>S</PositionType>
 						<ShortPositionHedgingRate>1.26</ShortPositionHedgingRate>
 					</MainInstrumentTraded>
