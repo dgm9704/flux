@@ -90,7 +90,7 @@
 							<error>
 								<record>
 									<xsl:value-of select="$fund" />
-								</record>                                FI                                																																																																																																																																																																																																																																																																																																																																																																																																
+								</record>                                FI                                																																																																																																																																																																																																																																																																																																																																																																																																								
 								<code>CAF-003</code>
 								<message>The reporting period start date is not allowed. </message>
 								<field>ReportingPeriodStartDate</field>
@@ -1754,7 +1754,25 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
-				<!-- skip CAF-083 for now -->
+				<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/AIFPrincipalMarkets">
+					<xsl:for-each select="AIFPrincipalMarket">
+						<xsl:variable name="rank" select="Ranking" />
+						<xsl:variable name="value" select="AggregatedValueAmount"/>
+						<xsl:if test="$value &lt; ../AIFPrincipalMarket[Ranking=($rank + 1)]/AggregatedValueAmount">
+							<error>
+								<record>
+									<xsl:value-of select="$fund" />
+								</record>
+								<code>CAF-083</code>
+								<message>The reported value is not consistent with the rank.</message>
+								<field>AggregatedValueAmount</field>
+								<value>
+									<xsl:value-of select="$value" />
+								</value>
+							</error>
+						</xsl:if>
+					</xsl:for-each>
+				</xsl:for-each>
 				<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/InvestorConcentration">
 					<xsl:variable name="ratesum" select="ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate" />
 					<xsl:if test="$ratesum != 100 and $ratesum != 0">

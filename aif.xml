@@ -1456,21 +1456,21 @@
 								<MarketCodeType>MIC</MarketCodeType>
 								<MarketCode>XBRU</MarketCode>
 							</MarketIdentification>
-							<AggregatedValueAmount>10000000</AggregatedValueAmount>
+							<AggregatedValueAmount>11111</AggregatedValueAmount>
 						</AIFPrincipalMarket>
 						<AIFPrincipalMarket>
 							<Ranking>2</Ranking>
 							<MarketIdentification>
 								<MarketCodeType>OTC</MarketCodeType>
 							</MarketIdentification>
-							<AggregatedValueAmount>8000000</AggregatedValueAmount>
+							<AggregatedValueAmount>22222</AggregatedValueAmount>
 						</AIFPrincipalMarket>
 						<AIFPrincipalMarket>
 							<Ranking>3</Ranking>
 							<MarketIdentification>
 								<MarketCodeType>XXX</MarketCodeType>
 							</MarketIdentification>
-							<AggregatedValueAmount>6000000</AggregatedValueAmount>
+							<AggregatedValueAmount>33333</AggregatedValueAmount>
 						</AIFPrincipalMarket>
 					</AIFPrincipalMarkets>
 					<InvestorConcentration>
