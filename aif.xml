@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<AIFReportingInfo ReportingMemberState="FR" Version="1.2" CreationDateAndTime="2001-12-17T09:30:47.0Z" xsi:noNamespaceSchemaLocation="schema/AIFMD_DATAIF_V1.2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-
+<AIFReportingInfo ReportingMemberState="FR" Version="1.2" CreationDateAndTime="2001-12-17T09:30:47.0Z" xsi:noNamespaceSchemaLocation="schema/AIFMD_DATAIF_V1.2.xsd" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<AIFRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFContentType>2</AIFContentType>
@@ -116,14 +116,7 @@
 						<SubAssetType>DER_IRD_INTR</SubAssetType>
 						<InstrumentCodeType>AII</InstrumentCodeType>
 						<InstrumentName>Buy 10 Instrument Dec 2014 160 Calls through Bclear (NYSE Liffe)</InstrumentName>
-						<!-- <AIIInstrumentIdentification>
-							<AIIExchangeCode>XLIF</AIIExchangeCode>
-							<AIIProductCode>XXX</AIIProductCode>
-							<AIIDerivativeType>O</AIIDerivativeType>
-							<AIIPutCallIdentifier>C</AIIPutCallIdentifier>
-							<AIIExpiryDate>2014-12-16</AIIExpiryDate>
-							<AIIStrikePrice>1.60</AIIStrikePrice>
-						</AIIInstrumentIdentification> -->
+						<!-- <AIIInstrumentIdentification><AIIExchangeCode>XLIF</AIIExchangeCode><AIIProductCode>XXX</AIIProductCode><AIIDerivativeType>O</AIIDerivativeType><AIIPutCallIdentifier>C</AIIPutCallIdentifier><AIIExpiryDate>2014-12-16</AIIExpiryDate><AIIStrikePrice>1.60</AIIStrikePrice></AIIInstrumentIdentification> -->
 						<PositionValue>2900000</PositionValue>
 						<PositionType>L</PositionType>
 						<ShortPositionHedgingRate>1.26</ShortPositionHedgingRate>
@@ -159,7 +152,6 @@
 					<SouthAmericaAUMRate>10</SouthAmericaAUMRate>
 					<SupraNationalAUMRate>0</SupraNationalAUMRate>
 				</AUMGeographicalFocus>
-
 				<PrincipalExposures>
 					<PrincipalExposure>
 						<Ranking>1</Ranking>
@@ -172,10 +164,7 @@
 					<PrincipalExposure>
 						<Ranking>2</Ranking>
 						<AssetMacroType>DER</AssetMacroType>
-						<!-- <SubAssetType>DER_CDS_EXOT</SubAssetType>
-						<PositionType>L</PositionType>
-						<AggregatedValueAmount>100000000</AggregatedValueAmount>
-						<AggregatedValueRate>39</AggregatedValueRate> -->
+						<!-- <SubAssetType>DER_CDS_EXOT</SubAssetType><PositionType>L</PositionType><AggregatedValueAmount>100000000</AggregatedValueAmount><AggregatedValueRate>39</AggregatedValueRate> -->
 					</PrincipalExposure>
 					<PrincipalExposure>
 						<Ranking>3</Ranking>
@@ -251,17 +240,13 @@
 						<AggregatedValueRate>39</AggregatedValueRate>
 					</PrincipalExposure>
 				</PrincipalExposures>
-
 				<MostImportantConcentration>
 					<PortfolioConcentrations>
 						<PortfolioConcentration>
 							<Ranking>1</Ranking>
 							<AssetType>DER_EQD</AssetType>
 							<!-- <PositionType>L</PositionType> -->
-							<!-- <MarketIdentification>
-								<MarketCodeType>MIC</MarketCodeType>
-								<MarketCode>XPAR</MarketCode>
-							</MarketIdentification> -->
+							<!-- <MarketIdentification><MarketCodeType>MIC</MarketCodeType><MarketCode>XPAR</MarketCode></MarketIdentification> -->
 							<AggregatedValueAmount>120000000</AggregatedValueAmount>
 							<AggregatedValueRate>47</AggregatedValueRate>
 						</PortfolioConcentration>
@@ -273,8 +258,7 @@
 								<MarketCodeType>MIC</MarketCodeType>
 								<!-- <MarketCode>ECAG</MarketCode> -->
 							</MarketIdentification>
-							<!-- <AggregatedValueAmount>98000000</AggregatedValueAmount>
-							<AggregatedValueRate>38</AggregatedValueRate> -->
+							<!-- <AggregatedValueAmount>98000000</AggregatedValueAmount><AggregatedValueRate>38</AggregatedValueRate> -->
 						</PortfolioConcentration>
 						<PortfolioConcentration>
 							<Ranking>3</Ranking>
@@ -344,9 +328,7 @@
 					</InvestorConcentration>
 				</MostImportantConcentration>
 			</AIFPrincipalInfo>
-
 			<AIFLeverageInfo>
-
 				<AIFLeverageArticle24-2>
 					<AllCounterpartyCollateralRehypothecationFlag>true</AllCounterpartyCollateralRehypothecationFlag>
 					<AllCounterpartyCollateralRehypothecatedRate>12.34</AllCounterpartyCollateralRehypothecatedRate>
@@ -388,7 +370,6 @@
 						<CommitmentMethodRate>907485</CommitmentMethodRate>
 					</LeverageAIF>
 				</AIFLeverageArticle24-2>
-
 				<AIFLeverageArticle24-4>
 					<BorrowingSource>
 						<Ranking>1</Ranking>
@@ -432,10 +413,8 @@
 					</BorrowingSource>
 				</AIFLeverageArticle24-4>
 			</AIFLeverageInfo>
-
 		</AIFCompleteDescription>
 	</AIFRecordInfo>
-
 	<AIFRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFContentType>4</AIFContentType>
@@ -461,7 +440,6 @@
 				</AIFIdentification>
 				<ShareClassFlag>false</ShareClassFlag>
 				<ShareClassIdentification>
-
 					<ShareClassIdentifier>
 						<ShareClassNationalCode>aaaaaa</ShareClassNationalCode>
 						<ShareClassIdentifierISIN>AA0000000000</ShareClassIdentifierISIN>
@@ -471,7 +449,6 @@
 						<ShareClassIdentifierRIC>AAAAAA</ShareClassIdentifierRIC>
 						<ShareClassName>Share Class 1</ShareClassName>
 					</ShareClassIdentifier>
-
 					<ShareClassIdentifier>
 						<ShareClassNationalCode>aaaaaa</ShareClassNationalCode>
 						<ShareClassIdentifierISIN>AA0000000000</ShareClassIdentifierISIN>
@@ -481,7 +458,6 @@
 						<ShareClassIdentifierRIC>AAAAAA</ShareClassIdentifierRIC>
 						<ShareClassName>Share Class 1</ShareClassName>
 					</ShareClassIdentifier>
-
 				</ShareClassIdentification>
 				<AIFDescription>
 					<AIFMasterFeederStatus>NONE</AIFMasterFeederStatus>
@@ -534,11 +510,7 @@
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>100</StrategyNAVRate>
 						</HedgeFundStrategy>
-						<!-- <HedgeFundStrategy>
-							<HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType>
-							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
-							<StrategyNAVRate>100</StrategyNAVRate>
-						</HedgeFundStrategy> -->
+						<!-- <HedgeFundStrategy><HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType><PrimaryStrategyFlag>true</PrimaryStrategyFlag><StrategyNAVRate>100</StrategyNAVRate></HedgeFundStrategy> -->
 					</HedgeFundInvestmentStrategies>
 					<PrivateEquityFundInvestmentStrategies>
 						<PrivateEquityFundInvestmentStrategy>
@@ -546,11 +518,7 @@
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription>
 						</PrivateEquityFundInvestmentStrategy>
-						<!-- <PrivateEquityFundInvestmentStrategy>
-							<PrivateEquityFundStrategyType>MZNE_CAPL</PrivateEquityFundStrategyType>
-							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
-							<StrategyNAVRate>40</StrategyNAVRate>
-						</PrivateEquityFundInvestmentStrategy> -->
+						<!-- <PrivateEquityFundInvestmentStrategy><PrivateEquityFundStrategyType>MZNE_CAPL</PrivateEquityFundStrategyType><PrimaryStrategyFlag>true</PrimaryStrategyFlag><StrategyNAVRate>40</StrategyNAVRate></PrivateEquityFundInvestmentStrategy> -->
 						<PrivateEquityFundInvestmentStrategy>
 							<PrivateEquityFundStrategyType>OTHR_PEQF</PrivateEquityFundStrategyType>
 							<PrimaryStrategyFlag>true</PrimaryStrategyFlag>
@@ -782,8 +750,7 @@
 					<CurrencyExposures>
 						<CurrencyExposure>
 							<ExposureCurrency>FOO</ExposureCurrency>
-							<!-- <LongPositionValue>12345</LongPositionValue>
-							<ShortPositionValue>8765</ShortPositionValue> -->
+							<!-- <LongPositionValue>12345</LongPositionValue><ShortPositionValue>8765</ShortPositionValue> -->
 						</CurrencyExposure>
 						<CurrencyExposure>
 							<ExposureCurrency>CHF</ExposureCurrency>
@@ -836,6 +803,21 @@
 									<FifthteenYearsRiskMeasureValue>123</FifthteenYearsRiskMeasureValue>
 									<MoreFifthteenYearsRiskMeasureValue>123</MoreFifthteenYearsRiskMeasureValue>
 								</BucketRiskMeasureValues>
+							</MarketRiskMeasure>
+							<MarketRiskMeasure>
+								<RiskMeasureType>VAR</RiskMeasureType>
+								<VegaRiskMeasureValues>
+									<CurrentMarketRiskMeasureValue>111</CurrentMarketRiskMeasureValue>
+									<LowerMarketRiskMeasureValue>222</LowerMarketRiskMeasureValue>
+									<HigherMarketRiskMeasureValue>333</HigherMarketRiskMeasureValue>
+								</VegaRiskMeasureValues>
+							</MarketRiskMeasure>
+							<MarketRiskMeasure>
+								<RiskMeasureType>VEGA_EXPO</RiskMeasureType>
+								<VARRiskMeasureValues>
+									<VARValue>42</VARValue>
+									<VARCalculationMethodCodeType>HISTO</VARCalculationMethodCodeType>
+								</VARRiskMeasureValues>
 							</MarketRiskMeasure>
 						</MarketRiskMeasures>
 					</MarketRiskProfile>
@@ -1144,7 +1126,6 @@
 			</AIFLeverageInfo>
 		</AIFCompleteDescription>
 	</AIFRecordInfo>
-
 	<AIFRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFContentType>2</AIFContentType>
@@ -1189,21 +1170,7 @@
 					<ThirdFundingSourceCountry>ZZ</ThirdFundingSourceCountry>
 					<PredominantAIFType>HFND</PredominantAIFType>
 					<HedgeFundInvestmentStrategies>
-						<!-- <HedgeFundStrategy>
-							<HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType>
-							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
-							<StrategyNAVRate>25</StrategyNAVRate>
-							<StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription>
-						</HedgeFundStrategy>
-						<HedgeFundStrategy>
-							<HedgeFundStrategyType>EQTY_STBS</HedgeFundStrategyType>
-							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
-							<StrategyNAVRate>25</StrategyNAVRate>
-						</HedgeFundStrategy>
-						<HedgeFundStrategy>
-							<HedgeFundStrategyType>EQTY_STBS</HedgeFundStrategyType>
-							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
-						</HedgeFundStrategy>-->
+						<!-- <HedgeFundStrategy><HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType><PrimaryStrategyFlag>false</PrimaryStrategyFlag><StrategyNAVRate>25</StrategyNAVRate><StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription></HedgeFundStrategy><HedgeFundStrategy><HedgeFundStrategyType>EQTY_STBS</HedgeFundStrategyType><PrimaryStrategyFlag>false</PrimaryStrategyFlag><StrategyNAVRate>25</StrategyNAVRate></HedgeFundStrategy><HedgeFundStrategy><HedgeFundStrategyType>EQTY_STBS</HedgeFundStrategyType><PrimaryStrategyFlag>false</PrimaryStrategyFlag></HedgeFundStrategy>-->
 						<HedgeFundStrategy>
 							<HedgeFundStrategyType>OTHR_HFND</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
@@ -1825,7 +1792,6 @@
 			</AIFIndividualInfo>
 		</AIFCompleteDescription>
 	</AIFRecordInfo>
-
 	<AIFRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFContentType>2</AIFContentType>
@@ -1842,9 +1808,7 @@
 		<AIFDomicile>FR</AIFDomicile>
 		<InceptionDate>2006-12-01</InceptionDate>
 		<AIFNoReportingFlag>false</AIFNoReportingFlag>
-
 	</AIFRecordInfo>
-
 	<CancellationAIFRecordInfo>
 		<CancelledAIFNationalCode>111111#005</CancelledAIFNationalCode>
 		<CancelledAIFMNationalCode>111111</CancelledAIFMNationalCode>
@@ -1852,7 +1816,6 @@
 		<CancelledReportingPeriodYear>2014</CancelledReportingPeriodYear>
 		<CancelledRecordFlag>C</CancelledRecordFlag>
 	</CancellationAIFRecordInfo>
-
 	<CancellationAIFRecordInfo>
 		<CancelledAIFNationalCode>222222#001</CancelledAIFNationalCode>
 		<CancelledAIFMNationalCode>222222</CancelledAIFMNationalCode>
