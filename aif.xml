@@ -1401,7 +1401,7 @@
 								<MarketCodeType>MIC</MarketCodeType>
 								<MarketCode>XPAR</MarketCode>
 							</MarketIdentification>
-							<AggregatedValueAmount>120000000</AggregatedValueAmount>
+							<AggregatedValueAmount>1111</AggregatedValueAmount>
 							<AggregatedValueRate>47</AggregatedValueRate>
 						</PortfolioConcentration>
 						<PortfolioConcentration>
@@ -1412,7 +1412,7 @@
 								<MarketCodeType>MIC</MarketCodeType>
 								<MarketCode>ECAG</MarketCode>
 							</MarketIdentification>
-							<AggregatedValueAmount>98000000</AggregatedValueAmount>
+							<AggregatedValueAmount>2222</AggregatedValueAmount>
 							<AggregatedValueRate>38</AggregatedValueRate>
 						</PortfolioConcentration>
 						<PortfolioConcentration>
@@ -1436,7 +1436,7 @@
 							<MarketIdentification>
 								<MarketCodeType>OTC</MarketCodeType>
 							</MarketIdentification>
-							<AggregatedValueAmount>21000000</AggregatedValueAmount>
+							<AggregatedValueAmount>4444</AggregatedValueAmount>
 							<AggregatedValueRate>8</AggregatedValueRate>
 							<CounterpartyIdentification>
 								<EntityName>FOOBAR</EntityName>

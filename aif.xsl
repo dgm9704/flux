@@ -90,7 +90,7 @@
 							<error>
 								<record>
 									<xsl:value-of select="$fund" />
-								</record>                                FI                                																																																																																																																																																																																																																																																																																																																																								
+								</record>                                FI                                																																																																																																																																																																																																																																																																																																																																																																																																
 								<code>CAF-003</code>
 								<message>The reporting period start date is not allowed. </message>
 								<field>ReportingPeriodStartDate</field>
@@ -1583,7 +1583,25 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
-				<!-- skip CAF-072 for now -->
+				<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations">
+					<xsl:for-each select="PortfolioConcentration">
+						<xsl:variable name="rank" select="Ranking" />
+						<xsl:variable name="value" select="AggregatedValueAmount"/>
+						<xsl:if test="$value &lt; ../PortfolioConcentration[Ranking=($rank + 1)]/AggregatedValueAmount">
+							<error>
+								<record>
+									<xsl:value-of select="$fund" />
+								</record>
+								<code>CAF-072</code>
+								<message>The reported value is not consistent with the rank.</message>
+								<field>AggregatedValueAmount</field>
+								<value>
+									<xsl:value-of select="$value" />
+								</value>
+							</error>
+						</xsl:if>
+					</xsl:for-each>
+				</xsl:for-each>
 				<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
 					<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(AggregatedValueRate)">
 						<error>
