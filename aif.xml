@@ -1578,7 +1578,7 @@
 							</TradedDerivatives>
 							<ClearedDerivativesRate>
 								<CCPRate>100</CCPRate>
-								<BilateralClearingRate>0</BilateralClearingRate>
+								<BilateralClearingRate>10</BilateralClearingRate>
 							</ClearedDerivativesRate>
 							<ClearedReposRate>
 								<CCPRate>25</CCPRate>

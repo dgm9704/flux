@@ -2128,6 +2128,66 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/TradingClearingMechanism/TradedSecurities">
+					<xsl:if test="RegulatedMarketRate + OTCRate != 100">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-109</code>
+							<message>The sum of the percentages should be equal to 100%.</message>
+							<field>TradedSecurities</field>
+							<value>
+								<xsl:value-of select="TradedSecurities" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/TradingClearingMechanism/TradedDerivatives">
+					<xsl:if test="RegulatedMarketRate + OTCRate != 100">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-111</code>
+							<message>The sum of the percentages should be equal to 100%.</message>
+							<field>TradedDerivatives</field>
+							<value>
+								<xsl:value-of select="TradedDerivatives" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/TradingClearingMechanism/ClearedDerivativesRate">
+					<xsl:if test="CCPRate + BilateralClearingRate != 100">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>WAF-001</code>
+							<message>The sum of the percentages should be equal to 100%.</message>
+							<field>ClearedDerivativesRate</field>
+							<value>
+								<xsl:value-of select="ClearedDerivativesRate" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/TradingClearingMechanism/ClearedReposRate">
+					<xsl:if test="CCPRate + BilateralClearingRate + TriPartyRepoClearingRate != 100">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>WAF-002</code>
+							<message>The sum of the percentages should be equal to 100%.</message>
+							<field>ClearedReposRate</field>
+							<value>
+								<xsl:value-of select="ClearedReposRate" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
 	</xsl:template>
