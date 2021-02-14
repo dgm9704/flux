@@ -90,7 +90,7 @@
 							<error>
 								<record>
 									<xsl:value-of select="$fund" />
-								</record>                                FI                                																																																																																																																																																																																																																																																																																																
+								</record>                                FI                                																																																																																																																																																																																																																																																																																																																																								
 								<code>CAF-003</code>
 								<message>The reporting period start date is not allowed. </message>
 								<field>ReportingPeriodStartDate</field>
@@ -1321,7 +1321,6 @@
 					</xsl:if>
 				</xsl:for-each>
 				<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded">
-					<!-- <xsl:variable name="ranks" select="MainInstrumentTraded/Ranking" /><xsl:choose><xsl:when test="$ranks and not($ranks[.='1'] and $ranks[.='2'] and $ranks[.='3'] and $ranks[.='4'] and $ranks[.='5'])"><error><record><xsl:value-of select="$fund" /></record><code>CAF-055</code><message>The reported value is not consistent with the rank.</message><field>Ranking</field><value></value></error></xsl:when><xsl:otherwise> -->
 					<xsl:for-each select="MainInstrumentTraded">
 						<xsl:variable name="rank" select="Ranking" />
 						<xsl:variable name="value" select="PositionValue"/>
@@ -1339,7 +1338,6 @@
 							</error>
 						</xsl:if>
 					</xsl:for-each>
-					<!-- </xsl:otherwise></xsl:choose> -->
 				</xsl:for-each>
 				<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
 					<xsl:if test="not(PositionType = 'S') and boolean(ShortPositionHedgingRate)">
@@ -1429,7 +1427,25 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
-				<!-- skip CAF-062 for now -->
+				<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures">
+					<xsl:for-each select="PrincipalExposure">
+						<xsl:variable name="rank" select="Ranking" />
+						<xsl:variable name="value" select="AggregatedValueAmount"/>
+						<xsl:if test="$value &lt; ../PrincipalExposure[Ranking=($rank + 1)]/AggregatedValueAmount">
+							<error>
+								<record>
+									<xsl:value-of select="$fund" />
+								</record>
+								<code>CAF-062</code>
+								<message>The reported value is not consistent with the rank.</message>
+								<field>AggregatedValueAmount</field>
+								<value>
+									<xsl:value-of select="$value" />
+								</value>
+							</error>
+						</xsl:if>
+					</xsl:for-each>
+				</xsl:for-each>
 				<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
 					<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(AggregatedValueRate)">
 						<error>

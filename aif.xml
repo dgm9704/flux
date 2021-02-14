@@ -1311,7 +1311,7 @@
 						<AssetMacroType>SEC</AssetMacroType>
 						<SubAssetType>SEC_CSH_CODP</SubAssetType>
 						<PositionType>L</PositionType>
-						<AggregatedValueAmount>120000000</AggregatedValueAmount>
+						<AggregatedValueAmount>111</AggregatedValueAmount>
 						<AggregatedValueRate>47</AggregatedValueRate>
 					</PrincipalExposure>
 					<PrincipalExposure>
@@ -1319,7 +1319,7 @@
 						<AssetMacroType>DER</AssetMacroType>
 						<SubAssetType>DER_CDS_EXOT</SubAssetType>
 						<PositionType>L</PositionType>
-						<AggregatedValueAmount>100000000</AggregatedValueAmount>
+						<AggregatedValueAmount>222</AggregatedValueAmount>
 						<AggregatedValueRate>39</AggregatedValueRate>
 					</PrincipalExposure>
 					<PrincipalExposure>
@@ -1327,7 +1327,7 @@
 						<AssetMacroType>DER</AssetMacroType>
 						<SubAssetType>DER_FEX_HEDG</SubAssetType>
 						<PositionType>S</PositionType>
-						<AggregatedValueAmount>85000000</AggregatedValueAmount>
+						<AggregatedValueAmount>333</AggregatedValueAmount>
 						<AggregatedValueRate>33</AggregatedValueRate>
 					</PrincipalExposure>
 					<PrincipalExposure>
@@ -1335,7 +1335,7 @@
 						<AssetMacroType>CIU</AssetMacroType>
 						<SubAssetType>CIU_NAM_AETF</SubAssetType>
 						<PositionType>L</PositionType>
-						<AggregatedValueAmount>84500000</AggregatedValueAmount>
+						<AggregatedValueAmount>444</AggregatedValueAmount>
 						<AggregatedValueRate>13</AggregatedValueRate>
 					</PrincipalExposure>
 					<PrincipalExposure>
@@ -1343,7 +1343,7 @@
 						<AssetMacroType>DER</AssetMacroType>
 						<SubAssetType>DER_EQD_FINI</SubAssetType>
 						<PositionType>S</PositionType>
-						<AggregatedValueAmount>60000000</AggregatedValueAmount>
+						<AggregatedValueAmount>555</AggregatedValueAmount>
 						<AggregatedValueRate>10</AggregatedValueRate>
 						<CounterpartyIdentification>
 							<EntityName>TEST ENTITY</EntityName>
@@ -1355,7 +1355,7 @@
 						<AssetMacroType>SEC</AssetMacroType>
 						<SubAssetType>SEC_CSH_COMP</SubAssetType>
 						<PositionType>S</PositionType>
-						<AggregatedValueAmount>45000000</AggregatedValueAmount>
+						<AggregatedValueAmount>666</AggregatedValueAmount>
 						<AggregatedValueRate>2</AggregatedValueRate>
 					</PrincipalExposure>
 					<PrincipalExposure>
@@ -1363,7 +1363,7 @@
 						<AssetMacroType>DER</AssetMacroType>
 						<SubAssetType>DER_EQD_FINI</SubAssetType>
 						<PositionType>L</PositionType>
-						<AggregatedValueAmount>32000000</AggregatedValueAmount>
+						<AggregatedValueAmount>777</AggregatedValueAmount>
 						<AggregatedValueRate>3</AggregatedValueRate>
 					</PrincipalExposure>
 					<PrincipalExposure>
@@ -1371,7 +1371,7 @@
 						<AssetMacroType>SEC</AssetMacroType>
 						<SubAssetType>SEC_MBN_MNPL</SubAssetType>
 						<PositionType>L</PositionType>
-						<AggregatedValueAmount>24500000</AggregatedValueAmount>
+						<AggregatedValueAmount>888</AggregatedValueAmount>
 						<AggregatedValueRate>13</AggregatedValueRate>
 					</PrincipalExposure>
 					<PrincipalExposure>
@@ -1379,7 +1379,7 @@
 						<AssetMacroType>DER</AssetMacroType>
 						<SubAssetType>DER_EQD_FINI</SubAssetType>
 						<PositionType>L</PositionType>
-						<AggregatedValueAmount>14500000</AggregatedValueAmount>
+						<AggregatedValueAmount>999</AggregatedValueAmount>
 						<AggregatedValueRate>24</AggregatedValueRate>
 						<CounterpartyIdentification>
 							<EntityName>TEST ENTITY</EntityName>
