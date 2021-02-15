@@ -2188,6 +2188,48 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/FundToCounterpartyExposures/FundToCounterpartyExposure">
+					<xsl:if test="boolean(CounterpartyExposureFlag='true') != boolean(CounterpartyIdentification/EntityName)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-113</code>
+							<message>The counterparty name is not consistent with the counterparty exposure flag.</message>
+							<field>EntityName</field>
+							<value>
+								<xsl:value-of select="CounterpartyIdentification/EntityName" />
+							</value>
+						</error>
+					</xsl:if>
+					<xsl:variable name="cplei" select="CounterpartyIdentification/EntityIdentificationLEI" />
+					<xsl:if test="$cplei and not($leiregister[. = $cplei])">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-114</code>
+							<message>The check digits of the LEI code are not correct.</message>
+							<field>EntityIdentificationLEI</field>
+							<value>
+								<xsl:value-of select="$lei" />
+							</value>
+						</error>
+					</xsl:if>
+					<xsl:if test="boolean(CounterpartyExposureFlag='false') and boolean(CounterpartyIdentification/EntityIdentificationLEI)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-115</code>
+							<message>The LEI code is not consistent with the counterparty exposure flag.</message>
+							<field>EntityIdentificationLEI</field>
+							<value>
+								<xsl:value-of select="CounterpartyIdentification/EntityIdentificationLEI" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
 	</xsl:template>

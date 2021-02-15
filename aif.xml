@@ -849,11 +849,11 @@
 						<FundToCounterpartyExposures>
 							<FundToCounterpartyExposure>
 								<Ranking>1</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 4</EntityName>
 									<EntityIdentificationBIC>TESTUS3NXXX</EntityIdentificationBIC>
-									<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
+									<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z49</EntityIdentificationLEI>
 								</CounterpartyIdentification>
 								<CounterpartyTotalExposureRate>25</CounterpartyTotalExposureRate>
 							</FundToCounterpartyExposure>
