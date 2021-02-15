@@ -2229,6 +2229,19 @@
 							</value>
 						</error>
 					</xsl:if>
+					<xsl:if test="boolean(CounterpartyExposureFlag='false') and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-116</code>
+							<message>The BIC code is not consistent with the counterparty exposure flag.</message>
+							<field>EntityIdentificationBIC</field>
+							<value>
+								<xsl:value-of select="CounterpartyIdentification/EntityIdentificationBIC" />
+							</value>
+						</error>
+					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
