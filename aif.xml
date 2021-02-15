@@ -950,8 +950,8 @@
 						<InvestorLiquidityProfile>
 							<InvestorLiquidityInDays0to1Rate>20</InvestorLiquidityInDays0to1Rate>
 							<InvestorLiquidityInDays2to7Rate>30</InvestorLiquidityInDays2to7Rate>
-							<InvestorLiquidityInDays8to30Rate>10</InvestorLiquidityInDays8to30Rate>
-							<InvestorLiquidityInDays31to90Rate>0</InvestorLiquidityInDays31to90Rate>
+							<InvestorLiquidityInDays8to30Rate>20</InvestorLiquidityInDays8to30Rate>
+							<InvestorLiquidityInDays31to90Rate>20</InvestorLiquidityInDays31to90Rate>
 							<InvestorLiquidityInDays91to180Rate>20</InvestorLiquidityInDays91to180Rate>
 							<InvestorLiquidityInDays181to365Rate>30</InvestorLiquidityInDays181to365Rate>
 							<InvestorLiquidityInDays365MoreRate>0</InvestorLiquidityInDays365MoreRate>

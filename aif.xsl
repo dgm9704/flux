@@ -2399,8 +2399,8 @@
 					</xsl:if>
 				</xsl:for-each>
 				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/LiquidityRiskProfile/PortfolioLiquidityProfile">
-					<xsl:variable name="liquiditysum" select="PortfolioLiquidityInDays0to1Rate + PortfolioLiquidityInDays2to7Rate + PortfolioLiquidityInDays8to30Rate + PortfolioLiquidityInDays31to90Rate + PortfolioLiquidityInDays91to180Rate + PortfolioLiquidityInDays181to365Rate + PortfolioLiquidityInDays365MoreRate" />
-					<xsl:if test="$liquiditysum != 100">
+					<xsl:variable name="portfoliosum" select="PortfolioLiquidityInDays0to1Rate + PortfolioLiquidityInDays2to7Rate + PortfolioLiquidityInDays8to30Rate + PortfolioLiquidityInDays31to90Rate + PortfolioLiquidityInDays91to180Rate + PortfolioLiquidityInDays181to365Rate + PortfolioLiquidityInDays365MoreRate" />
+					<xsl:if test="$portfoliosum != 100">
 						<error>
 							<record>
 								<xsl:value-of select="$fund" />
@@ -2408,6 +2408,22 @@
 							<code>CAF-128</code>
 							<message>The sum of the percentages should be equal to 100%.</message>
 							<field>PortfolioLiquidityProfile</field>
+							<value>
+								<xsl:value-of select="$portfoliosum" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/LiquidityRiskProfile/InvestorLiquidityProfile">
+					<xsl:variable name="liquiditysum" select="InvestorLiquidityInDays0to1Rate + InvestorLiquidityInDays2to7Rate + InvestorLiquidityInDays8to30Rate + InvestorLiquidityInDays31to90Rate + InvestorLiquidityInDays91to180Rate + InvestorLiquidityInDays181to365Rate + InvestorLiquidityInDays365MoreRate" />
+					<xsl:if test="$liquiditysum != 100">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-129</code>
+							<message>The sum of the percentages should be equal to 100%.</message>
+							<field>InvestorLiquidityProfile</field>
 							<value>
 								<xsl:value-of select="$liquiditysum" />
 							</value>
