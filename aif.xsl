@@ -2787,6 +2787,19 @@
 							</value>
 						</error>
 					</xsl:if>
+					<xsl:if test="boolean(BorrowingSourceFlag = 'true') != LeverageAmount">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-145</code>
+							<message>The leverage amount is not consistent with the borrowing source flag.</message>
+							<field>LeverageAmount</field>
+							<value>
+								<xsl:value-of select="LeverageAmount" />
+							</value>
+						</error>
+					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
