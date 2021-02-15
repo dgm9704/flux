@@ -379,7 +379,7 @@
 							<EntityIdentificationBIC>VALIDBICXXX</EntityIdentificationBIC>
 							<EntityIdentificationLEI>ZMHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
 						</SourceIdentification>
-						<LeverageAmount>4300000</LeverageAmount>
+						<LeverageAmount>111111</LeverageAmount>
 					</BorrowingSource>
 					<BorrowingSource>
 						<Ranking>2</Ranking>
@@ -388,7 +388,7 @@
 							<EntityName>Company B</EntityName>
 							<EntityIdentificationLEI>ZMHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
 						</SourceIdentification>
-						<LeverageAmount>3300000</LeverageAmount>
+						<LeverageAmount>222222</LeverageAmount>
 					</BorrowingSource>
 					<BorrowingSource>
 						<Ranking>3</Ranking>
@@ -397,7 +397,7 @@
 							<EntityName>Company C</EntityName>
 							<EntityIdentificationLEI>549300W2Q8V34SY8MT83</EntityIdentificationLEI>
 						</SourceIdentification>
-						<LeverageAmount>1230000</LeverageAmount>
+						<LeverageAmount>333333</LeverageAmount>
 					</BorrowingSource>
 					<BorrowingSource>
 						<Ranking>4</Ranking>
@@ -406,7 +406,7 @@
 							<EntityName>Company D</EntityName>
 							<EntityIdentificationLEI>VTOUP9FCHUXIINML4787</EntityIdentificationLEI>
 						</SourceIdentification>
-						<LeverageAmount>850000</LeverageAmount>
+						<LeverageAmount>444444</LeverageAmount>
 					</BorrowingSource>
 					<BorrowingSource>
 						<Ranking>5</Ranking>

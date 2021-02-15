@@ -2800,6 +2800,21 @@
 							</value>
 						</error>
 					</xsl:if>
+					<xsl:variable name="rank" select="Ranking" />
+					<xsl:variable name="value" select="LeverageAmount"/>
+					<xsl:if test="$value &lt; ../BorrowingSource[Ranking=($rank + 1)]/LeverageAmount">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-146</code>
+							<message>The reported value is not consistent with the rank.</message>
+							<field>LeverageAmount</field>
+							<value>
+								<xsl:value-of select="$value" />
+							</value>
+						</error>
+					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
