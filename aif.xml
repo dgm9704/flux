@@ -347,7 +347,7 @@
 						<ControlledStructure>
 							<ControlledStructureIdentification>
 								<EntityName>Company X</EntityName>
-								<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
+								<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z58</EntityIdentificationLEI>
 							</ControlledStructureIdentification>
 							<ControlledStructureExposureValue>11000000</ControlledStructureExposureValue>
 						</ControlledStructure>
@@ -1085,7 +1085,7 @@
 			</AIFIndividualInfo>
 			<AIFLeverageInfo>
 				<AIFLeverageArticle24-2>
-					<AllCounterpartyCollateralRehypothecationFlag>true</AllCounterpartyCollateralRehypothecationFlag>
+					<AllCounterpartyCollateralRehypothecationFlag>false</AllCounterpartyCollateralRehypothecationFlag>
 					<AllCounterpartyCollateralRehypothecatedRate>12.34</AllCounterpartyCollateralRehypothecatedRate>
 					<SecuritiesCashBorrowing>
 						<UnsecuredBorrowingAmount>1000</UnsecuredBorrowingAmount>

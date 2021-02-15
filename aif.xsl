@@ -2702,6 +2702,37 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2">
+					<xsl:if test="AllCounterpartyCollateralRehypothecationFlag = 'false' and AllCounterpartyCollateralRehypothecatedRate">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-139</code>
+							<message>The field is forbidden for rehypothecation flag false and optional otherwise.</message>
+							<field>AllCounterpartyCollateralRehypothecatedRate</field>
+							<value>
+								<xsl:value-of select="AllCounterpartyCollateralRehypothecatedRate" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2/ControlledStructures/ControlledStructure/ControlledStructureIdentification/EntityIdentificationLEI">
+					<xsl:variable name="cslei" select="." />
+					<xsl:if test="$cslei and not($leiregister[. = $cslei])">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-140</code>
+							<message>The check digits of the LEI code are not correct.</message>
+							<field>EntityIdentificationLEI</field>
+							<value>
+								<xsl:value-of select="$cslei" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
 	</xsl:template>
