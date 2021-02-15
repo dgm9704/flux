@@ -2354,7 +2354,8 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
-				<xsl:if test="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/ClearTransactionsThroughCCPFlag = 'true' and not(AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure[Ranking = 1])">
+				<xsl:variable name="directclearing" select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/ClearTransactionsThroughCCPFlag" />
+				<xsl:if test="$directclearing = 'true' and not(AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure[Ranking = 1])">
 					<error>
 						<record>
 							<xsl:value-of select="$fund" />
@@ -2367,6 +2368,21 @@
 						</value>
 					</error>
 				</xsl:if>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure">
+					<xsl:if test="$directclearing = 'false' and boolean(CCPIdentification/EntityIdentificationLEI)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-126</code>
+							<message>The LEI code is not consistent with the counterparty exposure flag.</message>
+							<field>EntityIdentificationLEI</field>
+							<value>
+								<xsl:value-of select="CCPIdentification/EntityIdentificationLEI" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
 	</xsl:template>

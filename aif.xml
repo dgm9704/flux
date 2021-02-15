@@ -916,7 +916,7 @@
 								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 							</CounterpartyToFundExposure>
 						</CounterpartyToFundExposures>
-						<ClearTransactionsThroughCCPFlag>true</ClearTransactionsThroughCCPFlag>
+						<ClearTransactionsThroughCCPFlag>false</ClearTransactionsThroughCCPFlag>
 						<CCPExposures>
 							<CCPExposure>
 								<Ranking>2</Ranking>
