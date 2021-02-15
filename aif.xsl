@@ -2242,6 +2242,19 @@
 							</value>
 						</error>
 					</xsl:if>
+					<xsl:if test="boolean(CounterpartyExposureFlag='true') != boolean(CounterpartyTotalExposureRate)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-117</code>
+							<message>The NAV percentage is not consistent with the counterparty exposure flag.</message>
+							<field>CounterpartyTotalExposureRate</field>
+							<value>
+								<xsl:value-of select="CounterpartyTotalExposureRate" />
+							</value>
+						</error>
+					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
