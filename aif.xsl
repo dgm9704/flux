@@ -2271,6 +2271,89 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CounterpartyToFundExposures/CounterpartyToFundExposure">
+					<xsl:if test="boolean(CounterpartyExposureFlag='true') != boolean(CounterpartyIdentification/EntityName)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-119</code>
+							<message>The counterparty name is not consistent with the counterparty exposure flag.</message>
+							<field>EntityName</field>
+							<value>
+								<xsl:value-of select="CounterpartyIdentification/EntityName" />
+							</value>
+						</error>
+					</xsl:if>
+					<xsl:variable name="cplei" select="CounterpartyIdentification/EntityIdentificationLEI" />
+					<xsl:if test="$cplei and not($leiregister[. = $cplei])">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-120</code>
+							<message>The check digits of the LEI code are not correct.</message>
+							<field>EntityIdentificationLEI</field>
+							<value>
+								<xsl:value-of select="$lei" />
+							</value>
+						</error>
+					</xsl:if>
+					<xsl:if test="boolean(CounterpartyExposureFlag='false') and boolean(CounterpartyIdentification/EntityIdentificationLEI)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-121</code>
+							<message>The LEI code is not consistent with the counterparty exposure flag.</message>
+							<field>EntityIdentificationLEI</field>
+							<value>
+								<xsl:value-of select="CounterpartyIdentification/EntityIdentificationLEI" />
+							</value>
+						</error>
+					</xsl:if>
+					<xsl:if test="boolean(CounterpartyExposureFlag='false') and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-122</code>
+							<message>The BIC code is not consistent with the counterparty exposure flag.</message>
+							<field>EntityIdentificationBIC</field>
+							<value>
+								<xsl:value-of select="CounterpartyIdentification/EntityIdentificationBIC" />
+							</value>
+						</error>
+					</xsl:if>
+					<xsl:if test="boolean(CounterpartyExposureFlag='true') != boolean(CounterpartyTotalExposureRate)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-123</code>
+							<message>The NAV percentage is not consistent with the counterparty exposure flag.</message>
+							<field>CounterpartyTotalExposureRate</field>
+							<value>
+								<xsl:value-of select="CounterpartyTotalExposureRate" />
+							</value>
+						</error>
+					</xsl:if>
+					<xsl:variable name="rank" select="Ranking" />
+					<xsl:variable name="value" select="CounterpartyTotalExposureRate"/>
+					<xsl:if test="$value &lt; ../CounterpartyToFundExposure[Ranking=($rank + 1)]/CounterpartyTotalExposureRate">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-124</code>
+							<message>The reported value is not consistent with the rank.</message>
+							<field>AggregatedValueAmount</field>
+							<value>
+								<xsl:value-of select="$value" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
 	</xsl:template>

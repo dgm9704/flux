@@ -887,21 +887,21 @@
 						<CounterpartyToFundExposures>
 							<CounterpartyToFundExposure>
 								<Ranking>1</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 7</EntityName>
-									<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
+									<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z49</EntityIdentificationLEI>
 								</CounterpartyIdentification>
-								<CounterpartyTotalExposureRate>25</CounterpartyTotalExposureRate>
+								<CounterpartyTotalExposureRate>11</CounterpartyTotalExposureRate>
 							</CounterpartyToFundExposure>
 							<CounterpartyToFundExposure>
 								<Ranking>2</Ranking>
-								<CounterpartyExposureFlag>true</CounterpartyExposureFlag>
+								<CounterpartyExposureFlag>false</CounterpartyExposureFlag>
 								<CounterpartyIdentification>
 									<EntityName>Entity 8 Clearnet SA</EntityName>
-									<EntityIdentificationBIC>TESTFRPPXXX</EntityIdentificationBIC>
+									<EntityIdentificationBIC>TESTFRPPXXY</EntityIdentificationBIC>
 								</CounterpartyIdentification>
-								<CounterpartyTotalExposureRate>1</CounterpartyTotalExposureRate>
+								<CounterpartyTotalExposureRate>22</CounterpartyTotalExposureRate>
 							</CounterpartyToFundExposure>
 							<CounterpartyToFundExposure>
 								<Ranking>3</Ranking>
