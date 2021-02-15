@@ -2761,6 +2761,19 @@
 							</value>
 						</error>
 					</xsl:if>
+					<xsl:if test="boolean(BorrowingSourceFlag = 'false') and $bslei">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-143</code>
+							<message>The LEI code is not consistent with the borrowing source flag.</message>
+							<field>EntityIdentificationLEI</field>
+							<value>
+								<xsl:value-of select="$bslei" />
+							</value>
+						</error>
+					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
 		</aif>

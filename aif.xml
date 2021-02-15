@@ -377,6 +377,7 @@
 						<SourceIdentification>
 							<EntityName>Company A</EntityName>
 							<EntityIdentificationBIC>VALIDBICXXX</EntityIdentificationBIC>
+							<EntityIdentificationLEI>ZMHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
 						</SourceIdentification>
 						<LeverageAmount>4300000</LeverageAmount>
 					</BorrowingSource>
