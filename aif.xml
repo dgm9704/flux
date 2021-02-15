@@ -385,7 +385,7 @@
 						<BorrowingSourceFlag>true</BorrowingSourceFlag>
 						<SourceIdentification>
 							<EntityName>Company B</EntityName>
-							<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
+							<EntityIdentificationLEI>ZMHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
 						</SourceIdentification>
 						<LeverageAmount>3300000</LeverageAmount>
 					</BorrowingSource>

@@ -2733,6 +2733,22 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4/BorrowingSource">
+					<xsl:variable name="bslei" select="SourceIdentification/EntityIdentificationLEI" />
+					<xsl:if test="$bslei and not($leiregister[. = $bslei])">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-142</code>
+							<message>The check digits of the LEI code are not correct.</message>
+							<field>EntityIdentificationLEI</field>
+							<value>
+								<xsl:value-of select="$bslei" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
 	</xsl:template>
