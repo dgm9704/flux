@@ -1015,7 +1015,9 @@
 								<RateJuly>0.3</RateJuly>
 								<RateAugust>0.3</RateAugust>
 								<RateSeptember>0.3</RateSeptember>
-								<!-- <RateOctober>0.3</RateOctober><RateNovember>0.3</RateNovember><RateDecember>0.3</RateDecember> -->
+								<RateOctober>0.3</RateOctober>
+								<RateNovember>0.3</RateNovember>
+								<RateDecember>0.3</RateDecember>
 							</GrossInvestmentReturnsRate>
 							<NetInvestmentReturnsRate>
 								<RateJanuary>0.3</RateJanuary>
