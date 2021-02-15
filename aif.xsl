@@ -2616,6 +2616,92 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/Subscription">
+					<xsl:variable name="error">
+						<xsl:choose>
+							<xsl:when test="$periodtype = 'Q1'">
+								<xsl:if test="QuantityApril or QuantityMay or QuantityJune or QuantityJuly or QuantityAugust or QuantitySeptember or QuantityOctober or QuantityNovember or QuantityDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'Q2'">
+								<xsl:if test="QuantityJanuary or QuantityFebruary or QuantityMarch or QuantityJuly or QuantityAugust or QuantitySeptember or QuantityOctober or QuantityNovember or QuantityDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'Q3'">
+								<xsl:if test="QuantityJanuary or QuantityFebruary or QuantityMarch or QuantityApril or QuantityMay or QuantityJune or QuantityOctober or QuantityNovember or QuantityDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'Q4'">
+								<xsl:if test="QuantityJanuary or QuantityFebruary or QuantityMarch or QuantityApril or QuantityMay or QuantityJune or QuantityJuly or QuantityAugust or QuantitySeptember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'H1'">
+								<xsl:if test="QuantityJuly or QuantityAugust or QuantitySeptember or QuantityOctober or QuantityNovember or QuantityDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'H2'">
+								<xsl:if test="QuantityJanuary or QuantityFebruary or QuantityMarch or QuantityApril or QuantityMay or QuantityJune">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'X1'">
+								<xsl:if test="QuantityOctober or QuantityNovember or QuantityDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'X2'">
+								<xsl:if test="QuantityJanuary or QuantityFebruary or QuantityMarch">true</xsl:if>
+							</xsl:when>
+						</xsl:choose>
+					</xsl:variable>
+					<xsl:if test="$error = 'true'">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-137</code>
+							<message>The month rate is not consistent with the reporting period.</message>
+							<field>Subscription</field>
+							<value>
+								<xsl:value-of select="Subscription" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/Redemption">
+					<xsl:variable name="error">
+						<xsl:choose>
+							<xsl:when test="$periodtype = 'Q1'">
+								<xsl:if test="QuantityApril or QuantityMay or QuantityJune or QuantityJuly or QuantityAugust or QuantitySeptember or QuantityOctober or QuantityNovember or QuantityDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'Q2'">
+								<xsl:if test="QuantityJanuary or QuantityFebruary or QuantityMarch or QuantityJuly or QuantityAugust or QuantitySeptember or QuantityOctober or QuantityNovember or QuantityDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'Q3'">
+								<xsl:if test="QuantityJanuary or QuantityFebruary or QuantityMarch or QuantityApril or QuantityMay or QuantityJune or QuantityOctober or QuantityNovember or QuantityDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'Q4'">
+								<xsl:if test="QuantityJanuary or QuantityFebruary or QuantityMarch or QuantityApril or QuantityMay or QuantityJune or QuantityJuly or QuantityAugust or QuantitySeptember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'H1'">
+								<xsl:if test="QuantityJuly or QuantityAugust or QuantitySeptember or QuantityOctober or QuantityNovember or QuantityDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'H2'">
+								<xsl:if test="QuantityJanuary or QuantityFebruary or QuantityMarch or QuantityApril or QuantityMay or QuantityJune">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'X1'">
+								<xsl:if test="QuantityOctober or QuantityNovember or QuantityDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'X2'">
+								<xsl:if test="QuantityJanuary or QuantityFebruary or QuantityMarch">true</xsl:if>
+							</xsl:when>
+						</xsl:choose>
+					</xsl:variable>
+					<xsl:if test="$error = 'true'">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-138</code>
+							<message>The month rate is not consistent with the reporting period.</message>
+							<field>Redemption</field>
+							<value>
+								<xsl:value-of select="Redemption" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
 	</xsl:template>
