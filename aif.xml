@@ -941,7 +941,7 @@
 							<PortfolioLiquidityInDays0to1Rate>20</PortfolioLiquidityInDays0to1Rate>
 							<PortfolioLiquidityInDays2to7Rate>30</PortfolioLiquidityInDays2to7Rate>
 							<PortfolioLiquidityInDays8to30Rate>0</PortfolioLiquidityInDays8to30Rate>
-							<PortfolioLiquidityInDays31to90Rate>0</PortfolioLiquidityInDays31to90Rate>
+							<PortfolioLiquidityInDays31to90Rate>10</PortfolioLiquidityInDays31to90Rate>
 							<PortfolioLiquidityInDays91to180Rate>20</PortfolioLiquidityInDays91to180Rate>
 							<PortfolioLiquidityInDays181to365Rate>30</PortfolioLiquidityInDays181to365Rate>
 							<PortfolioLiquidityInDays365MoreRate>0</PortfolioLiquidityInDays365MoreRate>

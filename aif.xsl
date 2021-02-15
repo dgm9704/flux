@@ -2398,6 +2398,22 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/LiquidityRiskProfile/PortfolioLiquidityProfile">
+					<xsl:variable name="liquiditysum" select="PortfolioLiquidityInDays0to1Rate + PortfolioLiquidityInDays2to7Rate + PortfolioLiquidityInDays8to30Rate + PortfolioLiquidityInDays31to90Rate + PortfolioLiquidityInDays91to180Rate + PortfolioLiquidityInDays181to365Rate + PortfolioLiquidityInDays365MoreRate" />
+					<xsl:if test="$liquiditysum != 100">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-128</code>
+							<message>The sum of the percentages should be equal to 100%.</message>
+							<field>PortfolioLiquidityProfile</field>
+							<value>
+								<xsl:value-of select="$liquiditysum" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
 	</xsl:template>
