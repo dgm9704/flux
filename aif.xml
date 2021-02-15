@@ -993,7 +993,7 @@
 						</InvestorGroups>
 						<FinancingLiquidityProfile>
 							<TotalFinancingAmount>12345</TotalFinancingAmount>
-							<TotalFinancingInDays0to1Rate>0</TotalFinancingInDays0to1Rate>
+							<TotalFinancingInDays0to1Rate>10</TotalFinancingInDays0to1Rate>
 							<TotalFinancingInDays2to7Rate>0</TotalFinancingInDays2to7Rate>
 							<TotalFinancingInDays8to30Rate>30</TotalFinancingInDays8to30Rate>
 							<TotalFinancingInDays31to90Rate>40</TotalFinancingInDays31to90Rate>
