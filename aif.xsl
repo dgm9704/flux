@@ -2444,6 +2444,19 @@
 							</value>
 						</error>
 					</xsl:if>
+					<xsl:if test="ProvideWithdrawalRightsFlag = 'false' and boolean(InvestorRedemptionNoticePeriod)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-131</code>
+							<message>The investor redemption notice period is not consistent with the withdrawal redemption rights flag.</message>
+							<field>InvestorRedemptionNoticePeriod</field>
+							<value>
+								<xsl:value-of select="InvestorRedemptionNoticePeriod" />
+							</value>
+						</error>
+					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
