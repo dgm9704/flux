@@ -957,7 +957,7 @@
 							<InvestorLiquidityInDays365MoreRate>0</InvestorLiquidityInDays365MoreRate>
 						</InvestorLiquidityProfile>
 						<InvestorRedemption>
-							<ProvideWithdrawalRightsFlag>true</ProvideWithdrawalRightsFlag>
+							<ProvideWithdrawalRightsFlag>false</ProvideWithdrawalRightsFlag>
 							<InvestorRedemptionFrequency>D</InvestorRedemptionFrequency>
 							<InvestorRedemptionNoticePeriod>4</InvestorRedemptionNoticePeriod>
 							<InvestorRedemptionLockUpPeriod>6</InvestorRedemptionLockUpPeriod>

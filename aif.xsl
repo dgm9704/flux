@@ -2430,6 +2430,21 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/LiquidityRiskProfile/InvestorRedemption">
+					<xsl:if test="ProvideWithdrawalRightsFlag = 'false' and boolean(InvestorRedemptionFrequency)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-130</code>
+							<message>The investor redemption frequency is not consistent with the withdrawal redemption rights flag.</message>
+							<field>InvestorRedemptionFrequency</field>
+							<value>
+								<xsl:value-of select="InvestorRedemptionFrequency" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
 	</xsl:template>
