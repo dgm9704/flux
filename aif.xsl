@@ -2735,6 +2735,19 @@
 				</xsl:for-each>
 				<xsl:for-each select="AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4/BorrowingSource">
 					<xsl:variable name="bslei" select="SourceIdentification/EntityIdentificationLEI" />
+					<xsl:if test="boolean(BorrowingSourceFlag = 'true') != boolean(SourceIdentification/EntityName)">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-141</code>
+							<message>Within each ranking, Mandatory for Borrowing source flag equal to "true" Else Forbidden</message>
+							<field>EntityName</field>
+							<value>
+								<xsl:value-of select="SourceIdentification/EntityName" />
+							</value>
+						</error>
+					</xsl:if>
 					<xsl:if test="$bslei and not($leiregister[. = $bslei])">
 						<error>
 							<record>

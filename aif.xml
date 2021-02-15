@@ -373,7 +373,7 @@
 				<AIFLeverageArticle24-4>
 					<BorrowingSource>
 						<Ranking>1</Ranking>
-						<BorrowingSourceFlag>true</BorrowingSourceFlag>
+						<BorrowingSourceFlag>false</BorrowingSourceFlag>
 						<SourceIdentification>
 							<EntityName>Company A</EntityName>
 							<EntityIdentificationBIC>VALIDBICXXX</EntityIdentificationBIC>
