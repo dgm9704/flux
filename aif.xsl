@@ -2354,6 +2354,19 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
+				<xsl:if test="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/ClearTransactionsThroughCCPFlag = 'true' and not(AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure[Ranking = 1])">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-125</code>
+						<message>Data should be reported for ranking 1 when there is direct clearing.</message>
+						<field>ClearTransactionsThroughCCPFlag</field>
+						<value>
+							<xsl:value-of select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/ClearTransactionsThroughCCPFlag" />
+						</value>
+					</error>
+				</xsl:if>
 			</xsl:for-each>
 		</aif>
 	</xsl:template>

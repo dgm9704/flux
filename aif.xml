@@ -919,7 +919,7 @@
 						<ClearTransactionsThroughCCPFlag>true</ClearTransactionsThroughCCPFlag>
 						<CCPExposures>
 							<CCPExposure>
-								<Ranking>1</Ranking>
+								<Ranking>2</Ranking>
 								<CCPIdentification>
 									<EntityName>Entity 9</EntityName>
 									<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
@@ -927,7 +927,7 @@
 								<CCPExposureValue>4500000</CCPExposureValue>
 							</CCPExposure>
 							<CCPExposure>
-								<Ranking>2</Ranking>
+								<Ranking>3</Ranking>
 								<CCPIdentification>
 									<EntityName>TEST</EntityName>
 									<EntityIdentificationBIC>TESTNL22XXX</EntityIdentificationBIC>
