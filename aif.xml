@@ -420,9 +420,9 @@
 		<AIFContentType>4</AIFContentType>
 		<ReportingPeriodStartDate>2014-01-01</ReportingPeriodStartDate>
 		<ReportingPeriodEndDate>2014-12-31</ReportingPeriodEndDate>
-		<ReportingPeriodType>Y1</ReportingPeriodType>
+		<ReportingPeriodType>X1</ReportingPeriodType>
 		<ReportingPeriodYear>2014</ReportingPeriodYear>
-		<AIFReportingObligationChangeQuarter>Q4</AIFReportingObligationChangeQuarter>
+		<AIFReportingObligationChangeQuarter>Q1</AIFReportingObligationChangeQuarter>
 		<LastReportingFlag>false</LastReportingFlag>
 		<AIFMNationalCode>111111</AIFMNationalCode>
 		<AIFNationalCode>111111#002</AIFNationalCode>
@@ -1015,9 +1015,7 @@
 								<RateJuly>0.3</RateJuly>
 								<RateAugust>0.3</RateAugust>
 								<RateSeptember>0.3</RateSeptember>
-								<RateOctober>0.3</RateOctober>
-								<RateNovember>0.3</RateNovember>
-								<RateDecember>0.3</RateDecember>
+								<!-- <RateOctober>0.3</RateOctober><RateNovember>0.3</RateNovember><RateDecember>0.3</RateDecember> -->
 							</GrossInvestmentReturnsRate>
 							<NetInvestmentReturnsRate>
 								<RateJanuary>0.3</RateJanuary>
