@@ -2774,6 +2774,19 @@
 							</value>
 						</error>
 					</xsl:if>
+					<xsl:if test="boolean(BorrowingSourceFlag = 'false') and SourceIdentification/EntityIdentificationBIC">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-144</code>
+							<message>The BIC code is not consistent with the borrowing source flag.</message>
+							<field>EntityIdentificationBIC</field>
+							<value>
+								<xsl:value-of select="SourceIdentification/EntityIdentificationBIC" />
+							</value>
+						</error>
+					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
