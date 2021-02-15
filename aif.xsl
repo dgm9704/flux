@@ -2382,6 +2382,21 @@
 							</value>
 						</error>
 					</xsl:if>
+					<xsl:variable name="rank" select="Ranking" />
+					<xsl:variable name="value" select="CCPExposureValue"/>
+					<xsl:if test="$value &lt; ../CCPExposure[Ranking=($rank + 1)]/CCPExposureValue">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-127</code>
+							<message>The reported value is not consistent with the rank.</message>
+							<field>CCPExposureValue</field>
+							<value>
+								<xsl:value-of select="$value" />
+							</value>
+						</error>
+					</xsl:if>
 				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
