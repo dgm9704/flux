@@ -855,7 +855,7 @@
 									<EntityIdentificationBIC>TESTUS3NXXX</EntityIdentificationBIC>
 									<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z49</EntityIdentificationLEI>
 								</CounterpartyIdentification>
-								<CounterpartyTotalExposureRate>25</CounterpartyTotalExposureRate>
+								<CounterpartyTotalExposureRate>11</CounterpartyTotalExposureRate>
 							</FundToCounterpartyExposure>
 							<FundToCounterpartyExposure>
 								<Ranking>2</Ranking>
@@ -864,7 +864,7 @@
 									<EntityName>Entity 6</EntityName>
 									<EntityIdentificationBIC>TESTNL22XXX</EntityIdentificationBIC>
 								</CounterpartyIdentification>
-								<CounterpartyTotalExposureRate>25</CounterpartyTotalExposureRate>
+								<CounterpartyTotalExposureRate>22</CounterpartyTotalExposureRate>
 							</FundToCounterpartyExposure>
 							<FundToCounterpartyExposure>
 								<Ranking>3</Ranking>
@@ -873,7 +873,7 @@
 									<EntityName>Entity 5</EntityName>
 									<EntityIdentificationBIC>TESTFRPPXXX</EntityIdentificationBIC>
 								</CounterpartyIdentification>
-								<CounterpartyTotalExposureRate>25</CounterpartyTotalExposureRate>
+								<CounterpartyTotalExposureRate>33</CounterpartyTotalExposureRate>
 							</FundToCounterpartyExposure>
 							<FundToCounterpartyExposure>
 								<Ranking>4</Ranking>
