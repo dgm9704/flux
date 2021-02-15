@@ -1,6 +1,5 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<AIFMReportingInfo CreationDateAndTime="2014-01-26T15:55:02" Version="1.2" ReportingMemberState="GB" xsi:noNamespaceSchemaLocation="AIFMD_DATMAN_V1.2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
-	
+<AIFMReportingInfo CreationDateAndTime="2014-01-26T15:55:02" Version="1.2" ReportingMemberState="GB" xsi:noNamespaceSchemaLocation="schema/AIFMD_DATMAN_V1.2.xsd" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
@@ -80,7 +79,7 @@
 					<SubAssetType>DER_FID_FIXI</SubAssetType>
 					<AggregatedValueAmount>145786532</AggregatedValueAmount>
 				</AIFMPrincipalInstrument>
-					<AIFMPrincipalInstrument>
+				<AIFMPrincipalInstrument>
 					<Ranking>3</Ranking>
 					<SubAssetType>PHY_TIM_PTIM</SubAssetType>
 					<AggregatedValueAmount>14473914</AggregatedValueAmount>
@@ -104,7 +103,6 @@
 			</AIFMBaseCurrencyDescription>
 		</AIFMCompleteDescription>
 	</AIFMRecordInfo>
-
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
@@ -146,7 +144,7 @@
 						<MarketCode>XEUR</MarketCode>
 					</MarketIdentification>
 					<AggregatedValueAmount>22782456</AggregatedValueAmount>
-						<!-- <AggregatedValueAmount>42800000</AggregatedValueAmount> -->
+					<!-- <AggregatedValueAmount>42800000</AggregatedValueAmount> -->
 				</AIFMFivePrincipalMarket>
 				<AIFMFivePrincipalMarket>
 					<Ranking>3</Ranking>
@@ -194,7 +192,7 @@
 					<AggregatedValueAmount>7214939</AggregatedValueAmount>
 				</AIFMPrincipalInstrument>
 				<AIFMPrincipalInstrument>
-				<Ranking>5</Ranking>
+					<Ranking>5</Ranking>
 					<SubAssetType>NTA_NTA_NOTA</SubAssetType>
 				</AIFMPrincipalInstrument>
 			</AIFMPrincipalInstruments>
@@ -207,7 +205,6 @@
 			</AIFMBaseCurrencyDescription>
 		</AIFMCompleteDescription>
 	</AIFMRecordInfo>
-
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
@@ -230,7 +227,6 @@
 		<AIFMEEAFlag>true</AIFMEEAFlag>
 		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>
 	</AIFMRecordInfo>
-
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
@@ -253,7 +249,6 @@
 		<AIFMEEAFlag>true</AIFMEEAFlag>
 		<AIFMNoReportingFlag>false</AIFMNoReportingFlag>
 	</AIFMRecordInfo>
-
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
@@ -276,7 +271,6 @@
 		<AIFMEEAFlag>true</AIFMEEAFlag>
 		<AIFMNoReportingFlag>true</AIFMNoReportingFlag>
 	</AIFMRecordInfo>
-
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
@@ -299,7 +293,6 @@
 		<AIFMEEAFlag>true</AIFMEEAFlag>
 		<AIFMNoReportingFlag>true</AIFMNoReportingFlag>
 	</AIFMRecordInfo>
-
 	<CancellationAIFMRecordInfo>
 		<CancelledAIFMNationalCode>666666</CancelledAIFMNationalCode>
 		<CancelledReportingPeriodType>X1</CancelledReportingPeriodType>

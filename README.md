@@ -55,20 +55,14 @@ Sample output for aifmsample.xml:
 ```
 
 ## Status
-- All AIFM checks (CAM) are implemented, except:
-
-    CAM-001 only makes sense when done by ESMA
-
-    CAM-007 requires check digit calculation, which may not be possible/sane to do with XSLT 1.0, I circumvent this with looking up the LEI from a list of allowed values.
-
-    (FIL-009 requires access to filename which isn't available for XSLT 1.0)
-
-- roughly 2/3 of AIF (CAF) cases are implemented
+- All validations (CAM/CAF/FIL/WAF) have been implemented in some way, except:
+    - FIL-009 requires access to filename which isn't available for XSLT 1.0
+    - CAM-001 only makes sense when done by ESMA
+    - Any validations requiring checkdigit calculation are replaced with lookups
 - output is rough and minimal
 - OK to file bugs on results for implemented cases
 
 ## Next steps 
-- Implement the rest of AIF cases - ongoing
 - Add richer info about the error location and related values.
 - If possible, find out the output format that ESMA uses!
 - Optimization if needed (it's easy to read and write when every case is explicitly "spelled out", but might perform badly) - ongoing
