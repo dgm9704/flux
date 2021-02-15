@@ -2573,6 +2573,49 @@
 						</error>
 					</xsl:if>
 				</xsl:for-each>
+				<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/NAVChangeRate">
+					<xsl:variable name="error">
+						<xsl:choose>
+							<xsl:when test="$periodtype = 'Q1'">
+								<xsl:if test="RateApril or RateMay or RateJune or RateJuly or RateAugust or RateSeptember or RateOctober or RateNovember or RateDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'Q2'">
+								<xsl:if test="RateJanuary or RateFebruary or RateMarch or RateJuly or RateAugust or RateSeptember or RateOctober or RateNovember or RateDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'Q3'">
+								<xsl:if test="RateJanuary or RateFebruary or RateMarch or RateApril or RateMay or RateJune or RateOctober or RateNovember or RateDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'Q4'">
+								<xsl:if test="RateJanuary or RateFebruary or RateMarch or RateApril or RateMay or RateJune or RateJuly or RateAugust or RateSeptember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'H1'">
+								<xsl:if test="RateJuly or RateAugust or RateSeptember or RateOctober or RateNovember or RateDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'H2'">
+								<xsl:if test="RateJanuary or RateFebruary or RateMarch or RateApril or RateMay or RateJune">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'X1'">
+								<xsl:if test="RateOctober or RateNovember or RateDecember">true</xsl:if>
+							</xsl:when>
+							<xsl:when test="$periodtype = 'X2'">
+								<xsl:if test="RateJanuary or RateFebruary or RateMarch">true</xsl:if>
+							</xsl:when>
+						</xsl:choose>
+					</xsl:variable>
+					<xsl:if test="$error = 'true'">
+						<error>
+							<record>
+								<xsl:value-of select="$fund" />
+							</record>
+							<code>CAF-136</code>
+							<message>The month rate is not consistent with the reporting period.</message>
+							<field>NAVChangeRate</field>
+							<value>
+								<xsl:value-of select="NAVChangeRate" />
+							</value>
+						</error>
+					</xsl:if>
+				</xsl:for-each>
 			</xsl:for-each>
 		</aif>
 	</xsl:template>
