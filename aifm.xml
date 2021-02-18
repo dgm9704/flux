@@ -128,6 +128,7 @@
 			<AIFMIdentifier>
 				<AIFMIdentifierLEI>969500AA77L4ZJXJ0T03</AIFMIdentifierLEI>
 				<AIFMIdentifierBIC>TESTGB21XXX</AIFMIdentifierBIC>
+				<!-- <OldAIFMIdentifierNCA><ReportingMemberState>YY</ReportingMemberState><AIFMNationalCode>12345678</AIFMNationalCode></OldAIFMIdentifierNCA> -->
 			</AIFMIdentifier>
 			<AIFMPrincipalMarkets>
 				<AIFMFivePrincipalMarket>
