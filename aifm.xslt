@@ -21,7 +21,6 @@
 	</xsl:template>
 
 	<xsl:template match="AIFMRecordInfo">
-		<xsl:text>&#xA;</xsl:text>
 		<xsl:variable name="manager" select="AIFMNationalCode" />
 		<xsl:variable name="reportingperiodstartdate" select="ReportingPeriodStartDate" />
 		<xsl:variable name="startdate" select="translate($reportingperiodstartdate,'-','')" />
