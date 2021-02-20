@@ -21,7 +21,8 @@
 
 	<xsl:template match="AIFRecordInfo">
 		<xsl:variable name="fund" select="AIFNationalCode" />
-		<xsl:if test="AIFNoReportingFlag = 'false'">
+		<xsl:variable name="noreporting" select="AIFNoReportingFlag" />
+		<xsl:if test="$noreporting = 'false'">
 			<xsl:if test="AIFContentType = '2' or AIFContentType = '4'">
 				<xsl:if test="not(AIFCompleteDescription/AIFIndividualInfo)">
 					<error>
@@ -370,52 +371,7 @@
 				</xsl:if>
 			</xsl:otherwise>
 		</xsl:choose>
-		<xsl:variable name="lei" select="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierLEI" />
-		<xsl:if test="$lei and not($leiregister[. = $lei])">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-013</code>
-				<message>The check digits of the LEI code are not correct.</message>
-				<field>AIFIdentifierLEI</field>
-				<value>
-					<xsl:value-of select="$lei" />
-				</value>
-			</error>
-		</xsl:if>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierISIN">
-			<xsl:variable name="isin" select="." />
-			<xsl:if test="$isin and not($isinregister[. = $isin])">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-014</code>
-					<message>The check digit of the ISIN code is not correct.</message>
-					<field>AIFIdentifierISIN</field>
-					<value>
-						<xsl:value-of select="$isin" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
-			<xsl:variable name="aifmemberstate" select="." />
-			<xsl:if test="not($eeacountrycodes[. = $aifmemberstate])">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-015</code>
-					<message>The country of the old AIF national code is not correct and should be an EEA or EU country.</message>
-					<field>ReportingMemberState</field>
-					<value>
-						<xsl:value-of select="$aifmemberstate" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
+
 		<xsl:variable name="shareclassflag" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'" />
 		<xsl:if test="not($shareclassflag)">
 			<xsl:variable name="shareclassnationalcode" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassNationalCode" />
@@ -640,158 +596,7 @@
 			</xsl:if>
 		</xsl:if>
 		<!-- CAF-028 The check digits of the LEI code are not correct. -->
-		<xsl:variable name="basecurrency" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/BaseCurrency" />
-		<xsl:if test="not($currencycodes[. = $basecurrency])">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-029</code>
-				<message>The currency code is not correct.</message>
-				<field>BaseCurrency</field>
-				<value>
-					<xsl:value-of select="$basecurrency" />
-				</value>
-			</error>
-		</xsl:if>
-		<xsl:choose>
-			<xsl:when test="AIFNoReportingFlag = 'false' and not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/BaseCurrency = 'EUR')">
-				<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURRate)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-030</code>
-						<message></message>
-						<field>FXEURRate</field>
-						<value>
-							<xsl:value-of select="FXEURRate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURRate">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-030</code>
-						<message></message>
-						<field>FXEURRate</field>
-						<value>
-							<xsl:value-of select="FXEURRate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
-		<xsl:choose>
-			<xsl:when test="AIFNoReportingFlag = 'false' and not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/BaseCurrency = 'EUR')">
-				<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-031</code>
-						<message></message>
-						<field>FXEURReferenceRateType</field>
-						<value>
-							<xsl:value-of select="FXEURReferenceRateType" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-031</code>
-						<message></message>
-						<field>FXEURReferenceRateType</field>
-						<value>
-							<xsl:value-of select="FXEURReferenceRateType" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
-		<xsl:choose>
-			<xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEURReferenceRateType = 'OTH'">
-				<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEUROtherReferenceRateDescription)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-032</code>
-						<message></message>
-						<field>FXEUROtherReferenceRateDescription</field>
-						<value>
-							<xsl:value-of select="FXEUROtherReferenceRateDescription" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription/FXEUROtherReferenceRateDescription">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-032</code>
-						<message></message>
-						<field>FXEUROtherReferenceRateDescription</field>
-						<value>
-							<xsl:value-of select="FXEUROtherReferenceRateDescription" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
-		<xsl:variable name="firstfundingsourcecountry" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FirstFundingSourceCountry" />
-		<xsl:if test="$firstfundingsourcecountry and not($countrycodes[. = $firstfundingsourcecountry])">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-033</code>
-				<message>The first funding country is not correct.</message>
-				<field>FirstFundingSourceCountry</field>
-				<value>
-					<xsl:value-of select="$firstfundingsourcecountry" />
-				</value>
-			</error>
-		</xsl:if>
-		<xsl:variable name="secondfundingsourcecountry" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/SecondFundingSourceCountry" />
-		<xsl:if test="$secondfundingsourcecountry and not($countrycodes[. = $secondfundingsourcecountry])">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-034</code>
-				<message>The second funding country is not correct.</message>
-				<field>SecondFundingSourceCountry</field>
-				<value>
-					<xsl:value-of select="$secondfundingsourcecountry" />
-				</value>
-			</error>
-		</xsl:if>
-		<xsl:variable name="thirdfundingsourcecountry" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/ThirdFundingSourceCountry" />
-		<xsl:if test="$thirdfundingsourcecountry and not($countrycodes[. = $thirdfundingsourcecountry])">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-035</code>
-				<message>The third funding country is not correct.</message>
-				<field>ThirdFundingSourceCountry</field>
-				<value>
-					<xsl:value-of select="$thirdfundingsourcecountry" />
-				</value>
-			</error>
-		</xsl:if>
+
 		<xsl:variable name="predominantaiftype" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType" />
 		<xsl:choose>
 			<xsl:when test="$predominantaiftype = 'HFND'">
@@ -861,7 +666,7 @@
 			</xsl:when>
 		</xsl:choose>
 		<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType = 'NONE')">
-			<xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies                                 | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies                                | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies                                | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies                                | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies) " />
+			<xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies)" />
 			<xsl:if test="$count &gt; 1">
 				<error>
 					<record>
@@ -1119,245 +924,6 @@
 				</error>
 			</xsl:if>
 		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:variable name="subassettype" select="SubAssetType" />
-			<xsl:variable name="isnota" select="$subassettype = 'NTA_NTA_NOTA'" />
-			<xsl:variable name="instrumentcodetype" select="InstrumentCodeType" />
-			<xsl:variable name="hascodetype" select="boolean($instrumentcodetype)" />
-			<xsl:if test="$hascodetype = $isnota">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-042</code>
-					<message>The instrument code type is not consistent with the sub-asset type.</message>
-					<field>InstrumentCodeType</field>
-					<value>
-						<xsl:value-of select="$instrumentcodetype" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:variable name="subassettype" select="SubAssetType" />
-			<xsl:variable name="isnota" select="$subassettype = 'NTA_NTA_NOTA'" />
-			<xsl:variable name="instrumentname" select="InstrumentName" />
-			<xsl:variable name="hasname" select="boolean($instrumentname)" />
-			<xsl:if test="$hasname = $isnota">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-043</code>
-					<message>The instrument name is not consistent with the sub-asset type.</message>
-					<field>InstrumentName</field>
-					<value>
-						<xsl:value-of select="$instrumentname" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded/ISINInstrumentIdentification">
-			<xsl:variable name="isin" select="." />
-			<xsl:if test="$isin and not($isinregister[. = $isin])">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-044</code>
-					<message>The check digit of the ISIN code is not correct.</message>
-					<field>ISINInstrumentIdentification</field>
-					<value>
-						<xsl:value-of select="$isin" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:if test="boolean(InstrumentCodeType = 'ISIN') != boolean(ISINInstrumentIdentification)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-045</code>
-					<message>The instrument ISIN code is not consistent with the instrument code type.</message>
-					<field>ISINInstrumentIdentification</field>
-					<value>
-						<xsl:value-of select="ISINInstrumentIdentification" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded/AIIInstrumentIdentification/AIIExchangeCode">
-			<xsl:variable name="mic" select="." />
-			<xsl:if test="$mic and not($micregister[. = $mic])">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-046</code>
-					<message>The MIC code is not correct</message>
-					<field>AIIExchangeCode</field>
-					<value>
-						<xsl:value-of select="$mic" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIExchangeCode)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-047</code>
-					<message>The instrument AII exchange code is not consistent with the instrument code type.</message>
-					<field>AIIExchangeCode</field>
-					<value>
-						<xsl:value-of select="AIIInstrumentIdentification/AIIExchangeCode" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIProductCode)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-048</code>
-					<message>The instrument AII exchange product code is not consistent with the instrument code type.</message>
-					<field>AIIProductCode</field>
-					<value>
-						<xsl:value-of select="AIIInstrumentIdentification/AIIProductCode" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIDerivativeType)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-049</code>
-					<message>The instrument AII derivative type is not consistent with the instrument code type.</message>
-					<field>AIIDerivativeType</field>
-					<value>
-						<xsl:value-of select="AIIInstrumentIdentification/AIIDerivativeType" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIPutCallIdentifier)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-050</code>
-					<message>The instrument put/call identifier is not consistent with the instrument code type.</message>
-					<field>AIIPutCallIdentifier</field>
-					<value>
-						<xsl:value-of select="AIIInstrumentIdentification/AIIPutCallIdentifier" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIExpiryDate)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-051</code>
-					<message>The instrument AII expiry date is not consistent with the instrument code type.</message>
-					<field>AIIExpiryDate</field>
-					<value>
-						<xsl:value-of select="AIIInstrumentIdentification/AIIExpiryDate" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIStrikePrice)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-052</code>
-					<message>The instrument AII strike price is not consistent with the instrument code type.</message>
-					<field>AIIStrikePrice</field>
-					<value>
-						<xsl:value-of select="AIIInstrumentIdentification/AIIStrikePrice" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:if test="boolean(SubAssetType = 'NTA_NTA_NOTA') = boolean(PositionType)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-053</code>
-					<message>The position type is not consistent with the sub-asset type.</message>
-					<field>PositionType</field>
-					<value>
-						<xsl:value-of select="PositionType" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:if test="boolean(SubAssetType = 'NTA_NTA_NOTA') = boolean(PositionValue)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-054</code>
-					<message>The position value is not consistent with the sub-asset type.</message>
-					<field>PositionValue</field>
-					<value>
-						<xsl:value-of select="PositionValue" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded">
-			<xsl:for-each select="MainInstrumentTraded">
-				<xsl:variable name="rank" select="Ranking" />
-				<xsl:variable name="value" select="PositionValue"/>
-				<xsl:if test="$value &lt; ../MainInstrumentTraded[Ranking=($rank + 1)]/PositionValue">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-055</code>
-						<message>The reported value is not consistent with the rank.</message>
-						<field>PositionValue</field>
-						<value>
-							<xsl:value-of select="$value" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:for-each>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
-			<xsl:if test="not(PositionType = 'S') and boolean(ShortPositionHedgingRate)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-056</code>
-					<message>The position value is not consistent with the position type.</message>
-					<field>ShortPositionHedgingRate</field>
-					<value>
-						<xsl:value-of select="ShortPositionHedgingRate" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
 		<xsl:variable name="navregions" select="AIFCompleteDescription/AIFPrincipalInfo/NAVGeographicalFocus/*" />
 		<xsl:if test="$navregions and not(sum($navregions) = 100)">
 			<error>
@@ -1465,238 +1031,8 @@
 				</error>
 			</xsl:if>
 		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification">
-			<xsl:if test="not(EntityName) and EntityIdentificationLEI">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-064</code>
-					<message>The LEI code is not consistent with the counterparty name.</message>
-					<field>EntityIdentificationLEI</field>
-					<value>
-						<xsl:value-of select="EntityIdentificationLEI" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification/EntityIdentificationLEI">
-			<xsl:variable name="cplei" select="." />
-			<xsl:if test="$cplei and not($leiregister[. = $cplei])">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-065</code>
-					<message>The check digits of the LEI code are not correct.</message>
-					<field>EntityIdentificationLEI</field>
-					<value>
-						<xsl:value-of select="$cplei" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification">
-			<xsl:if test="not(EntityName) and EntityIdentificationBIC">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-066</code>
-					<message>The BIC code is not consistent with the counterparty name.</message>
-					<field>EntityIdentificationBIC</field>
-					<value>
-						<xsl:value-of select="EntityIdentificationBIC" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-			<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(PositionType)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-067</code>
-					<message>The position type is not consistent with the asset type.</message>
-					<field>PositionType</field>
-					<value>
-						<xsl:value-of select="PositionType" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-			<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(MarketIdentification/MarketCodeType)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-068</code>
-					<message>TThe market code type is not consistent with the asset type.</message>
-					<field>MarketCodeType</field>
-					<value>
-						<xsl:value-of select="MarketIdentification/MarketCodeType" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/MarketIdentification/MarketCode">
-			<xsl:variable name="mic" select="." />
-			<xsl:if test="$mic and not($micregister[. = $mic])">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-069</code>
-					<message>The MIC code is not correct</message>
-					<field>MarketIdentification</field>
-					<value>
-						<xsl:value-of select="$mic" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/MarketIdentification">
-			<xsl:if test="boolean(MarketCodeType = 'MIC') != boolean(MarketCode)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-070</code>
-					<message>The MIC code is not consistent with the market code type.</message>
-					<field>MarketCode</field>
-					<value>
-						<xsl:value-of select="MarketCode" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-			<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(AggregatedValueAmount)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-071</code>
-					<message>The aggregated value is not consistent with the asset type.</message>
-					<field>AggregatedValueAmount</field>
-					<value>
-						<xsl:value-of select="AggregatedValueAmount" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations">
-			<xsl:for-each select="PortfolioConcentration">
-				<xsl:variable name="rank" select="Ranking" />
-				<xsl:variable name="value" select="AggregatedValueAmount"/>
-				<xsl:if test="$value &lt; ../PortfolioConcentration[Ranking=($rank + 1)]/AggregatedValueAmount">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-072</code>
-						<message>The reported value is not consistent with the rank.</message>
-						<field>AggregatedValueAmount</field>
-						<value>
-							<xsl:value-of select="$value" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:for-each>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-			<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(AggregatedValueRate)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-073</code>
-					<message>The aggregated value percentage is not consistent with the asset type.</message>
-					<field>AggregatedValueRate</field>
-					<value>
-						<xsl:value-of select="AggregatedValueRate" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-			<xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC') and boolean(CounterpartyIdentification/EntityName)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-074</code>
-					<message>The counterparty name is not consistent with the market code type.</message>
-					<field>EntityName</field>
-					<value>
-						<xsl:value-of select="EntityName" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-			<xsl:if test="(not(CounterpartyIdentification/EntityName) or not(MarketIdentification/MarketCodeType = 'OTC')) and boolean(CounterpartyIdentification/EntityIdentificationLEI)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-075</code>
-					<message>The LEI code is not consistent with the counterparty name.</message>
-					<field>EntityIdentificationLEI</field>
-					<value>
-						<xsl:value-of select="CounterpartyIdentification/EntityIdentificationLEI" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration/CounterpartyIdentification/EntityIdentificationLEI">
-			<xsl:variable name="cplei" select="." />
-			<xsl:if test="$cplei and not($leiregister[. = $cplei])">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-076</code>
-					<message>The counterparty LEI code is not consistent with the counterparty name.</message>
-					<field>EntityIdentificationLEI</field>
-					<value>
-						<xsl:value-of select="$cplei" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-			<xsl:if test="not(CounterpartyIdentification/EntityName) and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-077</code>
-					<message>The BIC code is not consistent with the counterparty name.</message>
-					<field>EntityIdentificationBIC</field>
-					<value>
-						<xsl:value-of select="CounterpartyIdentification/EntityIdentificationBIC" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-			<xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC') and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-078</code>
-					<message>The counterparty BIC code is not consistent with the counterparty name.</message>
-					<field>EntityIdentificationBIC</field>
-					<value>
-						<xsl:value-of select="CounterpartyIdentification/EntityIdentificationBIC" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
+
+
 		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo">
 			<xsl:if test="boolean(AIFDescription/PredominantAIFType = 'PEQF') != boolean(MostImportantConcentration/TypicalPositionSize)">
 				<error>
@@ -1712,301 +1048,981 @@
 				</error>
 			</xsl:if>
 		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/AIFPrincipalMarkets/AIFPrincipalMarket/MarketIdentification/MarketCode">
-			<xsl:variable name="mic" select="." />
-			<xsl:if test="$mic and not($micregister[. = $mic])">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-080</code>
-					<message>The MIC code is not correct</message>
-					<field>MarketCode</field>
-					<value>
-						<xsl:value-of select="$mic" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/AIFPrincipalMarkets/AIFPrincipalMarket/MarketIdentification">
-			<xsl:if test="boolean(MarketCodeType = 'MIC') != boolean(MarketCode)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-081</code>
-					<message>The MIC code is not consistent with the market code type.</message>
-					<field>MarketCode</field>
-					<value>
-						<xsl:value-of select="MarketCode" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/AIFPrincipalMarkets/AIFPrincipalMarket">
-			<xsl:if test="boolean(MarketIdentification/MarketCodeType = 'NOT') = boolean(AggregatedValueAmount)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-082</code>
-					<message>The aggregated value is not consistent with the market code type.</message>
-					<field>AggregatedValueAmount</field>
-					<value>
-						<xsl:value-of select="AggregatedValueAmount" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/AIFPrincipalMarkets">
-			<xsl:for-each select="AIFPrincipalMarket">
-				<xsl:variable name="rank" select="Ranking" />
-				<xsl:variable name="value" select="AggregatedValueAmount"/>
-				<xsl:if test="$value &lt; ../AIFPrincipalMarket[Ranking=($rank + 1)]/AggregatedValueAmount">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-083</code>
-						<message>The reported value is not consistent with the rank.</message>
-						<field>AggregatedValueAmount</field>
-						<value>
-							<xsl:value-of select="$value" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:for-each>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/InvestorConcentration">
-			<xsl:variable name="ratesum" select="ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate" />
-			<xsl:if test="$ratesum != 100 and $ratesum != 0">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-084</code>
-					<message>The sum of the percentages should be equal to 0% or 100%.</message>
-					<field>ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate</field>
-					<value>
-						<xsl:value-of select="$ratesum" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/AssetTypeExposures/AssetTypeExposure">
-			<xsl:choose>
-				<xsl:when test="SubAssetType='DER_FEX_INVT' or SubAssetType='DER_FEX_HEDG' or SubAssetType='DER_IRD_INTR'">
-					<xsl:if test="LongValue">
-						<error>
-							<record>
-								<xsl:value-of select="$fund" />
-							</record>
-							<code>CAF-086</code>
-							<message>The long value is not consistent with the sub-asset type.</message>
-							<field>LongValue</field>
-							<value>
-								<xsl:value-of select="LongValue" />
-							</value>
-						</error>
-					</xsl:if>
-					<xsl:if test="ShortValue">
-						<error>
-							<record>
-								<xsl:value-of select="$fund" />
-							</record>
-							<code>CAF-087</code>
-							<message>The short value is not consistent with the sub-asset type.</message>
-							<field>ShortValue</field>
-							<value>
-								<xsl:value-of select="ShortValue" />
-							</value>
-						</error>
-					</xsl:if>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:if test="GrossValue">
-						<error>
-							<record>
-								<xsl:value-of select="$fund" />
-							</record>
-							<code>CAF-085</code>
-							<message>The gross value is not consistent with the sub-asset type.</message>
-							<field>GrossValue</field>
-							<value>
-								<xsl:value-of select="GrossValue" />
-							</value>
-						</error>
-					</xsl:if>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/AssetTypeTurnovers/AssetTypeTurnover">
-			<xsl:variable name="t" select="TurnoverSubAssetType" />
-			<xsl:if test="not($t='DER_EQD_EQD' or $t='DER_FEX_INV' or $t='DER_EQD_EQD' or $t='DER_CDS_CDS' or $t='DER_FEX_HED' or $t='DER_IRD_IRD' or $t='DER_CTY_CTY' or $t='DER_OTH_OTH')">
-				<xsl:if test="NotionalValue">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-088</code>
-						<message>The notional value is not consistent with the sub-asset type.</message>
-						<field>NotionalValue</field>
-						<value>
-							<xsl:value-of select="NotionalValue" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CurrencyExposures/CurrencyExposure">
-			<xsl:variable name="currency" select="ExposureCurrency" />
-			<xsl:choose>
-				<xsl:when test="$currency">
-					<xsl:if test="not($currencycodes[. = $currency])">
-						<error>
-							<record>
-								<xsl:value-of select="$fund" />
-							</record>
-							<code>CAF-089</code>
-							<message>The currency code is not correct.</message>
-							<field>ExposureCurrency</field>
-							<value>
-								<xsl:value-of select="$currency" />
-							</value>
-						</error>
-					</xsl:if>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:if test="LongPositionValue">
-						<error>
-							<record>
-								<xsl:value-of select="$fund" />
-							</record>
-							<code>CAF-090</code>
-							<message>The long position value is not consistent with the currency of exposure.</message>
-							<field>LongPositionValue</field>
-							<value>
-								<xsl:value-of select="LongPositionValue" />
-							</value>
-						</error>
-					</xsl:if>
-					<xsl:if test="ShortPositionValue">
-						<error>
-							<record>
-								<xsl:value-of select="$fund" />
-							</record>
-							<code>CAF-091</code>
-							<message>The short position value is not consistent with the currency of exposure.</message>
-							<field>ShortPositionValue</field>
-							<value>
-								<xsl:value-of select="ShortPositionValue" />
-							</value>
-						</error>
-					</xsl:if>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CompaniesDominantInfluence/CompanyDominantInfluence">
-			<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(CompanyIdentification/EntityName)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-092</code>
-					<message>The company name is not consistent with the AIF predominant type.</message>
-					<field>EntityName</field>
-					<value>
-						<xsl:value-of select="CompanyIdentification/EntityName" />
-					</value>
-				</error>
-			</xsl:if>
-			<xsl:variable name="cilei" select="CompanyIdentification/EntityIdentificationLEI" />
-			<xsl:if test="$cilei and not($leiregister[. = $cilei])">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-093</code>
-					<message>The check digits of the LEI code are not correct.</message>
-					<field>EntityIdentificationLEI</field>
-					<value>
-						<xsl:value-of select="$cilei" />
-					</value>
-				</error>
-			</xsl:if>
-			<xsl:if test="$predominantaiftype!='PEQF' and boolean($cilei)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-094</code>
-					<message>The LEI code is not consistent with the AIF predominant type.</message>
-					<field>EntityIdentificationLEI</field>
-					<value>
-						<xsl:value-of select="$cilei" />
-					</value>
-				</error>
-			</xsl:if>
-			<xsl:if test="$predominantaiftype!='PEQF' and boolean(CompanyIdentification/EntityIdentificationBIC)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-095</code>
-					<message>The BIC code is not consistent with the AIF predominant type.</message>
-					<field>EntityIdentificationBIC</field>
-					<value>
-						<xsl:value-of select="CompanyIdentification/EntityIdentificationBIC" />
-					</value>
-				</error>
-			</xsl:if>
-			<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(TransactionType)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-096</code>
-					<message>The transaction type is not consistent with the AIF predominant type.</message>
-					<field>TransactionType</field>
-					<value>
-						<xsl:value-of select="TransactionType" />
-					</value>
-				</error>
-			</xsl:if>
-			<xsl:if test="boolean(TransactionType='OTHR') != boolean(OtherTransactionTypeDescription)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-097</code>
-					<message>The description for other transaction type is not consistent with the transaction type.</message>
-					<field>OtherTransactionTypeDescription</field>
-					<value>
-						<xsl:value-of select="OtherTransactionTypeDescription" />
-					</value>
-				</error>
-			</xsl:if>
-			<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(VotingRightsRate)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-098</code>
-					<message>The percentage of voting rights is not consistent with the AIF predominant type.</message>
-					<field>VotingRightsRate</field>
-					<value>
-						<xsl:value-of select="VotingRightsRate" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-
 
 		<xsl:apply-templates>
 			<xsl:with-param name="fund" select="$fund" />
 			<xsl:with-param name="periodtype" select="$periodtype" />
+			<xsl:with-param name="noreporting" select="$noreporting" />
 		</xsl:apply-templates>
 
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierLEI" >
+		<xsl:param name="fund" />
+		<xsl:variable name="lei" select="." />
+		<xsl:if test="$lei and not($leiregister[. = $lei])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-013</code>
+				<message>The check digits of the LEI code are not correct.</message>
+				<field>AIFIdentifierLEI</field>
+				<value>
+					<xsl:value-of select="$lei" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierISIN">
+		<xsl:param name="fund" />
+		<xsl:variable name="isin" select="." />
+		<xsl:if test="$isin and not($isinregister[. = $isin])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-014</code>
+				<message>The check digit of the ISIN code is not correct.</message>
+				<field>AIFIdentifierISIN</field>
+				<value>
+					<xsl:value-of select="$isin" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
+		<xsl:param name="fund" />
+		<xsl:variable name="aifmemberstate" select="." />
+		<xsl:if test="not($eeacountrycodes[. = $aifmemberstate])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-015</code>
+				<message>The country of the old AIF national code is not correct and should be an EEA or EU country.</message>
+				<field>ReportingMemberState</field>
+				<value>
+					<xsl:value-of select="$aifmemberstate" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription">
+		<xsl:param name="fund" />
+		<xsl:param name="noreporting" />
+		<xsl:variable name="basecurrency" select="BaseCurrency" />
+		<xsl:if test="not($currencycodes[. = $basecurrency])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-029</code>
+				<message>The currency code is not correct.</message>
+				<field>BaseCurrency</field>
+				<value>
+					<xsl:value-of select="$basecurrency" />
+				</value>
+			</error>
+		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="$noreporting = 'false' and not($basecurrency = 'EUR')">
+				<xsl:if test="not(FXEURRate)">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-030</code>
+						<message></message>
+						<field>FXEURRate</field>
+						<value>
+							<xsl:value-of select="FXEURRate" />
+						</value>
+					</error>
+				</xsl:if>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:if test="AFXEURRate">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-030</code>
+						<message></message>
+						<field>FXEURRate</field>
+						<value>
+							<xsl:value-of select="FXEURRate" />
+						</value>
+					</error>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+		<xsl:choose>
+			<xsl:when test="$noreporting = 'false' and not($basecurrency = 'EUR')">
+				<xsl:if test="not(FXEURReferenceRateType)">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-031</code>
+						<message></message>
+						<field>FXEURReferenceRateType</field>
+						<value>
+							<xsl:value-of select="FXEURReferenceRateType" />
+						</value>
+					</error>
+				</xsl:if>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:if test="FXEURReferenceRateType">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-031</code>
+						<message></message>
+						<field>FXEURReferenceRateType</field>
+						<value>
+							<xsl:value-of select="FXEURReferenceRateType" />
+						</value>
+					</error>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+		<xsl:choose>
+			<xsl:when test="FXEURReferenceRateType = 'OTH'">
+				<xsl:if test="not(FXEUROtherReferenceRateDescription)">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-032</code>
+						<message></message>
+						<field>FXEUROtherReferenceRateDescription</field>
+						<value>
+							<xsl:value-of select="FXEUROtherReferenceRateDescription" />
+						</value>
+					</error>
+				</xsl:if>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:if test="FXEUROtherReferenceRateDescription">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-032</code>
+						<message></message>
+						<field>FXEUROtherReferenceRateDescription</field>
+						<value>
+							<xsl:value-of select="FXEUROtherReferenceRateDescription" />
+						</value>
+					</error>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FirstFundingSourceCountry">
+		<xsl:param name="fund" />
+		<xsl:variable name="firstfundingsourcecountry" select="." />
+		<xsl:if test="$firstfundingsourcecountry and not($countrycodes[. = $firstfundingsourcecountry])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-033</code>
+				<message>The first funding country is not correct.</message>
+				<field>FirstFundingSourceCountry</field>
+				<value>
+					<xsl:value-of select="$firstfundingsourcecountry" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/SecondFundingSourceCountry">
+		<xsl:param name="fund" />
+		<xsl:variable name="secondfundingsourcecountry" select="." />
+		<xsl:if test="$secondfundingsourcecountry and not($countrycodes[. = $secondfundingsourcecountry])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-034</code>
+				<message>The second funding country is not correct.</message>
+				<field>SecondFundingSourceCountry</field>
+				<value>
+					<xsl:value-of select="$secondfundingsourcecountry" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/ThirdFundingSourceCountry" >
+		<xsl:param name="fund" />
+		<xsl:variable name="thirdfundingsourcecountry" select="." />
+		<xsl:if test="$thirdfundingsourcecountry and not($countrycodes[. = $thirdfundingsourcecountry])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-035</code>
+				<message>The third funding country is not correct.</message>
+				<field>ThirdFundingSourceCountry</field>
+				<value>
+					<xsl:value-of select="$thirdfundingsourcecountry" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
+		<xsl:param name="fund" />
+		<xsl:variable name="subassettype" select="SubAssetType" />
+		<xsl:variable name="isnota" select="$subassettype = 'NTA_NTA_NOTA'" />
+		<xsl:variable name="instrumentcodetype" select="InstrumentCodeType" />
+		<xsl:variable name="hascodetype" select="boolean($instrumentcodetype)" />
+		<xsl:if test="$hascodetype = $isnota">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-042</code>
+				<message>The instrument code type is not consistent with the sub-asset type.</message>
+				<field>InstrumentCodeType</field>
+				<value>
+					<xsl:value-of select="$instrumentcodetype" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="instrumentname" select="InstrumentName" />
+		<xsl:variable name="hasname" select="boolean($instrumentname)" />
+		<xsl:if test="$hasname = $isnota">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-043</code>
+				<message>The instrument name is not consistent with the sub-asset type.</message>
+				<field>InstrumentName</field>
+				<value>
+					<xsl:value-of select="$instrumentname" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="isin" select="ISINInstrumentIdentification" />
+		<xsl:if test="$isin and not($isinregister[. = $isin])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-044</code>
+				<message>The check digit of the ISIN code is not correct.</message>
+				<field>ISINInstrumentIdentification</field>
+				<value>
+					<xsl:value-of select="$isin" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(InstrumentCodeType = 'ISIN') != boolean(ISINInstrumentIdentification)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-045</code>
+				<message>The instrument ISIN code is not consistent with the instrument code type.</message>
+				<field>ISINInstrumentIdentification</field>
+				<value>
+					<xsl:value-of select="ISINInstrumentIdentification" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="mic" select="AIIInstrumentIdentification/AIIExchangeCode" />
+		<xsl:if test="$mic and not($micregister[. = $mic])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-046</code>
+				<message>The MIC code is not correct</message>
+				<field>AIIExchangeCode</field>
+				<value>
+					<xsl:value-of select="$mic" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean($mic)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-047</code>
+				<message>The instrument AII exchange code is not consistent with the instrument code type.</message>
+				<field>AIIExchangeCode</field>
+				<value>
+					<xsl:value-of select="AIIInstrumentIdentification/AIIExchangeCode" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIProductCode)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-048</code>
+				<message>The instrument AII exchange product code is not consistent with the instrument code type.</message>
+				<field>AIIProductCode</field>
+				<value>
+					<xsl:value-of select="AIIInstrumentIdentification/AIIProductCode" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIDerivativeType)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-049</code>
+				<message>The instrument AII derivative type is not consistent with the instrument code type.</message>
+				<field>AIIDerivativeType</field>
+				<value>
+					<xsl:value-of select="AIIInstrumentIdentification/AIIDerivativeType" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIPutCallIdentifier)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-050</code>
+				<message>The instrument put/call identifier is not consistent with the instrument code type.</message>
+				<field>AIIPutCallIdentifier</field>
+				<value>
+					<xsl:value-of select="AIIInstrumentIdentification/AIIPutCallIdentifier" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIExpiryDate)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-051</code>
+				<message>The instrument AII expiry date is not consistent with the instrument code type.</message>
+				<field>AIIExpiryDate</field>
+				<value>
+					<xsl:value-of select="AIIInstrumentIdentification/AIIExpiryDate" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIStrikePrice)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-052</code>
+				<message>The instrument AII strike price is not consistent with the instrument code type.</message>
+				<field>AIIStrikePrice</field>
+				<value>
+					<xsl:value-of select="AIIInstrumentIdentification/AIIStrikePrice" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(SubAssetType = 'NTA_NTA_NOTA') = boolean(PositionType)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-053</code>
+				<message>The position type is not consistent with the sub-asset type.</message>
+				<field>PositionType</field>
+				<value>
+					<xsl:value-of select="PositionType" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(SubAssetType = 'NTA_NTA_NOTA') = boolean(PositionValue)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-054</code>
+				<message>The position value is not consistent with the sub-asset type.</message>
+				<field>PositionValue</field>
+				<value>
+					<xsl:value-of select="PositionValue" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="rank" select="Ranking" />
+		<xsl:variable name="value" select="PositionValue"/>
+		<xsl:if test="$value &lt; ../MainInstrumentTraded[Ranking=($rank + 1)]/PositionValue">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-055</code>
+				<message>The reported value is not consistent with the rank.</message>
+				<field>PositionValue</field>
+				<value>
+					<xsl:value-of select="$value" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="not(PositionType = 'S') and boolean(ShortPositionHedgingRate)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-056</code>
+				<message>The position value is not consistent with the position type.</message>
+				<field>ShortPositionHedgingRate</field>
+				<value>
+					<xsl:value-of select="ShortPositionHedgingRate" />
+				</value>
+			</error>
+		</xsl:if>
+		
+		<xsl:apply-templates />
+
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification">
+		<xsl:param name="fund" />
+		<xsl:if test="not(EntityName) and EntityIdentificationLEI">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-064</code>
+				<message>The LEI code is not consistent with the counterparty name.</message>
+				<field>EntityIdentificationLEI</field>
+				<value>
+					<xsl:value-of select="EntityIdentificationLEI" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="cplei" select="EntityIdentificationLEI" />
+		<xsl:if test="$cplei and not($leiregister[. = $cplei])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-065</code>
+				<message>The check digits of the LEI code are not correct.</message>
+				<field>EntityIdentificationLEI</field>
+				<value>
+					<xsl:value-of select="$cplei" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="not(EntityName) and EntityIdentificationBIC">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-066</code>
+				<message>The BIC code is not consistent with the counterparty name.</message>
+				<field>EntityIdentificationBIC</field>
+				<value>
+					<xsl:value-of select="EntityIdentificationBIC" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
+		<xsl:param name="fund" />
+		<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(PositionType)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-067</code>
+				<message>The position type is not consistent with the asset type.</message>
+				<field>PositionType</field>
+				<value>
+					<xsl:value-of select="PositionType" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(MarketIdentification/MarketCodeType)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-068</code>
+				<message>TThe market code type is not consistent with the asset type.</message>
+				<field>MarketCodeType</field>
+				<value>
+					<xsl:value-of select="MarketIdentification/MarketCodeType" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="mic" select="MarketIdentification/MarketCode" />
+		<xsl:if test="$mic and not($micregister[. = $mic])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-069</code>
+				<message>The MIC code is not correct</message>
+				<field>MarketIdentification</field>
+				<value>
+					<xsl:value-of select="$mic" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(MarketIdentification/MarketCodeType = 'MIC') != boolean(MarketIdentification/MarketCode)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-070</code>
+				<message>The MIC code is not consistent with the market code type.</message>
+				<field>MarketCode</field>
+				<value>
+					<xsl:value-of select="MarketCode" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(AggregatedValueAmount)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-071</code>
+				<message>The aggregated value is not consistent with the asset type.</message>
+				<field>AggregatedValueAmount</field>
+				<value>
+					<xsl:value-of select="AggregatedValueAmount" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="rank" select="Ranking" />
+		<xsl:variable name="value" select="AggregatedValueAmount"/>
+		<xsl:if test="$value &lt; ../PortfolioConcentration[Ranking=($rank + 1)]/AggregatedValueAmount">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-072</code>
+				<message>The reported value is not consistent with the rank.</message>
+				<field>AggregatedValueAmount</field>
+				<value>
+					<xsl:value-of select="$value" />
+				</value>
+			</error>
+		</xsl:if>
+
+
+		<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(AggregatedValueRate)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-073</code>
+				<message>The aggregated value percentage is not consistent with the asset type.</message>
+				<field>AggregatedValueRate</field>
+				<value>
+					<xsl:value-of select="AggregatedValueRate" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC') and boolean(CounterpartyIdentification/EntityName)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-074</code>
+				<message>The counterparty name is not consistent with the market code type.</message>
+				<field>EntityName</field>
+				<value>
+					<xsl:value-of select="EntityName" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="(not(CounterpartyIdentification/EntityName) or not(MarketIdentification/MarketCodeType = 'OTC')) and boolean(CounterpartyIdentification/EntityIdentificationLEI)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-075</code>
+				<message>The LEI code is not consistent with the counterparty name.</message>
+				<field>EntityIdentificationLEI</field>
+				<value>
+					<xsl:value-of select="CounterpartyIdentification/EntityIdentificationLEI" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="cplei" select="CounterpartyIdentification/EntityIdentificationLEI" />
+		<xsl:if test="$cplei and not($leiregister[. = $cplei])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-076</code>
+				<message>The counterparty LEI code is not consistent with the counterparty name.</message>
+				<field>EntityIdentificationLEI</field>
+				<value>
+					<xsl:value-of select="$cplei" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="not(CounterpartyIdentification/EntityName) and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-077</code>
+				<message>The BIC code is not consistent with the counterparty name.</message>
+				<field>EntityIdentificationBIC</field>
+				<value>
+					<xsl:value-of select="CounterpartyIdentification/EntityIdentificationBIC" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC') and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-078</code>
+				<message>The counterparty BIC code is not consistent with the counterparty name.</message>
+				<field>EntityIdentificationBIC</field>
+				<value>
+					<xsl:value-of select="CounterpartyIdentification/EntityIdentificationBIC" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/AIFPrincipalMarkets/AIFPrincipalMarket">
+		<xsl:param name="fund" />
+		<xsl:variable name="mic" select="MarketIdentification/MarketCode" />
+		<xsl:if test="$mic and not($micregister[. = $mic])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-080</code>
+				<message>The MIC code is not correct</message>
+				<field>MarketCode</field>
+				<value>
+					<xsl:value-of select="$mic" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(MarketIdentification/MarketCodeType = 'MIC') != boolean($mic)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-081</code>
+				<message>The MIC code is not consistent with the market code type.</message>
+				<field>MarketCode</field>
+				<value>
+					<xsl:value-of select="$mic" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="boolean(MarketIdentification/MarketCodeType = 'NOT') = boolean(AggregatedValueAmount)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-082</code>
+				<message>The aggregated value is not consistent with the market code type.</message>
+				<field>AggregatedValueAmount</field>
+				<value>
+					<xsl:value-of select="AggregatedValueAmount" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="rank" select="Ranking" />
+		<xsl:variable name="value" select="AggregatedValueAmount"/>
+		<xsl:if test="$value &lt; ../AIFPrincipalMarket[Ranking=($rank + 1)]/AggregatedValueAmount">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-083</code>
+				<message>The reported value is not consistent with the rank.</message>
+				<field>AggregatedValueAmount</field>
+				<value>
+					<xsl:value-of select="$value" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/InvestorConcentration">
+		<xsl:param name="fund" />
+		<xsl:variable name="ratesum" select="ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate" />
+		<xsl:if test="$ratesum != 100 and $ratesum != 0">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-084</code>
+				<message>The sum of the percentages should be equal to 0% or 100%.</message>
+				<field>ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate</field>
+				<value>
+					<xsl:value-of select="$ratesum" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/AssetTypeExposures/AssetTypeExposure">
+		<xsl:param name="fund" />
+		<xsl:choose>
+			<xsl:when test="SubAssetType='DER_FEX_INVT' or SubAssetType='DER_FEX_HEDG' or SubAssetType='DER_IRD_INTR'">
+				<xsl:if test="LongValue">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-086</code>
+						<message>The long value is not consistent with the sub-asset type.</message>
+						<field>LongValue</field>
+						<value>
+							<xsl:value-of select="LongValue" />
+						</value>
+					</error>
+				</xsl:if>
+				<xsl:if test="ShortValue">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-087</code>
+						<message>The short value is not consistent with the sub-asset type.</message>
+						<field>ShortValue</field>
+						<value>
+							<xsl:value-of select="ShortValue" />
+						</value>
+					</error>
+				</xsl:if>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:if test="GrossValue">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-085</code>
+						<message>The gross value is not consistent with the sub-asset type.</message>
+						<field>GrossValue</field>
+						<value>
+							<xsl:value-of select="GrossValue" />
+						</value>
+					</error>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/AssetTypeTurnovers/AssetTypeTurnover">
+		<xsl:param name="fund" />
+		<xsl:variable name="t" select="TurnoverSubAssetType" />
+		<xsl:if test="not($t='DER_EQD_EQD' or $t='DER_FEX_INV' or $t='DER_EQD_EQD' or $t='DER_CDS_CDS' or $t='DER_FEX_HED' or $t='DER_IRD_IRD' or $t='DER_CTY_CTY' or $t='DER_OTH_OTH')">
+			<xsl:if test="NotionalValue">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-088</code>
+					<message>The notional value is not consistent with the sub-asset type.</message>
+					<field>NotionalValue</field>
+					<value>
+						<xsl:value-of select="NotionalValue" />
+					</value>
+				</error>
+			</xsl:if>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CurrencyExposures/CurrencyExposure">
+		<xsl:param name="fund" />
+		<xsl:variable name="currency" select="ExposureCurrency" />
+		<xsl:choose>
+			<xsl:when test="$currency">
+				<xsl:if test="not($currencycodes[. = $currency])">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-089</code>
+						<message>The currency code is not correct.</message>
+						<field>ExposureCurrency</field>
+						<value>
+							<xsl:value-of select="$currency" />
+						</value>
+					</error>
+				</xsl:if>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:if test="LongPositionValue">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-090</code>
+						<message>The long position value is not consistent with the currency of exposure.</message>
+						<field>LongPositionValue</field>
+						<value>
+							<xsl:value-of select="LongPositionValue" />
+						</value>
+					</error>
+				</xsl:if>
+				<xsl:if test="ShortPositionValue">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-091</code>
+						<message>The short position value is not consistent with the currency of exposure.</message>
+						<field>ShortPositionValue</field>
+						<value>
+							<xsl:value-of select="ShortPositionValue" />
+						</value>
+					</error>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CompaniesDominantInfluence/CompanyDominantInfluence">
+		<xsl:param name="fund" />
+		<xsl:param name="predominantaiftype" />
+			
+		<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(CompanyIdentification/EntityName)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-092</code>
+				<message>The company name is not consistent with the AIF predominant type.</message>
+				<field>EntityName</field>
+				<value>
+					<xsl:value-of select="CompanyIdentification/EntityName" />
+				</value>
+			</error>
+		</xsl:if>
+		<xsl:variable name="cilei" select="CompanyIdentification/EntityIdentificationLEI" />
+		<xsl:if test="$cilei and not($leiregister[. = $cilei])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-093</code>
+				<message>The check digits of the LEI code are not correct.</message>
+				<field>EntityIdentificationLEI</field>
+				<value>
+					<xsl:value-of select="$cilei" />
+				</value>
+			</error>
+		</xsl:if>
+		<xsl:if test="$predominantaiftype!='PEQF' and boolean($cilei)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-094</code>
+				<message>The LEI code is not consistent with the AIF predominant type.</message>
+				<field>EntityIdentificationLEI</field>
+				<value>
+					<xsl:value-of select="$cilei" />
+				</value>
+			</error>
+		</xsl:if>
+		<xsl:if test="$predominantaiftype!='PEQF' and boolean(CompanyIdentification/EntityIdentificationBIC)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-095</code>
+				<message>The BIC code is not consistent with the AIF predominant type.</message>
+				<field>EntityIdentificationBIC</field>
+				<value>
+					<xsl:value-of select="CompanyIdentification/EntityIdentificationBIC" />
+				</value>
+			</error>
+		</xsl:if>
+		<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(TransactionType)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-096</code>
+				<message>The transaction type is not consistent with the AIF predominant type.</message>
+				<field>TransactionType</field>
+				<value>
+					<xsl:value-of select="TransactionType" />
+				</value>
+			</error>
+		</xsl:if>
+		<xsl:if test="boolean(TransactionType='OTHR') != boolean(OtherTransactionTypeDescription)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-097</code>
+				<message>The description for other transaction type is not consistent with the transaction type.</message>
+				<field>OtherTransactionTypeDescription</field>
+				<value>
+					<xsl:value-of select="OtherTransactionTypeDescription" />
+				</value>
+			</error>
+		</xsl:if>
+		<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(VotingRightsRate)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-098</code>
+				<message>The percentage of voting rights is not consistent with the AIF predominant type.</message>
+				<field>VotingRightsRate</field>
+				<value>
+					<xsl:value-of select="VotingRightsRate" />
+				</value>
+			</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/MarketRiskProfile/MarketRiskMeasures/MarketRiskMeasure">
@@ -2381,8 +2397,6 @@
 		</xsl:if>
 	</xsl:template>
 
-
-
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile">
 		<xsl:param name="fund" />
 		<xsl:param name="periodtype" />
@@ -2632,7 +2646,6 @@
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/NAVChangeRate">
 		<xsl:variable name="fund" />
 		<xsl:variable name="periodtype" />
-		<!-- DEAD<xsl:value-of select="$periodtype" /><xsl:value-of select="$fund" />BEEF	 -->
 		<xsl:variable name="error">
 			<xsl:choose>
 				<xsl:when test="$periodtype = 'Q1'">
