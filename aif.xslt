@@ -117,38 +117,20 @@
 			</error>
 		</xsl:if>
 
-		<xsl:choose>
-			<xsl:when test="AIFReportingObligationChangeFrequencyCode or AIFReportingObligationChangeContentsCode">
-				<xsl:if test="not(AIFReportingObligationChangeQuarter)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-006</code>
-						<message>The quarter for the AIF reporting obligation change should be reported</message>
-						<field>AIFReportingObligationChangeQuarter</field>
-						<value>
-							<xsl:value-of select="AIFReportingObligationChangeQuarter" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="AIFReportingObligationChangeQuarter">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-006</code>
-						<message>The quarter for the AIF reporting obligation change should not be reported</message>
-						<field>AIFReportingObligationChangeQuarter</field>
-						<value>
-							<xsl:value-of select="AIFReportingObligationChangeQuarter" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
+		<xsl:if test="(AIFReportingObligationChangeFrequencyCode or AIFReportingObligationChangeContentsCode) != boolean(AIFReportingObligationChangeQuarter)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-006</code>
+				<message>The quarter for the AIF reporting obligation change should be reported</message>
+				<field>AIFReportingObligationChangeQuarter</field>
+				<value>
+					<xsl:value-of select="AIFReportingObligationChangeQuarter" />
+				</value>
+			</error>
+		</xsl:if>
+
 		<xsl:variable name="manager" select="AIFMNationalCode" />
 		<xsl:if test="not($aifmregister[. = $manager])">
 			<error>
@@ -237,84 +219,7 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="aifname" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName" />
-		<xsl:choose>
-			<xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER'">
-				<xsl:if test="not($aifname)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-024</code>
-						<message>The master AIF name is not consistent with the master feeder status.</message>
-						<field>AIFName</field>
-						<value>
-							<xsl:value-of select="$aifname" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="$aifname">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-024</code>
-						<message>The master AIF name is not consistent with the master feeder status.</message>
-						<field>AIFName</field>
-						<value>
-							<xsl:value-of select="$aifname" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
-		<xsl:variable name="aifmemberstate" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState" />
-		<xsl:if test="$aifmemberstate and not($eeacountrycodes[. = $aifmemberstate])">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-025</code>
-				<message>The country of the master AIF national code is not correct and should be an EEA or EU country.</message>
-				<field>ReportingMemberState</field>
-				<value>
-					<xsl:value-of select="$aifmemberstate" />
-				</value>
-			</error>
-		</xsl:if>
-		<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER')">
-			<xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-026</code>
-					<message>The master AIF reporting member state is not consistent with the master feeder status.</message>
-					<field>ReportingMemberState</field>
-					<value>
-						<xsl:value-of select="$aifmemberstate" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:if>
-		<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER')">
-			<xsl:variable name="aifnationalcode" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/AIFNationalCode" />
-			<xsl:if test="$aifnationalcode">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-027</code>
-					<message>The master AIF national code is not consistent with the master feeder status.</message>
-					<field>AIFNationalCode</field>
-					<value>
-						<xsl:value-of select="$aifnationalcode" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:if>
+
 		<!-- CAF-028 The check digits of the LEI code are not correct. -->
 
 		<xsl:variable name="predominantaiftype" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType" />
@@ -774,6 +679,70 @@
 			<xsl:with-param name="noreporting" select="$noreporting" />
 		</xsl:apply-templates>
 
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification">
+		<xsl:variable name="aifname" select="AIFName" />
+		<xsl:variable name="masterfeederstatus" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus" />
+		<xsl:if test="($masterfeederstatus = 'FEEDER') != boolean($aifname)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-024</code>
+				<message>The master AIF name is not consistent with the master feeder status.</message>
+				<field>AIFName</field>
+				<value>
+					<xsl:value-of select="$aifname" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="aifmemberstate" select="AIFIdentifierNCA/ReportingMemberState" />
+		<xsl:if test="$aifmemberstate and not($eeacountrycodes[. = $aifmemberstate])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-025</code>
+				<message>The country of the master AIF national code is not correct and should be an EEA or EU country.</message>
+				<field>ReportingMemberState</field>
+				<value>
+					<xsl:value-of select="$aifmemberstate" />
+				</value>
+			</error>
+		</xsl:if>
+		<xsl:if test="not($masterfeederstatus = 'FEEDER')">
+			<xsl:if test="AIFIdentifierNCA/ReportingMemberState">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-026</code>
+					<message>The master AIF reporting member state is not consistent with the master feeder status.</message>
+					<field>ReportingMemberState</field>
+					<value>
+						<xsl:value-of select="$aifmemberstate" />
+					</value>
+				</error>
+			</xsl:if>
+		</xsl:if>
+		<xsl:if test="not($masterfeederstatus = 'FEEDER')">
+			<xsl:variable name="aifnationalcode" select="AIFIdentifierNCA/AIFNationalCode" />
+			<xsl:if test="$aifnationalcode">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-027</code>
+					<message>The master AIF national code is not consistent with the master feeder status.</message>
+					<field>AIFNationalCode</field>
+					<value>
+						<xsl:value-of select="$aifnationalcode" />
+					</value>
+				</error>
+			</xsl:if>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierLEI">
