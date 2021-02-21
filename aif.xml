@@ -1182,11 +1182,11 @@
 							<RealEstateFundStrategyType>MULT_REST</RealEstateFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 						</RealEstateFundStrategy>
-						<RealEstateFundStrategy>
+						<!-- <RealEstateFundStrategy>
 							<RealEstateFundStrategyType>RESL_REST</RealEstateFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription>
-						</RealEstateFundStrategy>
+						</RealEstateFundStrategy> -->
 						<RealEstateFundStrategy>
 							<RealEstateFundStrategyType>OTHR_REST</RealEstateFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>

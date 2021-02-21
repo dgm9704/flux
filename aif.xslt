@@ -461,13 +461,25 @@
 			</error>
 		</xsl:if>
 
+		<xsl:if test="PrimaryStrategyFlag != 'true'">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-038</code>
+				<message>Multi strategies investment strategies should be primary strategies.</message>
+				<field>PrimaryStrategyFlag</field>
+				<value>
+					<xsl:value-of select="PrimaryStrategyFlag" />
+				</value>
+			</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_PEQF']">
 		<xsl:param name="fund" />
 
 		<xsl:if test="count(../PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType != 'MULT_PEQF']) &lt; 2">
-
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -480,59 +492,57 @@
 				</value>
 			</error>
 		</xsl:if>
+
+		<xsl:if test="PrimaryStrategyFlag != 'true'">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-038</code>
+				<message>Multi strategies investment strategies should be primary strategies.</message>
+				<field>PrimaryStrategyFlag</field>
+				<value>
+					<xsl:value-of select="PrimaryStrategyFlag" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="RealEstateFundStrategy[RealEstateFundStrategyType = 'MULT_REST']">
+		<xsl:param name="fund" />
+		<xsl:if test="count(../RealEstateFundStrategy[RealEstateFundStrategyType != 'MULT_REST']) &lt; 2">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-037</code>
+				<message>The investment strategy code is not allowed.</message>
+				<field>RealEstateFundStrategyType</field>
+				<value>
+					<xsl:value-of select="RealEstateFundStrategyType" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="PrimaryStrategyFlag != 'true'">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-038</code>
+				<message>Multi strategies investment strategies should be primary strategies.</message>
+				<field>PrimaryStrategyFlag</field>
+				<value>
+					<xsl:value-of select="PrimaryStrategyFlag" />
+				</value>
+			</error>
+		</xsl:if>
+
 	</xsl:template>
 
 	<xsl:template match="FOO">
-		<xsl:variable name="realestatefundStrategytype" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType" />
-		<xsl:if test="$realestatefundStrategytype = 'MULT_HFND'">
-			<xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType[.!='MULT_REST'])" />
-			<xsl:if test="$count &lt; 2">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-037</code>
-					<message>The investment strategy code is not allowed.</message>
-					<field>RealEstateFundStrategyType</field>
-					<value>
-						<xsl:value-of select="$realestatefundStrategytype" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:if>
-		<xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_PEQF' and not(PrimaryStrategyFlag = 'true')]">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-038</code>
-				<message>Multi strategies investment strategies should be primary strategies.</message>
-				<field>PrimaryStrategyFlag</field>
-				<value></value>
-			</error>
-		</xsl:if>
-		<xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy[HedgeFundStrategyType = 'MULT_HFND' and not(PrimaryStrategyFlag = 'true')]">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-038</code>
-				<message>Multi strategies investment strategies should be primary strategies.</message>
-				<field>PrimaryStrategyFlag</field>
-				<value></value>
-			</error>
-		</xsl:if>
-		<xsl:if test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy[RealEstateFundStrategyType = 'MULT_REST' and not(PrimaryStrategyFlag = 'true')]">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-038</code>
-				<message>Multi strategies investment strategies should be primary strategies.</message>
-				<field>PrimaryStrategyFlag</field>
-				<value></value>
-			</error>
-		</xsl:if>
+
+
 		<xsl:variable name="strategynavrates" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/*/*/StrategyNAVRate" />
 		<xsl:if test="not(sum($strategynavrates) = 100)">
 			<error>
