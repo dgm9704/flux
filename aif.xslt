@@ -22,52 +22,26 @@
 		<xsl:variable name="fund" select="AIFNationalCode" />
 		<xsl:variable name="noreporting" select="AIFNoReportingFlag" />
 		<xsl:if test="$noreporting = 'false'">
-			<xsl:if test="AIFContentType = '2' or AIFContentType = '4'">
-				<xsl:if test="not(AIFCompleteDescription/AIFIndividualInfo)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-002</code>
-						<message>The reported AIF information does not correspond to the AIF content type.</message>
-						<field>AIFContentType</field>
-						<value>
-							<xsl:value-of select="AIFContentType" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:if>
-			<xsl:if test="AIFContentType = '2' or AIFContentType = '4'">
-				<xsl:if test="not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-002</code>
-						<message>The reported AIF information does not correspond to the AIF content type.</message>
-						<field>AIFContentType</field>
-						<value>
-							<xsl:value-of select="AIFContentType" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:if>
-			<xsl:if test="AIFContentType = '4' or AIFContentType = '5'">
-				<xsl:if test="not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-002</code>
-						<message>The reported AIF information does not correspond to the AIF content type.</message>
-						<field>AIFContentType</field>
-						<value>
-							<xsl:value-of select="AIFContentType" />
-						</value>
-					</error>
-				</xsl:if>
+			<xsl:variable name="contenterror">
+				<xsl:if test="(AIFContentType = '2' or AIFContentType = '4') and not(AIFCompleteDescription/AIFIndividualInfo)">true</xsl:if>
+				<xsl:if test="(AIFContentType = '2' or AIFContentType = '4') and not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2)">true</xsl:if>
+				<xsl:if test="(AIFContentType = '4' or AIFContentType = '5') and not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4)">true</xsl:if>
+			</xsl:variable>
+			<xsl:if test="$contenterror = 'true'">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-002</code>
+					<message>The reported AIF information does not correspond to the AIF content type.</message>
+					<field>AIFContentType</field>
+					<value>
+						<xsl:value-of select="AIFContentType" />
+					</value>
+				</error>
 			</xsl:if>
 		</xsl:if>
+
 		<xsl:variable name="reportingperiodstartdate" select="ReportingPeriodStartDate" />
 		<xsl:variable name="startdate" select="translate($reportingperiodstartdate,'-','')" />
 		<xsl:variable name="year" select="substring($startdate,1,4)" />
@@ -279,38 +253,21 @@
 		<xsl:variable name="eeaflag" select="boolean(AIFEEAFlag='true')" />
 		<xsl:variable name="domicile" select="AIFDomicile" />
 		<xsl:variable name="iseea" select="boolean($eeacountrycodes[.=$domicile])" />
-		<xsl:choose>
-			<xsl:when test="$eeaflag">
-				<xsl:if test="not($iseea)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-009</code>
-						<message>The EEA flag is not correct.</message>
-						<field>AIFEEAFlag</field>
-						<value>
-							<xsl:value-of select="AIFEEAFlag" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="$iseea">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-009</code>
-						<message>The EEA flag is not correct.</message>
-						<field>AIFEEAFlag</field>
-						<value>
-							<xsl:value-of select="AIFEEAFlag" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
+
+		<xsl:if test="$eeaflag != $iseea">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-009</code>
+				<message>The EEA flag is not correct.</message>
+				<field>AIFEEAFlag</field>
+				<value>
+					<xsl:value-of select="AIFEEAFlag" />
+				</value>
+			</error>
+		</xsl:if>
+
 		<xsl:if test="not($countrycodes[. = $domicile])">
 			<error>
 				<record>
@@ -324,6 +281,7 @@
 				</value>
 			</error>
 		</xsl:if>
+
 		<xsl:variable name="inceptiondate" select="translate(InceptionDate,'-','')" />
 		<xsl:if test="not($inceptiondate &lt; $startdate)">
 			<error>
@@ -338,38 +296,20 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:choose>
-			<xsl:when test="AIFNoReportingFlag = 'true'">
-				<xsl:if test="AIFCompleteDescription">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-012</code>
-						<message>The AIF no reporting flag is not consistent with the reported information.</message>
-						<field>AIFNoReportingFlag</field>
-						<value>
-							<xsl:value-of select="AIFNoReportingFlag" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="not(AIFCompleteDescription)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-012</code>
-						<message>The AIF no reporting flag is not consistent with the reported information.</message>
-						<field>AIFNoReportingFlag</field>
-						<value>
-							<xsl:value-of select="AIFNoReportingFlag" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
+
+		<xsl:if test="AIFNoReportingFlag = 'true' = boolean(AIFCompleteDescription)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-012</code>
+				<message>The AIF no reporting flag is not consistent with the reported information.</message>
+				<field>AIFNoReportingFlag</field>
+				<value>
+					<xsl:value-of select="AIFNoReportingFlag" />
+				</value>
+			</error>
+		</xsl:if>
 
 		<xsl:variable name="aifname" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName" />
 		<xsl:choose>
