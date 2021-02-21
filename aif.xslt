@@ -85,81 +85,38 @@
 		<xsl:variable name="q3end" select="concat($year,'0930')" />
 		<xsl:variable name="q4end" select="concat($year,'1231')" />
 		<xsl:variable name="transition" select="LastReportingFlag='true'" />
-		<xsl:choose>
-			<xsl:when test="not($enddate&gt;$startdate)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-004</code>
-					<message>The reporting period end date is not allowed</message>
-					<field>ReportingPeriodEndDate</field>
-					<value>
-						<xsl:value-of select="$reportingperiodenddate" />
-					</value>
-				</error>
-			</xsl:when>
-			<xsl:when test="$periodtype='Q1'">
-				<xsl:if test="not($enddate=$q1end or ($transition and $enddate&lt;$q1end))">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-004</code>
-						<message>The reporting period end date is not allowed</message>
-						<field>ReportingPeriodEndDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodenddate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:when test="$periodtype='Q2' or $periodtype='H1'">
-				<xsl:if test="not($enddate=$q2end or ($transition and $enddate&lt;$q2end))">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-004</code>
-						<message>The reporting period end date is not allowed</message>
-						<field>ReportingPeriodEndDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodenddate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:when test="$periodtype='Q3'">
-				<xsl:if test="not($enddate=$q3end or ($transition and $enddate&lt;$q3end))">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-004</code>
-						<message>The reporting period end date is not allowed</message>
-						<field>ReportingPeriodEndDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodenddate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:when test="$periodtype='Q4' or $periodtype='H2' or $periodtype='Y1'">
-				<xsl:if test="not($enddate=$q4end or ($transition and $enddate&lt;$q4end))">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-004</code>
-						<message>The reporting period end date is not allowed</message>
-						<field>ReportingPeriodEndDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodenddate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-		</xsl:choose>
+		<xsl:variable name="enderror">
+			<xsl:choose>
+				<xsl:when test="not($enddate&gt;$startdate)">true</xsl:when>
+				<xsl:when test="$periodtype='Q1'">
+					<xsl:if test="not($enddate=$q1end or ($transition and $enddate&lt;$q1end))">true</xsl:if>
+				</xsl:when>
+				<xsl:when test="$periodtype='Q2' or $periodtype='H1'">
+					<xsl:if test="not($enddate=$q2end or ($transition and $enddate&lt;$q2end))">true</xsl:if>
+				</xsl:when>
+				<xsl:when test="$periodtype='Q3'">
+					<xsl:if test="not($enddate=$q3end or ($transition and $enddate&lt;$q3end))">true</xsl:if>
+				</xsl:when>
+				<xsl:when test="$periodtype='Q4' or $periodtype='H2' or $periodtype='Y1'">
+					<xsl:if test="not($enddate=$q4end or ($transition and $enddate&lt;$q4end))">true</xsl:if>
+				</xsl:when>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:if test="$enderror = 'true'">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-004</code>
+				<message>The reporting period end date is not allowed</message>
+				<field>ReportingPeriodEndDate</field>
+				<value>
+					<xsl:value-of select="$reportingperiodenddate" />
+				</value>
+			</error>
+		</xsl:if>
+
 		<xsl:choose>
 			<xsl:when test="AIFReportingObligationChangeFrequencyCode or AIFReportingObligationChangeContentsCode">
 				<xsl:if test="not(AIFReportingObligationChangeQuarter)">
