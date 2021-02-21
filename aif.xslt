@@ -744,6 +744,11 @@
 				</error>
 			</xsl:if>
 		</xsl:if>
+
+		<xsl:apply-templates>
+			<xsl:with-param name="fund" select="$fund" />
+			<!-- <xsl:with-param name="fund" select="$fund" > -->
+		</xsl:apply-templates>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierLEI">
@@ -939,6 +944,25 @@
 			</error>
 		</xsl:if>
 
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrimeBrokers/PrimeBrokerIdentification/EntityIdentificationLEI">
+		<xsl:param name="fund" />
+
+		<xsl:variable name="lei" select="." />
+		<xsl:if test="$lei and not($leiregister[. = $lei])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-028</code>
+				<message>The check digits of the LEI code are not correct.</message>
+				<field>EntityIdentificationLEI</field>
+				<value>
+					<xsl:value-of select="$lei" />
+				</value>
+			</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription">
