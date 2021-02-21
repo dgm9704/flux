@@ -49,66 +49,35 @@
 		<xsl:variable name="day" select="substring($startdate,7,2)" />
 		<xsl:variable name="periodtype" select="ReportingPeriodType" />
 		<xsl:variable name="reportingyear" select="ReportingPeriodYear" />
-		<xsl:choose>
-			<xsl:when test="not($day='01') or not($year=$reportingyear)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-003</code>
-					<message>The reporting period start date is not allowed. </message>
-					<field>ReportingPeriodStartDate</field>
-					<value>
-						<xsl:value-of select="$reportingperiodstartdate" />
-					</value>
-				</error>
-			</xsl:when>
-			<xsl:when test="$periodtype='Q1' or $periodtype='Q2' or $periodtype='Q3' or $periodtype='Q4'">
-				<xsl:if test="not($month='10' or $month='07' or $month='01')">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-003</code>
-						<message>The reporting period start date is not allowed. </message>
-						<field>ReportingPeriodStartDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodstartdate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:when test="$periodtype='H1' or $periodtype='H2'">
-				<xsl:if test="not($month='07' or $month='01')">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-003</code>
-						<message>The reporting period start date is not allowed. </message>
-						<field>ReportingPeriodStartDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodstartdate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:when test="$periodtype='Y1'">
-				<xsl:if test="not($month='01')">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-003</code>
-						<message>The reporting period start date is not allowed. </message>
-						<field>ReportingPeriodStartDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodstartdate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-		</xsl:choose>
+		<xsl:variable name="starterror">
+			<xsl:choose>
+				<xsl:when test="not($day='01') or not($year=$reportingyear)">true</xsl:when>
+				<xsl:when test="$periodtype='Q1' or $periodtype='Q2' or $periodtype='Q3' or $periodtype='Q4'">
+					<xsl:if test="not($month='10' or $month='07' or $month='01')">true</xsl:if>
+				</xsl:when>
+				<xsl:when test="$periodtype='H1' or $periodtype='H2'">
+					<xsl:if test="not($month='07' or $month='01')">true</xsl:if>
+				</xsl:when>
+				<xsl:when test="$periodtype='Y1'">
+					<xsl:if test="not($month='01')">true</xsl:if>
+				</xsl:when>
+			</xsl:choose>
+		</xsl:variable>
+
+		<xsl:if test="$starterror = 'true'">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-003</code>
+				<message>The reporting period start date is not allowed. </message>
+				<field>ReportingPeriodStartDate</field>
+				<value>
+					<xsl:value-of select="$reportingperiodstartdate" />
+				</value>
+			</error>
+		</xsl:if>
+
 		<xsl:variable name="reportingperiodenddate" select="ReportingPeriodEndDate" />
 		<xsl:variable name="enddate" select="translate(reportingperiodenddate,'-','')" />
 		<xsl:variable name="q1end" select="concat($year,'0331')" />
