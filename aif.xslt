@@ -682,6 +682,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification">
+		<xsl:param name="fund" />
 		<xsl:variable name="aifname" select="AIFName" />
 		<xsl:variable name="masterfeederstatus" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus" />
 		<xsl:if test="($masterfeederstatus = 'FEEDER') != boolean($aifname)">
