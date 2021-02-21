@@ -1,5 +1,4 @@
-<xsl:transform version="1.0" 
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+<xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output indent="yes" method="xml" />
 	<xsl:template match="AIFReportingInfo">
 		<aif>
@@ -372,151 +371,6 @@
 			</xsl:otherwise>
 		</xsl:choose>
 
-		<xsl:variable name="shareclassflag" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'" />
-		<xsl:if test="not($shareclassflag)">
-			<xsl:variable name="shareclassnationalcode" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassNationalCode" />
-			<xsl:if test="$shareclassnationalcode">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-016</code>
-					<message>The share class national code is not consistent with the share class flag.</message>
-					<field>ShareClassNationalCode</field>
-					<value>
-						<xsl:value-of select="$shareclassnationalcode" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:if>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierISIN">
-			<xsl:variable name="isin" select="." />
-			<xsl:if test="$isin and not($isinregister[. = $isin])">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-017</code>
-					<message>The check digit of the ISIN code is not correct.</message>
-					<field>ShareClassIdentifierISIN</field>
-					<value>
-						<xsl:value-of select="$isin" />
-					</value>
-				</error>
-			</xsl:if>
-			<xsl:if test="not($shareclassflag)">
-				<xsl:if test="$isin">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-018</code>
-						<message>The share class ISIN code is not consistent with the share class flag.</message>
-						<field>ShareClassIdentifierISIN</field>
-						<value>
-							<xsl:value-of select="$isin" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:if>
-			<xsl:if test="not($shareclassflag)">
-				<xsl:variable name="cusip" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierCUSIP" />
-				<xsl:if test="$cusip">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-019</code>
-						<message>The share class CUSIP code is not consistent with the share class flag.</message>
-						<field>ShareClassIdentifierCUSIP</field>
-						<value>
-							<xsl:value-of select="$cusip" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:if>
-			<xsl:if test="not($shareclassflag)">
-				<xsl:variable name="sedol" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierSEDOL" />
-				<xsl:if test="$sedol">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-020</code>
-						<message>The share class SEDOL code is not consistent with the share class flag.</message>
-						<field>ShareClassIdentifierSEDOL</field>
-						<value>
-							<xsl:value-of select="$sedol" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:if>
-			<xsl:if test="not($shareclassflag)">
-				<xsl:variable name="ticker" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierTicker" />
-				<xsl:if test="$ticker">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-021</code>
-						<message>The share class Bloomberg code is not consistent with the share class flag.</message>
-						<field>ShareClassIdentifierTicker</field>
-						<value>
-							<xsl:value-of select="$ticker" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:if>
-			<xsl:if test="not($shareclassflag)">
-				<xsl:variable name="ric" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassIdentifierRIC" />
-				<xsl:if test="$ric">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-022</code>
-						<message>The share class Reuters code is not consistent with the share class flag.</message>
-						<field>ShareClassIdentifierRIC</field>
-						<value>
-							<xsl:value-of select="$ric" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:if>
-			<xsl:variable name="shareclassname" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier/ShareClassName" />
-			<xsl:choose>
-				<xsl:when test="$shareclassflag">
-					<xsl:if test="not($shareclassname)">
-						<error>
-							<record>
-								<xsl:value-of select="$fund" />
-							</record>
-							<code>CAF-023</code>
-							<message>The share class name is not consistent with the share class flag.</message>
-							<field>ShareClassName</field>
-							<value>
-								<xsl:value-of select="$shareclassname" />
-							</value>
-						</error>
-					</xsl:if>
-				</xsl:when>
-				<xsl:otherwise>
-					<xsl:if test="$shareclassname">
-						<error>
-							<record>
-								<xsl:value-of select="$fund" />
-							</record>
-							<code>CAF-023</code>
-							<message>The share class name is not consistent with the share class flag.</message>
-							<field>ShareClassName</field>
-							<value>
-								<xsl:value-of select="$shareclassname" />
-							</value>
-						</error>
-					</xsl:if>
-				</xsl:otherwise>
-			</xsl:choose>
-		</xsl:for-each>
 		<xsl:variable name="aifname" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFName" />
 		<xsl:choose>
 			<xsl:when test="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus = 'FEEDER'">
@@ -1000,7 +854,7 @@
 		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures">
 			<xsl:for-each select="PrincipalExposure">
 				<xsl:variable name="rank" select="Ranking" />
-				<xsl:variable name="value" select="AggregatedValueAmount"/>
+				<xsl:variable name="value" select="AggregatedValueAmount" />
 				<xsl:if test="$value &lt; ../PrincipalExposure[Ranking=($rank + 1)]/AggregatedValueAmount">
 					<error>
 						<record>
@@ -1032,7 +886,6 @@
 			</xsl:if>
 		</xsl:for-each>
 
-
 		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo">
 			<xsl:if test="boolean(AIFDescription/PredominantAIFType = 'PEQF') != boolean(MostImportantConcentration/TypicalPositionSize)">
 				<error>
@@ -1057,7 +910,7 @@
 
 	</xsl:template>
 
-	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierLEI" >
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierLEI">
 		<xsl:param name="fund" />
 		<xsl:variable name="lei" select="." />
 		<xsl:if test="$lei and not($leiregister[. = $lei])">
@@ -1111,6 +964,147 @@
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo">
+		<xsl:param name="fund" />
+		<xsl:param name="periodtype" />
+		<xsl:param name="noreporting" />
+		<xsl:variable name="shareclassflag" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'" />
+		<xsl:apply-templates>
+			<xsl:with-param name="fund" select="$fund" />
+			<xsl:with-param name="periodtype" select="$periodtype" />
+			<xsl:with-param name="noreporting" select="$noreporting" />
+			<xsl:with-param name="shareclassflag" />
+		</xsl:apply-templates>
+
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier">
+		<xsl:param name="fund" />
+		<xsl:param name="shareclassflag" />
+
+		<xsl:if test="not($shareclassflag)">
+			<xsl:variable name="shareclassnationalcode" select="ShareClassNationalCode" />
+			<xsl:if test="$shareclassnationalcode">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-016</code>
+					<message>The share class national code is not consistent with the share class flag.</message>
+					<field>ShareClassNationalCode</field>
+					<value>
+						<xsl:value-of select="$shareclassnationalcode" />
+					</value>
+				</error>
+			</xsl:if>
+		</xsl:if>
+
+		<xsl:variable name="isin" select="ShareClassIdentifierISIN" />
+		<xsl:if test="$isin and not($isinregister[. = $isin])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-017</code>
+				<message>The check digit of the ISIN code is not correct.</message>
+				<field>ShareClassIdentifierISIN</field>
+				<value>
+					<xsl:value-of select="$isin" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="not($shareclassflag) and $isin">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-018</code>
+				<message>The share class ISIN code is not consistent with the share class flag.</message>
+				<field>ShareClassIdentifierISIN</field>
+				<value>
+					<xsl:value-of select="$isin" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="cusip" select="ShareClassIdentifierCUSIP" />
+		<xsl:if test="not($shareclassflag) and $cusip">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-019</code>
+				<message>The share class CUSIP code is not consistent with the share class flag.</message>
+				<field>ShareClassIdentifierCUSIP</field>
+				<value>
+					<xsl:value-of select="$cusip" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="sedol" select="ShareClassIdentifierSEDOL" />
+		<xsl:if test="not($shareclassflag) and $sedol">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-020</code>
+				<message>The share class SEDOL code is not consistent with the share class flag.</message>
+				<field>ShareClassIdentifierSEDOL</field>
+				<value>
+					<xsl:value-of select="$sedol" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="ticker" select="ShareClassIdentifierTicker" />
+		<xsl:if test="not($shareclassflag) and $ticker">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-021</code>
+				<message>The share class Bloomberg code is not consistent with the share class flag.</message>
+				<field>ShareClassIdentifierTicker</field>
+				<value>
+					<xsl:value-of select="$ticker" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="ric" select="ShareClassIdentifierRIC" />
+		<xsl:if test="not($shareclassflag) and $ric">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-022</code>
+				<message>The share class Reuters code is not consistent with the share class flag.</message>
+				<field>ShareClassIdentifierRIC</field>
+				<value>
+					<xsl:value-of select="$ric" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:variable name="shareclassname" select="ShareClassName" />
+		<xsl:if test="$shareclassflag != boolean($shareclassname)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-023</code>
+				<message>The share class name is not consistent with the share class flag.</message>
+				<field>ShareClassName</field>
+				<value>
+					<xsl:value-of select="$shareclassname" />
+				</value>
+			</error>
+		</xsl:if>
+
+	</xsl:template>
+
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription">
 		<xsl:param name="fund" />
 		<xsl:param name="noreporting" />
@@ -1128,102 +1122,48 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:choose>
-			<xsl:when test="$noreporting = 'false' and not($basecurrency = 'EUR')">
-				<xsl:if test="not(FXEURRate)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-030</code>
-						<message></message>
-						<field>FXEURRate</field>
-						<value>
-							<xsl:value-of select="FXEURRate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="AFXEURRate">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-030</code>
-						<message></message>
-						<field>FXEURRate</field>
-						<value>
-							<xsl:value-of select="FXEURRate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
-		<xsl:choose>
-			<xsl:when test="$noreporting = 'false' and not($basecurrency = 'EUR')">
-				<xsl:if test="not(FXEURReferenceRateType)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-031</code>
-						<message></message>
-						<field>FXEURReferenceRateType</field>
-						<value>
-							<xsl:value-of select="FXEURReferenceRateType" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="FXEURReferenceRateType">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-031</code>
-						<message></message>
-						<field>FXEURReferenceRateType</field>
-						<value>
-							<xsl:value-of select="FXEURReferenceRateType" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
-		<xsl:choose>
-			<xsl:when test="FXEURReferenceRateType = 'OTH'">
-				<xsl:if test="not(FXEUROtherReferenceRateDescription)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-032</code>
-						<message></message>
-						<field>FXEUROtherReferenceRateDescription</field>
-						<value>
-							<xsl:value-of select="FXEUROtherReferenceRateDescription" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:when>
-			<xsl:otherwise>
-				<xsl:if test="FXEUROtherReferenceRateDescription">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-032</code>
-						<message></message>
-						<field>FXEUROtherReferenceRateDescription</field>
-						<value>
-							<xsl:value-of select="FXEUROtherReferenceRateDescription" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:otherwise>
-		</xsl:choose>
+
+		<xsl:if test="($noreporting = 'false' and not($basecurrency = 'EUR')) != boolean(FXEURRate)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-030</code>
+				<message></message>
+				<field>FXEURRate</field>
+				<value>
+					<xsl:value-of select="FXEURRate" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="($noreporting = 'false' and not($basecurrency = 'EUR')) != boolean(FXEURReferenceRateType)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-031</code>
+				<message></message>
+				<field>FXEURReferenceRateType</field>
+				<value>
+					<xsl:value-of select="FXEURReferenceRateType" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="(FXEURReferenceRateType = 'OTH') != boolean(FXEUROtherReferenceRateDescription)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-032</code>
+				<message></message>
+				<field>FXEUROtherReferenceRateDescription</field>
+				<value>
+					<xsl:value-of select="FXEUROtherReferenceRateDescription" />
+				</value>
+			</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FirstFundingSourceCountry">
@@ -1262,7 +1202,7 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/ThirdFundingSourceCountry" >
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/ThirdFundingSourceCountry">
 		<xsl:param name="fund" />
 		<xsl:variable name="thirdfundingsourcecountry" select="." />
 		<xsl:if test="$thirdfundingsourcecountry and not($countrycodes[. = $thirdfundingsourcecountry])">
@@ -1473,7 +1413,7 @@
 		</xsl:if>
 
 		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="PositionValue"/>
+		<xsl:variable name="value" select="PositionValue" />
 		<xsl:if test="$value &lt; ../MainInstrumentTraded[Ranking=($rank + 1)]/PositionValue">
 			<error>
 				<record>
@@ -1501,7 +1441,7 @@
 				</value>
 			</error>
 		</xsl:if>
-		
+
 		<xsl:apply-templates />
 
 	</xsl:template>
@@ -1626,7 +1566,7 @@
 		</xsl:if>
 
 		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="AggregatedValueAmount"/>
+		<xsl:variable name="value" select="AggregatedValueAmount" />
 		<xsl:if test="$value &lt; ../PortfolioConcentration[Ranking=($rank + 1)]/AggregatedValueAmount">
 			<error>
 				<record>
@@ -1774,7 +1714,7 @@
 		</xsl:if>
 
 		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="AggregatedValueAmount"/>
+		<xsl:variable name="value" select="AggregatedValueAmount" />
 		<xsl:if test="$value &lt; ../AIFPrincipalMarket[Ranking=($rank + 1)]/AggregatedValueAmount">
 			<error>
 				<record>
@@ -1930,7 +1870,7 @@
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CompaniesDominantInfluence/CompanyDominantInfluence">
 		<xsl:param name="fund" />
 		<xsl:param name="predominantaiftype" />
-			
+
 		<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(CompanyIdentification/EntityName)">
 			<error>
 				<record>
@@ -2194,7 +2134,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/TradingClearingMechanism/ClearedDerivativesRate">
-	<xsl:param name="fund" />
+		<xsl:param name="fund" />
 		<xsl:if test="CCPRate + BilateralClearingRate != 100">
 			<error>
 				<record>
@@ -2296,7 +2236,7 @@
 			</error>
 		</xsl:if>
 		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="CounterpartyTotalExposureRate"/>
+		<xsl:variable name="value" select="CounterpartyTotalExposureRate" />
 		<xsl:if test="$value &lt; ../FundToCounterpartyExposure[Ranking=($rank + 1)]/CounterpartyTotalExposureRate">
 			<error>
 				<record>
@@ -2381,7 +2321,7 @@
 			</error>
 		</xsl:if>
 		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="CounterpartyTotalExposureRate"/>
+		<xsl:variable name="value" select="CounterpartyTotalExposureRate" />
 		<xsl:if test="$value &lt; ../CounterpartyToFundExposure[Ranking=($rank + 1)]/CounterpartyTotalExposureRate">
 			<error>
 				<record>
@@ -2438,7 +2378,7 @@
 			</error>
 		</xsl:if>
 		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="CCPExposureValue"/>
+		<xsl:variable name="value" select="CCPExposureValue" />
 		<xsl:if test="$value &lt; ../CCPExposure[Ranking=($rank + 1)]/CCPExposureValue">
 			<error>
 				<record>
@@ -2802,7 +2742,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2/ControlledStructures/ControlledStructure/ControlledStructureIdentification/EntityIdentificationLEI">
-		<xsl:param name="fund" />	
+		<xsl:param name="fund" />
 		<xsl:variable name="cslei" select="." />
 		<xsl:if test="$cslei and not($leiregister[. = $cslei])">
 			<error>
@@ -2888,7 +2828,7 @@
 			</error>
 		</xsl:if>
 		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="LeverageAmount"/>
+		<xsl:variable name="value" select="LeverageAmount" />
 		<xsl:if test="$value &lt; ../BorrowingSource[Ranking=($rank + 1)]/LeverageAmount">
 			<error>
 				<record>
