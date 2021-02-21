@@ -505,16 +505,16 @@
 					<ThirdFundingSourceCountry>IE</ThirdFundingSourceCountry>
 					<PredominantAIFType>HFND</PredominantAIFType>
 					<HedgeFundInvestmentStrategies>
-						<HedgeFundStrategy>
+						<!-- <HedgeFundStrategy>
 							<HedgeFundStrategyType>MULT_HFND</HedgeFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>100</StrategyNAVRate>
-						</HedgeFundStrategy>
+						</HedgeFundStrategy> -->
 						<!-- <HedgeFundStrategy><HedgeFundStrategyType>EQTY_LGST</HedgeFundStrategyType><PrimaryStrategyFlag>true</PrimaryStrategyFlag><StrategyNAVRate>100</StrategyNAVRate></HedgeFundStrategy> -->
 					</HedgeFundInvestmentStrategies>
 					<PrivateEquityFundInvestmentStrategies>
 						<PrivateEquityFundInvestmentStrategy>
-							<PrivateEquityFundStrategyType>MZNE_CAPL</PrivateEquityFundStrategyType>
+							<PrivateEquityFundStrategyType>MULT_PEQF</PrivateEquityFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyTypeOtherDescription>Foo</StrategyTypeOtherDescription>
 						</PrivateEquityFundInvestmentStrategy>

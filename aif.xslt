@@ -145,6 +145,7 @@
 				</value>
 			</error>
 		</xsl:if>
+
 		<xsl:if test="not($aifregister[. = $fund])">
 			<error>
 				<record>
@@ -220,12 +221,144 @@
 		</xsl:if>
 
 
-		<!-- CAF-028 The check digits of the LEI code are not correct. -->
+		<xsl:variable name="navregions" select="AIFCompleteDescription/AIFPrincipalInfo/NAVGeographicalFocus/*" />
+		<xsl:if test="$navregions and not(sum($navregions) = 100)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-057</code>
+				<message>The sum of the percentages should be equal to 100%.</message>
+				<field>NAVGeographicalFocus</field>
+				<value>
+					<xsl:value-of select="sum($navregions)" />
+				</value>
+			</error>
+		</xsl:if>
+		<xsl:variable name="aumregions" select="AIFCompleteDescription/AIFPrincipalInfo/AUMGeographicalFocus/*" />
+		<xsl:if test="$aumregions and not(sum($aumregions) = 100)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-058</code>
+				<message>The sum of the percentages should be equal to 100%.</message>
+				<field>AUMGeographicalFocus</field>
+				<value>
+					<xsl:value-of select="sum($aumregions)" />
+				</value>
+			</error>
+		</xsl:if>
+		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
+			<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(SubAssetType)">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-059</code>
+					<message>The sub-asset type is not consistent with the macro-asset type.</message>
+					<field>SubAssetType</field>
+					<value>
+						<xsl:value-of select="SubAssetType" />
+					</value>
+				</error>
+			</xsl:if>
+		</xsl:for-each>
+		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
+			<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(PositionType)">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-060</code>
+					<message>The position type is not consistent with the macro-asset type.</message>
+					<field>PositionType</field>
+					<value>
+						<xsl:value-of select="PositionType" />
+					</value>
+				</error>
+			</xsl:if>
+		</xsl:for-each>
+		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
+			<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(AggregatedValueAmount)">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-061</code>
+					<message>The aggregated value is not consistent with the macro-asset type.</message>
+					<field>AggregatedValueAmount</field>
+					<value>
+						<xsl:value-of select="AggregatedValueAmount" />
+					</value>
+				</error>
+			</xsl:if>
+		</xsl:for-each>
+		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures">
+			<xsl:for-each select="PrincipalExposure">
+				<xsl:variable name="rank" select="Ranking" />
+				<xsl:variable name="value" select="AggregatedValueAmount" />
+				<xsl:if test="$value &lt; ../PrincipalExposure[Ranking=($rank + 1)]/AggregatedValueAmount">
+					<error>
+						<record>
+							<xsl:value-of select="$fund" />
+						</record>
+						<code>CAF-062</code>
+						<message>The reported value is not consistent with the rank.</message>
+						<field>AggregatedValueAmount</field>
+						<value>
+							<xsl:value-of select="$value" />
+						</value>
+					</error>
+				</xsl:if>
+			</xsl:for-each>
+		</xsl:for-each>
+		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
+			<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(AggregatedValueRate)">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-063</code>
+					<message>The aggregated value percentage is not consistent with the macro-asset type.</message>
+					<field>AggregatedValueRate</field>
+					<value>
+						<xsl:value-of select="AggregatedValueRate" />
+					</value>
+				</error>
+			</xsl:if>
+		</xsl:for-each>
 
-		<xsl:variable name="predominantaiftype" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType" />
+		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo">
+			<xsl:if test="boolean(AIFDescription/PredominantAIFType = 'PEQF') != boolean(MostImportantConcentration/TypicalPositionSize)">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-079</code>
+					<message>The position size type is not consistent with the predominant AIF type.</message>
+					<field>TypicalPositionSize</field>
+					<value>
+						<xsl:value-of select="MostImportantConcentration/TypicalPositionSize" />
+					</value>
+				</error>
+			</xsl:if>
+		</xsl:for-each>
+
+		<xsl:apply-templates>
+			<xsl:with-param name="fund" select="$fund" />
+			<xsl:with-param name="periodtype" select="$periodtype" />
+			<xsl:with-param name="noreporting" select="$noreporting" />
+		</xsl:apply-templates>
+
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription">
+		<xsl:param name="fund" />
+		<xsl:variable name="predominantaiftype" select="PredominantAIFType" />
 		<xsl:choose>
 			<xsl:when test="$predominantaiftype = 'HFND'">
-				<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy)">
+				<xsl:if test="not(HedgeFundInvestmentStrategies/HedgeFundStrategy)">
 					<error>
 						<record>
 							<xsl:value-of select="$fund" />
@@ -238,7 +371,7 @@
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'PEQF'">
-				<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy)">
+				<xsl:if test="not(PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy)">
 					<error>
 						<record>
 							<xsl:value-of select="$fund" />
@@ -251,7 +384,7 @@
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'RESF'">
-				<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy)">
+				<xsl:if test="not(RealEstateFundInvestmentStrategies/RealEstateFundStrategy)">
 					<error>
 						<record>
 							<xsl:value-of select="$fund" />
@@ -264,7 +397,7 @@
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'FOFS'">
-				<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy)">
+				<xsl:if test="not(FundOfFundsInvestmentStrategies/FundOfFundsStrategy)">
 					<error>
 						<record>
 							<xsl:value-of select="$fund" />
@@ -277,7 +410,7 @@
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'OTHR'">
-				<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies/OtherFundStrategy)">
+				<xsl:if test="not(OtherFundInvestmentStrategies/OtherFundStrategy)">
 					<error>
 						<record>
 							<xsl:value-of select="$fund" />
@@ -290,8 +423,8 @@
 				</xsl:if>
 			</xsl:when>
 		</xsl:choose>
-		<xsl:if test="not(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType = 'NONE')">
-			<xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies | AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies)" />
+		<xsl:if test="not(PredominantAIFType = 'NONE')">
+			<xsl:variable name="count" select="count(HedgeFundInvestmentStrategies | RealEstateFundInvestmentStrategies | PrivateEquityFundInvestmentStrategies | FundOfFundsInvestmentStrategies | OtherFundInvestmentStrategies)" />
 			<xsl:if test="$count &gt; 1">
 				<error>
 					<record>
@@ -304,40 +437,52 @@
 				</error>
 			</xsl:if>
 		</xsl:if>
-		<xsl:variable name="hedgefundstrategytype" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType" />
-		<xsl:if test="$hedgefundstrategytype = 'MULT_HFND'">
-			<xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy/HedgeFundStrategyType[.!='MULT_HFND'])" />
-			<xsl:if test="$count &lt; 2">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-037</code>
-					<message>The investment strategy code is not allowed.</message>
-					<field>HedgeFundStrategyType</field>
-					<value>
-						<xsl:value-of select="$hedgefundstrategytype" />
-					</value>
-				</error>
-			</xsl:if>
+
+		<xsl:apply-templates>
+			<xsl:with-param name="fund" select="$fund" />
+		</xsl:apply-templates>
+
+	</xsl:template>
+
+	<xsl:template match="HedgeFundStrategy[HedgeFundStrategyType = 'MULT_HFND']">
+		<xsl:param name="fund" />
+
+		<xsl:if test="count(../HedgeFundStrategy[HedgeFundStrategyType != 'MULT_HFND']) &lt; 2">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-037</code>
+				<message>The investment strategy code is not allowed.</message>
+				<field>HedgeFundStrategyType</field>
+				<value>
+					<xsl:value-of select="HedgeFundStrategyType" />
+				</value>
+			</error>
 		</xsl:if>
-		<xsl:variable name="privateequityfundinvestmentstrategy" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType" />
-		<xsl:if test="$privateequityfundinvestmentstrategy = 'MULT_HFND'">
-			<xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType[.!='MULT_PEQF'])" />
-			<xsl:if test="$count &lt; 2">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-037</code>
-					<message>The investment strategy code is not allowed.</message>
-					<field>PrivateEquityFundStrategyType</field>
-					<value>
-						<xsl:value-of select="$privateequityfundinvestmentstrategy" />
-					</value>
-				</error>
-			</xsl:if>
+
+	</xsl:template>
+
+	<xsl:template match="PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_PEQF']">
+		<xsl:param name="fund" />
+
+		<xsl:if test="count(../PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType != 'MULT_PEQF']) &lt; 2">
+
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-037</code>
+				<message>The investment strategy code is not allowed.</message>
+				<field>PrivateEquityFundStrategyType</field>
+				<value>
+					<xsl:value-of select="PrivateEquityFundStrategyType" />
+				</value>
+			</error>
 		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="FOO">
 		<xsl:variable name="realestatefundStrategytype" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType" />
 		<xsl:if test="$realestatefundStrategytype = 'MULT_HFND'">
 			<xsl:variable name="count" select="count(AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy/RealEstateFundStrategyType[.!='MULT_REST'])" />
@@ -549,137 +694,9 @@
 				</error>
 			</xsl:if>
 		</xsl:for-each>
-		<xsl:variable name="navregions" select="AIFCompleteDescription/AIFPrincipalInfo/NAVGeographicalFocus/*" />
-		<xsl:if test="$navregions and not(sum($navregions) = 100)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-057</code>
-				<message>The sum of the percentages should be equal to 100%.</message>
-				<field>NAVGeographicalFocus</field>
-				<value>
-					<xsl:value-of select="sum($navregions)" />
-				</value>
-			</error>
-		</xsl:if>
-		<xsl:variable name="aumregions" select="AIFCompleteDescription/AIFPrincipalInfo/AUMGeographicalFocus/*" />
-		<xsl:if test="$aumregions and not(sum($aumregions) = 100)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-058</code>
-				<message>The sum of the percentages should be equal to 100%.</message>
-				<field>AUMGeographicalFocus</field>
-				<value>
-					<xsl:value-of select="sum($aumregions)" />
-				</value>
-			</error>
-		</xsl:if>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
-			<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(SubAssetType)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-059</code>
-					<message>The sub-asset type is not consistent with the macro-asset type.</message>
-					<field>SubAssetType</field>
-					<value>
-						<xsl:value-of select="SubAssetType" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
-			<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(PositionType)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-060</code>
-					<message>The position type is not consistent with the macro-asset type.</message>
-					<field>PositionType</field>
-					<value>
-						<xsl:value-of select="PositionType" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
-			<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(AggregatedValueAmount)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-061</code>
-					<message>The aggregated value is not consistent with the macro-asset type.</message>
-					<field>AggregatedValueAmount</field>
-					<value>
-						<xsl:value-of select="AggregatedValueAmount" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures">
-			<xsl:for-each select="PrincipalExposure">
-				<xsl:variable name="rank" select="Ranking" />
-				<xsl:variable name="value" select="AggregatedValueAmount" />
-				<xsl:if test="$value &lt; ../PrincipalExposure[Ranking=($rank + 1)]/AggregatedValueAmount">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-062</code>
-						<message>The reported value is not consistent with the rank.</message>
-						<field>AggregatedValueAmount</field>
-						<value>
-							<xsl:value-of select="$value" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:for-each>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
-			<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(AggregatedValueRate)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-063</code>
-					<message>The aggregated value percentage is not consistent with the macro-asset type.</message>
-					<field>AggregatedValueRate</field>
-					<value>
-						<xsl:value-of select="AggregatedValueRate" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo">
-			<xsl:if test="boolean(AIFDescription/PredominantAIFType = 'PEQF') != boolean(MostImportantConcentration/TypicalPositionSize)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-079</code>
-					<message>The position size type is not consistent with the predominant AIF type.</message>
-					<field>TypicalPositionSize</field>
-					<value>
-						<xsl:value-of select="MostImportantConcentration/TypicalPositionSize" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-
-		<xsl:apply-templates>
-			<xsl:with-param name="fund" select="$fund" />
-			<xsl:with-param name="periodtype" select="$periodtype" />
-			<xsl:with-param name="noreporting" select="$noreporting" />
-		</xsl:apply-templates>
 
 	</xsl:template>
+
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification">
 		<xsl:param name="fund" />
