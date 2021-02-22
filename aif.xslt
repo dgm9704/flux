@@ -479,25 +479,7 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="pstrategies" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_HFND'] " />
-		<xsl:if test="$pstrategies">
-			<xsl:for-each select="$pstrategies">
-				<xsl:variable name="strategynavrate" select="StrategyNAVRate" />
-				<xsl:if test="$ptrategynavrate">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-040</code>
-						<message>There is no NAV percentage reported for multi strategies investment strategies.</message>
-						<field>StrategyNAVRate</field>
-						<value>
-							<xsl:value-of select="$strategynavrate" />
-						</value>
-					</error>
-				</xsl:if>
-			</xsl:for-each>
-		</xsl:if>
+
 		<xsl:variable name="rstrategies" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy[RealEstateFundStrategyType = 'MULT_REST'] " />
 		<xsl:if test="$rstrategies">
 			<xsl:for-each select="$rstrategies">
@@ -518,24 +500,7 @@
 			</xsl:for-each>
 		</xsl:if>
 
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy">
-			<xsl:variable name="strategytype" select="PrivateEquityFundStrategyType" />
-			<xsl:variable name="isother" select="$strategytype = 'OTHR_PEQF'" />
-			<xsl:variable name="description" select="StrategyTypeOtherDescription" />
-			<xsl:if test="boolean($description) != $isother">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-041</code>
-					<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
-					<field>StrategyTypeOtherDescription</field>
-					<value>
-						<xsl:value-of select="$description" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
+
 		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy">
 			<xsl:variable name="strategytype" select="RealEstateFundStrategyType" />
 			<xsl:variable name="isother" select="$strategytype = 'OTHR_REST'" />
@@ -1010,6 +975,37 @@
 		</xsl:if>
 
 		<xsl:if test="(HedgeFundStrategyType = 'OTHER_HFND') != boolean(StrategyTypeOtherDescription)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-041</code>
+				<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
+				<field>StrategyTypeOtherDescription</field>
+				<value>
+					<xsl:value-of select="StrategyTypeOtherDescription" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy">
+		<xsl:param name="fund" />
+		<xsl:if test="(PrivateEquityFundStrategyType = 'MULT_HFND') and boolean(StrategyNAVRate)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-040</code>
+				<message>There is no NAV percentage reported for multi strategies investment strategies.</message>
+				<field>StrategyNAVRate</field>
+				<value>
+					<xsl:value-of select="StrategyNAVRate" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:if test="(PrivateEquityFundStrategyType = 'OTHR_PEQF') != boolean(StrategyTypeOtherDescription)">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
