@@ -250,21 +250,6 @@
 			</error>
 		</xsl:if>
 
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo">
-			<xsl:if test="boolean(AIFDescription/PredominantAIFType = 'PEQF') != boolean(MostImportantConcentration/TypicalPositionSize)">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-079</code>
-					<message>The position size type is not consistent with the predominant AIF type.</message>
-					<field>TypicalPositionSize</field>
-					<value>
-						<xsl:value-of select="MostImportantConcentration/TypicalPositionSize" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
 
 		<xsl:apply-templates>
 			<xsl:with-param name="fund" select="$fund" />
@@ -1443,7 +1428,6 @@
 			</error>
 		</xsl:if>
 
-
 		<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(AggregatedValueRate)">
 			<error>
 				<record>
@@ -1486,35 +1470,6 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="cplei" select="CounterpartyIdentification/EntityIdentificationLEI" />
-		<xsl:if test="$cplei and not($leiregister[. = $cplei])">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-076</code>
-				<message>The counterparty LEI code is not consistent with the counterparty name.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="$cplei" />
-				</value>
-			</error>
-		</xsl:if>
-
-		<xsl:if test="not(CounterpartyIdentification/EntityName) and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-077</code>
-				<message>The BIC code is not consistent with the counterparty name.</message>
-				<field>EntityIdentificationBIC</field>
-				<value>
-					<xsl:value-of select="CounterpartyIdentification/EntityIdentificationBIC" />
-				</value>
-			</error>
-		</xsl:if>
-
 		<xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC') and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
 			<error>
 				<record>
@@ -1528,6 +1483,62 @@
 				</value>
 			</error>
 		</xsl:if>
+		<xsl:apply-templates />
+	</xsl:template>
+
+	<xsl:template match="CounterpartyIdentification/EntityIdentificationLEI">
+		<xsl:param name="fund" />
+		<xsl:variable name="lei" select="." />
+		<xsl:if test="$lei and not($leiregister[. = $lei])">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-076</code>
+				<message>The counterparty LEI code is not consistent with the counterparty name.</message>
+				<field>EntityIdentificationLEI</field>
+				<value>
+					<xsl:value-of select="$lei" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="CounterPartyIdentification">
+		<xsl:if test="not(EntityName) and boolean(EntityIdentificationBIC)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-077</code>
+				<message>The BIC code is not consistent with the counterparty name.</message>
+				<field>EntityIdentificationBIC</field>
+				<value>
+					<xsl:value-of select="EntityIdentificationBIC" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo">
+		<xsl:param name="fund" />
+
+		<xsl:if test="boolean(AIFDescription/PredominantAIFType = 'PEQF') != boolean(MostImportantConcentration/TypicalPositionSize)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-079</code>
+				<message>The position size type is not consistent with the predominant AIF type.</message>
+				<field>TypicalPositionSize</field>
+				<value>
+					<xsl:value-of select="MostImportantConcentration/TypicalPositionSize" />
+				</value>
+			</error>
+		</xsl:if>
+
+		<xsl:apply-templates />
+
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/AIFPrincipalMarkets/AIFPrincipalMarket">
