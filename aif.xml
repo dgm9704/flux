@@ -1523,7 +1523,7 @@
 					</AssetTypeTurnovers>
 					<CurrencyExposures>
 						<CurrencyExposure>
-							<!-- <ExposureCurrency>AUD</ExposureCurrency> -->
+							<ExposureCurrency>AUD</ExposureCurrency>
 							<LongPositionValue>12345</LongPositionValue>
 							<ShortPositionValue>8765</ShortPositionValue>
 						</CurrencyExposure>
