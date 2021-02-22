@@ -1,5 +1,6 @@
 <xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
 	<xsl:output indent="yes" method="xml" />
+
 	<xsl:template match="AIFReportingInfo">
 		<aif>
 			<xsl:variable name="reportingmemberstate" select="@ReportingMemberState" />
@@ -220,37 +221,6 @@
 			</error>
 		</xsl:if>
 
-
-		<xsl:variable name="navregions" select="AIFCompleteDescription/AIFPrincipalInfo/NAVGeographicalFocus/*" />
-		<xsl:if test="$navregions and not(sum($navregions) = 100)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-057</code>
-				<message>The sum of the percentages should be equal to 100%.</message>
-				<field>NAVGeographicalFocus</field>
-				<value>
-					<xsl:value-of select="sum($navregions)" />
-				</value>
-			</error>
-		</xsl:if>
-		<xsl:variable name="aumregions" select="AIFCompleteDescription/AIFPrincipalInfo/AUMGeographicalFocus/*" />
-		<xsl:if test="$aumregions and not(sum($aumregions) = 100)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-058</code>
-				<message>The sum of the percentages should be equal to 100%.</message>
-				<field>AUMGeographicalFocus</field>
-				<value>
-					<xsl:value-of select="sum($aumregions)" />
-				</value>
-			</error>
-		</xsl:if>
-
-
 		<xsl:apply-templates>
 			<xsl:with-param name="fund" select="$fund" />
 			<xsl:with-param name="periodtype" select="$periodtype" />
@@ -258,6 +228,7 @@
 		</xsl:apply-templates>
 
 	</xsl:template>
+
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription">
 		<xsl:param name="fund" />
@@ -1213,6 +1184,42 @@
 
 		<xsl:apply-templates />
 
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/NAVGeographicalFocus">
+		<xsl:param name="fund" />
+		<xsl:variable name="navregions" select="*" />
+		<xsl:if test="$navregions and not(sum($navregions) = 100)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-057</code>
+				<message>The sum of the percentages should be equal to 100%.</message>
+				<field>NAVGeographicalFocus</field>
+				<value>
+					<xsl:value-of select="sum($navregions)" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AUMGeographicalFocus">
+		<xsl:param name="fund" />
+		<xsl:variable name="aumregions" select="*" />
+		<xsl:if test="$aumregions and not(sum($aumregions) = 100)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-058</code>
+				<message>The sum of the percentages should be equal to 100%.</message>
+				<field>AUMGeographicalFocus</field>
+				<value>
+					<xsl:value-of select="sum($aumregions)" />
+				</value>
+			</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
