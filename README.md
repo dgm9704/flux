@@ -65,7 +65,6 @@ Sample output for aifmsample.xml:
 ## Next steps 
 - Add richer info about the error location and related values.
 - If possible, find out the output format that ESMA uses!
-- Optimization if needed (it's easy to read and write when every case is explicitly "spelled out", but might perform badly) - ongoing
 - There are some warnings also (WAF-*) - do they go into a "warning" element, or should there be a severity value?
 
 ## How you can help
