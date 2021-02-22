@@ -269,7 +269,8 @@
 							<AggregatedValueAmount>72000000</AggregatedValueAmount>
 							<AggregatedValueRate>28</AggregatedValueRate>
 							<CounterpartyIdentification>
-								<EntityName>TEST ENTITY</EntityName>
+								<!-- <EntityName>TEST ENTITY</EntityName> -->
+								<EntityIdentificationBIC>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationBIC>
 								<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
 							</CounterpartyIdentification>
 						</PortfolioConcentration>

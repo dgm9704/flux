@@ -1481,6 +1481,20 @@
 			</error>
 		</xsl:if>
 
+		<xsl:if test="not(CounterpartyIdentification/EntityName) and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-077</code>
+				<message>The BIC code is not consistent with the counterparty name.</message>
+				<field>EntityIdentificationBIC</field>
+				<value>
+					<xsl:value-of select="CounterPartyIdentification/EntityIdentificationBIC" />
+				</value>
+			</error>
+		</xsl:if>
+
 		<xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC') and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
 			<error>
 				<record>
@@ -1510,22 +1524,6 @@
 				<field>EntityIdentificationLEI</field>
 				<value>
 					<xsl:value-of select="$lei" />
-				</value>
-			</error>
-		</xsl:if>
-	</xsl:template>
-
-	<xsl:template match="CounterPartyIdentification">
-		<xsl:if test="not(EntityName) and boolean(EntityIdentificationBIC)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-077</code>
-				<message>The BIC code is not consistent with the counterparty name.</message>
-				<field>EntityIdentificationBIC</field>
-				<value>
-					<xsl:value-of select="EntityIdentificationBIC" />
 				</value>
 			</error>
 		</xsl:if>
