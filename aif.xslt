@@ -478,45 +478,40 @@
 				</value>
 			</error>
 		</xsl:if>
+	</xsl:template>
 
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy">
+		<xsl:param name="fund" />
+		<xsl:if test="(FundOfFundsStrategyType = 'OTHR_FOFS') != boolean(StrategyTypeOtherDescription)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-041</code>
+				<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
+				<field>StrategyTypeOtherDescription</field>
+				<value>
+					<xsl:value-of select="StrategyTypeOtherDescription" />
+				</value>
+			</error>
+		</xsl:if>
+	</xsl:template>
 
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy">
-			<xsl:variable name="strategytype" select="FundOfFundsStrategyType" />
-			<xsl:variable name="isother" select="$strategytype = 'OTHR_FOFS'" />
-			<xsl:variable name="description" select="StrategyTypeOtherDescription" />
-			<xsl:if test="boolean($description) != $isother">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-041</code>
-					<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
-					<field>StrategyTypeOtherDescription</field>
-					<value>
-						<xsl:value-of select="$description" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-		<xsl:for-each select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies/OtherFundStrategy">
-			<xsl:variable name="strategytype" select="OtherFundStrategyType" />
-			<xsl:variable name="isother" select="$strategytype = 'OTHR_OTHF'" />
-			<xsl:variable name="description" select="StrategyTypeOtherDescription" />
-			<xsl:if test="boolean($description) != $isother">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-041</code>
-					<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
-					<field>StrategyTypeOtherDescription</field>
-					<value>
-						<xsl:value-of select="$description" />
-					</value>
-				</error>
-			</xsl:if>
-		</xsl:for-each>
-
+	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies/OtherFundStrategy">
+		<xsl:param name="fund" />
+		<xsl:if test="(OtherFundStrategyType  = 'OTHR_OTHF') != boolean(StrategyTypeOtherDescription)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-041</code>
+				<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
+				<field>StrategyTypeOtherDescription</field>
+				<value>
+					<xsl:value-of select="StrategyTypeOtherDescription" />
+				</value>
+			</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification">
