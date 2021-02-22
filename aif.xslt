@@ -895,6 +895,10 @@
 				</value>
 			</error>
 		</xsl:if>
+
+		<xsl:apply-templates>
+			<xsl:with-param name="fund" select="$fund" />
+		</xsl:apply-templates>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy">
