@@ -2222,7 +2222,7 @@
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile">
 		<xsl:param name="fund" />
 		<xsl:param name="periodtype" />
-		<xsl:variable name="directclearing" select="ClearTransactionsThroughCCPFlag" />
+		<xsl:variable name="directclearing" select="string(ClearTransactionsThroughCCPFlag)" />
 		<xsl:if test="$directclearing = 'true' and not(AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure[Ranking = 1])">
 			<error>
 				<record>
@@ -2232,7 +2232,7 @@
 				<message>Data should be reported for ranking 1 when there is direct clearing.</message>
 				<field>ClearTransactionsThroughCCPFlag</field>
 				<value>
-					<xsl:value-of select="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/ClearTransactionsThroughCCPFlag" />
+					<xsl:value-of select="$directclearing" />
 				</value>
 			</error>
 		</xsl:if>
@@ -2244,8 +2244,8 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure">
-		<xsl:variable name="fund" />
-		<xsl:variable name="directclearing" />
+		<xsl:param name="fund" />
+		<xsl:param name="directclearing" />
 		<xsl:if test="$directclearing = 'false' and boolean(CCPIdentification/EntityIdentificationLEI)">
 			<error>
 				<record>

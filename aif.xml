@@ -300,7 +300,7 @@
 						<AIFPrincipalMarket>
 							<Ranking>1</Ranking>
 							<MarketIdentification>
-								<MarketCodeType>MIC</MarketCodeType>
+								<MarketCodeType>NOT</MarketCodeType>
 								<MarketCode>FROB</MarketCode>
 							</MarketIdentification>
 							<AggregatedValueAmount>10000000</AggregatedValueAmount>
@@ -771,6 +771,7 @@
 						<CompanyDominantInfluence>
 							<CompanyIdentification>
 								<EntityName>Company Y</EntityName>
+								<EntityIdentificationBIC>BBBBBBBBBBB</EntityIdentificationBIC>
 							</CompanyIdentification>
 							<TransactionType>CDIV</TransactionType>
 							<VotingRightsRate>51</VotingRightsRate>
@@ -922,7 +923,7 @@
 								<Ranking>2</Ranking>
 								<CCPIdentification>
 									<EntityName>Entity 9</EntityName>
-									<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
+									<EntityIdentificationLEI>ZNHTL6O2WODTKMPZZZ48</EntityIdentificationLEI>
 								</CCPIdentification>
 								<CCPExposureValue>222222</CCPExposureValue>
 							</CCPExposure>
@@ -1522,7 +1523,7 @@
 					</AssetTypeTurnovers>
 					<CurrencyExposures>
 						<CurrencyExposure>
-							<ExposureCurrency>AUD</ExposureCurrency>
+							<!-- <ExposureCurrency>AUD</ExposureCurrency> -->
 							<LongPositionValue>12345</LongPositionValue>
 							<ShortPositionValue>8765</ShortPositionValue>
 						</CurrencyExposure>
