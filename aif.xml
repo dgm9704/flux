@@ -269,8 +269,7 @@
 							<AggregatedValueAmount>72000000</AggregatedValueAmount>
 							<AggregatedValueRate>28</AggregatedValueRate>
 							<CounterpartyIdentification>
-								<!-- <EntityName>TEST ENTITY</EntityName> -->
-								<EntityIdentificationBIC>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationBIC>
+								<EntityName>TEST ENTITY</EntityName>
 								<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
 							</CounterpartyIdentification>
 						</PortfolioConcentration>
@@ -291,7 +290,7 @@
 							<PositionType>L</PositionType>
 							<MarketIdentification>
 								<MarketCodeType>MIC</MarketCodeType>
-								<MarketCode>XPAR</MarketCode>
+								<MarketCode>FROB</MarketCode>
 							</MarketIdentification>
 							<AggregatedValueAmount>98000000</AggregatedValueAmount>
 							<AggregatedValueRate>38</AggregatedValueRate>
@@ -302,7 +301,7 @@
 							<Ranking>1</Ranking>
 							<MarketIdentification>
 								<MarketCodeType>MIC</MarketCodeType>
-								<MarketCode>XBRU</MarketCode>
+								<MarketCode>FROB</MarketCode>
 							</MarketIdentification>
 							<AggregatedValueAmount>10000000</AggregatedValueAmount>
 						</AIFPrincipalMarket>
