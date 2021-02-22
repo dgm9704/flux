@@ -2374,8 +2374,8 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/GrossInvestmentReturnsRate">
-		<xsl:variable name="fund" />
-		<xsl:variable name="periodtype" />
+		<xsl:param name="fund" />
+		<xsl:param name="periodtype" />
 		<xsl:variable name="error">
 			<xsl:choose>
 				<xsl:when test="$periodtype = 'Q1'">
@@ -2420,8 +2420,8 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/NetInvestmentReturnsRate">
-		<xsl:variable name="fund" />
-		<xsl:variable name="periodtype" />
+		<xsl:param name="fund" />
+		<xsl:param name="periodtype" />
 		<xsl:variable name="error">
 			<xsl:choose>
 				<xsl:when test="$periodtype = 'Q1'">
@@ -2466,8 +2466,8 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/NAVChangeRate">
-		<xsl:variable name="fund" />
-		<xsl:variable name="periodtype" />
+		<xsl:param name="fund" />
+		<xsl:param name="periodtype" />
 		<xsl:variable name="error">
 			<xsl:choose>
 				<xsl:when test="$periodtype = 'Q1'">
