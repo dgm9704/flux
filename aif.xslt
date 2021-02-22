@@ -359,6 +359,21 @@
 			</xsl:if>
 		</xsl:if>
 
+		<xsl:variable name="ratesum" select="sum(*/*/StrategyNAVRate)" />
+		<xsl:if test="not($ratesum = 100)">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-039</code>
+				<message>For the reported AIF, the sum of all the reported investment strategy NAV percentages should be 100%</message>
+				<field>StrategyNAVRate</field>
+				<value>
+					<xsl:value-of select="$ratesum" />
+				</value>
+			</error>
+		</xsl:if>
+
 		<xsl:apply-templates>
 			<xsl:with-param name="fund" select="$fund" />
 		</xsl:apply-templates>
@@ -459,25 +474,6 @@
 			</error>
 		</xsl:if>
 
-	</xsl:template>
-
-	<xsl:template match="FOO">
-
-
-		<xsl:variable name="strategynavrates" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/*/*/StrategyNAVRate" />
-		<xsl:if test="not(sum($strategynavrates) = 100)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-039</code>
-				<message>For the reported AIF, the sum of all the reported investment strategy NAV percentages should be 100%</message>
-				<field>StrategyNAVRate</field>
-				<value>
-					<xsl:value-of select="sum($strategynavrates)" />
-				</value>
-			</error>
-		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy">
