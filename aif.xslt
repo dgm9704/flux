@@ -1320,8 +1320,8 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="cplei" select="EntityIdentificationLEI" />
-		<xsl:if test="$cplei and not($leiregister[. = $cplei])">
+		<xsl:variable name="lei" select="EntityIdentificationLEI" />
+		<xsl:if test="$lei and not($leiregister[. = $lei])">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -1330,7 +1330,7 @@
 				<message>The check digits of the LEI code are not correct.</message>
 				<field>EntityIdentificationLEI</field>
 				<value>
-					<xsl:value-of select="$cplei" />
+					<xsl:value-of select="$lei" />
 				</value>
 			</error>
 		</xsl:if>

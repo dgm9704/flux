@@ -227,7 +227,7 @@
 						<CounterpartyIdentification>
 							<EntityName>Entity 2</EntityName>
 							<EntityIdentificationBIC>TESTFRPPXXX</EntityIdentificationBIC>
-							<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Z48</EntityIdentificationLEI>
+							<EntityIdentificationLEI>ZNHTL6O2WODTKMPF1Y48</EntityIdentificationLEI>
 						</CounterpartyIdentification>
 					</PrincipalExposure>
 					<PrincipalExposure>
