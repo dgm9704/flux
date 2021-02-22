@@ -336,37 +336,6 @@
 
 	</xsl:template>
 
-	<xsl:template match="HedgeFundStrategy[HedgeFundStrategyType = 'MULT_HFND']">
-		<xsl:param name="fund" />
-
-		<xsl:if test="count(../HedgeFundStrategy[HedgeFundStrategyType != 'MULT_HFND']) &lt; 2">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-037</code>
-				<message>The investment strategy code is not allowed.</message>
-				<field>HedgeFundStrategyType</field>
-				<value>
-					<xsl:value-of select="HedgeFundStrategyType" />
-				</value>
-			</error>
-		</xsl:if>
-
-		<xsl:if test="PrimaryStrategyFlag != 'true'">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-038</code>
-				<message>Multi strategies investment strategies should be primary strategies.</message>
-				<field>PrimaryStrategyFlag</field>
-				<value>
-					<xsl:value-of select="PrimaryStrategyFlag" />
-				</value>
-			</error>
-		</xsl:if>
-	</xsl:template>
 
 	<xsl:template match="PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType = 'MULT_PEQF']">
 		<xsl:param name="fund" />
@@ -894,6 +863,37 @@
 					<xsl:value-of select="StrategyTypeOtherDescription" />
 				</value>
 			</error>
+		</xsl:if>
+
+		<xsl:if test="HedgeFundStrategyType = 'MULT_HFND'">
+
+			<xsl:if test="count(../HedgeFundStrategy[HedgeFundStrategyType != 'MULT_HFND']) &lt; 2">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-037</code>
+					<message>The investment strategy code is not allowed.</message>
+					<field>HedgeFundStrategyType</field>
+					<value>
+						<xsl:value-of select="HedgeFundStrategyType" />
+					</value>
+				</error>
+			</xsl:if>
+
+			<xsl:if test="PrimaryStrategyFlag != 'true'">
+				<error>
+					<record>
+						<xsl:value-of select="$fund" />
+					</record>
+					<code>CAF-038</code>
+					<message>Multi strategies investment strategies should be primary strategies.</message>
+					<field>PrimaryStrategyFlag</field>
+					<value>
+						<xsl:value-of select="PrimaryStrategyFlag" />
+					</value>
+				</error>
+			</xsl:if>
 		</xsl:if>
 
 		<xsl:apply-templates>
