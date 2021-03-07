@@ -1,10 +1,21 @@
-<xsl:transform version="1.0" 
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:output indent="yes" method="xml" />
+<xsl:transform
+		version="1.0"
+		xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+		xmlns:func="http://exslt.org/functions"
+		xmlns:str="http://exslt.org/strings"
+		xmlns:my="http://example.org/my"
+		exclude-result-prefixes="my"
+		extension-element-prefixes="func str">
+
+	<xsl:output
+			indent="yes"
+			method="xml" />
 
 	<xsl:template match="AIFMReportingInfo">
 		<aifm>
-			<xsl:variable name="reportingmemberstate" select="@ReportingMemberState" />
+			<xsl:variable
+					name="reportingmemberstate"
+					select="@ReportingMemberState" />
 			<xsl:if test="not($eeacountrycodes[. = $reportingmemberstate])">
 				<error>
 					<record></record>
@@ -21,14 +32,30 @@
 	</xsl:template>
 
 	<xsl:template match="AIFMRecordInfo">
-		<xsl:variable name="manager" select="AIFMNationalCode" />
-		<xsl:variable name="reportingperiodstartdate" select="ReportingPeriodStartDate" />
-		<xsl:variable name="startdate" select="translate($reportingperiodstartdate,'-','')" />
-		<xsl:variable name="year" select="substring($startdate,1,4)" />
-		<xsl:variable name="month" select="substring($startdate,5,2)" />
-		<xsl:variable name="day" select="substring($startdate,7,2)" />
-		<xsl:variable name="periodtype" select="ReportingPeriodType" />
-		<xsl:variable name="reportingyear" select="ReportingPeriodYear" />
+		<xsl:variable
+				name="manager"
+				select="AIFMNationalCode" />
+		<xsl:variable
+				name="reportingperiodstartdate"
+				select="ReportingPeriodStartDate" />
+		<xsl:variable
+				name="startdate"
+				select="translate($reportingperiodstartdate,'-','')" />
+		<xsl:variable
+				name="year"
+				select="substring($startdate,1,4)" />
+		<xsl:variable
+				name="month"
+				select="substring($startdate,5,2)" />
+		<xsl:variable
+				name="day"
+				select="substring($startdate,7,2)" />
+		<xsl:variable
+				name="periodtype"
+				select="ReportingPeriodType" />
+		<xsl:variable
+				name="reportingyear"
+				select="ReportingPeriodYear" />
 		<xsl:choose>
 			<xsl:when test="not($day='01') or not($year=$reportingyear)">
 				<error>
@@ -89,13 +116,27 @@
 				</xsl:if>
 			</xsl:when>
 		</xsl:choose>
-		<xsl:variable name="reportingperiodenddate" select="ReportingPeriodEndDate" />
-		<xsl:variable name="enddate" select="translate($reportingperiodenddate,'-','')" />
-		<xsl:variable name="q1end" select="concat($year,'0331')" />
-		<xsl:variable name="q2end" select="concat($year,'0630')" />
-		<xsl:variable name="q3end" select="concat($year,'0930')" />
-		<xsl:variable name="q4end" select="concat($year,'1231')" />
-		<xsl:variable name="transition" select="LastReportingFlag='true'" />
+		<xsl:variable
+				name="reportingperiodenddate"
+				select="ReportingPeriodEndDate" />
+		<xsl:variable
+				name="enddate"
+				select="translate($reportingperiodenddate,'-','')" />
+		<xsl:variable
+				name="q1end"
+				select="concat($year,'0331')" />
+		<xsl:variable
+				name="q2end"
+				select="concat($year,'0630')" />
+		<xsl:variable
+				name="q3end"
+				select="concat($year,'0930')" />
+		<xsl:variable
+				name="q4end"
+				select="concat($year,'1231')" />
+		<xsl:variable
+				name="transition"
+				select="LastReportingFlag='true'" />
 		<xsl:choose>
 			<xsl:when test="not($enddate&gt;$startdate)">
 				<error>
@@ -171,7 +212,9 @@
 				</xsl:if>
 			</xsl:when>
 		</xsl:choose>
-		<xsl:variable name="changequarter" select="AIFMReportingObligationChangeQuarter" />
+		<xsl:variable
+				name="changequarter"
+				select="AIFMReportingObligationChangeQuarter" />
 		<xsl:choose>
 			<xsl:when test="AIFMReportingObligationChangeFrequencyCode or AIFMReportingObligationChangeContentsCode">
 				<xsl:if test="not($changequarter)">
@@ -204,7 +247,9 @@
 				</xsl:if>
 			</xsl:otherwise>
 		</xsl:choose>
-		<xsl:variable name ="jurisdiction" select="AIFMJurisdiction" />
+		<xsl:variable
+				name="jurisdiction"
+				select="AIFMJurisdiction" />
 		<xsl:if test="not($countrycodes[. = $jurisdiction])">
 			<error>
 				<record>
@@ -231,13 +276,21 @@
 				</value>
 			</error>
 		</xsl:if>
-		
-	
-		<xsl:if test = "AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency and not(AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency = 'EUR')">
-			<xsl:variable name="amountbase" select="AIFMCompleteDescription/AIFMBaseCurrencyDescription/AUMAmountInBaseCurrency" />
-			<xsl:variable name="amounteuro" select="AIFMCompleteDescription/AUMAmountInEuro" />
-			<xsl:variable name="rateeuro" select="AIFMCompleteDescription/AIFMBaseCurrencyDescription/FXEURRate"/>
-			<xsl:variable name="result" select="$amounteuro * $rateeuro" />
+
+
+		<xsl:if test="AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency and not(AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency = 'EUR')">
+			<xsl:variable
+					name="amountbase"
+					select="AIFMCompleteDescription/AIFMBaseCurrencyDescription/AUMAmountInBaseCurrency" />
+			<xsl:variable
+					name="amounteuro"
+					select="AIFMCompleteDescription/AUMAmountInEuro" />
+			<xsl:variable
+					name="rateeuro"
+					select="AIFMCompleteDescription/AIFMBaseCurrencyDescription/FXEURRate" />
+			<xsl:variable
+					name="result"
+					select="$amounteuro * $rateeuro" />
 			<xsl:if test="not($amountbase = $result)">
 				<error>
 					<record>
@@ -254,13 +307,17 @@
 		</xsl:if>
 
 		<xsl:apply-templates>
-			<xsl:with-param name="manager" select="$manager" />
+			<xsl:with-param
+					name="manager"
+					select="$manager" />
 		</xsl:apply-templates>
 	</xsl:template>
 
 	<xsl:template match="AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket/MarketIdentification">
 		<xsl:param name="manager" />
-		<xsl:variable name="mic" select="MarketCode" />
+		<xsl:variable
+				name="mic"
+				select="MarketCode" />
 		<xsl:if test="(boolean(MarketCodeType = 'MIC') != boolean($mic)) or ($mic and not($micregister[. = $mic]))">
 			<error>
 				<record>
@@ -277,9 +334,11 @@
 	</xsl:template>
 
 	<xsl:template match="AIFMCompleteDescription/AIFMIdentifier/OldAIFMIdentifierNCA">
-	<xsl:param name="manager" />
+		<xsl:param name="manager" />
 
-		<xsl:variable name="state" select="ReportingMemberState" />
+		<xsl:variable
+				name="state"
+				select="ReportingMemberState" />
 		<xsl:if test="$state and not($countrycodes[. = $state])">
 			<error>
 				<record>
@@ -311,7 +370,9 @@
 	<xsl:template match="AIFMCompleteDescription/AIFMBaseCurrencyDescription">
 		<xsl:param name="manager" />
 
-		<xsl:variable name="currency" select="BaseCurrency" />
+		<xsl:variable
+				name="currency"
+				select="BaseCurrency" />
 		<xsl:if test="$currency and not($currencycodes[. = $currency])">
 			<error>
 				<record>
@@ -326,7 +387,7 @@
 			</error>
 		</xsl:if>
 
-		<xsl:if test="($currency = 'EUR' and FXEURReferenceRateType = 'OTH') != boolean(FXEUROtherReferenceRateDescription)" >
+		<xsl:if test="($currency = 'EUR' and FXEURReferenceRateType = 'OTH') != boolean(FXEUROtherReferenceRateDescription)">
 			<error>
 				<record>
 					<xsl:value-of select="$manager" />
@@ -344,8 +405,12 @@
 
 	<xsl:template match="AIFMCompleteDescription/AIFMIdentifier/AIFMIdentifierLEI">
 		<xsl:param name="manager" />
-		<xsl:variable name="lei" select="." />
-		<xsl:if test="$lei and not($leiregister[. = $lei])">
+		<xsl:variable
+				name="lei"
+				select="." />
+
+		<xsl:if test="not(my:ISO17442($lei))">
+			<!-- <xsl:if test="$lei and not($leiregister[. = $lei])"> -->
 			<error>
 				<record>
 					<xsl:value-of select="$manager" />
@@ -361,11 +426,15 @@
 	</xsl:template>
 
 	<xsl:template match="AIFMCompleteDescription/AIFMPrincipalInstruments/AIFMPrincipalInstrument">
-	<xsl:param name="manager" />
-		<xsl:variable name="value" select="AggregatedValueAmount"/>
-		<xsl:variable name="rank" select="Ranking" />
+		<xsl:param name="manager" />
+		<xsl:variable
+				name="value"
+				select="AggregatedValueAmount" />
+		<xsl:variable
+				name="rank"
+				select="Ranking" />
 
-		<xsl:if test = "not(SubAssetType = 'NTA_NTA_NOTA') and not($value)">
+		<xsl:if test="not(SubAssetType = 'NTA_NTA_NOTA') and not($value)">
 			<error>
 				<record>
 					<xsl:value-of select="$manager" />
@@ -387,17 +456,23 @@
 				<code>CAM-014</code>
 				<message>The reported value is not consistent with the rank.</message>
 				<field>AggregatedValueAmount</field>
-				<value><xsl:value-of select="$value" /></value>
+				<value>
+					<xsl:value-of select="$value" />
+				</value>
 			</error>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket">
 		<xsl:param name="manager" />
-		<xsl:variable name="value" select="AggregatedValueAmount"/>
-		<xsl:variable name="rank" select="Ranking" />
+		<xsl:variable
+				name="value"
+				select="AggregatedValueAmount" />
+		<xsl:variable
+				name="rank"
+				select="Ranking" />
 
-		<xsl:if test = "not(MarketIdentification/MarketCodeType = 'NOT') and not($value)">
+		<xsl:if test="not(MarketIdentification/MarketCodeType = 'NOT') and not($value)">
 			<error>
 				<record>
 					<xsl:value-of select="$manager" />
@@ -419,7 +494,9 @@
 				<code>CAM-012</code>
 				<message>The reported value is not consistent with the rank.</message>
 				<field>AggregatedValueAmount</field>
-				<value><xsl:value-of select="$value" /></value>
+				<value>
+					<xsl:value-of select="$value" />
+				</value>
 			</error>
 		</xsl:if>
 		<xsl:apply-templates />

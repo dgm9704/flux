@@ -1,5 +1,9 @@
-<AIFMReportingInfo CreationDateAndTime="2014-01-26T15:55:02" Version="1.2" ReportingMemberState="GB" xsi:noNamespaceSchemaLocation="schema/AIFMD_DATMAN_V1.2.xsd" 
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<AIFMReportingInfo
+		CreationDateAndTime="2014-01-26T15:55:02"
+		Version="1.2"
+		ReportingMemberState="GB"
+		xsi:noNamespaceSchemaLocation="schema/AIFMD_DATMAN_V1.2.xsd"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
@@ -23,7 +27,7 @@
 		<AIFMNoReportingFlag>true</AIFMNoReportingFlag>
 		<AIFMCompleteDescription>
 			<AIFMIdentifier>
-				<AIFMIdentifierLEI>969500AA77L4ZJXJ0T02</AIFMIdentifierLEI>
+				<AIFMIdentifierLEI>5493000IBP32UQZ0KL25</AIFMIdentifierLEI>
 				<AIFMIdentifierBIC>TESTGB21XXX</AIFMIdentifierBIC>
 				<OldAIFMIdentifierNCA>
 					<ReportingMemberState>ZZ</ReportingMemberState>
