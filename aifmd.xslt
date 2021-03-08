@@ -22,9 +22,9 @@
 	<xsl:variable
 			name="micregister"
 			select="document('data/mic-register.xml')/codes/code" />
-	<xsl:variable
+	<!-- <xsl:variable
 			name="leiregister"
-			select="document('data/lei-register.xml')/codes/code" />
+			select="document('data/lei-register.xml')/codes/code" /> -->
 	<xsl:variable
 			name="isinregister"
 			select="document('data/isin-register.xml')/codes/code" />

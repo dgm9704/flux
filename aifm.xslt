@@ -410,7 +410,6 @@
 				select="." />
 
 		<xsl:if test="not(my:ISO17442($lei))">
-			<!-- <xsl:if test="$lei and not($leiregister[. = $lei])"> -->
 			<error>
 				<record>
 					<xsl:value-of select="$manager" />

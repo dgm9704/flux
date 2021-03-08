@@ -1,9 +1,17 @@
-<xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
-	<xsl:output indent="yes" method="xml" />
+<xsl:transform
+		version="1.0"
+		xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+		xmlns:my="http://example.org/my">
+
+	<xsl:output
+			indent="yes"
+			method="xml" />
 
 	<xsl:template match="AIFReportingInfo">
 		<aif>
-			<xsl:variable name="reportingmemberstate" select="@ReportingMemberState" />
+			<xsl:variable
+					name="reportingmemberstate"
+					select="@ReportingMemberState" />
 			<xsl:if test="not($eeacountrycodes[. = $reportingmemberstate])">
 				<error>
 					<record></record>
@@ -20,8 +28,12 @@
 	</xsl:template>
 
 	<xsl:template match="AIFRecordInfo">
-		<xsl:variable name="fund" select="AIFNationalCode" />
-		<xsl:variable name="noreporting" select="AIFNoReportingFlag" />
+		<xsl:variable
+				name="fund"
+				select="AIFNationalCode" />
+		<xsl:variable
+				name="noreporting"
+				select="AIFNoReportingFlag" />
 		<xsl:if test="$noreporting = 'false'">
 			<xsl:variable name="contenterror">
 				<xsl:if test="(AIFContentType = '2' or AIFContentType = '4') and not(AIFCompleteDescription/AIFIndividualInfo)">true</xsl:if>
@@ -43,13 +55,27 @@
 			</xsl:if>
 		</xsl:if>
 
-		<xsl:variable name="reportingperiodstartdate" select="ReportingPeriodStartDate" />
-		<xsl:variable name="startdate" select="translate($reportingperiodstartdate,'-','')" />
-		<xsl:variable name="year" select="substring($startdate,1,4)" />
-		<xsl:variable name="month" select="substring($startdate,5,2)" />
-		<xsl:variable name="day" select="substring($startdate,7,2)" />
-		<xsl:variable name="periodtype" select="ReportingPeriodType" />
-		<xsl:variable name="reportingyear" select="ReportingPeriodYear" />
+		<xsl:variable
+				name="reportingperiodstartdate"
+				select="ReportingPeriodStartDate" />
+		<xsl:variable
+				name="startdate"
+				select="translate($reportingperiodstartdate,'-','')" />
+		<xsl:variable
+				name="year"
+				select="substring($startdate,1,4)" />
+		<xsl:variable
+				name="month"
+				select="substring($startdate,5,2)" />
+		<xsl:variable
+				name="day"
+				select="substring($startdate,7,2)" />
+		<xsl:variable
+				name="periodtype"
+				select="ReportingPeriodType" />
+		<xsl:variable
+				name="reportingyear"
+				select="ReportingPeriodYear" />
 		<xsl:variable name="starterror">
 			<xsl:choose>
 				<xsl:when test="not($day='01') or not($year=$reportingyear)">true</xsl:when>
@@ -79,13 +105,27 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="reportingperiodenddate" select="ReportingPeriodEndDate" />
-		<xsl:variable name="enddate" select="translate(reportingperiodenddate,'-','')" />
-		<xsl:variable name="q1end" select="concat($year,'0331')" />
-		<xsl:variable name="q2end" select="concat($year,'0630')" />
-		<xsl:variable name="q3end" select="concat($year,'0930')" />
-		<xsl:variable name="q4end" select="concat($year,'1231')" />
-		<xsl:variable name="transition" select="LastReportingFlag='true'" />
+		<xsl:variable
+				name="reportingperiodenddate"
+				select="ReportingPeriodEndDate" />
+		<xsl:variable
+				name="enddate"
+				select="translate(reportingperiodenddate,'-','')" />
+		<xsl:variable
+				name="q1end"
+				select="concat($year,'0331')" />
+		<xsl:variable
+				name="q2end"
+				select="concat($year,'0630')" />
+		<xsl:variable
+				name="q3end"
+				select="concat($year,'0930')" />
+		<xsl:variable
+				name="q4end"
+				select="concat($year,'1231')" />
+		<xsl:variable
+				name="transition"
+				select="LastReportingFlag='true'" />
 		<xsl:variable name="enderror">
 			<xsl:choose>
 				<xsl:when test="not($enddate&gt;$startdate)">true</xsl:when>
@@ -132,7 +172,9 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="manager" select="AIFMNationalCode" />
+		<xsl:variable
+				name="manager"
+				select="AIFMNationalCode" />
 		<xsl:if test="not($aifmregister[. = $manager])">
 			<error>
 				<record>
@@ -160,9 +202,15 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:variable name="eeaflag" select="boolean(AIFEEAFlag='true')" />
-		<xsl:variable name="domicile" select="AIFDomicile" />
-		<xsl:variable name="iseea" select="boolean($eeacountrycodes[.=$domicile])" />
+		<xsl:variable
+				name="eeaflag"
+				select="boolean(AIFEEAFlag='true')" />
+		<xsl:variable
+				name="domicile"
+				select="AIFDomicile" />
+		<xsl:variable
+				name="iseea"
+				select="boolean($eeacountrycodes[.=$domicile])" />
 
 		<xsl:if test="$eeaflag != $iseea">
 			<error>
@@ -192,7 +240,9 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="inceptiondate" select="translate(InceptionDate,'-','')" />
+		<xsl:variable
+				name="inceptiondate"
+				select="translate(InceptionDate,'-','')" />
 		<xsl:if test="not($inceptiondate &lt; $startdate)">
 			<error>
 				<record>
@@ -222,9 +272,15 @@
 		</xsl:if>
 
 		<xsl:apply-templates>
-			<xsl:with-param name="fund" select="$fund" />
-			<xsl:with-param name="periodtype" select="$periodtype" />
-			<xsl:with-param name="noreporting" select="$noreporting" />
+			<xsl:with-param
+					name="fund"
+					select="$fund" />
+			<xsl:with-param
+					name="periodtype"
+					select="$periodtype" />
+			<xsl:with-param
+					name="noreporting"
+					select="$noreporting" />
 		</xsl:apply-templates>
 
 	</xsl:template>
@@ -232,7 +288,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription">
 		<xsl:param name="fund" />
-		<xsl:variable name="predominantaiftype" select="PredominantAIFType" />
+		<xsl:variable
+				name="predominantaiftype"
+				select="PredominantAIFType" />
 		<xsl:choose>
 			<xsl:when test="$predominantaiftype = 'HFND'">
 				<xsl:if test="not(HedgeFundInvestmentStrategies/HedgeFundStrategy)">
@@ -301,7 +359,9 @@
 			</xsl:when>
 		</xsl:choose>
 		<xsl:if test="not(PredominantAIFType = 'NONE')">
-			<xsl:variable name="count" select="count(HedgeFundInvestmentStrategies | RealEstateFundInvestmentStrategies | PrivateEquityFundInvestmentStrategies | FundOfFundsInvestmentStrategies | OtherFundInvestmentStrategies)" />
+			<xsl:variable
+					name="count"
+					select="count(HedgeFundInvestmentStrategies | RealEstateFundInvestmentStrategies | PrivateEquityFundInvestmentStrategies | FundOfFundsInvestmentStrategies | OtherFundInvestmentStrategies)" />
 			<xsl:if test="$count &gt; 1">
 				<error>
 					<record>
@@ -315,7 +375,9 @@
 			</xsl:if>
 		</xsl:if>
 
-		<xsl:variable name="ratesum" select="sum(*/*/StrategyNAVRate)" />
+		<xsl:variable
+				name="ratesum"
+				select="sum(*/*/StrategyNAVRate)" />
 		<xsl:if test="not($ratesum = 100)">
 			<error>
 				<record>
@@ -331,7 +393,9 @@
 		</xsl:if>
 
 		<xsl:apply-templates>
-			<xsl:with-param name="fund" select="$fund" />
+			<xsl:with-param
+					name="fund"
+					select="$fund" />
 		</xsl:apply-templates>
 
 	</xsl:template>
@@ -372,8 +436,12 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification">
 		<xsl:param name="fund" />
-		<xsl:variable name="aifname" select="AIFName" />
-		<xsl:variable name="masterfeederstatus" select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus" />
+		<xsl:variable
+				name="aifname"
+				select="AIFName" />
+		<xsl:variable
+				name="masterfeederstatus"
+				select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus" />
 		<xsl:if test="($masterfeederstatus = 'FEEDER') != boolean($aifname)">
 			<error>
 				<record>
@@ -388,7 +456,9 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="aifmemberstate" select="AIFIdentifierNCA/ReportingMemberState" />
+		<xsl:variable
+				name="aifmemberstate"
+				select="AIFIdentifierNCA/ReportingMemberState" />
 		<xsl:if test="$aifmemberstate and not($eeacountrycodes[. = $aifmemberstate])">
 			<error>
 				<record>
@@ -418,7 +488,9 @@
 			</xsl:if>
 		</xsl:if>
 		<xsl:if test="not($masterfeederstatus = 'FEEDER')">
-			<xsl:variable name="aifnationalcode" select="AIFIdentifierNCA/AIFNationalCode" />
+			<xsl:variable
+					name="aifnationalcode"
+					select="AIFIdentifierNCA/AIFNationalCode" />
 			<xsl:if test="$aifnationalcode">
 				<error>
 					<record>
@@ -435,15 +507,19 @@
 		</xsl:if>
 
 		<xsl:apply-templates>
-			<xsl:with-param name="fund" select="$fund" />
+			<xsl:with-param
+					name="fund"
+					select="$fund" />
 			<!-- <xsl:with-param name="fund" select="$fund" > -->
 		</xsl:apply-templates>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierLEI">
 		<xsl:param name="fund" />
-		<xsl:variable name="lei" select="." />
-		<xsl:if test="$lei and not($leiregister[. = $lei])">
+		<xsl:variable
+				name="lei"
+				select="." />
+		<xsl:if test="not(my:ISO17442($lei))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -460,7 +536,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierISIN">
 		<xsl:param name="fund" />
-		<xsl:variable name="isin" select="." />
+		<xsl:variable
+				name="isin"
+				select="." />
 		<xsl:if test="$isin and not($isinregister[. = $isin])">
 			<error>
 				<record>
@@ -478,7 +556,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification/AIFIdentifierNCA/ReportingMemberState">
 		<xsl:param name="fund" />
-		<xsl:variable name="aifmemberstate" select="." />
+		<xsl:variable
+				name="aifmemberstate"
+				select="." />
 		<xsl:if test="not($eeacountrycodes[. = $aifmemberstate])">
 			<error>
 				<record>
@@ -498,11 +578,19 @@
 		<xsl:param name="fund" />
 		<xsl:param name="periodtype" />
 		<xsl:param name="noreporting" />
-		<xsl:variable name="shareclassflag" select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'" />
+		<xsl:variable
+				name="shareclassflag"
+				select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'" />
 		<xsl:apply-templates>
-			<xsl:with-param name="fund" select="$fund" />
-			<xsl:with-param name="periodtype" select="$periodtype" />
-			<xsl:with-param name="noreporting" select="$noreporting" />
+			<xsl:with-param
+					name="fund"
+					select="$fund" />
+			<xsl:with-param
+					name="periodtype"
+					select="$periodtype" />
+			<xsl:with-param
+					name="noreporting"
+					select="$noreporting" />
 			<xsl:with-param name="shareclassflag" />
 		</xsl:apply-templates>
 
@@ -513,7 +601,9 @@
 		<xsl:param name="shareclassflag" />
 
 		<xsl:if test="not($shareclassflag)">
-			<xsl:variable name="shareclassnationalcode" select="ShareClassNationalCode" />
+			<xsl:variable
+					name="shareclassnationalcode"
+					select="ShareClassNationalCode" />
 			<xsl:if test="$shareclassnationalcode">
 				<error>
 					<record>
@@ -529,7 +619,9 @@
 			</xsl:if>
 		</xsl:if>
 
-		<xsl:variable name="isin" select="ShareClassIdentifierISIN" />
+		<xsl:variable
+				name="isin"
+				select="ShareClassIdentifierISIN" />
 		<xsl:if test="$isin and not($isinregister[. = $isin])">
 			<error>
 				<record>
@@ -558,7 +650,9 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="cusip" select="ShareClassIdentifierCUSIP" />
+		<xsl:variable
+				name="cusip"
+				select="ShareClassIdentifierCUSIP" />
 		<xsl:if test="not($shareclassflag) and $cusip">
 			<error>
 				<record>
@@ -573,7 +667,9 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="sedol" select="ShareClassIdentifierSEDOL" />
+		<xsl:variable
+				name="sedol"
+				select="ShareClassIdentifierSEDOL" />
 		<xsl:if test="not($shareclassflag) and $sedol">
 			<error>
 				<record>
@@ -588,7 +684,9 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="ticker" select="ShareClassIdentifierTicker" />
+		<xsl:variable
+				name="ticker"
+				select="ShareClassIdentifierTicker" />
 		<xsl:if test="not($shareclassflag) and $ticker">
 			<error>
 				<record>
@@ -603,7 +701,9 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="ric" select="ShareClassIdentifierRIC" />
+		<xsl:variable
+				name="ric"
+				select="ShareClassIdentifierRIC" />
 		<xsl:if test="not($shareclassflag) and $ric">
 			<error>
 				<record>
@@ -618,7 +718,9 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="shareclassname" select="ShareClassName" />
+		<xsl:variable
+				name="shareclassname"
+				select="ShareClassName" />
 		<xsl:if test="$shareclassflag != boolean($shareclassname)">
 			<error>
 				<record>
@@ -638,8 +740,11 @@
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrimeBrokers/PrimeBrokerIdentification/EntityIdentificationLEI">
 		<xsl:param name="fund" />
 
-		<xsl:variable name="lei" select="." />
-		<xsl:if test="$lei and not($leiregister[. = $lei])">
+		<xsl:variable
+				name="lei"
+				select="." />
+
+		<xsl:if test="not(my:ISO17442($lei))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -657,7 +762,9 @@
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription">
 		<xsl:param name="fund" />
 		<xsl:param name="noreporting" />
-		<xsl:variable name="basecurrency" select="BaseCurrency" />
+		<xsl:variable
+				name="basecurrency"
+				select="BaseCurrency" />
 		<xsl:if test="not($currencycodes[. = $basecurrency])">
 			<error>
 				<record>
@@ -717,7 +824,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FirstFundingSourceCountry">
 		<xsl:param name="fund" />
-		<xsl:variable name="firstfundingsourcecountry" select="." />
+		<xsl:variable
+				name="firstfundingsourcecountry"
+				select="." />
 		<xsl:if test="$firstfundingsourcecountry and not($countrycodes[. = $firstfundingsourcecountry])">
 			<error>
 				<record>
@@ -735,7 +844,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/SecondFundingSourceCountry">
 		<xsl:param name="fund" />
-		<xsl:variable name="secondfundingsourcecountry" select="." />
+		<xsl:variable
+				name="secondfundingsourcecountry"
+				select="." />
 		<xsl:if test="$secondfundingsourcecountry and not($countrycodes[. = $secondfundingsourcecountry])">
 			<error>
 				<record>
@@ -753,7 +864,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/ThirdFundingSourceCountry">
 		<xsl:param name="fund" />
-		<xsl:variable name="thirdfundingsourcecountry" select="." />
+		<xsl:variable
+				name="thirdfundingsourcecountry"
+				select="." />
 		<xsl:if test="$thirdfundingsourcecountry and not($countrycodes[. = $thirdfundingsourcecountry])">
 			<error>
 				<record>
@@ -832,7 +945,9 @@
 		</xsl:if>
 
 		<xsl:apply-templates>
-			<xsl:with-param name="fund" select="$fund" />
+			<xsl:with-param
+					name="fund"
+					select="$fund" />
 		</xsl:apply-templates>
 	</xsl:template>
 
@@ -964,10 +1079,18 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MainInstrumentsTraded/MainInstrumentTraded">
 		<xsl:param name="fund" />
-		<xsl:variable name="subassettype" select="SubAssetType" />
-		<xsl:variable name="isnota" select="$subassettype = 'NTA_NTA_NOTA'" />
-		<xsl:variable name="instrumentcodetype" select="InstrumentCodeType" />
-		<xsl:variable name="hascodetype" select="boolean($instrumentcodetype)" />
+		<xsl:variable
+				name="subassettype"
+				select="SubAssetType" />
+		<xsl:variable
+				name="isnota"
+				select="$subassettype = 'NTA_NTA_NOTA'" />
+		<xsl:variable
+				name="instrumentcodetype"
+				select="InstrumentCodeType" />
+		<xsl:variable
+				name="hascodetype"
+				select="boolean($instrumentcodetype)" />
 		<xsl:if test="$hascodetype = $isnota">
 			<error>
 				<record>
@@ -982,8 +1105,12 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="instrumentname" select="InstrumentName" />
-		<xsl:variable name="hasname" select="boolean($instrumentname)" />
+		<xsl:variable
+				name="instrumentname"
+				select="InstrumentName" />
+		<xsl:variable
+				name="hasname"
+				select="boolean($instrumentname)" />
 		<xsl:if test="$hasname = $isnota">
 			<error>
 				<record>
@@ -998,7 +1125,9 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="isin" select="ISINInstrumentIdentification" />
+		<xsl:variable
+				name="isin"
+				select="ISINInstrumentIdentification" />
 		<xsl:if test="$isin and not($isinregister[. = $isin])">
 			<error>
 				<record>
@@ -1027,7 +1156,9 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="mic" select="AIIInstrumentIdentification/AIIExchangeCode" />
+		<xsl:variable
+				name="mic"
+				select="AIIInstrumentIdentification/AIIExchangeCode" />
 		<xsl:if test="$mic and not($micregister[. = $mic])">
 			<error>
 				<record>
@@ -1154,8 +1285,12 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="PositionValue" />
+		<xsl:variable
+				name="rank"
+				select="Ranking" />
+		<xsl:variable
+				name="value"
+				select="PositionValue" />
 		<xsl:if test="$value &lt; ../MainInstrumentTraded[Ranking=($rank + 1)]/PositionValue">
 			<error>
 				<record>
@@ -1190,7 +1325,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/NAVGeographicalFocus">
 		<xsl:param name="fund" />
-		<xsl:variable name="navregions" select="*" />
+		<xsl:variable
+				name="navregions"
+				select="*" />
 		<xsl:if test="$navregions and not(sum($navregions) = 100)">
 			<error>
 				<record>
@@ -1208,7 +1345,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AUMGeographicalFocus">
 		<xsl:param name="fund" />
-		<xsl:variable name="aumregions" select="*" />
+		<xsl:variable
+				name="aumregions"
+				select="*" />
 		<xsl:if test="$aumregions and not(sum($aumregions) = 100)">
 			<error>
 				<record>
@@ -1268,8 +1407,12 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="AggregatedValueAmount" />
+		<xsl:variable
+				name="rank"
+				select="Ranking" />
+		<xsl:variable
+				name="value"
+				select="AggregatedValueAmount" />
 		<xsl:if test="$value &lt; ../PrincipalExposure[Ranking=($rank + 1)]/AggregatedValueAmount">
 			<error>
 				<record>
@@ -1298,7 +1441,11 @@
 			</error>
 		</xsl:if>
 
-		<xsl:apply-templates />
+		<xsl:apply-templates>
+			<with-param
+					name="fund"
+					select="$fund" />
+		</xsl:apply-templates>
 
 	</xsl:template>
 
@@ -1318,8 +1465,11 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="lei" select="EntityIdentificationLEI" />
-		<xsl:if test="$lei and not($leiregister[. = $lei])">
+		<xsl:variable
+				name="lei"
+				select="EntityIdentificationLEI" />
+
+		<xsl:if test="not(my:ISO17442($lei))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -1378,7 +1528,9 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="mic" select="MarketIdentification/MarketCode" />
+		<xsl:variable
+				name="mic"
+				select="MarketIdentification/MarketCode" />
 		<xsl:if test="$mic and not($micregister[. = $mic])">
 			<error>
 				<record>
@@ -1421,8 +1573,12 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="AggregatedValueAmount" />
+		<xsl:variable
+				name="rank"
+				select="Ranking" />
+		<xsl:variable
+				name="value"
+				select="AggregatedValueAmount" />
 		<xsl:if test="$value &lt; ../PortfolioConcentration[Ranking=($rank + 1)]/AggregatedValueAmount">
 			<error>
 				<record>
@@ -1511,8 +1667,11 @@
 
 	<xsl:template match="CounterpartyIdentification/EntityIdentificationLEI">
 		<xsl:param name="fund" />
-		<xsl:variable name="lei" select="." />
-		<xsl:if test="$lei and not($leiregister[. = $lei])">
+		<xsl:variable
+				name="lei"
+				select="." />
+
+		<xsl:if test="not(my:ISO17442($lei))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -1550,7 +1709,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/AIFPrincipalMarkets/AIFPrincipalMarket">
 		<xsl:param name="fund" />
-		<xsl:variable name="mic" select="MarketIdentification/MarketCode" />
+		<xsl:variable
+				name="mic"
+				select="MarketIdentification/MarketCode" />
 		<xsl:if test="$mic and not($micregister[. = $mic])">
 			<error>
 				<record>
@@ -1593,8 +1754,12 @@
 			</error>
 		</xsl:if>
 
-		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="AggregatedValueAmount" />
+		<xsl:variable
+				name="rank"
+				select="Ranking" />
+		<xsl:variable
+				name="value"
+				select="AggregatedValueAmount" />
 		<xsl:if test="$value &lt; ../AIFPrincipalMarket[Ranking=($rank + 1)]/AggregatedValueAmount">
 			<error>
 				<record>
@@ -1612,7 +1777,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/InvestorConcentration">
 		<xsl:param name="fund" />
-		<xsl:variable name="ratesum" select="ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate" />
+		<xsl:variable
+				name="ratesum"
+				select="ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate" />
 		<xsl:if test="$ratesum != 100 and $ratesum != 0">
 			<error>
 				<record>
@@ -1679,7 +1846,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/AssetTypeTurnovers/AssetTypeTurnover">
 		<xsl:param name="fund" />
-		<xsl:variable name="t" select="TurnoverSubAssetType" />
+		<xsl:variable
+				name="t"
+				select="TurnoverSubAssetType" />
 		<xsl:if test="not($t='DER_EQD_EQD' or $t='DER_FEX_INV' or $t='DER_EQD_EQD' or $t='DER_CDS_CDS' or $t='DER_FEX_HED' or $t='DER_IRD_IRD' or $t='DER_CTY_CTY' or $t='DER_OTH_OTH')">
 			<xsl:if test="NotionalValue">
 				<error>
@@ -1699,7 +1868,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CurrencyExposures/CurrencyExposure">
 		<xsl:param name="fund" />
-		<xsl:variable name="currency" select="ExposureCurrency" />
+		<xsl:variable
+				name="currency"
+				select="ExposureCurrency" />
 		<xsl:choose>
 			<xsl:when test="$currency">
 				<xsl:if test="not($currencycodes[. = $currency])">
@@ -1764,8 +1935,10 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:variable name="cilei" select="CompanyIdentification/EntityIdentificationLEI" />
-		<xsl:if test="$cilei and not($leiregister[. = $cilei])">
+		<xsl:variable
+				name="lei"
+				select="CompanyIdentification/EntityIdentificationLEI" />
+		<xsl:if test="not(my:ISO17442($lei))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -1774,11 +1947,11 @@
 				<message>The check digits of the LEI code are not correct.</message>
 				<field>EntityIdentificationLEI</field>
 				<value>
-					<xsl:value-of select="$cilei" />
+					<xsl:value-of select="$lei" />
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:if test="$predominantaiftype!='PEQF' and boolean($cilei)">
+		<xsl:if test="$predominantaiftype!='PEQF' and boolean($lei)">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -1787,7 +1960,7 @@
 				<message>The LEI code is not consistent with the AIF predominant type.</message>
 				<field>EntityIdentificationLEI</field>
 				<value>
-					<xsl:value-of select="$cilei" />
+					<xsl:value-of select="$lei" />
 				</value>
 			</error>
 		</xsl:if>
@@ -2062,8 +2235,10 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:variable name="cplei" select="CounterpartyIdentification/EntityIdentificationLEI" />
-		<xsl:if test="$cplei and not($leiregister[. = $cplei])">
+		<xsl:variable
+				name="lei"
+				select="CounterpartyIdentification/EntityIdentificationLEI" />
+		<xsl:if test="not(my:ISO17442($lei))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -2072,7 +2247,7 @@
 				<message>The check digits of the LEI code are not correct.</message>
 				<field>EntityIdentificationLEI</field>
 				<value>
-					<xsl:value-of select="$cplei" />
+					<xsl:value-of select="$lei" />
 				</value>
 			</error>
 		</xsl:if>
@@ -2115,8 +2290,12 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="CounterpartyTotalExposureRate" />
+		<xsl:variable
+				name="rank"
+				select="Ranking" />
+		<xsl:variable
+				name="value"
+				select="CounterpartyTotalExposureRate" />
 		<xsl:if test="$value &lt; ../FundToCounterpartyExposure[Ranking=($rank + 1)]/CounterpartyTotalExposureRate">
 			<error>
 				<record>
@@ -2147,8 +2326,10 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:variable name="cplei" select="CounterpartyIdentification/EntityIdentificationLEI" />
-		<xsl:if test="$cplei and not($leiregister[. = $cplei])">
+		<xsl:variable
+				name="lei"
+				select="CounterpartyIdentification/EntityIdentificationLEI" />
+		<xsl:if test="not(my:ISO17442($lei))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -2157,7 +2338,7 @@
 				<message>The check digits of the LEI code are not correct.</message>
 				<field>EntityIdentificationLEI</field>
 				<value>
-					<xsl:value-of select="$cplei" />
+					<xsl:value-of select="$lei" />
 				</value>
 			</error>
 		</xsl:if>
@@ -2200,8 +2381,12 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="CounterpartyTotalExposureRate" />
+		<xsl:variable
+				name="rank"
+				select="Ranking" />
+		<xsl:variable
+				name="value"
+				select="CounterpartyTotalExposureRate" />
 		<xsl:if test="$value &lt; ../CounterpartyToFundExposure[Ranking=($rank + 1)]/CounterpartyTotalExposureRate">
 			<error>
 				<record>
@@ -2220,7 +2405,9 @@
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile">
 		<xsl:param name="fund" />
 		<xsl:param name="periodtype" />
-		<xsl:variable name="directclearing" select="string(ClearTransactionsThroughCCPFlag)" />
+		<xsl:variable
+				name="directclearing"
+				select="string(ClearTransactionsThroughCCPFlag)" />
 		<xsl:if test="$directclearing = 'true' and not(AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure[Ranking = 1])">
 			<error>
 				<record>
@@ -2235,16 +2422,22 @@
 			</error>
 		</xsl:if>
 		<xsl:apply-templates>
-			<xsl:with-param name="fund" select="$fund" />
-			<xsl:with-param name="periodtype" select="$periodtype" />
-			<xsl:with-param name="directclearing" select="$directclearing" />
+			<xsl:with-param
+					name="fund"
+					select="$fund" />
+			<xsl:with-param
+					name="periodtype"
+					select="$periodtype" />
+			<xsl:with-param
+					name="directclearing"
+					select="$directclearing" />
 		</xsl:apply-templates>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure">
 		<xsl:param name="fund" />
 		<xsl:param name="directclearing" />
-		<xsl:if test="$directclearing = 'false' and boolean(CCPIdentification/EntityIdentificationLEI)">
+		<!-- <xsl:if test="$directclearing = 'false' and boolean(CCPIdentification/EntityIdentificationLEI)">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -2256,9 +2449,29 @@
 					<xsl:value-of select="CCPIdentification/EntityIdentificationLEI" />
 				</value>
 			</error>
+		</xsl:if> -->
+		<xsl:variable
+				name="lei"
+				select="CCPIdentification/EntityIdentificationLEI" />
+		<xsl:if test="not(my:ISO17442($lei))">
+			<error>
+				<record>
+					<xsl:value-of select="$fund" />
+				</record>
+				<code>CAF-126</code>
+				<message>The check digits of the LEI code are not correct.</message>
+				<field>EntityIdentificationLEI</field>
+				<value>
+					<xsl:value-of select="$lei" />
+				</value>
+			</error>
 		</xsl:if>
-		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="CCPExposureValue" />
+		<xsl:variable
+				name="rank"
+				select="Ranking" />
+		<xsl:variable
+				name="value"
+				select="CCPExposureValue" />
 		<xsl:if test="$value &lt; ../CCPExposure[Ranking=($rank + 1)]/CCPExposureValue">
 			<error>
 				<record>
@@ -2275,8 +2488,10 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/LiquidityRiskProfile/PortfolioLiquidityProfile">
-		<xsl:variable name="fund" />
-		<xsl:variable name="portfoliosum" select="PortfolioLiquidityInDays0to1Rate + PortfolioLiquidityInDays2to7Rate + PortfolioLiquidityInDays8to30Rate + PortfolioLiquidityInDays31to90Rate + PortfolioLiquidityInDays91to180Rate + PortfolioLiquidityInDays181to365Rate + PortfolioLiquidityInDays365MoreRate" />
+		<xsl:param name="fund" />
+		<xsl:variable
+				name="portfoliosum"
+				select="PortfolioLiquidityInDays0to1Rate + PortfolioLiquidityInDays2to7Rate + PortfolioLiquidityInDays8to30Rate + PortfolioLiquidityInDays31to90Rate + PortfolioLiquidityInDays91to180Rate + PortfolioLiquidityInDays181to365Rate + PortfolioLiquidityInDays365MoreRate" />
 		<xsl:if test="$portfoliosum != 100">
 			<error>
 				<record>
@@ -2294,7 +2509,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/LiquidityRiskProfile/InvestorLiquidityProfile">
 		<xsl:variable name="fund" />
-		<xsl:variable name="liquiditysum" select="InvestorLiquidityInDays0to1Rate + InvestorLiquidityInDays2to7Rate + InvestorLiquidityInDays8to30Rate + InvestorLiquidityInDays31to90Rate + InvestorLiquidityInDays91to180Rate + InvestorLiquidityInDays181to365Rate + InvestorLiquidityInDays365MoreRate" />
+		<xsl:variable
+				name="liquiditysum"
+				select="InvestorLiquidityInDays0to1Rate + InvestorLiquidityInDays2to7Rate + InvestorLiquidityInDays8to30Rate + InvestorLiquidityInDays31to90Rate + InvestorLiquidityInDays91to180Rate + InvestorLiquidityInDays181to365Rate + InvestorLiquidityInDays365MoreRate" />
 		<xsl:if test="$liquiditysum != 100">
 			<error>
 				<record>
@@ -2355,7 +2572,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/LiquidityRiskProfile/FinancingLiquidityProfile">
 		<xsl:variable name="fund" />
-		<xsl:variable name="financingsum" select="TotalFinancingInDays0to1Rate + TotalFinancingInDays2to7Rate + TotalFinancingInDays8to30Rate + TotalFinancingInDays31to90Rate + TotalFinancingInDays91to180Rate + TotalFinancingInDays181to365Rate + TotalFinancingInDays365MoreRate" />
+		<xsl:variable
+				name="financingsum"
+				select="TotalFinancingInDays0to1Rate + TotalFinancingInDays2to7Rate + TotalFinancingInDays8to30Rate + TotalFinancingInDays31to90Rate + TotalFinancingInDays91to180Rate + TotalFinancingInDays181to365Rate + TotalFinancingInDays365MoreRate" />
 		<xsl:if test="$financingsum != 100">
 			<error>
 				<record>
@@ -2623,8 +2842,10 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2/ControlledStructures/ControlledStructure/ControlledStructureIdentification/EntityIdentificationLEI">
 		<xsl:param name="fund" />
-		<xsl:variable name="cslei" select="." />
-		<xsl:if test="$cslei and not($leiregister[. = $cslei])">
+		<xsl:variable
+				name="lei"
+				select="." />
+		<xsl:if test="not(my:ISO17442($lei))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -2633,7 +2854,7 @@
 				<message>The check digits of the LEI code are not correct.</message>
 				<field>EntityIdentificationLEI</field>
 				<value>
-					<xsl:value-of select="$cslei" />
+					<xsl:value-of select="$lei" />
 				</value>
 			</error>
 		</xsl:if>
@@ -2641,7 +2862,10 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4/BorrowingSource">
 		<xsl:param name="fund" />
-		<xsl:variable name="bslei" select="SourceIdentification/EntityIdentificationLEI" />
+		<xsl:variable
+				name="lei"
+				select="SourceIdentification/EntityIdentificationLEI" />
+
 		<xsl:if test="boolean(BorrowingSourceFlag = 'true') != boolean(SourceIdentification/EntityName)">
 			<error>
 				<record>
@@ -2655,7 +2879,7 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:if test="$bslei and not($leiregister[. = $bslei])">
+		<xsl:if test="not(my:ISO17442($lei))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -2664,11 +2888,11 @@
 				<message>The check digits of the LEI code are not correct.</message>
 				<field>EntityIdentificationLEI</field>
 				<value>
-					<xsl:value-of select="$bslei" />
+					<xsl:value-of select="$lei" />
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:if test="boolean(BorrowingSourceFlag = 'false') and $bslei">
+		<xsl:if test="boolean(BorrowingSourceFlag = 'false') and $lei">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -2677,7 +2901,7 @@
 				<message>The LEI code is not consistent with the borrowing source flag.</message>
 				<field>EntityIdentificationLEI</field>
 				<value>
-					<xsl:value-of select="$bslei" />
+					<xsl:value-of select="$lei" />
 				</value>
 			</error>
 		</xsl:if>
@@ -2707,8 +2931,12 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:variable name="rank" select="Ranking" />
-		<xsl:variable name="value" select="LeverageAmount" />
+		<xsl:variable
+				name="rank"
+				select="Ranking" />
+		<xsl:variable
+				name="value"
+				select="LeverageAmount" />
 		<xsl:if test="$value &lt; ../BorrowingSource[Ranking=($rank + 1)]/LeverageAmount">
 			<error>
 				<record>
