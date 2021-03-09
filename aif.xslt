@@ -1,7 +1,11 @@
 <xsl:transform
 		version="1.0"
 		xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-		xmlns:my="http://example.org/my">
+		xmlns:func="http://exslt.org/functions"
+		xmlns:str="http://exslt.org/strings"
+		xmlns:my="http://example.org/my"
+		exclude-result-prefixes="my"
+		extension-element-prefixes="func str">
 
 	<xsl:output
 			indent="yes"
@@ -539,7 +543,7 @@
 		<xsl:variable
 				name="isin"
 				select="." />
-		<xsl:if test="$isin and not($isinregister[. = $isin])">
+		<xsl:if test="not(my:ISO6166($isin))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -622,7 +626,7 @@
 		<xsl:variable
 				name="isin"
 				select="ShareClassIdentifierISIN" />
-		<xsl:if test="$isin and not($isinregister[. = $isin])">
+		<xsl:if test="not(my:ISO6166($isin))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />
@@ -1128,7 +1132,7 @@
 		<xsl:variable
 				name="isin"
 				select="ISINInstrumentIdentification" />
-		<xsl:if test="$isin and not($isinregister[. = $isin])">
+		<xsl:if test="not(my:ISO6166($isin))">
 			<error>
 				<record>
 					<xsl:value-of select="$fund" />

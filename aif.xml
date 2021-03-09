@@ -1,5 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<AIFReportingInfo ReportingMemberState="FR" Version="1.2" CreationDateAndTime="2001-12-17T09:30:47.0Z" xsi:noNamespaceSchemaLocation="schema/AIFMD_DATAIF_V1.2.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<AIFReportingInfo
+		ReportingMemberState="FR"
+		Version="1.2"
+		CreationDateAndTime="2001-12-17T09:30:47.0Z"
+		xsi:noNamespaceSchemaLocation="schema/AIFMD_DATAIF_V1.2.xsd"
+		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<AIFRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFContentType>2</AIFContentType>
@@ -436,13 +441,13 @@
 			<AIFPrincipalInfo>
 				<AIFIdentification>
 					<AIFIdentifierLEI>ZNHTL6O2WODTKMPF1Z49</AIFIdentifierLEI>
-					<AIFIdentifierISIN>AB1234567890</AIFIdentifierISIN>
+					<AIFIdentifierISIN>US0378331005</AIFIdentifierISIN>
 				</AIFIdentification>
 				<ShareClassFlag>false</ShareClassFlag>
 				<ShareClassIdentification>
 					<ShareClassIdentifier>
 						<ShareClassNationalCode>aaaaaa</ShareClassNationalCode>
-						<ShareClassIdentifierISIN>AA0000000000</ShareClassIdentifierISIN>
+						<ShareClassIdentifierISIN>AU0000XVGZA3</ShareClassIdentifierISIN>
 						<ShareClassIdentifierCUSIP>123456789</ShareClassIdentifierCUSIP>
 						<ShareClassIdentifierSEDOL>1234567</ShareClassIdentifierSEDOL>
 						<ShareClassIdentifierTicker>AAAA</ShareClassIdentifierTicker>
@@ -451,7 +456,7 @@
 					</ShareClassIdentifier>
 					<ShareClassIdentifier>
 						<ShareClassNationalCode>aaaaaa</ShareClassNationalCode>
-						<ShareClassIdentifierISIN>AA0000000000</ShareClassIdentifierISIN>
+						<ShareClassIdentifierISIN>AU0000XVGZA3</ShareClassIdentifierISIN>
 						<ShareClassIdentifierCUSIP>123456789</ShareClassIdentifierCUSIP>
 						<ShareClassIdentifierSEDOL>1234567</ShareClassIdentifierSEDOL>
 						<ShareClassIdentifierTicker>AAAA</ShareClassIdentifierTicker>
