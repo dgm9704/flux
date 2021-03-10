@@ -180,6 +180,11 @@ INS-022.7 For the financial instrument "Money market instruments other than sove
 INS-021.8 For the financial instrument "Emission allowances" the sum of settled volume plus failed volume is not equal to the total volume.
 </error>
 		</xsl:if>
+		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
+			<error>
+INS-022.8 For the financial instrument "Emission allowances" the sum of settled value plus failed value is not equal to the total value.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/OthrFinInstrms">
