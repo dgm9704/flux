@@ -123,6 +123,14 @@
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/CllctvInvstmtUdrtkgs">
+		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
+			<error>
+ INS-021.6 For the financial instrument "Units  in  collective investment undertakings other than ETFs" the sum of settled volume plus failed volume is not equal to the total volume.
+</error>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
