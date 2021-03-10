@@ -185,6 +185,11 @@ INS-021.6 For the financial instrument "Units in collective investment undertaki
 INS-022.6 For the financial instrument "Units in collective investment undertakings other than ETFs" the sum of settled value plus failed value is not equal to the total value.
 </error>
 		</xsl:if>
+		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
+			<error>
+INS-023.6 For the financial instrument "Units in collective investment undertakings other than ETFs" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/MnyMktInstrm">
