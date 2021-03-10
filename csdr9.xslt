@@ -221,6 +221,11 @@ INS-021.8 For the financial instrument "Emission allowances" the sum of settled 
 INS-022.8 For the financial instrument "Emission allowances" the sum of settled value plus failed value is not equal to the total value.
 </error>
 		</xsl:if>
+		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
+			<error>
+INS-023.8 For the financial instrument "Emission allowances" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/OthrFinInstrms">
