@@ -58,7 +58,7 @@ Sample output for aifmsample.xml:
 - All validations (CAM/CAF/FIL/WAF) have been implemented in some way, except:
     - FIL-009 requires access to filename which isn't available for XSLT 1.0
     - CAM-001, CAF-001, CAF-005 only make sense when done by ESMA
-    - Any validations requiring checkdigit calculation are replaced with lookups
+    - Checkdigit calculations are implemented with ESXLT extensions available with xsltproc
 - output is rough and minimal
 - OK to file bugs on results for implemented cases
 
