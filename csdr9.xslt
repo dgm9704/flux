@@ -28,8 +28,8 @@
     <xsl:template match="/Document/SttlmIntlrRpt/RptHdr">
         <xsl:if test="Ccy != 'EUR'">
             <error>
-                INS-001 The Currency is not valid. Only the value "EUR" is expected.
-            </error>
+ INS-001 The Currency is not valid. Only the value "EUR" is expected.
+ </error>
         </xsl:if>
 
         <xsl:variable
@@ -87,10 +87,17 @@
         <xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
             <error>
  INS-021.1 For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.
-            </error>
+ </error>
         </xsl:if>
     </xsl:template>
 
+    <xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/SvrgnDebt">
+        <xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
+            <error>
+ INS-021.2 For the financial instrument "Sovereign debt referred to inArticle 4(1)(61) of Directive2014/65/EU”the sum of settled volume plus failed volume is not equal to the total volume.
+ </error>
+        </xsl:if>
+    </xsl:template>
     <xsl:template match="text()|@*">
         <!-- <xsl:value-of select="."/> -->
     </xsl:template>
