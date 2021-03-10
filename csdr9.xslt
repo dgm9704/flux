@@ -237,6 +237,11 @@ INS-022.7 For the financial instrument "Money market instruments other than sove
 INS-023.7 For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
 </error>
 		</xsl:if>
+		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
+			<error>
+INS-024.7 For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/EmssnAllwnc">
