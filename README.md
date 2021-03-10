@@ -55,17 +55,22 @@ Sample output for aifmsample.xml:
 ```
 
 ## Status
-- All validations (CAM/CAF/FIL/WAF) have been implemented in some way, except:
+- All AIFMD validations (CAM/CAF/FIL/WAF) have been implemented in some way, except:
     - FIL-009 requires access to filename which isn't available for XSLT 1.0
     - CAM-001, CAF-001, CAF-005 only make sense when done by ESMA
     - Checkdigit calculations are implemented with ESXLT extensions available with xsltproc
 - output is rough and minimal
 - OK to file bugs on results for implemented cases
+- Starting on CSDR9 validations
 
 ## Next steps 
 - Add richer info about the error location and related values.
 - If possible, find out the output format that ESMA uses!
 - There are some warnings also (WAF-*) - do they go into a "warning" element, or should there be a severity value?
+- Implement CSDR9 validations
+- Implement CSDR7 validations?
+- Implement MMF validations?
+
 
 ## How you can help
 - testing and filing issues against specific validations
