@@ -99,7 +99,11 @@ INS-022.1 For the financial instrument "Transferable securities referred to in p
 INS-023.1 For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
 </error>
 		</xsl:if>
-
+		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
+			<error>
+INS-024.1 For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/SvrgnDebt">
