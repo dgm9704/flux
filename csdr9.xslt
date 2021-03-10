@@ -154,6 +154,11 @@ INS-022.5 For the financial instrument "Exchange-traded funds as defined in poin
 INS-021.6 For the financial instrument "Units in collective investment undertakings other than ETFs" the sum of settled volume plus failed volume is not equal to the total volume.
 </error>
 		</xsl:if>
+		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
+			<error>
+INS-022.6 For the financial instrument "Units in collective investment undertakings other than ETFs" the sum of settled value plus failed value is not equal to the total value.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/MnyMktInstrm">
