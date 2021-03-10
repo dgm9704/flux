@@ -283,6 +283,11 @@ INS-022.9 For the financial instrument "Other financial instruments" the sum of 
 INS-023.9 For the financial instrument "Other financial instruments" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
 </error>
 		</xsl:if>
+		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
+			<error>
+INS-024.9 For the financial instrument "Other financial instruments" the FailedRate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="text()|@*">
