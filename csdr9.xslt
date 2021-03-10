@@ -94,10 +94,20 @@
     <xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/SvrgnDebt">
         <xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
             <error>
- INS-021.2 For the financial instrument "Sovereign debt referred to inArticle 4(1)(61) of Directive2014/65/EU”the sum of settled volume plus failed volume is not equal to the total volume.
+ INS-021.2 For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive2014/65/EU”the sum of settled volume plus failed volume is not equal to the total volume.
  </error>
         </xsl:if>
     </xsl:template>
+
+    <xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/Bd">
+        <xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
+            <error>
+ INS-021.3 For the financial instrument "Transferable securities referred to in point (b) of Article 4(1)(44) of Directive 2014/65/EU other than sovereign debt referred toin Article 4(1)(61) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.
+</error>
+        </xsl:if>
+    </xsl:template>
+
+
     <xsl:template match="text()|@*">
         <!-- <xsl:value-of select="."/> -->
     </xsl:template>
