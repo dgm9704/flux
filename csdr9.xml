@@ -10,9 +10,7 @@
         </RptHdr>
         <SttlmIntlr>
             <Id>
-                <!-- <LEI>O2RNE8IBXP4R0TD8XM41</LEI> -->
-                <!-- <LEI>F50EOCWSQFAUVO9Q8Z97</LEI> -->
-                <LEI>213800WSGIIZCXF1P572</LEI>
+                <LEI>213800WSGIIZCXF1P573</LEI> <!-- 213800WSGIIZCXF1P572 -->
                 <RspnsblPrsn>
                     <Nm>John Smith</Nm>
                     <PhneNb>+33-140978989</PhneNb>
@@ -20,7 +18,7 @@
                     <Fctn>Senior Analyst</Fctn>
                 </RspnsblPrsn>
                 <Ctry>FR</Ctry>
-                <BrnchId>DE</BrnchId>
+                <BrnchId>AU</BrnchId>
             </Id>
             <OvrllTtl>
                 <Aggt>
