@@ -147,6 +147,14 @@ INS-021.8 For the financial instrument "Emission allowances" the sum of settled 
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/OthrFinInstrms">
+		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
+			<error>
+INS-021.9 For the financial instrument "Other financial instruments" the sum of settled volume plus failed volume is not equal to the total volume.
+</error>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
