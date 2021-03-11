@@ -375,6 +375,11 @@ INS-032.4 For the type of transaction "Repurchase transactions" the sum of settl
 INS-033.4 For the type of transaction "Repurchase transactions" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
 </error>
 		</xsl:if>
+		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
+			<error>
+INS-034.4 For the type of transaction "Repurchase transactions" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/TxTp/OthrTxs">
