@@ -296,7 +296,14 @@ INS-024.9 For the financial instrument "Other financial instruments" the FailedR
 INS-031.1 For the type of transaction "Purchase or sale of securities" the sum of settled volume plus failed volume is not equal to the total volume.
  </error>
 		</xsl:if>
+	</xsl:template>
 
+	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/TxTp/CollMgmtOpr">
+		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
+			<error>
+INS-031.2 For the type of transaction "Collateral management operations" the sum of settled volume plus failed volume is not equal to the total volume.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="text()|@*">
