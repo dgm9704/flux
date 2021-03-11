@@ -240,7 +240,7 @@
 					</Aggt>
 					<FaildRate>
 						<VolPctg>16.002490000</VolPctg>
-						<Val>0.0000000000</Val>
+						<Val>1.0000000000</Val>
 					</FaildRate>
 				</SctiesBuyOrSell>
 				<CollMgmtOpr>
@@ -280,7 +280,7 @@
 					</Aggt>
 					<FaildRate>
 						<VolPctg>34.243180000</VolPctg>
-						<Val>0.0000000000</Val>
+						<Val>1.0000000000</Val>
 					</FaildRate>
 				</SctiesLndgOrBrrwg>
 				<RpAgrmt>
