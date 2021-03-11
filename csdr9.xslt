@@ -301,6 +301,11 @@ INS-031.1 For the type of transaction "Purchase or sale of securities" the sum o
 INS-032.1 For the type of transaction "Purchase or sale of securities" the sum of settled value plus failed value is not equal to the total value.
 </error>
 		</xsl:if>
+		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
+			<error>
+INS-033.1 For the type of transaction "Purchase or sale of securities" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/TxTp/CollMgmtOpr">
