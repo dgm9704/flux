@@ -337,7 +337,7 @@ INS-031.4 For the type of transaction "Repurchase transactions" the sum of settl
 		</xsl:if>
 		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
 			<error>
-INS-032.4 For  the type of  transaction "Repurchase transactions" the sum of settled value plus failed value is not equal to the total value.
+INS-032.4 For the type of transaction "Repurchase transactions" the sum of settled value plus failed value is not equal to the total value.
 </error>
 		</xsl:if>
 	</xsl:template>
@@ -346,6 +346,11 @@ INS-032.4 For  the type of  transaction "Repurchase transactions" the sum of set
 		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
 			<error>
 INS-031.5 For the type of transaction "Other securities transactions" the sum of settled volume plus failed volume is not equal to the total volume.
+</error>
+		</xsl:if>
+		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
+			<error>
+INS-032.5 For the type of transaction "Other securities transactions" the sum of settled value plus failed value is not equal to the total value.
 </error>
 		</xsl:if>
 	</xsl:template>
