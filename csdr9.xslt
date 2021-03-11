@@ -306,6 +306,11 @@ INS-032.1 For the type of transaction "Purchase or sale of securities" the sum o
 INS-033.1 For the type of transaction "Purchase or sale of securities" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
 </error>
 		</xsl:if>
+		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
+			<error>
+INS-034.1 For the type of transaction "Purchase or sale of securities" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/TxTp/CollMgmtOpr">
