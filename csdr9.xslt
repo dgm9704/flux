@@ -314,6 +314,14 @@ INS-031.3 For the type of transaction "Securities lending and securities borrowi
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/TxTp/RpAgrmt">
+		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
+			<error>
+INS-031.4 For the type of transaction "Repurchase transactions" the sum of settled volume plus failed volume is not equal to the total volume.
+</error>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
