@@ -1,19 +1,19 @@
 # flux
 
-## AIFMD report validation using XSLT
+## ESMA XML report validation using XSLT
 
 - Main focus are ESMA AIFMD XML reports, but the same structure should be viable for other formats in the future also (CSDR, MMF etc)
 - The goal is to implement all ESMA CAM/CAF validation rules.
 - These are mostly conditional existence checks based on the existence or value of another element.
-- The actual "product" is the *.xsl files, anything else is just for testing or documentation
+- The actual "product" is the *.xslt files, anything else is just for testing or documentation
 - Validations should be trivial to run with any XSLT processor
 - The output is very rudimentary for now. After all the rules are implemented, the output can be polished.
 - XSLT (and XPATH, XQUERY) version used is 1.0, as this provides best tooling support. Some functionality will be missing because of this.
 - Check digit calculations are not implemented, but have been replaced with lookups instead.
 
 ## Specifications
-- For some reason ESMA does not provide the specifications for the validations publicly, and neither does FIN-FSA.
-- I found some version of the validation specifications from Polish Financial Supervision Authority (UKNF) site:
+- For some reason ESMA does not provide the specifications for AIFMD validations publicly, and neither does FIN-FSA.
+- I found some version of the AIFMD validation specifications from Polish Financial Supervision Authority (UKNF) site:
 https://www.knf.gov.pl/knf/pl/komponenty/img/2013-ITMG-65_opis_regul_walidacyjnych_plikow_DATMAN_DATAIF_71002.xlsx
 - ESMA provides [technical rules for the fields](https://www.esma.europa.eu/document/aifmd-reporting-it-technical-guidance-rev-4-updated)
  
@@ -62,6 +62,8 @@ Sample output for aifmsample.xml:
 - output is rough and minimal
 - OK to file bugs on results for implemented cases
 - Starting on CSDR9 validations
+	- roughly 1/3? are implemented in some way
+	- output is very minimal
 
 ## Next steps 
 - Add richer info about the error location and related values.
