@@ -416,6 +416,11 @@ INS-041.1 For the type of client "Professional clients as defined in point (10) 
 INS-042.1 For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the sum of settled value and failed value is not equal to the total value.
 </error>
 		</xsl:if>
+		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
+			<error>
+INS-043.1 For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/ClntTp/Rtl">
