@@ -421,6 +421,11 @@ INS-042.1 For the type of client "Professional clients as defined in point (10) 
 INS-043.1 For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
 </error>
 		</xsl:if>
+		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
+			<error>
+INS-044.1 For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
+</error>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/ClntTp/Rtl">
