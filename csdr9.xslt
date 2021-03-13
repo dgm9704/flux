@@ -413,6 +413,14 @@ INS-041.1 For the type of client "Professional clients as defined in point (10) 
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/ClntTp/Rtl">
+		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
+			<error>
+INS-041.2 For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.
+</error>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
