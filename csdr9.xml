@@ -389,7 +389,7 @@
 		</SttlmIntlr>
 		<IssrCSD>
 			<Id>
-				<LEI>O2RNE8IBXP4R0TA8XM41</LEI>
+				<LEI>O2ANE8IBXP4R0TD8XM41</LEI>
 				<FrstTwoCharsInstrmId>FR</FrstTwoCharsInstrmId>
 				<Ctry>FR</Ctry>
 			</Id>
@@ -763,7 +763,7 @@
 		<IssrCSD>
 			<Id>
 				<LEI>O2ANE8IBXP4R0TD8XM41</LEI>
-				<FrstTwoCharsInstrmId>XS</FrstTwoCharsInstrmId>
+				<FrstTwoCharsInstrmId>FR</FrstTwoCharsInstrmId>
 				<Ctry>LU</Ctry>
 			</Id>
 			<OvrllTtl>

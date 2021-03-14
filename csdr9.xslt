@@ -479,7 +479,15 @@ INS-054 For cash transfers, the Failed Rate Value % is not consistent to the cor
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/IssrCSD/Id">
-		<xsl:if test="boolean(LEI) and not(my:ISO17442(LEI))">
+
+		<xsl:variable
+				name="lei"
+				select="LEI" />
+		<xsl:variable
+				name="cc"
+				select="FrstTwoCharsInstrmId" />
+
+		<xsl:if test="boolean($lei) and not(my:ISO17442($lei))">
 			<error>
 				INS-062 The LEI [
 				<xsl:value-of select="LEI" />
@@ -487,22 +495,36 @@ INS-054 For cash transfers, the Failed Rate Value % is not consistent to the cor
 			</error>
 		</xsl:if>
 
-		<xsl:if test="not(FrstTwoCharsInstrmId) or not($countrycodes[. = FrstTwoCharsInstrmId])">
+		<xsl:if test="not($cc) or not($countrycodes[. = $cc])">
 			<error>
 				INS-063 The ISIN code of the Issuer CSD is not valid. In case of new ISINs, please make sure to inform ESMA before submitting them in the report
 			</error>
 		</xsl:if>
-		<!-- <xsl:variable
-				name="branchid"
-				select="BrnchId" />
 
-		<xsl:if test="boolean($branchid) and not($eeacountrycodes[. = $branchid] or $branchid = 'TS')">
-			<error>
-				INS-014.3 The branch country code [
-				<xsl:value-of select="$branchid" />
-				] is not valid, since it must relate either to an EEA country code or to a Third Country State (i.e. 'TS').
-			</error>
-		</xsl:if> -->
+		<xsl:choose>
+			<xsl:when test="boolean($lei)">
+				<xsl:if test="count(../../IssrCSD/Id[LEI = $lei and FrstTwoCharsInstrmId = $cc]) &gt; 1">
+					<error>
+						INS-064 There are more than one Issuer CSDs with an ISIN Code starting with
+						<xsl:value-of select="$cc" />
+						and LEI:
+						<xsl:value-of select="$lei" />
+					</error>
+				</xsl:if>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:if test="count(../../IssrCSD/Id[FrstTwoCharsInstrmId = $cc]) &gt; 1">
+					<error>
+						INS-064 There are more than one Issuer CSDs with ISIN Code starting with:
+						<xsl:value-of select="$cc" />
+					</error>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
+
+		<!-- INS-065 requires external lookup -->
+
+		<!-- INS-066 requires external lookup -->
 
 	</xsl:template>
 
