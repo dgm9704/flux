@@ -123,7 +123,9 @@ INS-024.1 For the financial instrument "Transferable securities referred to in p
 		</debug> -->
 
 		<xsl:if test="Aggt/Ttl/Vol != sum(/Document/SttlmIntlrRpt/IssrCSD/FinInstrm/Eqty/Aggt/Ttl/Vol)">
-			<error>INS-071.1 For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.</error>
+			<error>
+INS-071.1 For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.
+</error>
 		</xsl:if>
 
 	</xsl:template>
@@ -147,6 +149,11 @@ INS-023.2 For the financial instrument "Sovereign debt referred to in Article 4(
 		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
 			<error>
 INS-024.2 For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
+</error>
+		</xsl:if>
+		<xsl:if test="Aggt/Ttl/Vol != sum(/Document/SttlmIntlrRpt/IssrCSD/FinInstrm/SvrgnDebt/Aggt/Ttl/Vol)">
+			<error>
+INS-071.2 For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.
 </error>
 		</xsl:if>
 	</xsl:template>
