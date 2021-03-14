@@ -451,6 +451,30 @@ INS-044.2 For the type of client "Retail clients as defined in point (11) of Art
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/TtlCshTrf">
+		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
+			<error>
+INS-051 The sum of settled volume plus failed volume of the cash transfers is not equal to the total volume.
+</error>
+		</xsl:if>
+		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
+			<error>
+INS-052 The sum of settled value and failed value of the cash transfers is not equal to the total value.
+</error>
+		</xsl:if>
+		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
+			<error>
+INS-053 For cash transfers, the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Totaldata
+</error>
+		</xsl:if>
+		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
+			<error>
+INS-054 For cash transfers, the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Totaldata
+</error>
+		</xsl:if>
+	</xsl:template>
+
+
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
