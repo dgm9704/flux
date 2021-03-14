@@ -17,6 +17,10 @@
 			name="eeacountrycodes"
 			select="document('data/eea-countries.xml')/codes/code" />
 
+	<xsl:variable
+			name="countrycodes"
+			select="document('data/iso-3166-1.xml')/codes/code" />
+
 	<!-- FIL-* not applicable -->
 
 	<xsl:template match="/">
@@ -483,6 +487,11 @@ INS-054 For cash transfers, the Failed Rate Value % is not consistent to the cor
 			</error>
 		</xsl:if>
 
+		<xsl:if test="not(FrstTwoCharsInstrmId) or not($countrycodes[. = FrstTwoCharsInstrmId])">
+			<error>
+				INS-063 The ISIN code of the Issuer CSD is not valid. In case of new ISINs, please make sure to inform ESMA before submitting them in the report
+			</error>
+		</xsl:if>
 		<!-- <xsl:variable
 				name="branchid"
 				select="BrnchId" />
