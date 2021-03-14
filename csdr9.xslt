@@ -474,6 +474,28 @@ INS-054 For cash transfers, the Failed Rate Value % is not consistent to the cor
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="/Document/SttlmIntlrRpt/IssrCSD/Id">
+		<xsl:if test="boolean(LEI) and not(my:ISO17442(LEI))">
+			<error>
+				INS-062 The LEI [
+				<xsl:value-of select="LEI" />
+				] is not valid.
+			</error>
+		</xsl:if>
+
+		<!-- <xsl:variable
+				name="branchid"
+				select="BrnchId" />
+
+		<xsl:if test="boolean($branchid) and not($eeacountrycodes[. = $branchid] or $branchid = 'TS')">
+			<error>
+				INS-014.3 The branch country code [
+				<xsl:value-of select="$branchid" />
+				] is not valid, since it must relate either to an EEA country code or to a Third Country State (i.e. 'TS').
+			</error>
+		</xsl:if> -->
+
+	</xsl:template>
 
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
