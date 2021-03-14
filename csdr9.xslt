@@ -108,6 +108,24 @@ INS-023.1 For the financial instrument "Transferable securities referred to in p
 INS-024.1 For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
 </error>
 		</xsl:if>
+
+		<!-- <xsl:variable
+				name="total"
+				select="Aggt/Ttl/Vol" />
+		<xsl:variable
+				name="sum"
+				select="sum(/Document/SttlmIntlrRpt/IssrCSD/FinInstrm/Eqty/Aggt/Ttl/Vol)" />
+		<debug>
+			total:
+			<xsl:value-of select="$total" />
+			sum:
+			<xsl:value-of select="$sum" />
+		</debug> -->
+
+		<xsl:if test="Aggt/Ttl/Vol != sum(/Document/SttlmIntlrRpt/IssrCSD/FinInstrm/Eqty/Aggt/Ttl/Vol)">
+			<error>INS-071.1 For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.</error>
+		</xsl:if>
+
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/SvrgnDebt">
