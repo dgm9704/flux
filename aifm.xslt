@@ -17,15 +17,23 @@
 					name="reportingmemberstate"
 					select="@ReportingMemberState" />
 			<xsl:if test="not($eeacountrycodes[. = $reportingmemberstate])">
-				<error>
-					<record></record>
-					<code>FIL-015</code>
-					<message>The authority key file attribute is invalid and should an EU or EEA country</message>
-					<field>ReportingMemberState</field>
-					<value>
-						<xsl:value-of select="$reportingmemberstate" />
-					</value>
-				</error>
+				<xsl:call-template name="Error">
+					<xsl:with-param
+							name="record"
+							select="''" />
+					<xsl:with-param
+							name="code"
+							select="'FIL-015'" />
+					<xsl:with-param
+							name="field"
+							select="'ReportingMemberState'" />
+					<xsl:with-param
+							name="value"
+							select="$reportingmemberstate" />
+					<xsl:with-param
+							name="message"
+							select="'The authority key file attribute is invalid and should an EU or EEA country'" />
+				</xsl:call-template>
 			</xsl:if>
 			<xsl:apply-templates />
 		</aifm>
@@ -58,61 +66,85 @@
 				select="ReportingPeriodYear" />
 		<xsl:choose>
 			<xsl:when test="not($day='01') or not($year=$reportingyear)">
-				<error>
-					<record>
-						<xsl:value-of select="$manager" />
-					</record>
-					<code>CAM-002</code>
-					<message>The reporting period start date is not allowed.</message>
-					<field>ReportingPeriodStartDate</field>
-					<value>
-						<xsl:value-of select="$reportingperiodstartdate" />
-					</value>
-				</error>
+				<xsl:call-template name="Error">
+					<xsl:with-param
+							name="record"
+							select="'$manager'" />
+					<xsl:with-param
+							name="code"
+							select="'CAM-002'" />
+					<xsl:with-param
+							name="field"
+							select="'ReportingPeriodStartDate'" />
+					<xsl:with-param
+							name="value"
+							select="$reportingperiodstartdate" />
+					<xsl:with-param
+							name="message"
+							select="'The reporting period start date is not allowed.'" />
+				</xsl:call-template>
 			</xsl:when>
 			<xsl:when test="$periodtype='Q1' or $periodtype='Q2' or $periodtype='Q3' or $periodtype='Q4'">
 				<xsl:if test="not($month='10' or $month='07' or $month='01')">
-					<error>
-						<record>
-							<xsl:value-of select="$manager" />
-						</record>
-						<code>CAM-002</code>
-						<message>The reporting period start date is not allowed.</message>
-						<field>ReportingPeriodStartDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodstartdate" />
-						</value>
-					</error>
+					<xsl:call-template name="Error">
+						<xsl:with-param
+								name="record"
+								select="'$manager'" />
+						<xsl:with-param
+								name="code"
+								select="'CAM-002'" />
+						<xsl:with-param
+								name="field"
+								select="'ReportingPeriodStartDate'" />
+						<xsl:with-param
+								name="value"
+								select="$reportingperiodstartdate" />
+						<xsl:with-param
+								name="message"
+								select="'The reporting period start date is not allowed.'" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$periodtype='H1' or $periodtype='H2'">
 				<xsl:if test="not($month='07' or $month='01')">
-					<error>
-						<record>
-							<xsl:value-of select="$manager" />
-						</record>
-						<code>CAM-002</code>
-						<message>The reporting period start date is not allowed.</message>
-						<field>ReportingPeriodStartDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodstartdate" />
-						</value>
-					</error>
+					<xsl:call-template name="Error">
+						<xsl:with-param
+								name="record"
+								select="'$manager'" />
+						<xsl:with-param
+								name="code"
+								select="'CAM-002'" />
+						<xsl:with-param
+								name="field"
+								select="'ReportingPeriodStartDate'" />
+						<xsl:with-param
+								name="value"
+								select="$reportingperiodstartdate" />
+						<xsl:with-param
+								name="message"
+								select="'The reporting period start date is not allowed.'" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$periodtype='Y1'">
 				<xsl:if test="not($month='01')">
-					<error>
-						<record>
-							<xsl:value-of select="$manager" />
-						</record>
-						<code>CAM-002</code>
-						<message>The reporting period start date is not allowed.</message>
-						<field>ReportingPeriodStartDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodstartdate" />
-						</value>
-					</error>
+					<xsl:call-template name="Error">
+						<xsl:with-param
+								name="record"
+								select="'$manager'" />
+						<xsl:with-param
+								name="code"
+								select="'CAM-002'" />
+						<xsl:with-param
+								name="field"
+								select="'ReportingPeriodStartDate'" />
+						<xsl:with-param
+								name="value"
+								select="$reportingperiodstartdate" />
+						<xsl:with-param
+								name="message"
+								select="'The reporting period start date is not allowed.'" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 		</xsl:choose>
@@ -139,76 +171,106 @@
 				select="LastReportingFlag='true'" />
 		<xsl:choose>
 			<xsl:when test="not($enddate&gt;$startdate)">
-				<error>
-					<record>
-						<xsl:value-of select="$manager" />
-					</record>
-					<code>CAM-003</code>
-					<message>The reporting period end date is not allowed</message>
-					<field>ReportingPeriodEndDate</field>
-					<value>
-						<xsl:value-of select="$reportingperiodenddate" />
-					</value>
-				</error>
+				<xsl:call-template name="Error">
+					<xsl:with-param
+							name="record"
+							select="'$manager'" />
+					<xsl:with-param
+							name="code"
+							select="'CAM-003'" />
+					<xsl:with-param
+							name="field"
+							select="'ReportingPeriodEndDate'" />
+					<xsl:with-param
+							name="value"
+							select="$reportingperiodenddate" />
+					<xsl:with-param
+							name="message"
+							select="'The reporting period end date is not allowed'" />
+				</xsl:call-template>
 			</xsl:when>
 			<xsl:when test="$periodtype='Q1'">
 				<xsl:if test="not($enddate=$q1end or ($transition and $enddate&lt;$q1end))">
-					<error>
-						<record>
-							<xsl:value-of select="$manager" />
-						</record>
-						<code>CAM-003</code>
-						<message>The reporting period end date is not allowed</message>
-						<field>ReportingPeriodEndDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodenddate" />
-						</value>
-					</error>
+					<xsl:call-template name="Error">
+						<xsl:with-param
+								name="record"
+								select="'$manager'" />
+						<xsl:with-param
+								name="code"
+								select="'CAM-003'" />
+						<xsl:with-param
+								name="field"
+								select="'ReportingPeriodEndDate'" />
+						<xsl:with-param
+								name="value"
+								select="$reportingperiodenddate" />
+						<xsl:with-param
+								name="message"
+								select="'The reporting period end date is not allowed'" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$periodtype='Q2' or $periodtype='H1'">
 				<xsl:if test="not($enddate=$q2end or ($transition and $enddate&lt;$q2end))">
-					<error>
-						<record>
-							<xsl:value-of select="$manager" />
-						</record>
-						<code>CAM-003</code>
-						<message>The reporting period end date is not allowed</message>
-						<field>ReportingPeriodEndDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodenddate" />
-						</value>
-					</error>
+					<xsl:call-template name="Error">
+						<xsl:with-param
+								name="record"
+								select="'$manager'" />
+						<xsl:with-param
+								name="code"
+								select="'CAM-003'" />
+						<xsl:with-param
+								name="field"
+								select="'ReportingPeriodEndDate'" />
+						<xsl:with-param
+								name="value"
+								select="$reportingperiodenddate" />
+						<xsl:with-param
+								name="message"
+								select="'The reporting period end date is not allowed'" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$periodtype='Q3'">
 				<xsl:if test="not($enddate=$q3end or ($transition and $enddate&lt;$q3end))">
-					<error>
-						<record>
-							<xsl:value-of select="$manager" />
-						</record>
-						<code>CAM-003</code>
-						<message>The reporting period end date is not allowed</message>
-						<field>ReportingPeriodEndDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodenddate" />
-						</value>
-					</error>
+					<xsl:call-template name="Error">
+						<xsl:with-param
+								name="record"
+								select="'$manager'" />
+						<xsl:with-param
+								name="code"
+								select="'CAM-003'" />
+						<xsl:with-param
+								name="field"
+								select="'ReportingPeriodEndDate'" />
+						<xsl:with-param
+								name="value"
+								select="$reportingperiodenddate" />
+						<xsl:with-param
+								name="message"
+								select="'The reporting period end date is not allowed'" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$periodtype='Q4' or $periodtype='H2' or $periodtype='Y1'">
 				<xsl:if test="not($enddate=$q4end or ($transition and $enddate&lt;$q4end))">
-					<error>
-						<record>
-							<xsl:value-of select="$manager" />
-						</record>
-						<code>CAM-003</code>
-						<message>The reporting period end date is not allowed</message>
-						<field>ReportingPeriodEndDate</field>
-						<value>
-							<xsl:value-of select="$reportingperiodenddate" />
-						</value>
-					</error>
+					<xsl:call-template name="Error">
+						<xsl:with-param
+								name="record"
+								select="'$manager'" />
+						<xsl:with-param
+								name="code"
+								select="'CAM-003'" />
+						<xsl:with-param
+								name="field"
+								select="'ReportingPeriodEndDate'" />
+						<xsl:with-param
+								name="value"
+								select="$reportingperiodenddate" />
+						<xsl:with-param
+								name="message"
+								select="'The reporting period end date is not allowed'" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 		</xsl:choose>
@@ -218,32 +280,44 @@
 		<xsl:choose>
 			<xsl:when test="AIFMReportingObligationChangeFrequencyCode or AIFMReportingObligationChangeContentsCode">
 				<xsl:if test="not($changequarter)">
-					<error>
-						<record>
-							<xsl:value-of select="$manager" />
-						</record>
-						<code>CAM-004</code>
-						<message>The quarter for the AIMF reporting obligation change should be reported</message>
-						<field>AIFMReportingObligationChangeQuarter</field>
-						<value>
-							<xsl:value-of select="$changequarter" />
-						</value>
-					</error>
+					<xsl:call-template name="Error">
+						<xsl:with-param
+								name="record"
+								select="'$manager'" />
+						<xsl:with-param
+								name="code"
+								select="'CAM-004'" />
+						<xsl:with-param
+								name="field"
+								select="'AIFMReportingObligationChangeQuarter'" />
+						<xsl:with-param
+								name="value"
+								select="$changequarter" />
+						<xsl:with-param
+								name="message"
+								select="'The quarter for the AIMF reporting obligation change should not be reported'" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:if test="$changequarter">
-					<error>
-						<record>
-							<xsl:value-of select="$manager" />
-						</record>
-						<code>CAM-004</code>
-						<message>The quarter for the AIMF reporting obligation change should not be reported</message>
-						<field>AIFMReportingObligationChangeQuarter</field>
-						<value>
-							<xsl:value-of select="$changequarter" />
-						</value>
-					</error>
+					<xsl:call-template name="Error">
+						<xsl:with-param
+								name="record"
+								select="'$manager'" />
+						<xsl:with-param
+								name="code"
+								select="'CAM-004'" />
+						<xsl:with-param
+								name="field"
+								select="'AIFMReportingObligationChangeQuarter'" />
+						<xsl:with-param
+								name="value"
+								select="$changequarter" />
+						<xsl:with-param
+								name="message"
+								select="'The quarter for the AIMF reporting obligation change should not be reported'" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:otherwise>
 		</xsl:choose>
@@ -251,30 +325,42 @@
 				name="jurisdiction"
 				select="AIFMJurisdiction" />
 		<xsl:if test="not($countrycodes[. = $jurisdiction])">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-005</code>
-				<message>The jurisdiction of the AIF is not correct.</message>
-				<field>AIFMJurisdiction</field>
-				<value>
-					<xsl:value-of select="$jurisdiction" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="'$manager'" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-005'" />
+				<xsl:with-param
+						name="field"
+						select="'AIFMJurisdiction'" />
+				<xsl:with-param
+						name="value"
+						select="$jurisdiction" />
+				<xsl:with-param
+						name="message"
+						select="'The jurisdiction of the AIF is not correct.'" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="not($aifmregister[. = $manager])">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-006</code>
-				<message>The AIFM national code does not exist in the ESMA Register.</message>
-				<field>AIFMNAtionalCode</field>
-				<value>
-					<xsl:value-of select="$manager" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="'$manager'" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-006'" />
+				<xsl:with-param
+						name="field"
+						select="'AIFMNAtionalCode'" />
+				<xsl:with-param
+						name="value"
+						select="$manager" />
+				<xsl:with-param
+						name="message"
+						select="'The AIFM national code does not exist in the ESMA Register.'" />
+			</xsl:call-template>
 		</xsl:if>
 
 
