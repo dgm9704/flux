@@ -46,7 +46,7 @@
     <record>111111</record>
     <code>CAM-011</code>
     <message>The field is mandatory for market code type different from "NOT".</message>
-    <field>MarketCode</field>
+    <field/>
     <value/>
   </error>
   <error>
@@ -66,15 +66,15 @@
   <error>
     <record>111111</record>
     <code>CAM-013</code>
-    <message>The aggregated value is not consistent with the sub-asset type. </message>
-    <field>AggregatedValueAmount</field>
+    <message>The aggregated value is not consistent with the sub-asset type.</message>
+    <field/>
     <value/>
   </error>
   <error>
     <record>111111</record>
     <code>CAM-020</code>
     <message>The reference rate description is not consistent with the reference rate type.</message>
-    <field>FXEUROtherReferenceRateDescription</field>
+    <field/>
     <value/>
   </error>
   <error>

@@ -337,17 +337,20 @@
 		</xsl:if>
 
 		<xsl:if test="($currency = 'EUR' and FXEURReferenceRateType = 'OTH') != boolean(FXEUROtherReferenceRateDescription)">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-020</code>
-				<message>The reference rate description is not consistent with the reference rate type.</message>
-				<field>FXEUROtherReferenceRateDescription</field>
-				<value>
-					<xsl:value-of select="FXEUROtherReferenceRateDescription" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="$manager" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-020'" />
+				<xsl:with-param
+						name="node"
+						select="FXEUROtherReferenceRateDescription" />
+				<xsl:with-param
+						name="message"
+						select="'The reference rate description is not consistent with the reference rate type.'" />
+			</xsl:call-template>
 		</xsl:if>
 
 	</xsl:template>
@@ -359,17 +362,20 @@
 				select="." />
 
 		<xsl:if test="not(my:ISO17442($lei))">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-007</code>
-				<message>Verify the correctness of the LEI code format rules following the calculation methodology of the 2-last check digits</message>
-				<field>AIFMIdentifierLEI</field>
-				<value>
-					<xsl:value-of select="$lei" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="$manager" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-007'" />
+				<xsl:with-param
+						name="node"
+						select="$lei" />
+				<xsl:with-param
+						name="message"
+						select="'Verify the correctness of the LEI code format rules following the calculation methodology of the 2-last check digits'" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -383,31 +389,37 @@
 				select="Ranking" />
 
 		<xsl:if test="not(SubAssetType = 'NTA_NTA_NOTA') and not($value)">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-013</code>
-				<message>The aggregated value is not consistent with the sub-asset type. </message>
-				<field>AggregatedValueAmount</field>
-				<value>
-					<xsl:value-of select="$value" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="$manager" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-013'" />
+				<xsl:with-param
+						name="node"
+						select="$value" />
+				<xsl:with-param
+						name="message"
+						select="'The aggregated value is not consistent with the sub-asset type.'" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="$value &lt; ../AIFMPrincipalInstrument[Ranking=($rank + 1)]/AggregatedValueAmount">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-014</code>
-				<message>The reported value is not consistent with the rank.</message>
-				<field>AggregatedValueAmount</field>
-				<value>
-					<xsl:value-of select="$value" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="$manager" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-014'" />
+				<xsl:with-param
+						name="node"
+						select="$value" />
+				<xsl:with-param
+						name="message"
+						select="'The reported value is not consistent with the rank.'" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -421,31 +433,37 @@
 				select="Ranking" />
 
 		<xsl:if test="not(MarketIdentification/MarketCodeType = 'NOT') and not($value)">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-011</code>
-				<message>The field is mandatory for market code type different from "NOT".</message>
-				<field>MarketCode</field>
-				<value>
-					<xsl:value-of select="$value" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="$manager" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-011'" />
+				<xsl:with-param
+						name="node"
+						select="$value" />
+				<xsl:with-param
+						name="message"
+						select="'The field is mandatory for market code type different from &quot;NOT&quot;.'" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="$value &lt; ../AIFMFivePrincipalMarket[Ranking=($rank + 1)]/AggregatedValueAmount">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-012</code>
-				<message>The reported value is not consistent with the rank.</message>
-				<field>AggregatedValueAmount</field>
-				<value>
-					<xsl:value-of select="$value" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="$manager" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-012'" />
+				<xsl:with-param
+						name="node"
+						select="$value" />
+				<xsl:with-param
+						name="message"
+						select="'The reported value is not consistent with the rank.'" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:apply-templates>
 			<xsl:with-param
