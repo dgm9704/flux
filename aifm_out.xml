@@ -1,0 +1,220 @@
+<?xml version="1.0"?>
+<aifm>
+  <error>
+    <record/>
+    <code>FIL-015</code>
+    <message>The authority key file attribute is invalid and should an EU or EEA country</message>
+    <field>ReportingMemberState</field>
+    <value>GB</value>
+  </error>
+  <error>
+    <record>111111</record>
+    <code>CAM-002</code>
+    <message>The reporting period start date is not allowed.</message>
+    <field>ReportingPeriodStartDate</field>
+    <value>2014-09-01</value>
+  </error>
+  <error>
+    <record>111111</record>
+    <code>CAM-004</code>
+    <message>The quarter for the AIMF reporting obligation change should be reported</message>
+    <field/>
+    <value/>
+  </error>
+  <error>
+    <record>111111</record>
+    <code>CAM-005</code>
+    <message>The jurisdiction of the AIF is not correct.</message>
+    <field>AIFMJurisdiction</field>
+    <value>ZZ</value>
+  </error>
+  <error>
+    <record>111111</record>
+    <code>CAM-007</code>
+    <message>Verify the correctness of the LEI code format rules following the calculation methodology of the 2-last check digits</message>
+    <field>AIFMIdentifierLEI</field>
+    <value>5493000IBP32UQZ0KL25</value>
+  </error>
+  <error>
+    <record>111111</record>
+    <code>CAM-008</code>
+    <message>The country code does not exist in the reference table of countries</message>
+    <field>ReportingMemberState</field>
+    <value>ZZ</value>
+  </error>
+  <error>
+    <record>111111</record>
+    <code>CAM-011</code>
+    <message>The field is mandatory for market code type different from "NOT".</message>
+    <field>MarketCode</field>
+    <value/>
+  </error>
+  <error>
+    <record/>
+    <code>CAM-010</code>
+    <message>The MIC code is not correct</message>
+    <field>MarketCode</field>
+    <value>XNAS</value>
+  </error>
+  <error>
+    <record/>
+    <code>CAM-010</code>
+    <message>The MIC code is not correct</message>
+    <field>MarketCode</field>
+    <value/>
+  </error>
+  <error>
+    <record>111111</record>
+    <code>CAM-013</code>
+    <message>The aggregated value is not consistent with the sub-asset type. </message>
+    <field>AggregatedValueAmount</field>
+    <value/>
+  </error>
+  <error>
+    <record>111111</record>
+    <code>CAM-020</code>
+    <message>The reference rate description is not consistent with the reference rate type.</message>
+    <field>FXEUROtherReferenceRateDescription</field>
+    <value/>
+  </error>
+  <error>
+    <record>222222</record>
+    <code>CAM-002</code>
+    <message>The reporting period start date is not allowed.</message>
+    <field>ReportingPeriodStartDate</field>
+    <value>2014-10-01</value>
+  </error>
+  <error>
+    <record>222222</record>
+    <code>CAM-004</code>
+    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
+    <field>AIFMReportingObligationChangeQuarter</field>
+    <value>Q4</value>
+  </error>
+  <error>
+    <record>222222</record>
+    <code>CAM-016</code>
+    <message>The total AuM amount in base currency is not consistent with the total AuM amount in Euro.</message>
+    <field>AUMAmountInBaseCurrency</field>
+    <value>7253950</value>
+  </error>
+  <error>
+    <record>222222</record>
+    <code>CAM-007</code>
+    <message>Verify the correctness of the LEI code format rules following the calculation methodology of the 2-last check digits</message>
+    <field>AIFMIdentifierLEI</field>
+    <value>969500AA77L4ZJXJ0T03</value>
+  </error>
+  <error>
+    <record>222222</record>
+    <code>CAM-012</code>
+    <message>The reported value is not consistent with the rank.</message>
+    <field>AggregatedValueAmount</field>
+    <value>22782456</value>
+  </error>
+  <error>
+    <record/>
+    <code>CAM-010</code>
+    <message>The MIC code is not correct</message>
+    <field>MarketCode</field>
+    <value>XBRO</value>
+  </error>
+  <error>
+    <record>222222</record>
+    <code>CAM-014</code>
+    <message>The reported value is not consistent with the rank.</message>
+    <field>AggregatedValueAmount</field>
+    <value>14473914</value>
+  </error>
+  <error>
+    <record>222222</record>
+    <code>CAM-017</code>
+    <message>The currency code does not exist in the reference table of currencies</message>
+    <field>BaseCurrency</field>
+    <value>FOO</value>
+  </error>
+  <error>
+    <record>222222</record>
+    <code>CAM-020</code>
+    <message>The reference rate description is not consistent with the reference rate type.</message>
+    <field>FXEUROtherReferenceRateDescription</field>
+    <value>Foo</value>
+  </error>
+  <error>
+    <record>333333</record>
+    <code>CAM-002</code>
+    <message>The reporting period start date is not allowed.</message>
+    <field>ReportingPeriodStartDate</field>
+    <value>2014-10-02</value>
+  </error>
+  <error>
+    <record>333333</record>
+    <code>CAM-004</code>
+    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
+    <field>AIFMReportingObligationChangeQuarter</field>
+    <value>Q4</value>
+  </error>
+  <error>
+    <record>444444</record>
+    <code>CAM-002</code>
+    <message>The reporting period start date is not allowed.</message>
+    <field>ReportingPeriodStartDate</field>
+    <value>2014-10-02</value>
+  </error>
+  <error>
+    <record>444444</record>
+    <code>CAM-003</code>
+    <message>The reporting period end date is not allowed</message>
+    <field>ReportingPeriodEndDate</field>
+    <value>2014-12-31</value>
+  </error>
+  <error>
+    <record>444444</record>
+    <code>CAM-004</code>
+    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
+    <field>AIFMReportingObligationChangeQuarter</field>
+    <value>Q4</value>
+  </error>
+  <error>
+    <record>555555</record>
+    <code>CAM-002</code>
+    <message>The reporting period start date is not allowed.</message>
+    <field>ReportingPeriodStartDate</field>
+    <value>2014-10-02</value>
+  </error>
+  <error>
+    <record>555555</record>
+    <code>CAM-003</code>
+    <message>The reporting period end date is not allowed</message>
+    <field>ReportingPeriodEndDate</field>
+    <value>2014-12-30</value>
+  </error>
+  <error>
+    <record>555555</record>
+    <code>CAM-004</code>
+    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
+    <field>AIFMReportingObligationChangeQuarter</field>
+    <value>Q4</value>
+  </error>
+  <error>
+    <record>777777</record>
+    <code>CAM-003</code>
+    <message>The reporting period end date is not allowed</message>
+    <field>ReportingPeriodEndDate</field>
+    <value>2014-09-30</value>
+  </error>
+  <error>
+    <record>777777</record>
+    <code>CAM-004</code>
+    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
+    <field>AIFMReportingObligationChangeQuarter</field>
+    <value>Q4</value>
+  </error>
+  <error>
+    <record>777777</record>
+    <code>CAM-006</code>
+    <message>The AIFM national code does not exist in the ESMA Register.</message>
+    <field>AIFMNationalCode</field>
+    <value>777777</value>
+  </error>
+</aifm>

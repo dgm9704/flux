@@ -1,11 +1,12 @@
 <xsl:transform
 		version="1.0"
 		xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+		xmlns:exsl="http://exslt.org/common"
 		xmlns:func="http://exslt.org/functions"
 		xmlns:str="http://exslt.org/strings"
 		xmlns:my="http://example.org/my"
 		exclude-result-prefixes="my"
-		extension-element-prefixes="func str">
+		extension-element-prefixes="func str exsl">
 
 	<xsl:output
 			indent="yes"
@@ -169,7 +170,7 @@
 		</xsl:choose>
 	</func:function>
 
-	<xsl:template name="Error">
+	<!-- <xsl:template name="Error">
 		<xsl:param name="code" />
 		<xsl:param name="record" />
 		<xsl:param name="field" />
@@ -190,6 +191,30 @@
 			</field>
 			<value>
 				<xsl:value-of select="$value" />
+			</value>
+		</error>
+	</xsl:template> -->
+
+	<xsl:template name="Error">
+		<xsl:param name="code" />
+		<xsl:param name="record" />
+		<xsl:param name="node" />
+		<xsl:param name="message" />
+		<error>
+			<record>
+				<xsl:value-of select="$record" />
+			</record>
+			<code>
+				<xsl:value-of select="$code" />
+			</code>
+			<message>
+				<xsl:value-of select="$message" />
+			</message>
+			<field>
+				<xsl:value-of select="name(exsl:node-set($node))" />
+			</field>
+			<value>
+				<xsl:value-of select="$node" />
 			</value>
 		</error>
 	</xsl:template>

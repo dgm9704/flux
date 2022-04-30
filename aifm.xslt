@@ -25,10 +25,7 @@
 							name="code"
 							select="'FIL-015'" />
 					<xsl:with-param
-							name="field"
-							select="'ReportingMemberState'" />
-					<xsl:with-param
-							name="value"
+							name="node"
 							select="$reportingmemberstate" />
 					<xsl:with-param
 							name="message"
@@ -69,15 +66,12 @@
 				<xsl:call-template name="Error">
 					<xsl:with-param
 							name="record"
-							select="'$manager'" />
+							select="$manager" />
 					<xsl:with-param
 							name="code"
 							select="'CAM-002'" />
 					<xsl:with-param
-							name="field"
-							select="'ReportingPeriodStartDate'" />
-					<xsl:with-param
-							name="value"
+							name="node"
 							select="$reportingperiodstartdate" />
 					<xsl:with-param
 							name="message"
@@ -89,15 +83,12 @@
 					<xsl:call-template name="Error">
 						<xsl:with-param
 								name="record"
-								select="'$manager'" />
+								select="$manager" />
 						<xsl:with-param
 								name="code"
 								select="'CAM-002'" />
 						<xsl:with-param
-								name="field"
-								select="'ReportingPeriodStartDate'" />
-						<xsl:with-param
-								name="value"
+								name="node"
 								select="$reportingperiodstartdate" />
 						<xsl:with-param
 								name="message"
@@ -110,15 +101,12 @@
 					<xsl:call-template name="Error">
 						<xsl:with-param
 								name="record"
-								select="'$manager'" />
+								select="$manager" />
 						<xsl:with-param
 								name="code"
 								select="'CAM-002'" />
 						<xsl:with-param
-								name="field"
-								select="'ReportingPeriodStartDate'" />
-						<xsl:with-param
-								name="value"
+								name="node"
 								select="$reportingperiodstartdate" />
 						<xsl:with-param
 								name="message"
@@ -131,15 +119,12 @@
 					<xsl:call-template name="Error">
 						<xsl:with-param
 								name="record"
-								select="'$manager'" />
+								select="$manager" />
 						<xsl:with-param
 								name="code"
 								select="'CAM-002'" />
 						<xsl:with-param
-								name="field"
-								select="'ReportingPeriodStartDate'" />
-						<xsl:with-param
-								name="value"
+								name="node"
 								select="$reportingperiodstartdate" />
 						<xsl:with-param
 								name="message"
@@ -174,15 +159,12 @@
 				<xsl:call-template name="Error">
 					<xsl:with-param
 							name="record"
-							select="'$manager'" />
+							select="$manager" />
 					<xsl:with-param
 							name="code"
 							select="'CAM-003'" />
 					<xsl:with-param
-							name="field"
-							select="'ReportingPeriodEndDate'" />
-					<xsl:with-param
-							name="value"
+							name="node"
 							select="$reportingperiodenddate" />
 					<xsl:with-param
 							name="message"
@@ -194,15 +176,12 @@
 					<xsl:call-template name="Error">
 						<xsl:with-param
 								name="record"
-								select="'$manager'" />
+								select="$manager" />
 						<xsl:with-param
 								name="code"
 								select="'CAM-003'" />
 						<xsl:with-param
-								name="field"
-								select="'ReportingPeriodEndDate'" />
-						<xsl:with-param
-								name="value"
+								name="node"
 								select="$reportingperiodenddate" />
 						<xsl:with-param
 								name="message"
@@ -215,15 +194,12 @@
 					<xsl:call-template name="Error">
 						<xsl:with-param
 								name="record"
-								select="'$manager'" />
+								select="$manager" />
 						<xsl:with-param
 								name="code"
 								select="'CAM-003'" />
 						<xsl:with-param
-								name="field"
-								select="'ReportingPeriodEndDate'" />
-						<xsl:with-param
-								name="value"
+								name="node"
 								select="$reportingperiodenddate" />
 						<xsl:with-param
 								name="message"
@@ -236,15 +212,12 @@
 					<xsl:call-template name="Error">
 						<xsl:with-param
 								name="record"
-								select="'$manager'" />
+								select="$manager" />
 						<xsl:with-param
 								name="code"
 								select="'CAM-003'" />
 						<xsl:with-param
-								name="field"
-								select="'ReportingPeriodEndDate'" />
-						<xsl:with-param
-								name="value"
+								name="node"
 								select="$reportingperiodenddate" />
 						<xsl:with-param
 								name="message"
@@ -257,15 +230,12 @@
 					<xsl:call-template name="Error">
 						<xsl:with-param
 								name="record"
-								select="'$manager'" />
+								select="$manager" />
 						<xsl:with-param
 								name="code"
 								select="'CAM-003'" />
 						<xsl:with-param
-								name="field"
-								select="'ReportingPeriodEndDate'" />
-						<xsl:with-param
-								name="value"
+								name="node"
 								select="$reportingperiodenddate" />
 						<xsl:with-param
 								name="message"
@@ -283,19 +253,16 @@
 					<xsl:call-template name="Error">
 						<xsl:with-param
 								name="record"
-								select="'$manager'" />
+								select="$manager" />
 						<xsl:with-param
 								name="code"
 								select="'CAM-004'" />
 						<xsl:with-param
-								name="field"
-								select="'AIFMReportingObligationChangeQuarter'" />
-						<xsl:with-param
-								name="value"
+								name="node"
 								select="$changequarter" />
 						<xsl:with-param
 								name="message"
-								select="'The quarter for the AIMF reporting obligation change should not be reported'" />
+								select="'The quarter for the AIMF reporting obligation change should be reported'" />
 					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
@@ -304,15 +271,12 @@
 					<xsl:call-template name="Error">
 						<xsl:with-param
 								name="record"
-								select="'$manager'" />
+								select="$manager" />
 						<xsl:with-param
 								name="code"
 								select="'CAM-004'" />
 						<xsl:with-param
-								name="field"
-								select="'AIFMReportingObligationChangeQuarter'" />
-						<xsl:with-param
-								name="value"
+								name="node"
 								select="$changequarter" />
 						<xsl:with-param
 								name="message"
@@ -328,15 +292,12 @@
 			<xsl:call-template name="Error">
 				<xsl:with-param
 						name="record"
-						select="'$manager'" />
+						select="$manager" />
 				<xsl:with-param
 						name="code"
 						select="'CAM-005'" />
 				<xsl:with-param
-						name="field"
-						select="'AIFMJurisdiction'" />
-				<xsl:with-param
-						name="value"
+						name="node"
 						select="$jurisdiction" />
 				<xsl:with-param
 						name="message"
@@ -347,15 +308,12 @@
 			<xsl:call-template name="Error">
 				<xsl:with-param
 						name="record"
-						select="'$manager'" />
+						select="$manager" />
 				<xsl:with-param
 						name="code"
 						select="'CAM-006'" />
 				<xsl:with-param
-						name="field"
-						select="'AIFMNAtionalCode'" />
-				<xsl:with-param
-						name="value"
+						name="node"
 						select="$manager" />
 				<xsl:with-param
 						name="message"
