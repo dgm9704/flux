@@ -44,7 +44,7 @@
 				<xsl:if test="(AIFContentType = '2' or AIFContentType = '4') and not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2)">true</xsl:if>
 				<xsl:if test="(AIFContentType = '4' or AIFContentType = '5') and not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4)">true</xsl:if>
 			</xsl:variable>
-			<xsl:if test="$contenterror = 'true'">
+			<xsl:if test="$contenterror = 'false'">
 				<error>
 					<record>
 						<xsl:value-of select="$fund" />

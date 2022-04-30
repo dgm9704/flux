@@ -17,7 +17,7 @@
   <error>
     <record>111111</record>
     <code>CAM-004</code>
-    <message>The quarter for the AIMF reporting obligation change should be reported</message>
+    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
     <field/>
     <value/>
   </error>
