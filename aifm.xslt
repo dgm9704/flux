@@ -75,7 +75,6 @@
 				</xsl:when>
 			</xsl:choose>
 		</xsl:variable>
-
 		<xsl:if test="$CAM-002 = 'true'">
 			<xsl:call-template name="Error">
 				<xsl:with-param
@@ -148,8 +147,6 @@
 						select="'The reporting period end date is not allowed'" />
 			</xsl:call-template>
 		</xsl:if>
-
-
 		<xsl:variable
 				name="changequarter"
 				select="AIFMReportingObligationChangeQuarter" />
@@ -215,7 +212,6 @@
 			</xsl:call-template>
 		</xsl:if>
 
-
 		<xsl:if test="AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency and not(AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency = 'EUR')">
 			<xsl:variable
 					name="amountbase"
@@ -230,17 +226,20 @@
 					name="result"
 					select="$amounteuro * $rateeuro" />
 			<xsl:if test="not($amountbase = $result)">
-				<error>
-					<record>
-						<xsl:value-of select="$manager" />
-					</record>
-					<code>CAM-016</code>
-					<message>The total AuM amount in base currency is not consistent with the total AuM amount in Euro.</message>
-					<field>AUMAmountInBaseCurrency</field>
-					<value>
-						<xsl:value-of select="$amountbase" />
-					</value>
-				</error>
+				<xsl:call-template name="Error">
+					<xsl:with-param
+							name="record"
+							select="$manager" />
+					<xsl:with-param
+							name="code"
+							select="'CAM-016'" />
+					<xsl:with-param
+							name="node"
+							select="$amountbase" />
+					<xsl:with-param
+							name="message"
+							select="'The total AuM amount in base currency is not consistent with the total AuM amount in Euro.'" />
+				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
 
@@ -257,17 +256,20 @@
 				name="mic"
 				select="MarketCode" />
 		<xsl:if test="(boolean(MarketCodeType = 'MIC') != boolean($mic)) or ($mic and not($micregister[. = $mic]))">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-010</code>
-				<message>The MIC code is not correct</message>
-				<field>MarketCode</field>
-				<value>
-					<xsl:value-of select="$mic" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="$manager" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-010'" />
+				<xsl:with-param
+						name="node"
+						select="$mic" />
+				<xsl:with-param
+						name="message"
+						select="'The MIC code is not correct'" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -278,30 +280,36 @@
 				name="state"
 				select="ReportingMemberState" />
 		<xsl:if test="$state and not($countrycodes[. = $state])">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-008</code>
-				<message>The country code does not exist in the reference table of countries</message>
-				<field>ReportingMemberState</field>
-				<value>
-					<xsl:value-of select="$state" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="$manager" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-008'" />
+				<xsl:with-param
+						name="node"
+						select="$state" />
+				<xsl:with-param
+						name="message"
+						select="'The country code does not exist in the reference table of countries'" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="$state and not(AIFMNationalCode)">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-009</code>
-				<message>The field is mandatory when the old AIFM national identifier - Reporting Member State is filled in.</message>
-				<field>AIFMNationalCode</field>
-				<value>
-					<xsl:value-of select="AIFMNationalCode" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="$manager" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-009'" />
+				<xsl:with-param
+						name="node"
+						select="./AIFMNationalCode" />
+				<xsl:with-param
+						name="message"
+						select="'The field is mandatory when the old AIFM national identifier - Reporting Member State is filled in.'" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -312,17 +320,20 @@
 				name="currency"
 				select="BaseCurrency" />
 		<xsl:if test="$currency and not($currencycodes[. = $currency])">
-			<error>
-				<record>
-					<xsl:value-of select="$manager" />
-				</record>
-				<code>CAM-017</code>
-				<message>The currency code does not exist in the reference table of currencies</message>
-				<field>BaseCurrency</field>
-				<value>
-					<xsl:value-of select="$currency" />
-				</value>
-			</error>
+			<xsl:call-template name="Error">
+				<xsl:with-param
+						name="record"
+						select="$manager" />
+				<xsl:with-param
+						name="code"
+						select="'CAM-017'" />
+				<xsl:with-param
+						name="node"
+						select="$currency" />
+				<xsl:with-param
+						name="message"
+						select="'The currency code does not exist in the reference table of currencies'" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="($currency = 'EUR' and FXEURReferenceRateType = 'OTH') != boolean(FXEUROtherReferenceRateDescription)">
@@ -436,7 +447,11 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:apply-templates />
+		<xsl:apply-templates>
+			<xsl:with-param
+					name="manager"
+					select="$manager" />
+		</xsl:apply-templates>
 	</xsl:template>
 
 	<xsl:template match="text()|@*">

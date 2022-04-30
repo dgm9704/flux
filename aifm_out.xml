@@ -50,17 +50,17 @@
     <value/>
   </error>
   <error>
-    <record/>
+    <record>111111</record>
     <code>CAM-010</code>
     <message>The MIC code is not correct</message>
     <field>MarketCode</field>
     <value>XNAS</value>
   </error>
   <error>
-    <record/>
+    <record>111111</record>
     <code>CAM-010</code>
     <message>The MIC code is not correct</message>
-    <field>MarketCode</field>
+    <field/>
     <value/>
   </error>
   <error>
@@ -113,7 +113,7 @@
     <value>22782456</value>
   </error>
   <error>
-    <record/>
+    <record>222222</record>
     <code>CAM-010</code>
     <message>The MIC code is not correct</message>
     <field>MarketCode</field>
