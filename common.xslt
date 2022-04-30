@@ -170,31 +170,6 @@
 		</xsl:choose>
 	</func:function>
 
-	<!-- <xsl:template name="Error">
-		<xsl:param name="code" />
-		<xsl:param name="record" />
-		<xsl:param name="field" />
-		<xsl:param name="value" />
-		<xsl:param name="message" />
-		<error>
-			<record>
-				<xsl:value-of select="$record" />
-			</record>
-			<code>
-				<xsl:value-of select="$code" />
-			</code>
-			<message>
-				<xsl:value-of select="$message" />
-			</message>
-			<field>
-				<xsl:value-of select="$field" />
-			</field>
-			<value>
-				<xsl:value-of select="$value" />
-			</value>
-		</error>
-	</xsl:template> -->
-
 	<xsl:template name="Error">
 		<xsl:param name="code" />
 		<xsl:param name="record" />
