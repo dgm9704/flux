@@ -12,15 +12,33 @@
 - Check digit calculations are not implemented, but have been replaced with lookups instead.
 
 ## Specifications
-- For some reason ESMA does not provide the specifications for AIFMD validations publicly, and neither does FIN-FSA.
-- I found some version of the AIFMD validation specifications from Polish Financial Supervision Authority (UKNF) site:
+   For some reason ESMA does not provide the specifications for AIFMD validations publicly, and neither does FIN-FSA.
+   ESMA provides [technical rules for the fields](https://www.esma.europa.eu/document/aifmd-reporting-it-technical-guidance-rev-4-updated)
+   I have found some versions of the AIFMD validation specifications from other sources:
+   
+   - Polish Financial Supervision Authority (UKNF)
+
 https://www.knf.gov.pl/knf/pl/komponenty/img/2013-ITMG-65_opis_regul_walidacyjnych_plikow_DATMAN_DATAIF_71002.xlsx
-- ESMA provides [technical rules for the fields](https://www.esma.europa.eu/document/aifmd-reporting-it-technical-guidance-rev-4-updated)
+
+   - Finanzmarktaufsicht Liechtenstein (FMA)
+
+https://www.fma-li.li/files/list/fma-wegleitung-2020-8-aifmd-reporting-fehlermeldungen.pdf
+
+   - Luxemburg Commission de Surveillance du Secteur Financier (CSSF) 
+
+   https://www.cssf.lu/wp-content/uploads/CSSF_ERROR_CODES_FEEDBACK_FILES.pdf
+   
+   - Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin)
+   
+   https://www.bafin.de/SharedDocs/Downloads/DE/Merkblatt/WA/dl_150305_merkbl_35KAGB_Anlage2_AIFM_wa.pdf?__blob=publicationFile&v=3
+   
+   https://www.bafin.de/SharedDocs/Downloads/DE/Merkblatt/WA/dl_150305_merkbl_35KAGB_Anlage1_AIF_wa.pdf?__blob=publicationFile&v=1
+   
  
 ## My environment
-- [Visual Studio Code](https://code.visualstudio.com/) on [Arch Linux](https://www.archlinux.org/) for development
-- [xsltproc](http://xmlsoft.org/XSLT/xsltproc.html) for stylesheet processing
-- [xmllint](http://xmlsoft.org/xmllint.html) for schema validation
+   - [Visual Studio Code](https://code.visualstudio.com/) on [Arch Linux](https://www.archlinux.org/) for development
+   - [xsltproc](http://xmlsoft.org/XSLT/xsltproc.html) for stylesheet processing
+   - [xmllint](http://xmlsoft.org/xmllint.html) for schema validation
 
 ## Usage
 1) Always validate your XML against the schema first.
@@ -72,6 +90,7 @@ Sample output for aifmsample.xml:
 - Implement CSDR9 validations
 - Implement CSDR7 validations?
 - Implement MMF validations?
+- Implement ESEF validations?
 
 
 ## How you can help
