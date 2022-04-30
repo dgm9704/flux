@@ -27,6 +27,13 @@ https://www.fma-li.li/files/list/fma-wegleitung-2020-8-aifmd-reporting-fehlermel
    - Luxemburg Commission de Surveillance du Secteur Financier (CSSF) 
 
    https://www.cssf.lu/wp-content/uploads/CSSF_ERROR_CODES_FEEDBACK_FILES.pdf
+   
+   - Bundesanstalt für Finanzdienstleistungsaufsicht (BaFin)
+   
+   https://www.bafin.de/SharedDocs/Downloads/DE/Merkblatt/WA/dl_150305_merkbl_35KAGB_Anlage2_AIFM_wa.pdf?__blob=publicationFile&v=3
+   
+   https://www.bafin.de/SharedDocs/Downloads/DE/Merkblatt/WA/dl_150305_merkbl_35KAGB_Anlage1_AIF_wa.pdf?__blob=publicationFile&v=1
+   
  
 ## My environment
    - [Visual Studio Code](https://code.visualstudio.com/) on [Arch Linux](https://www.archlinux.org/) for development
