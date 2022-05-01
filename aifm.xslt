@@ -19,9 +19,6 @@
 			<xsl:if test="not($eeacountrycodes[. = $reportingmemberstate])">
 				<xsl:call-template name="Error">
 					<xsl:with-param
-							name="record"
-							select="''" />
-					<xsl:with-param
 							name="code"
 							select="'FIL-015'" />
 					<xsl:with-param
@@ -78,9 +75,6 @@
 		<xsl:if test="$CAM-002 = 'true'">
 			<xsl:call-template name="Error">
 				<xsl:with-param
-						name="record"
-						select="$manager" />
-				<xsl:with-param
 						name="code"
 						select="'CAM-002'" />
 				<xsl:with-param
@@ -134,9 +128,6 @@
 		<xsl:if test="$CAM-003 = 'true'">
 			<xsl:call-template name="Error">
 				<xsl:with-param
-						name="record"
-						select="$manager" />
-				<xsl:with-param
 						name="code"
 						select="'CAM-003'" />
 				<xsl:with-param
@@ -163,9 +154,6 @@
 		<xsl:if test="$CAM-004 = 'true'">
 			<xsl:call-template name="Error">
 				<xsl:with-param
-						name="record"
-						select="$manager" />
-				<xsl:with-param
 						name="code"
 						select="'CAM-004'" />
 				<xsl:with-param
@@ -182,9 +170,6 @@
 		<xsl:if test="not($countrycodes[. = $jurisdiction])">
 			<xsl:call-template name="Error">
 				<xsl:with-param
-						name="record"
-						select="$manager" />
-				<xsl:with-param
 						name="code"
 						select="'CAM-005'" />
 				<xsl:with-param
@@ -197,9 +182,6 @@
 		</xsl:if>
 		<xsl:if test="not($aifmregister[. = $manager])">
 			<xsl:call-template name="Error">
-				<xsl:with-param
-						name="record"
-						select="$manager" />
 				<xsl:with-param
 						name="code"
 						select="'CAM-006'" />
@@ -228,9 +210,6 @@
 			<xsl:if test="not($amountbase = $result)">
 				<xsl:call-template name="Error">
 					<xsl:with-param
-							name="record"
-							select="$manager" />
-					<xsl:with-param
 							name="code"
 							select="'CAM-016'" />
 					<xsl:with-param
@@ -258,9 +237,6 @@
 		<xsl:if test="(boolean(MarketCodeType = 'MIC') != boolean($mic)) or ($mic and not($micregister[. = $mic]))">
 			<xsl:call-template name="Error">
 				<xsl:with-param
-						name="record"
-						select="$manager" />
-				<xsl:with-param
 						name="code"
 						select="'CAM-010'" />
 				<xsl:with-param
@@ -282,9 +258,6 @@
 		<xsl:if test="$state and not($countrycodes[. = $state])">
 			<xsl:call-template name="Error">
 				<xsl:with-param
-						name="record"
-						select="$manager" />
-				<xsl:with-param
 						name="code"
 						select="'CAM-008'" />
 				<xsl:with-param
@@ -297,9 +270,6 @@
 		</xsl:if>
 		<xsl:if test="$state and not(AIFMNationalCode)">
 			<xsl:call-template name="Error">
-				<xsl:with-param
-						name="record"
-						select="$manager" />
 				<xsl:with-param
 						name="code"
 						select="'CAM-009'" />
@@ -322,9 +292,6 @@
 		<xsl:if test="$currency and not($currencycodes[. = $currency])">
 			<xsl:call-template name="Error">
 				<xsl:with-param
-						name="record"
-						select="$manager" />
-				<xsl:with-param
 						name="code"
 						select="'CAM-017'" />
 				<xsl:with-param
@@ -338,9 +305,6 @@
 
 		<xsl:if test="($currency = 'EUR' and FXEURReferenceRateType = 'OTH') != boolean(FXEUROtherReferenceRateDescription)">
 			<xsl:call-template name="Error">
-				<xsl:with-param
-						name="record"
-						select="$manager" />
 				<xsl:with-param
 						name="code"
 						select="'CAM-020'" />
@@ -363,9 +327,6 @@
 
 		<xsl:if test="not(my:ISO17442($lei))">
 			<xsl:call-template name="Error">
-				<xsl:with-param
-						name="record"
-						select="$manager" />
 				<xsl:with-param
 						name="code"
 						select="'CAM-007'" />
@@ -391,9 +352,6 @@
 		<xsl:if test="not(SubAssetType = 'NTA_NTA_NOTA') and not($value)">
 			<xsl:call-template name="Error">
 				<xsl:with-param
-						name="record"
-						select="$manager" />
-				<xsl:with-param
 						name="code"
 						select="'CAM-013'" />
 				<xsl:with-param
@@ -407,9 +365,6 @@
 
 		<xsl:if test="$value &lt; ../AIFMPrincipalInstrument[Ranking=($rank + 1)]/AggregatedValueAmount">
 			<xsl:call-template name="Error">
-				<xsl:with-param
-						name="record"
-						select="$manager" />
 				<xsl:with-param
 						name="code"
 						select="'CAM-014'" />
@@ -435,9 +390,6 @@
 		<xsl:if test="not(MarketIdentification/MarketCodeType = 'NOT') and not($value)">
 			<xsl:call-template name="Error">
 				<xsl:with-param
-						name="record"
-						select="$manager" />
-				<xsl:with-param
 						name="code"
 						select="'CAM-011'" />
 				<xsl:with-param
@@ -451,9 +403,6 @@
 
 		<xsl:if test="$value &lt; ../AIFMFivePrincipalMarket[Ranking=($rank + 1)]/AggregatedValueAmount">
 			<xsl:call-template name="Error">
-				<xsl:with-param
-						name="record"
-						select="$manager" />
 				<xsl:with-param
 						name="code"
 						select="'CAM-012'" />

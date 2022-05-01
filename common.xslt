@@ -172,12 +172,11 @@
 
 	<xsl:template name="Error">
 		<xsl:param name="code" />
-		<xsl:param name="record" />
 		<xsl:param name="node" />
 		<xsl:param name="message" />
 		<error>
 			<record>
-				<xsl:value-of select="$record" />
+				<xsl:value-of select="./ancestor-or-self::AIFMRecordInfo/AIFMNationalCode" />
 			</record>
 			<code>
 				<xsl:value-of select="$code" />
