@@ -31,9 +31,6 @@
 	</xsl:template>
 
 	<xsl:template match="AIFRecordInfo">
-		<!-- <xsl:variable
-				name="fund"
-				select="AIFNationalCode" /> -->
 		<xsl:variable
 				name="noreporting"
 				select="AIFNoReportingFlag" />
@@ -360,7 +357,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy">
-		<xsl:param name="fund" />
+
 		<xsl:if test="(FundOfFundsStrategyType = 'OTHR_FOFS') != boolean(StrategyTypeOtherDescription)">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
@@ -374,7 +371,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies/OtherFundStrategy">
-		<xsl:param name="fund" />
+
 		<xsl:if test="(OtherFundStrategyType  = 'OTHR_OTHF') != boolean(StrategyTypeOtherDescription)">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
@@ -388,7 +385,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/MasterAIFsIdentification/MasterAIFIdentification">
-		<xsl:param name="fund" />
+
 		<xsl:variable
 				name="aifname"
 				select="AIFName" />
@@ -1144,7 +1141,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/NAVGeographicalFocus">
-		<xsl:param name="fund" />
+
 		<xsl:variable
 				name="navregions"
 				select="*" />
@@ -1162,7 +1159,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AUMGeographicalFocus">
-		<xsl:param name="fund" />
+
 		<xsl:variable
 				name="aumregions"
 				select="*" />
@@ -1180,7 +1177,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
-		<xsl:param name="fund" />
+
 		<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(SubAssetType)">
 			<error>
 				<record></record>
@@ -1256,7 +1253,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification">
-		<xsl:param name="fund" />
+
 		<xsl:if test="not(EntityName) and EntityIdentificationLEI">
 			<error>
 				<record></record>
@@ -1299,7 +1296,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
-		<xsl:param name="fund" />
+
 		<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(PositionType)">
 			<error>
 				<record></record>
@@ -1444,7 +1441,7 @@
 	</xsl:template>
 
 	<xsl:template match="CounterpartyIdentification/EntityIdentificationLEI">
-		<xsl:param name="fund" />
+
 		<xsl:variable
 				name="lei"
 				select="." />
@@ -1463,7 +1460,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo">
-		<xsl:param name="fund" />
+
 
 		<xsl:if test="boolean(AIFDescription/PredominantAIFType = 'PEQF') != boolean(MostImportantConcentration/TypicalPositionSize)">
 			<error>
@@ -1482,7 +1479,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/AIFPrincipalMarkets/AIFPrincipalMarket">
-		<xsl:param name="fund" />
+
 		<xsl:variable
 				name="mic"
 				select="MarketIdentification/MarketCode" />
@@ -1542,7 +1539,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/InvestorConcentration">
-		<xsl:param name="fund" />
+
 		<xsl:variable
 				name="ratesum"
 				select="ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate" />
@@ -1560,7 +1557,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/AssetTypeExposures/AssetTypeExposure">
-		<xsl:param name="fund" />
+
 		<xsl:choose>
 			<xsl:when test="SubAssetType='DER_FEX_INVT' or SubAssetType='DER_FEX_HEDG' or SubAssetType='DER_IRD_INTR'">
 				<xsl:if test="LongValue">
@@ -1603,7 +1600,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/AssetTypeTurnovers/AssetTypeTurnover">
-		<xsl:param name="fund" />
+
 		<xsl:variable
 				name="t"
 				select="TurnoverSubAssetType" />
@@ -1623,7 +1620,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CurrencyExposures/CurrencyExposure">
-		<xsl:param name="fund" />
+
 		<xsl:variable
 				name="currency"
 				select="ExposureCurrency" />
@@ -1669,7 +1666,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CompaniesDominantInfluence/CompanyDominantInfluence">
-		<xsl:param name="fund" />
+
 		<xsl:param name="predominantaiftype" />
 
 		<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(CompanyIdentification/EntityName)">
@@ -1755,7 +1752,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/MarketRiskProfile/MarketRiskMeasures/MarketRiskMeasure">
-		<xsl:param name="fund" />
+
 		<xsl:if test="not(RiskMeasureType='NET_EQTY_DELTA' or RiskMeasureType='NET_FX_DELTA' or RiskMeasureType='NET_CTY_DELTA') and boolean(RiskMeasureValue)">
 			<error>
 				<record></record>
@@ -1869,7 +1866,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/TradingClearingMechanism/TradedSecurities">
-		<xsl:param name="fund" />
+
 		<xsl:if test="RegulatedMarketRate + OTCRate != 100">
 			<error>
 				<record></record>
@@ -1884,7 +1881,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/TradingClearingMechanism/TradedDerivatives">
-		<xsl:param name="fund" />
+
 		<xsl:if test="RegulatedMarketRate + OTCRate != 100">
 			<error>
 				<record></record>
@@ -1899,7 +1896,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/TradingClearingMechanism/ClearedDerivativesRate">
-		<xsl:param name="fund" />
+
 		<xsl:if test="CCPRate + BilateralClearingRate != 100">
 			<error>
 				<record></record>
@@ -1914,7 +1911,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/TradingClearingMechanism/ClearedReposRate">
-		<xsl:param name="fund" />
+
 		<xsl:if test="CCPRate + BilateralClearingRate + TriPartyRepoClearingRate != 100">
 			<error>
 				<record></record>
@@ -1929,7 +1926,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/FundToCounterpartyExposures/FundToCounterpartyExposure">
-		<xsl:param name="fund" />
+
 		<xsl:if test="boolean(CounterpartyExposureFlag='true') != boolean(CounterpartyIdentification/EntityName)">
 			<error>
 				<record></record>
@@ -2008,7 +2005,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CounterpartyToFundExposures/CounterpartyToFundExposure">
-		<xsl:param name="fund" />
+
 		<xsl:if test="boolean(CounterpartyExposureFlag='true') != boolean(CounterpartyIdentification/EntityName)">
 			<error>
 				<record></record>
@@ -2034,39 +2031,46 @@
 				</value>
 			</error>
 		</xsl:if>
-		<xsl:if test="boolean(CounterpartyExposureFlag='false') and boolean(CounterpartyIdentification/EntityIdentificationLEI)">
-			<error>
-				<record></record>
-				<code>CAF-121</code>
-				<message>The LEI code is not consistent with the counterparty exposure flag.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="CounterpartyIdentification/EntityIdentificationLEI" />
-				</value>
-			</error>
+
+		<xsl:variable
+				name="eilei"
+				select="CounterpartyIdentification/EntityIdentificationLEI" />
+		<xsl:if test="boolean(CounterpartyExposureFlag='false') and boolean($eilei)">
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-121'" />
+				<xsl:with-param
+						name="context"
+						select="$eilei" />
+			</xsl:call-template>
 		</xsl:if>
-		<xsl:if test="boolean(CounterpartyExposureFlag='false') and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
-			<error>
-				<record></record>
-				<code>CAF-122</code>
-				<message>The BIC code is not consistent with the counterparty exposure flag.</message>
-				<field>EntityIdentificationBIC</field>
-				<value>
-					<xsl:value-of select="CounterpartyIdentification/EntityIdentificationBIC" />
-				</value>
-			</error>
+
+		<xsl:variable
+				name="eibic"
+				select="CounterpartyIdentification/EntityIdentificationBIC" />
+		<xsl:if test="boolean(CounterpartyExposureFlag='false') and boolean($eibic)">
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-122'" />
+				<xsl:with-param
+						name="context"
+						select="$eibic" />
+			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:if test="boolean(CounterpartyExposureFlag='true') != boolean(CounterpartyTotalExposureRate)">
-			<error>
-				<record></record>
-				<code>CAF-123</code>
-				<message>The NAV percentage is not consistent with the counterparty exposure flag.</message>
-				<field>CounterpartyTotalExposureRate</field>
-				<value>
-					<xsl:value-of select="CounterpartyTotalExposureRate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-123'" />
+				<xsl:with-param
+						name="context"
+						select="CounterpartyTotalExposureRate" />
+			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:variable
 				name="rank"
 				select="Ranking" />
@@ -2074,39 +2078,34 @@
 				name="value"
 				select="CounterpartyTotalExposureRate" />
 		<xsl:if test="$value &lt; ../CounterpartyToFundExposure[Ranking=($rank + 1)]/CounterpartyTotalExposureRate">
-			<error>
-				<record></record>
-				<code>CAF-124</code>
-				<message>The reported value is not consistent with the rank.</message>
-				<field>AggregatedValueAmount</field>
-				<value>
-					<xsl:value-of select="$value" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-124'" />
+				<xsl:with-param
+						name="context"
+						select="CounterpartyTotalExposureRate" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile">
-		<xsl:param name="fund" />
+
 		<xsl:param name="periodtype" />
 		<xsl:variable
 				name="directclearing"
 				select="string(ClearTransactionsThroughCCPFlag)" />
 		<xsl:if test="$directclearing = 'true' and not(AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure[Ranking = 1])">
-			<error>
-				<record></record>
-				<code>CAF-125</code>
-				<message>Data should be reported for ranking 1 when there is direct clearing.</message>
-				<field>ClearTransactionsThroughCCPFlag</field>
-				<value>
-					<xsl:value-of select="$directclearing" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-125'" />
+				<xsl:with-param
+						name="context"
+						select="ClearTransactionsThroughCCPFlag" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:apply-templates>
-			<xsl:with-param
-					name="fund"
-					select="$fund" />
 			<xsl:with-param
 					name="periodtype"
 					select="$periodtype" />
@@ -2117,7 +2116,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure">
-		<xsl:param name="fund" />
+
 		<xsl:param name="directclearing" />
 		<!-- <xsl:if test="$directclearing = 'false' and boolean(CCPIdentification/EntityIdentificationLEI)">
 			<error>
@@ -2136,15 +2135,14 @@
 				name="lei"
 				select="CCPIdentification/EntityIdentificationLEI" />
 		<xsl:if test="not(my:ISO17442($lei))">
-			<error>
-				<record></record>
-				<code>CAF-126</code>
-				<message>The check digits of the LEI code are not correct.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="$lei" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-126'" />
+				<xsl:with-param
+						name="context"
+						select="EntityIdentificationLEI" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:variable
 				name="rank"
@@ -2153,33 +2151,31 @@
 				name="value"
 				select="CCPExposureValue" />
 		<xsl:if test="$value &lt; ../CCPExposure[Ranking=($rank + 1)]/CCPExposureValue">
-			<error>
-				<record></record>
-				<code>CAF-127</code>
-				<message>The reported value is not consistent with the rank.</message>
-				<field>CCPExposureValue</field>
-				<value>
-					<xsl:value-of select="$value" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-127'" />
+				<xsl:with-param
+						name="context"
+						select="CCPExposureValue" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/LiquidityRiskProfile/PortfolioLiquidityProfile">
-		<xsl:param name="fund" />
+
 		<xsl:variable
 				name="portfoliosum"
 				select="PortfolioLiquidityInDays0to1Rate + PortfolioLiquidityInDays2to7Rate + PortfolioLiquidityInDays8to30Rate + PortfolioLiquidityInDays31to90Rate + PortfolioLiquidityInDays91to180Rate + PortfolioLiquidityInDays181to365Rate + PortfolioLiquidityInDays365MoreRate" />
 		<xsl:if test="$portfoliosum != 100">
-			<error>
-				<record></record>
-				<code>CAF-128</code>
-				<message>The sum of the percentages should be equal to 100%.</message>
-				<field>PortfolioLiquidityProfile</field>
-				<value>
-					<xsl:value-of select="$portfoliosum" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-128'" />
+				<xsl:with-param
+						name="context"
+						select="$portfoliosum" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -2189,15 +2185,14 @@
 				name="liquiditysum"
 				select="InvestorLiquidityInDays0to1Rate + InvestorLiquidityInDays2to7Rate + InvestorLiquidityInDays8to30Rate + InvestorLiquidityInDays31to90Rate + InvestorLiquidityInDays91to180Rate + InvestorLiquidityInDays181to365Rate + InvestorLiquidityInDays365MoreRate" />
 		<xsl:if test="$liquiditysum != 100">
-			<error>
-				<record></record>
-				<code>CAF-129</code>
-				<message>The sum of the percentages should be equal to 100%.</message>
-				<field>InvestorLiquidityProfile</field>
-				<value>
-					<xsl:value-of select="$liquiditysum" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-129'" />
+				<xsl:with-param
+						name="context"
+						select="$liquiditysum" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -2382,7 +2377,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/Subscription">
-		<xsl:param name="fund" />
+
 		<xsl:param name="periodtype" />
 		<xsl:variable name="error">
 			<xsl:choose>
@@ -2486,7 +2481,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2/ControlledStructures/ControlledStructure/ControlledStructureIdentification/EntityIdentificationLEI">
-		<xsl:param name="fund" />
+
 		<xsl:variable
 				name="lei"
 				select="." />
@@ -2503,7 +2498,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4/BorrowingSource">
-		<xsl:param name="fund" />
+
 		<xsl:variable
 				name="lei"
 				select="SourceIdentification/EntityIdentificationLEI" />
