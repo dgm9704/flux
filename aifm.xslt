@@ -24,9 +24,6 @@
 					<xsl:with-param
 							name="node"
 							select="$reportingmemberstate" />
-					<xsl:with-param
-							name="message"
-							select="'The authority key file attribute is invalid and should an EU or EEA country'" />
 				</xsl:call-template>
 			</xsl:if>
 			<xsl:apply-templates />
@@ -80,9 +77,6 @@
 				<xsl:with-param
 						name="node"
 						select="$reportingperiodstartdate" />
-				<xsl:with-param
-						name="message"
-						select="'The reporting period start date is not allowed.'" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -133,9 +127,6 @@
 				<xsl:with-param
 						name="node"
 						select="$reportingperiodenddate" />
-				<xsl:with-param
-						name="message"
-						select="'The reporting period end date is not allowed'" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:variable
@@ -159,9 +150,6 @@
 				<xsl:with-param
 						name="node"
 						select="$changequarter" />
-				<xsl:with-param
-						name="message"
-						select="'The quarter for the AIMF reporting obligation change should not be reported'" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:variable
@@ -175,9 +163,6 @@
 				<xsl:with-param
 						name="node"
 						select="$jurisdiction" />
-				<xsl:with-param
-						name="message"
-						select="'The jurisdiction of the AIF is not correct.'" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="not($aifmregister[. = $manager])">
@@ -188,9 +173,6 @@
 				<xsl:with-param
 						name="node"
 						select="$manager" />
-				<xsl:with-param
-						name="message"
-						select="'The AIFM national code does not exist in the ESMA Register.'" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -215,9 +197,6 @@
 					<xsl:with-param
 							name="node"
 							select="$amountbase" />
-					<xsl:with-param
-							name="message"
-							select="'The total AuM amount in base currency is not consistent with the total AuM amount in Euro.'" />
 				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
@@ -242,9 +221,6 @@
 				<xsl:with-param
 						name="node"
 						select="$mic" />
-				<xsl:with-param
-						name="message"
-						select="'The MIC code is not correct'" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -263,9 +239,6 @@
 				<xsl:with-param
 						name="node"
 						select="$state" />
-				<xsl:with-param
-						name="message"
-						select="'The country code does not exist in the reference table of countries'" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="$state and not(AIFMNationalCode)">
@@ -276,9 +249,6 @@
 				<xsl:with-param
 						name="node"
 						select="./AIFMNationalCode" />
-				<xsl:with-param
-						name="message"
-						select="'The field is mandatory when the old AIFM national identifier - Reporting Member State is filled in.'" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -297,9 +267,6 @@
 				<xsl:with-param
 						name="node"
 						select="$currency" />
-				<xsl:with-param
-						name="message"
-						select="'The currency code does not exist in the reference table of currencies'" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -311,9 +278,6 @@
 				<xsl:with-param
 						name="node"
 						select="FXEUROtherReferenceRateDescription" />
-				<xsl:with-param
-						name="message"
-						select="'The reference rate description is not consistent with the reference rate type.'" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -333,9 +297,6 @@
 				<xsl:with-param
 						name="node"
 						select="$lei" />
-				<xsl:with-param
-						name="message"
-						select="'Verify the correctness of the LEI code format rules following the calculation methodology of the 2-last check digits'" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -357,9 +318,6 @@
 				<xsl:with-param
 						name="node"
 						select="$value" />
-				<xsl:with-param
-						name="message"
-						select="'The aggregated value is not consistent with the sub-asset type.'" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -371,9 +329,6 @@
 				<xsl:with-param
 						name="node"
 						select="$value" />
-				<xsl:with-param
-						name="message"
-						select="'The reported value is not consistent with the rank.'" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -395,9 +350,6 @@
 				<xsl:with-param
 						name="node"
 						select="$value" />
-				<xsl:with-param
-						name="message"
-						select="'The field is mandatory for market code type different from &quot;NOT&quot;.'" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -409,9 +361,6 @@
 				<xsl:with-param
 						name="node"
 						select="$value" />
-				<xsl:with-param
-						name="message"
-						select="'The reported value is not consistent with the rank.'" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:apply-templates>

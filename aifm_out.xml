@@ -17,7 +17,7 @@
   <error>
     <record>111111</record>
     <code>CAM-004</code>
-    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
+    <message>The quarter for the AIMF reporting obligation change should be reported</message>
     <field/>
     <value/>
   </error>
@@ -38,14 +38,14 @@
   <error>
     <record>111111</record>
     <code>CAM-008</code>
-    <message>The country code does not exist in the reference table of countries</message>
+    <message>The country code exists in the reference table of countries</message>
     <field>ReportingMemberState</field>
     <value>ZZ</value>
   </error>
   <error>
     <record>111111</record>
     <code>CAM-011</code>
-    <message>The field is mandatory for market code type different from "NOT".</message>
+    <message>The field is mandatory for market code type different from  “NOT”.</message>
     <field/>
     <value/>
   </error>
@@ -87,14 +87,14 @@
   <error>
     <record>222222</record>
     <code>CAM-004</code>
-    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
+    <message>The quarter for the AIMF reporting obligation change should be reported</message>
     <field>AIFMReportingObligationChangeQuarter</field>
     <value>Q4</value>
   </error>
   <error>
     <record>222222</record>
     <code>CAM-016</code>
-    <message>The total AuM amount in base currency is not consistent with the total AuM amount in Euro.</message>
+    <message>The total AuM amount in base currency is not consistent with the  total AuM amount in Euro.</message>
     <field>AUMAmountInBaseCurrency</field>
     <value>7253950</value>
   </error>
@@ -150,7 +150,7 @@
   <error>
     <record>333333</record>
     <code>CAM-004</code>
-    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
+    <message>The quarter for the AIMF reporting obligation change should be reported</message>
     <field>AIFMReportingObligationChangeQuarter</field>
     <value>Q4</value>
   </error>
@@ -164,14 +164,14 @@
   <error>
     <record>444444</record>
     <code>CAM-003</code>
-    <message>The reporting period end date is not allowed</message>
+    <message>The reporting period end date is not allowedThe reporting period end date is not allowed</message>
     <field>ReportingPeriodEndDate</field>
     <value>2014-12-31</value>
   </error>
   <error>
     <record>444444</record>
     <code>CAM-004</code>
-    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
+    <message>The quarter for the AIMF reporting obligation change should be reported</message>
     <field>AIFMReportingObligationChangeQuarter</field>
     <value>Q4</value>
   </error>
@@ -185,28 +185,28 @@
   <error>
     <record>555555</record>
     <code>CAM-003</code>
-    <message>The reporting period end date is not allowed</message>
+    <message>The reporting period end date is not allowedThe reporting period end date is not allowed</message>
     <field>ReportingPeriodEndDate</field>
     <value>2014-12-30</value>
   </error>
   <error>
     <record>555555</record>
     <code>CAM-004</code>
-    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
+    <message>The quarter for the AIMF reporting obligation change should be reported</message>
     <field>AIFMReportingObligationChangeQuarter</field>
     <value>Q4</value>
   </error>
   <error>
     <record>777777</record>
     <code>CAM-003</code>
-    <message>The reporting period end date is not allowed</message>
+    <message>The reporting period end date is not allowedThe reporting period end date is not allowed</message>
     <field>ReportingPeriodEndDate</field>
     <value>2014-09-30</value>
   </error>
   <error>
     <record>777777</record>
     <code>CAM-004</code>
-    <message>The quarter for the AIMF reporting obligation change should not be reported</message>
+    <message>The quarter for the AIMF reporting obligation change should be reported</message>
     <field>AIFMReportingObligationChangeQuarter</field>
     <value>Q4</value>
   </error>
