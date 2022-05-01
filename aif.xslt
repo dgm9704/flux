@@ -142,62 +142,50 @@
 		</xsl:variable>
 
 		<xsl:if test="$enderror = 'true'">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-004</code>
-				<message>The reporting period end date is not allowed</message>
-				<field>ReportingPeriodEndDate</field>
-				<value>
-					<xsl:value-of select="$reportingperiodenddate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-004'" />
+				<xsl:with-param
+						name="context"
+						select="$reportingperiodenddate" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="(AIFReportingObligationChangeFrequencyCode or AIFReportingObligationChangeContentsCode) != boolean(AIFReportingObligationChangeQuarter)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-006</code>
-				<message>The quarter for the AIF reporting obligation change should be reported</message>
-				<field>AIFReportingObligationChangeQuarter</field>
-				<value>
-					<xsl:value-of select="AIFReportingObligationChangeQuarter" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-006'" />
+				<xsl:with-param
+						name="context"
+						select="AIFReportingObligationChangeQuarter" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
 				name="manager"
 				select="AIFMNationalCode" />
 		<xsl:if test="not($aifmregister[. = $manager])">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-007</code>
-				<message>The AIFM national code does not exist in the ESMA Register.</message>
-				<field>AIFMNationalCode</field>
-				<value>
-					<xsl:value-of select="$manager" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-007'" />
+				<xsl:with-param
+						name="context"
+						select="$manager" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="not($aifregister[. = $fund])">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-008</code>
-				<message>The AIF national code does not exist in the ESMA Register.</message>
-				<field>AIFMNationalCode</field>
-				<value>
-					<xsl:value-of select="$fund" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-008'" />
+				<xsl:with-param
+						name="context"
+						select="$fund" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:variable
 				name="eeaflag"
@@ -210,62 +198,50 @@
 				select="boolean($eeacountrycodes[.=$domicile])" />
 
 		<xsl:if test="$eeaflag != $iseea">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-009</code>
-				<message>The EEA flag is not correct.</message>
-				<field>AIFEEAFlag</field>
-				<value>
-					<xsl:value-of select="AIFEEAFlag" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-009'" />
+				<xsl:with-param
+						name="context"
+						select="AIFEEAFlag" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="not($countrycodes[. = $domicile])">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-010</code>
-				<message>The domicile of the AIF is not correct.</message>
-				<field>AIFDomicile</field>
-				<value>
-					<xsl:value-of select="$domicile" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-010'" />
+				<xsl:with-param
+						name="context"
+						select="$domicile" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
 				name="inceptiondate"
 				select="translate(InceptionDate,'-','')" />
 		<xsl:if test="not($inceptiondate &lt; $startdate)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-011</code>
-				<message>The inception date is not allowed as it should be before the reporting start date</message>
-				<field>InceptionDate</field>
-				<value>
-					<xsl:value-of select="InceptionDate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-011'" />
+				<xsl:with-param
+						name="context"
+						select="InceptionDate" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="AIFNoReportingFlag = 'true' = boolean(AIFCompleteDescription)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-012</code>
-				<message>The AIF no reporting flag is not consistent with the reported information.</message>
-				<field>AIFNoReportingFlag</field>
-				<value>
-					<xsl:value-of select="AIFNoReportingFlag" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-012'" />
+				<xsl:with-param
+						name="context"
+						select="AIFNoReportingFlag" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:apply-templates>
@@ -291,67 +267,62 @@
 		<xsl:choose>
 			<xsl:when test="$predominantaiftype = 'HFND'">
 				<xsl:if test="not(HedgeFundInvestmentStrategies/HedgeFundStrategy)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-036</code>
-						<message>The investment strategy code is not consistent with the predominant AIF type.</message>
-						<field>HedgeFundStrategy</field>
-						<value></value>
-					</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-036'" />
+				<xsl:with-param
+						name="context"
+						select="HedgeFundStrategy" />
+			</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'PEQF'">
 				<xsl:if test="not(PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-036</code>
-						<message>The investment strategy code is not consistent with the predominant AIF type.</message>
-						<field>PrivateEquityFundInvestmentStrategy</field>
-						<value></value>
-					</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-036'" />
+				<xsl:with-param
+						name="context"
+						select="PrivateEquityFundInvestmentStrategy" />
+			</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'RESF'">
 				<xsl:if test="not(RealEstateFundInvestmentStrategies/RealEstateFundStrategy)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-036</code>
-						<message>The investment strategy code is not consistent with the predominant AIF type.</message>
-						<field>RealEstateFundStrategy</field>
-						<value></value>
-					</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-036'" />
+				<xsl:with-param
+						name="context"
+						select="RealEstateFundStrategy" />
+			</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'FOFS'">
 				<xsl:if test="not(FundOfFundsInvestmentStrategies/FundOfFundsStrategy)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-036</code>
-						<message>The investment strategy code is not consistent with the predominant AIF type.</message>
-						<field>FundOfFundsStrategy</field>
-						<value></value>
-					</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-036'" />
+				<xsl:with-param
+						name="context"
+						select="FundOfFundsStrategy" />
+			</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'OTHR'">
 				<xsl:if test="not(OtherFundInvestmentStrategies/OtherFundStrategy)">
-					<error>
-						<record>
-							<xsl:value-of select="$fund" />
-						</record>
-						<code>CAF-036</code>
-						<message>The investment strategy code is not consistent with the predominant AIF type.</message>
-						<field>OtherFundStrategy</field>
-						<value></value>
-					</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-036'" />
+				<xsl:with-param
+						name="context"
+						select="OtherFundStrategy" />
+			</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 		</xsl:choose>
@@ -360,15 +331,14 @@
 					name="count"
 					select="count(HedgeFundInvestmentStrategies | RealEstateFundInvestmentStrategies | PrivateEquityFundInvestmentStrategies | FundOfFundsInvestmentStrategies | OtherFundInvestmentStrategies)" />
 			<xsl:if test="$count &gt; 1">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-037</code>
-					<message>The investment strategy code is not allowed.</message>
-					<field></field>
-					<value></value>
-				</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-037'" />
+				<xsl:with-param
+						name="context"
+						select="" />
+			</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
 
@@ -376,17 +346,14 @@
 				name="ratesum"
 				select="sum(*/*/StrategyNAVRate)" />
 		<xsl:if test="not($ratesum = 100)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-039</code>
-				<message>For the reported AIF, the sum of all the reported investment strategy NAV percentages should be 100%</message>
-				<field>StrategyNAVRate</field>
-				<value>
-					<xsl:value-of select="$ratesum" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-039'" />
+				<xsl:with-param
+						name="context"
+						select="$ratesum" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:apply-templates>
@@ -400,34 +367,28 @@
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy">
 		<xsl:param name="fund" />
 		<xsl:if test="(FundOfFundsStrategyType = 'OTHR_FOFS') != boolean(StrategyTypeOtherDescription)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-041</code>
-				<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
-				<field>StrategyTypeOtherDescription</field>
-				<value>
-					<xsl:value-of select="StrategyTypeOtherDescription" />
-				</value>
-			</error>
+		<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-041'" />
+				<xsl:with-param
+						name="context"
+						select="StrategyTypeOtherDescription" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/OtherFundInvestmentStrategies/OtherFundStrategy">
 		<xsl:param name="fund" />
 		<xsl:if test="(OtherFundStrategyType  = 'OTHR_OTHF') != boolean(StrategyTypeOtherDescription)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-041</code>
-				<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
-				<field>StrategyTypeOtherDescription</field>
-				<value>
-					<xsl:value-of select="StrategyTypeOtherDescription" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-041'" />
+				<xsl:with-param
+						name="context"
+						select="StrategyTypeOtherDescription" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -440,48 +401,39 @@
 				name="masterfeederstatus"
 				select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus" />
 		<xsl:if test="($masterfeederstatus = 'FEEDER') != boolean($aifname)">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-024</code>
-				<message>The master AIF name is not consistent with the master feeder status.</message>
-				<field>AIFName</field>
-				<value>
-					<xsl:value-of select="$aifname" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-024'" />
+				<xsl:with-param
+						name="context"
+						select="$aifname" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
 				name="aifmemberstate"
 				select="AIFIdentifierNCA/ReportingMemberState" />
 		<xsl:if test="$aifmemberstate and not($eeacountrycodes[. = $aifmemberstate])">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-025</code>
-				<message>The country of the master AIF national code is not correct and should be an EEA or EU country.</message>
-				<field>ReportingMemberState</field>
-				<value>
-					<xsl:value-of select="$aifmemberstate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-025'" />
+				<xsl:with-param
+						name="context"
+						select="$aifmemberstate" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="not($masterfeederstatus = 'FEEDER')">
 			<xsl:if test="AIFIdentifierNCA/ReportingMemberState">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-026</code>
-					<message>The master AIF reporting member state is not consistent with the master feeder status.</message>
-					<field>ReportingMemberState</field>
-					<value>
-						<xsl:value-of select="$aifmemberstate" />
-					</value>
-				</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-026'" />
+				<xsl:with-param
+						name="context"
+						select="$aifmemberstate" />
+			</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
 		<xsl:if test="not($masterfeederstatus = 'FEEDER')">
@@ -489,17 +441,14 @@
 					name="aifnationalcode"
 					select="AIFIdentifierNCA/AIFNationalCode" />
 			<xsl:if test="$aifnationalcode">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-027</code>
-					<message>The master AIF national code is not consistent with the master feeder status.</message>
-					<field>AIFNationalCode</field>
-					<value>
-						<xsl:value-of select="$aifnationalcode" />
-					</value>
-				</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-027'" />
+				<xsl:with-param
+						name="context"
+						select="$aifnationalcode" />
+			</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
 
