@@ -17,12 +17,12 @@
 					name="reportingmemberstate"
 					select="@ReportingMemberState" />
 			<xsl:if test="not($eeacountrycodes[. = $reportingmemberstate])">
-				<xsl:call-template name="Error">
+				<xsl:call-template name="AIFMError">
 					<xsl:with-param
 							name="code"
 							select="'FIL-015'" />
 					<xsl:with-param
-							name="node"
+							name="context"
 							select="$reportingmemberstate" />
 				</xsl:call-template>
 			</xsl:if>
@@ -70,12 +70,12 @@
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:if test="$CAM-002 = 'true'">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-002'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$reportingperiodstartdate" />
 			</xsl:call-template>
 		</xsl:if>
@@ -120,12 +120,12 @@
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:if test="$CAM-003 = 'true'">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-003'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$reportingperiodenddate" />
 			</xsl:call-template>
 		</xsl:if>
@@ -143,12 +143,12 @@
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:if test="$CAM-004 = 'true'">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-004'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$changequarter" />
 			</xsl:call-template>
 		</xsl:if>
@@ -156,22 +156,22 @@
 				name="jurisdiction"
 				select="AIFMJurisdiction" />
 		<xsl:if test="not($countrycodes[. = $jurisdiction])">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-005'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$jurisdiction" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="not($aifmregister[. = $manager])">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-006'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$manager" />
 			</xsl:call-template>
 		</xsl:if>
@@ -190,12 +190,12 @@
 					name="result"
 					select="$amounteuro * $rateeuro" />
 			<xsl:if test="not($amountbase = $result)">
-				<xsl:call-template name="Error">
+				<xsl:call-template name="AIFMError">
 					<xsl:with-param
 							name="code"
 							select="'CAM-016'" />
 					<xsl:with-param
-							name="node"
+							name="context"
 							select="$amountbase" />
 				</xsl:call-template>
 			</xsl:if>
@@ -214,12 +214,12 @@
 				name="mic"
 				select="MarketCode" />
 		<xsl:if test="(boolean(MarketCodeType = 'MIC') != boolean($mic)) or ($mic and not($micregister[. = $mic]))">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-010'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$mic" />
 			</xsl:call-template>
 		</xsl:if>
@@ -232,22 +232,22 @@
 				name="state"
 				select="ReportingMemberState" />
 		<xsl:if test="$state and not($countrycodes[. = $state])">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-008'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$state" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="$state and not(AIFMNationalCode)">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-009'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="./AIFMNationalCode" />
 			</xsl:call-template>
 		</xsl:if>
@@ -260,23 +260,23 @@
 				name="currency"
 				select="BaseCurrency" />
 		<xsl:if test="$currency and not($currencycodes[. = $currency])">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-017'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$currency" />
 			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="($currency = 'EUR' and FXEURReferenceRateType = 'OTH') != boolean(FXEUROtherReferenceRateDescription)">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-020'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="FXEUROtherReferenceRateDescription" />
 			</xsl:call-template>
 		</xsl:if>
@@ -290,12 +290,12 @@
 				select="." />
 
 		<xsl:if test="not(my:ISO17442($lei))">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-007'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$lei" />
 			</xsl:call-template>
 		</xsl:if>
@@ -311,23 +311,23 @@
 				select="Ranking" />
 
 		<xsl:if test="not(SubAssetType = 'NTA_NTA_NOTA') and not($value)">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-013'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$value" />
 			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="$value &lt; ../AIFMPrincipalInstrument[Ranking=($rank + 1)]/AggregatedValueAmount">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-014'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$value" />
 			</xsl:call-template>
 		</xsl:if>
@@ -343,23 +343,23 @@
 				select="Ranking" />
 
 		<xsl:if test="not(MarketIdentification/MarketCodeType = 'NOT') and not($value)">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-011'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$value" />
 			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="$value &lt; ../AIFMFivePrincipalMarket[Ranking=($rank + 1)]/AggregatedValueAmount">
-			<xsl:call-template name="Error">
+			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
 						select="'CAM-012'" />
 				<xsl:with-param
-						name="node"
+						name="context"
 						select="$value" />
 			</xsl:call-template>
 		</xsl:if>

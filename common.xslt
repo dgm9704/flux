@@ -171,7 +171,7 @@
 	</func:function>
 
 	<xsl:variable
-			name="errors"
+			name="aifmerrors"
 			select="document('data/cam-errors.xml')" />
 
 	<xsl:key
@@ -179,7 +179,7 @@
 			match="error"
 			use="code" />
 
-	<xsl:template name="Error">
+	<xsl:template name="AIFMError">
 		<xsl:param name="code" />
 		<xsl:param name="context" />
 		<error>
@@ -190,7 +190,7 @@
 				<xsl:value-of select="$code" />
 			</code>
 			<message>
-				<xsl:for-each select="$errors">
+				<xsl:for-each select="$aifmerrors">
 					<xsl:for-each select="key('errorlookup', $code)">
 						<xsl:value-of select="message" />
 					</xsl:for-each>
