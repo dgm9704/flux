@@ -1669,84 +1669,77 @@
 		<xsl:param name="predominantaiftype" />
 
 		<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(CompanyIdentification/EntityName)">
-			<error>
-				<record></record>
-				<code>CAF-092</code>
-				<message>The company name is not consistent with the AIF predominant type.</message>
-				<field>EntityName</field>
-				<value>
-					<xsl:value-of select="CompanyIdentification/EntityName" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-092'" />
+				<xsl:with-param
+						name="context"
+						select="CompanyIdentification/EntityName" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:variable
 				name="lei"
 				select="CompanyIdentification/EntityIdentificationLEI" />
 		<xsl:if test="not(my:ISO17442($lei))">
-			<error>
-				<record></record>
-				<code>CAF-093</code>
-				<message>The check digits of the LEI code are not correct.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="$lei" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-093'" />
+				<xsl:with-param
+						name="context"
+						select="$lei" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="$predominantaiftype!='PEQF' and boolean($lei)">
-			<error>
-				<record></record>
-				<code>CAF-094</code>
-				<message>The LEI code is not consistent with the AIF predominant type.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="$lei" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-094'" />
+				<xsl:with-param
+						name="context"
+						select="$lei" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="$predominantaiftype!='PEQF' and boolean(CompanyIdentification/EntityIdentificationBIC)">
-			<error>
-				<record></record>
-				<code>CAF-095</code>
-				<message>The BIC code is not consistent with the AIF predominant type.</message>
-				<field>EntityIdentificationBIC</field>
-				<value>
-					<xsl:value-of select="CompanyIdentification/EntityIdentificationBIC" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-095'" />
+				<xsl:with-param
+						name="context"
+						select="CompanyIdentification/EntityIdentificationBIC" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(TransactionType)">
-			<error>
-				<record></record>
-				<code>CAF-096</code>
-				<message>The transaction type is not consistent with the AIF predominant type.</message>
-				<field>TransactionType</field>
-				<value>
-					<xsl:value-of select="TransactionType" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-096'" />
+				<xsl:with-param
+						name="context"
+						select="TransactionType" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="boolean(TransactionType='OTHR') != boolean(OtherTransactionTypeDescription)">
-			<error>
-				<record></record>
-				<code>CAF-097</code>
-				<message>The description for other transaction type is not consistent with the transaction type.</message>
-				<field>OtherTransactionTypeDescription</field>
-				<value>
-					<xsl:value-of select="OtherTransactionTypeDescription" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-097'" />
+				<xsl:with-param
+						name="context"
+						select="OtherTransactionTypeDescription" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(VotingRightsRate)">
-			<error>
-				<record></record>
-				<code>CAF-098</code>
-				<message>The percentage of voting rights is not consistent with the AIF predominant type.</message>
-				<field>VotingRightsRate</field>
-				<value>
-					<xsl:value-of select="VotingRightsRate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-098'" />
+				<xsl:with-param
+						name="context"
+						select="VotingRightsRate" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
