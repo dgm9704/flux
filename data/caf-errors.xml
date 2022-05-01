@@ -1,9 +1,5 @@
 <errors>
 	<error>
-		<code>CAF-003</code>
-		<message>The reporting period end date is not allowed</message>
-	</error>
-	<error>
 		<code>FIL-009</code>
 		<message>The authority key file attribute is not consistent with the sending</message>
 	</error>
@@ -12,71 +8,583 @@
 		<message>The authority key file attribute is invalid and should an EU or EEA country</message>
 	</error>
 	<error>
-		<code>CAM-001</code>
+		<code>CAF-001</code>
 		<message>The AIF record with "INIT" filing type has been already provided and will not be recorded twice.</message>
 	</error>
 	<error>
-		<code>CAM-002</code>
+		<code>CAF-002</code>
+		<message>The reported AIF information does not correspond to the AIF content type.</message>
+	</error>
+	<error>
+		<code>CAF-003</code>
 		<message>The reporting period start date is not allowed.</message>
 	</error>
 	<error>
-		<code>CAM-003</code>
+		<code>CAF-004</code>
 		<message>The reporting period end date is not allowed</message>
 	</error>
 	<error>
-		<code>CAM-004</code>
-		<message>The quarter for the AIMF reporting obligation change should be reported</message>
+		<code>CAF-005</code>
+		<message>Data have been reported twice for the same reporting period.</message>
 	</error>
 	<error>
-		<code>CAM-005</code>
-		<message>The jurisdiction of the AIF is not correct.</message>
+		<code>CAF-006</code>
+		<message>The quarter for the AIF reporting obligation change should be reported</message>
 	</error>
 	<error>
-		<code>CAM-006</code>
-		<message>The AIFM national code does not exist in the ESMA Register.</message>
+		<code>CAF-007</code>
+		<message>The AIFM national code does not exist in the AIFM reference table.</message>
 	</error>
 	<error>
-		<code>CAM-007</code>
-		<message>Verify the correctness of the LEI code format rules following the calculation methodology of the 2-last check digits</message>
+		<code>CAF-008</code>
+		<message>The AIF national code does not exist in the AIF reference table.</message>
 	</error>
 	<error>
-		<code>CAM-008</code>
-		<message>The country code exists in the reference table of countries</message>
+		<code>CAF-009</code>
+		<message>The EEA flag is not correct.</message>
 	</error>
 	<error>
-		<code>CAM-009</code>
-		<message>The field is mandatory when the  old AIFM national identifier - Reporting Member State is filled in.</message>
+		<code>CAF-010</code>
+		<message>The domicile of the AIF is not correct.</message>
 	</error>
 	<error>
-		<code>CAM-010</code>
+		<code>CAF-011</code>
+		<message>The inception date is not allowed as it should be before the reporting start date</message>
+	</error>
+	<error>
+		<code>CAF-012</code>
+		<message>The AIF no reporting flag is not consistent with the reported information.</message>
+	</error>
+	<error>
+		<code>CAF-013</code>
+		<message>The check digits of the LEI code are not correct.</message>
+	</error>
+	<error>
+		<code>CAF-014</code>
+		<message>The check digit of the ISIN code is not correct.</message>
+	</error>
+	<error>
+		<code>CAF-015</code>
+		<message>The country of the old AIF national code is not correct and should be an EEA or EU country.</message>
+	</error>
+	<error>
+		<code>CAF-016</code>
+		<message>The share class national code is not consistent with the share class flag.</message>
+	</error>
+	<error>
+		<code>CAF-017</code>
+		<message>The check digit of the ISIN code is not correct.</message>
+	</error>
+	<error>
+		<code>CAF-018</code>
+		<message>The share class ISIN code is not consistent with the share class flag.</message>
+	</error>
+	<error>
+		<code>CAF-019</code>
+		<message>The share class SEDOL code is not consistent with the share class flag.</message>
+	</error>
+	<error>
+		<code>CAF-020</code>
+		<message>The share class CUSIP code is not consistent with the share class flag.</message>
+	</error>
+	<error>
+		<code>CAF-021</code>
+		<message>The share class Bloomberg code is not consistent with the share class flag.</message>
+	</error>
+	<error>
+		<code>CAF-022</code>
+		<message>The share class Reuters code is not consistent with the share class flag.</message>
+	</error>
+	<error>
+		<code>CAF-023</code>
+		<message>The share class name is not consistent with the share class flag.</message>
+	</error>
+	<error>
+		<code>CAF-024</code>
+		<message>The master AIF name is not consistent with the master feeder status.</message>
+	</error>
+	<error>
+		<code>CAF-025</code>
+		<message>The country of the master AIF national code is not correct and should be an EEA or EU country.</message>
+	</error>
+	<error>
+		<code>CAF-026</code>
+		<message>The master AIF name is not consistent with the master feeder status.</message>
+	</error>
+	<error>
+		<code>CAF-027</code>
+		<message>The master AIF national code is not consistent with the master feeder status.</message>
+	</error>
+	<error>
+		<code>CAF-028</code>
+		<message>The check digits of the LEI code are not correct.</message>
+	</error>
+	<error>
+		<code>CAF-029</code>
+		<message>The currency code is not correct.</message>
+	</error>
+	<error>
+		<code>CAF-030</code>
+		<message>The FX rate is not consistent with the AIF base currency.</message>
+	</error>
+	<error>
+		<code>CAF-031</code>
+		<message>The FX reference rate type is not consistent with the AIF base currency.</message>
+	</error>
+	<error>
+		<code>CAF-032</code>
+		<message>The reference rate description is not consistent with the  FX reference rate type.</message>
+	</error>
+	<error>
+		<code>CAF-033</code>
+		<message>The first funding country is not correct.</message>
+	</error>
+	<error>
+		<code>CAF-034</code>
+		<message>The second funding country is not correct.</message>
+	</error>
+	<error>
+		<code>CAF-035</code>
+		<message>The third funding country is not correct.</message>
+	</error>
+	<error>
+		<code>CAF-036</code>
+		<message>The investment strategy code is not consistent with the predominant AIF type.</message>
+	</error>
+	<error>
+		<code>CAF-037</code>
+		<message>The investment strategy code is not allowed.</message>
+	</error>
+	<error>
+		<code>CAF-038</code>
+		<message>Multi strategies investment strategies should be primary strategies.</message>
+	</error>
+	<error>
+		<code>CAF-039</code>
+		<message>The sum of the percentages should be equal to 100%.</message>
+	</error>
+	<error>
+		<code>CAF-040</code>
+		<message>There is no NAV percentage reported for multi strategies investment strategies.</message>
+	</error>
+	<error>
+		<code>CAF-041</code>
+		<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
+	</error>
+	<error>
+		<code>CAF-042</code>
+		<message>The instrument code type is not consistent with the sub-asset type.</message>
+	</error>
+	<error>
+		<code>CAF-043</code>
+		<message>The instrument name is not consistent with the sub-asset type.</message>
+	</error>
+	<error>
+		<code>CAF-044</code>
+		<message>The check digit of the ISIN code is not correct.</message>
+	</error>
+	<error>
+		<code>CAF-045</code>
+		<message>The instrument ISIN code is not consistent with the instrument code type.</message>
+	</error>
+	<error>
+		<code>CAF-046</code>
 		<message>The MIC code is not correct</message>
 	</error>
 	<error>
-		<code>CAM-011</code>
-		<message>The field is mandatory for market code type different from  “NOT”.</message>
+		<code>CAF-047</code>
+		<message>The instrument AII exchange code is not consistent with the instrument code type.</message>
 	</error>
 	<error>
-		<code>CAM-012</code>
+		<code>CAF-048</code>
+		<message>The instrument AII exchange product code is not consistent with the instrument code type.</message>
+	</error>
+	<error>
+		<code>CAF-049</code>
+		<message>The instrument AII derivative type is not consistent with the instrument code type.</message>
+	</error>
+	<error>
+		<code>CAF-050</code>
+		<message>The instrument put/call identifier is not consistent with the instrument code type.</message>
+	</error>
+	<error>
+		<code>CAF-051</code>
+		<message>The instrument AII expiry date is not consistent with the instrument code type.</message>
+	</error>
+	<error>
+		<code>CAF-052</code>
+		<message>The instrument AII strike price is not consistent with the instrument code type.</message>
+	</error>
+	<error>
+		<code>CAF-053</code>
+		<message>The position type is not consistent with the sub-asset type.</message>
+	</error>
+	<error>
+		<code>CAF-054</code>
+		<message>The position value is not consistent with the sub-asset type.</message>
+	</error>
+	<error>
+		<code>CAF-055</code>
 		<message>The reported value is not consistent with the rank.</message>
 	</error>
 	<error>
-		<code>CAM-013</code>
-		<message>The aggregated value is not consistent with the sub-asset type.</message>
+		<code>CAF-056</code>
+		<message>The position value is not consistent with the position type.</message>
 	</error>
 	<error>
-		<code>CAM-014</code>
+		<code>CAF-057</code>
+		<message>The sum of the percentages should be equal to 100%.</message>
+	</error>
+	<error>
+		<code>CAF-058</code>
+		<message>The sum of the percentages should be equal to 100%.</message>
+	</error>
+	<error>
+		<code>CAF-059</code>
+		<message>The sub-asset type is not consistent with the macro-asset type.</message>
+	</error>
+	<error>
+		<code>CAF-060</code>
+		<message>The position type is not consistent with the macro-asset type.</message>
+	</error>
+	<error>
+		<code>CAF-061</code>
+		<message>The aggregated value is not consistent with the macro-asset type.</message>
+	</error>
+	<error>
+		<code>CAF-062</code>
 		<message>The reported value is not consistent with the rank.</message>
 	</error>
 	<error>
-		<code>CAM-016</code>
-		<message>The total AuM amount in base currency is not consistent with the  total AuM amount in Euro.</message>
+		<code>CAF-063</code>
+		<message>The aggregated value percentage is not consistent with the macro-asset type.</message>
 	</error>
 	<error>
-		<code>CAM-017</code>
-		<message>The currency code does not exist in the reference table of currencies</message>
+		<code>CAF-064</code>
+		<message>The LEI code is not consistent with the counterparty name.</message>
 	</error>
 	<error>
-		<code>CAM-020</code>
-		<message>The reference rate description is not consistent with the reference rate type.</message>
+		<code>CAF-065</code>
+		<message>The check digits of the LEI code are not correct.</message>
+	</error>
+	<error>
+		<code>CAF-066</code>
+		<message>The BIC code is not consistent with the counterparty name.</message>
+	</error>
+	<error>
+		<code>CAF-067</code>
+		<message>The position type is not consistent with the asset type.</message>
+	</error>
+	<error>
+		<code>CAF-068</code>
+		<message>The market code type is not consistent with the asset type.</message>
+	</error>
+	<error>
+		<code>CAF-069</code>
+		<message>The MIC code is not correct</message>
+	</error>
+	<error>
+		<code>CAF-070</code>
+		<message>The MIC code is not consistent with the market code type.</message>
+	</error>
+	<error>
+		<code>CAF-071</code>
+		<message>The aggregated value is not consistent with the asset type.</message>
+	</error>
+	<error>
+		<code>CAF-072</code>
+		<message>The reported value is not consistent with the rank.</message>
+	</error>
+	<error>
+		<code>CAF-073</code>
+		<message>The aggregated value percentage is not consistent with the asset type.</message>
+	</error>
+	<error>
+		<code>CAF-074</code>
+		<message>The counterparty name is not consistent with the market code type.</message>
+	</error>
+	<error>
+		<code>CAF-075</code>
+		<message>The LEI code is not consistent with the counterparty name.</message>
+	</error>
+	<error>
+		<code>CAF-076</code>
+		<message>The counterparty LEI code is not consistent with the counterparty name.</message>
+	</error>
+	<error>
+		<code>CAF-077</code>
+		<message>The BIC code is not consistent with the counterparty name.</message>
+	</error>
+	<error>
+		<code>CAF-078</code>
+		<message>The counterparty BIC code is not consistent with the counterparty name.</message>
+	</error>
+	<error>
+		<code>CAF-079</code>
+		<message>The position size type is not consistent with the predominant AIF type.</message>
+	</error>
+	<error>
+		<code>CAF-080</code>
+		<message>The MIC code is not correct</message>
+	</error>
+	<error>
+		<code>CAF-081</code>
+		<message>The MIC code is not consistent with the market code type.</message>
+	</error>
+	<error>
+		<code>CAF-082</code>
+		<message>The aggregated value is not consistent with the market code type.</message>
+	</error>
+	<error>
+		<code>CAF-083</code>
+		<message>The reported value is not consistent with the rank.</message>
+	</error>
+	<error>
+		<code>CAF-084</code>
+		<message>The sum of the percentages should be equal to 0% or 100%.</message>
+	</error>
+	<error>
+		<code>CAF-084</code>
+		<message>The sum of the percentages should be equal to 0% or 100%.</message>
+	</error>
+	<error>
+		<code>CAF-085</code>
+		<message>The gross value is not consistent with the sub-asset type.</message>
+	</error>
+	<error>
+		<code>CAF-086</code>
+		<message>The long value is not consistent with the sub-asset type.</message>
+	</error>
+	<error>
+		<code>CAF-087</code>
+		<message>The short value is not consistent with the sub-asset type.</message>
+	</error>
+	<error>
+		<code>CAF-088</code>
+		<message>The notional value is not consistent with the sub-asset type.</message>
+	</error>
+	<error>
+		<code>CAF-089</code>
+		<message>The currency code is not correct.</message>
+	</error>
+	<error>
+		<code>CAF-090</code>
+		<message>The long position value is not consistent with the currency of exposure.</message>
+	</error>
+	<error>
+		<code>CAF-091</code>
+		<message>The short position value is not consistent with the currency of exposure.</message>
+	</error>
+	<error>
+		<code>CAF-092</code>
+		<message>The company name is not consistent with the AIF predominant type.</message>
+	</error>
+	<error>
+		<code>CAF-093</code>
+		<message>The check digits of the LEI code are not correct.</message>
+	</error>
+	<error>
+		<code>CAF-094</code>
+		<message>The LEI code is not consistent with the AIF predominant type.</message>
+	</error>
+	<error>
+		<code>CAF-095</code>
+		<message>The BIC code is not consistent with the AIF predominant type.</message>
+	</error>
+	<error>
+		<code>CAF-096</code>
+		<message>The transaction type is not consistent with the AIF predominant type.</message>
+	</error>
+	<error>
+		<code>CAF-097</code>
+		<message>The description for other transaction type is not consistent with the transaction type.</message>
+	</error>
+	<error>
+		<code>CAF-098</code>
+		<message>The percentage of voting rights is not consistent with the AIF predominant type.</message>
+	</error>
+	<error>
+		<code>CAF-099</code>
+		<message>The risk measure value is not consistent with the risk measure type.</message>
+	</error>
+	<error>
+		<code>CAF-100</code>
+		<message>The risk measure value is not consistent with the risk measure type.</message>
+	</error>
+	<error>
+		<code>CAF-101</code>
+		<message>The risk measure value is not consistent with the risk measure type.</message>
+	</error>
+	<error>
+		<code>CAF-102</code>
+		<message>The risk measure value is not consistent with the risk measure type.</message>
+	</error>
+	<error>
+		<code>CAF-103</code>
+		<message>The risk measure value is not consistent with the risk measure type.</message>
+	</error>
+	<error>
+		<code>CAF-104</code>
+		<message>The risk measure value is not consistent with the risk measure type.</message>
+	</error>
+	<error>
+		<code>CAF-105</code>
+		<message>The risk measure value is not consistent with the risk measure type.</message>
+	</error>
+	<error>
+		<code>CAF-106</code>
+		<message>The risk measure value is not consistent with the risk measure type.</message>
+	</error>
+	<error>
+		<code>CAF-107</code>
+		<message>The VAR calculation method is not consistent with the risk measure type.</message>
+	</error>
+	<error>
+		<code>CAF-108</code>
+		<message>The Risk measure description is not consistent with the risk measure value.</message>
+	</error>
+	<error>
+		<code>CAF-109</code>
+		<message>The sum of the percentages should be equal to 100%.</message>
+	</error>
+	<error>
+		<code>CAF-111</code>
+		<message>The sum of the percentages should be equal to 100%.</message>
+	</error>
+	<error>
+		<code>CAF-113</code>
+		<message>The counterparty name is not consistent with the counterparty exposure flag.</message>
+	</error>
+	<error>
+		<code>CAF-114</code>
+		<message>The check digits of the LEI code are not correct.</message>
+	</error>
+	<error>
+		<code>CAF-115</code>
+		<message>The LEI code is not consistent with the counterparty exposure flag.</message>
+	</error>
+	<error>
+		<code>CAF-116</code>
+		<message>The BIC code is not consistent with the counterparty exposure flag.</message>
+	</error>
+	<error>
+		<code>CAF-117</code>
+		<message>The NAV percentage is not consistent with the counterparty exposure flag.</message>
+	</error>
+	<error>
+		<code>CAF-118</code>
+		<message>The reported value is not consistent with the rank.</message>
+	</error>
+	<error>
+		<code>CAF-119</code>
+		<message>The counterparty name is not consistent with the counterparty exposure flag.</message>
+	</error>
+	<error>
+		<code>CAF-120</code>
+		<message>The check digits of the LEI code are not correct.</message>
+	</error>
+	<error>
+		<code>CAF-121</code>
+		<message>The LEI code is not consistent with the counterparty exposure flag.</message>
+	</error>
+	<error>
+		<code>CAF-122</code>
+		<message>The BIC code is not consistent with the counterparty exposure flag.</message>
+	</error>
+	<error>
+		<code>CAF-123</code>
+		<message>The NAV percentage is not consistent with the counterparty exposure flag.</message>
+	</error>
+	<error>
+		<code>CAF-124</code>
+		<message>The reported value is not consistent with the rank.</message>
+	</error>
+	<error>
+		<code>CAF-125</code>
+		<message>If the Direct clearing flag equal to true, at least rank 1 has to be reported. </message>
+	</error>
+	<error>
+		<code>CAF-126</code>
+		<message>The LEI code is not consistent with the counterparty exposure flag.</message>
+	</error>
+	<error>
+		<code>CAF-127</code>
+		<message>The reported value is not consistent with the rank.</message>
+	</error>
+	<error>
+		<code>CAF-128</code>
+		<message>The sum of the percentages should be equal to 100%.</message>
+	</error>
+	<error>
+		<code>CAF-129</code>
+		<message>The sum of the percentages should be equal to 100%.</message>
+	</error>
+	<error>
+		<code>CAF-130</code>
+		<message>The investor redemption frequency is not consistent with the withdrawal redemption rights flag.</message>
+	</error>
+	<error>
+		<code>CAF-131</code>
+		<message>The investor redemption notice period is not consistent with the withdrawal redemption rights flag.</message>
+	</error>
+	<error>
+		<code>CAF-132</code>
+		<message>The investor redemption lock-up is not consistent with the withdrawal redemption rights flag.</message>
+	</error>
+	<error>
+		<code>CAF-133</code>
+		<message>The sum of the percentages should be equal to 100%.</message>
+	</error>
+	<error>
+		<code>CAF-134</code>
+		<message>The month rate is not consistent with the reporting period.</message>
+	</error>
+	<error>
+		<code>CAF-135</code>
+		<message>The month rate is not consistent with the reporting period.</message>
+	</error>
+	<error>
+		<code>CAF-136</code>
+		<message>The month rate is not consistent with the reporting period.</message>
+	</error>
+	<error>
+		<code>CAF-137</code>
+		<message>The month quantity is not consistent with the reporting period.</message>
+	</error>
+	<error>
+		<code>CAF-138</code>
+		<message>The month quantity is not consistent with the reporting period.</message>
+	</error>
+	<error>
+		<code>CAF-139</code>
+		<message>The field is forbidden for rehypothecation flag false and optional otherwise.</message>
+	</error>
+	<error>
+		<code>CAF-140</code>
+		<message>The check digits of the LEI code are not correct.</message>
+	</error>
+	<error>
+		<code>CAF-141</code>
+		<message>Within each ranking of five largest sources of	borrowed cash, mandatory for Borrowing source flag equal to true else forbidden.</message>
+	</error>
+	<error>
+		<code>CAF-142</code>
+		<message>The check digits of the LEI code are not correct.</message>
+	</error>
+	<error>
+		<code>CAF-143</code>
+		<message>The LEI code is not consistent with the borrowing source flag.</message>
+	</error>
+	<error>
+		<code>CAF-144</code>
+		<message>The BIC code is not consistent with the borrowing source flag.</message>
+	</error>
+	<error>
+		<code>CAF-145</code>
+		<message>The leverage amount is not consistent with the borrowing source flag.</message>
+	</error>
+	<error>
+		<code>CAF-146</code>
+		<message>The reported value is not consistent with the rank.</message>
 	</error>
 </errors>
