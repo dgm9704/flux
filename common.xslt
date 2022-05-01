@@ -205,4 +205,34 @@
 		</error>
 	</xsl:template>
 
+	<xsl:variable
+			name="aiferrors"
+			select="document('data/caf-errors.xml')" />
+
+	<xsl:template name="AIFError">
+		<xsl:param name="code" />
+		<xsl:param name="context" />
+		<error>
+			<record>
+				<xsl:value-of select="./ancestor-or-self::AIFRecordInfo/AIFNationalCode" />
+			</record>
+			<code>
+				<xsl:value-of select="$code" />
+			</code>
+			<message>
+				<xsl:for-each select="$aiferrors">
+					<xsl:for-each select="key('errorlookup', $code)">
+						<xsl:value-of select="message" />
+					</xsl:for-each>
+				</xsl:for-each>
+			</message>
+			<field>
+				<xsl:value-of select="name(exsl:node-set($context))" />
+			</field>
+			<value>
+				<xsl:value-of select="$context" />
+			</value>
+		</error>
+	</xsl:template>
+
 </xsl:transform>

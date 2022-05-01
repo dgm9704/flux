@@ -17,15 +17,14 @@
 					name="reportingmemberstate"
 					select="@ReportingMemberState" />
 			<xsl:if test="not($eeacountrycodes[. = $reportingmemberstate])">
-				<error>
-					<record></record>
-					<code>FIL-015</code>
-					<message>The authority key file attribute is invalid and should an EU or EEA country</message>
-					<field>ReportingMemberState</field>
-					<value>
-						<xsl:value-of select="$reportingmemberstate" />
-					</value>
-				</error>
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'FIL-015'" />
+					<xsl:with-param
+							name="context"
+							select="$reportingmemberstate" />
+				</xsl:call-template>
 			</xsl:if>
 			<xsl:apply-templates />
 		</aif>
@@ -44,18 +43,15 @@
 				<xsl:if test="(AIFContentType = '2' or AIFContentType = '4') and not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2)">true</xsl:if>
 				<xsl:if test="(AIFContentType = '4' or AIFContentType = '5') and not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4)">true</xsl:if>
 			</xsl:variable>
-			<xsl:if test="$contenterror = 'false'">
-				<error>
-					<record>
-						<xsl:value-of select="$fund" />
-					</record>
-					<code>CAF-002</code>
-					<message>The reported AIF information does not correspond to the AIF content type.</message>
-					<field>AIFContentType</field>
-					<value>
-						<xsl:value-of select="AIFContentType" />
-					</value>
-				</error>
+			<xsl:if test="$contenterror = 'true'">
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'CAF-002'" />
+					<xsl:with-param
+							name="context"
+							select="AIFContentType" />
+				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
 
@@ -96,17 +92,14 @@
 		</xsl:variable>
 
 		<xsl:if test="$starterror = 'true'">
-			<error>
-				<record>
-					<xsl:value-of select="$fund" />
-				</record>
-				<code>CAF-003</code>
-				<message>The reporting period start date is not allowed. </message>
-				<field>ReportingPeriodStartDate</field>
-				<value>
-					<xsl:value-of select="$reportingperiodstartdate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-003'" />
+				<xsl:with-param
+						name="context"
+						select="$reportingperiodstartdate" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
