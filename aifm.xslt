@@ -201,11 +201,7 @@
 			</xsl:if>
 		</xsl:if>
 
-		<xsl:apply-templates>
-			<xsl:with-param
-					name="manager"
-					select="$manager" />
-		</xsl:apply-templates>
+		<xsl:apply-templates />
 	</xsl:template>
 
 	<xsl:template match="AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket/MarketIdentification">
@@ -226,8 +222,6 @@
 	</xsl:template>
 
 	<xsl:template match="AIFMCompleteDescription/AIFMIdentifier/OldAIFMIdentifierNCA">
-		<xsl:param name="manager" />
-
 		<xsl:variable
 				name="state"
 				select="ReportingMemberState" />
@@ -254,8 +248,6 @@
 	</xsl:template>
 
 	<xsl:template match="AIFMCompleteDescription/AIFMBaseCurrencyDescription">
-		<xsl:param name="manager" />
-
 		<xsl:variable
 				name="currency"
 				select="BaseCurrency" />
@@ -284,7 +276,6 @@
 	</xsl:template>
 
 	<xsl:template match="AIFMCompleteDescription/AIFMIdentifier/AIFMIdentifierLEI">
-		<xsl:param name="manager" />
 		<xsl:variable
 				name="lei"
 				select="." />
@@ -302,7 +293,6 @@
 	</xsl:template>
 
 	<xsl:template match="AIFMCompleteDescription/AIFMPrincipalInstruments/AIFMPrincipalInstrument">
-		<xsl:param name="manager" />
 		<xsl:variable
 				name="value"
 				select="AggregatedValueAmount" />
@@ -334,7 +324,6 @@
 	</xsl:template>
 
 	<xsl:template match="AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket">
-		<xsl:param name="manager" />
 		<xsl:variable
 				name="value"
 				select="AggregatedValueAmount" />
@@ -363,11 +352,7 @@
 						select="$value" />
 			</xsl:call-template>
 		</xsl:if>
-		<xsl:apply-templates>
-			<xsl:with-param
-					name="manager"
-					select="$manager" />
-		</xsl:apply-templates>
+		<xsl:apply-templates />
 	</xsl:template>
 
 	<xsl:template match="text()|@*">

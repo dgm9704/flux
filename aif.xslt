@@ -264,65 +264,66 @@
 		<xsl:variable
 				name="predominantaiftype"
 				select="PredominantAIFType" />
+
 		<xsl:choose>
 			<xsl:when test="$predominantaiftype = 'HFND'">
 				<xsl:if test="not(HedgeFundInvestmentStrategies/HedgeFundStrategy)">
-			<xsl:call-template name="AIFError">
-				<xsl:with-param
-						name="code"
-						select="'CAF-036'" />
-				<xsl:with-param
-						name="context"
-						select="HedgeFundStrategy" />
-			</xsl:call-template>
+					<xsl:call-template name="AIFError">
+						<xsl:with-param
+								name="code"
+								select="'CAF-036'" />
+						<xsl:with-param
+								name="context"
+								select="HedgeFundStrategy" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'PEQF'">
 				<xsl:if test="not(PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy)">
-			<xsl:call-template name="AIFError">
-				<xsl:with-param
-						name="code"
-						select="'CAF-036'" />
-				<xsl:with-param
-						name="context"
-						select="PrivateEquityFundInvestmentStrategy" />
-			</xsl:call-template>
+					<xsl:call-template name="AIFError">
+						<xsl:with-param
+								name="code"
+								select="'CAF-036'" />
+						<xsl:with-param
+								name="context"
+								select="PrivateEquityFundInvestmentStrategy" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'RESF'">
 				<xsl:if test="not(RealEstateFundInvestmentStrategies/RealEstateFundStrategy)">
-			<xsl:call-template name="AIFError">
-				<xsl:with-param
-						name="code"
-						select="'CAF-036'" />
-				<xsl:with-param
-						name="context"
-						select="RealEstateFundStrategy" />
-			</xsl:call-template>
+					<xsl:call-template name="AIFError">
+						<xsl:with-param
+								name="code"
+								select="'CAF-036'" />
+						<xsl:with-param
+								name="context"
+								select="RealEstateFundStrategy" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'FOFS'">
 				<xsl:if test="not(FundOfFundsInvestmentStrategies/FundOfFundsStrategy)">
-			<xsl:call-template name="AIFError">
-				<xsl:with-param
-						name="code"
-						select="'CAF-036'" />
-				<xsl:with-param
-						name="context"
-						select="FundOfFundsStrategy" />
-			</xsl:call-template>
+					<xsl:call-template name="AIFError">
+						<xsl:with-param
+								name="code"
+								select="'CAF-036'" />
+						<xsl:with-param
+								name="context"
+								select="FundOfFundsStrategy" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:when test="$predominantaiftype = 'OTHR'">
 				<xsl:if test="not(OtherFundInvestmentStrategies/OtherFundStrategy)">
-			<xsl:call-template name="AIFError">
-				<xsl:with-param
-						name="code"
-						select="'CAF-036'" />
-				<xsl:with-param
-						name="context"
-						select="OtherFundStrategy" />
-			</xsl:call-template>
+					<xsl:call-template name="AIFError">
+						<xsl:with-param
+								name="code"
+								select="'CAF-036'" />
+						<xsl:with-param
+								name="context"
+								select="OtherFundStrategy" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 		</xsl:choose>
@@ -331,14 +332,14 @@
 					name="count"
 					select="count(HedgeFundInvestmentStrategies | RealEstateFundInvestmentStrategies | PrivateEquityFundInvestmentStrategies | FundOfFundsInvestmentStrategies | OtherFundInvestmentStrategies)" />
 			<xsl:if test="$count &gt; 1">
-			<xsl:call-template name="AIFError">
-				<xsl:with-param
-						name="code"
-						select="'CAF-037'" />
-				<xsl:with-param
-						name="context"
-						select="" />
-			</xsl:call-template>
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'CAF-037'" />
+					<xsl:with-param
+							name="context"
+							select="''" />
+				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
 
@@ -367,7 +368,7 @@
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/FundOfFundsInvestmentStrategies/FundOfFundsStrategy">
 		<xsl:param name="fund" />
 		<xsl:if test="(FundOfFundsStrategyType = 'OTHR_FOFS') != boolean(StrategyTypeOtherDescription)">
-		<xsl:call-template name="AIFError">
+			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
 						select="'CAF-041'" />
@@ -426,14 +427,14 @@
 		</xsl:if>
 		<xsl:if test="not($masterfeederstatus = 'FEEDER')">
 			<xsl:if test="AIFIdentifierNCA/ReportingMemberState">
-			<xsl:call-template name="AIFError">
-				<xsl:with-param
-						name="code"
-						select="'CAF-026'" />
-				<xsl:with-param
-						name="context"
-						select="$aifmemberstate" />
-			</xsl:call-template>
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'CAF-026'" />
+					<xsl:with-param
+							name="context"
+							select="$aifmemberstate" />
+				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
 		<xsl:if test="not($masterfeederstatus = 'FEEDER')">
@@ -441,14 +442,14 @@
 					name="aifnationalcode"
 					select="AIFIdentifierNCA/AIFNationalCode" />
 			<xsl:if test="$aifnationalcode">
-			<xsl:call-template name="AIFError">
-				<xsl:with-param
-						name="code"
-						select="'CAF-027'" />
-				<xsl:with-param
-						name="context"
-						select="$aifnationalcode" />
-			</xsl:call-template>
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'CAF-027'" />
+					<xsl:with-param
+							name="context"
+							select="$aifnationalcode" />
+				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
 
