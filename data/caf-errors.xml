@@ -344,10 +344,6 @@
 		<message>The sum of the percentages should be equal to 0% or 100%.</message>
 	</error>
 	<error>
-		<code>CAF-084</code>
-		<message>The sum of the percentages should be equal to 0% or 100%.</message>
-	</error>
-	<error>
 		<code>CAF-085</code>
 		<message>The gross value is not consistent with the sub-asset type.</message>
 	</error>

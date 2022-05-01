@@ -182,9 +182,6 @@
 	<xsl:template name="AIFMError">
 		<xsl:param name="code" />
 		<xsl:param name="context" />
-		<!-- <xsl:variable
-				name="foo"
-				select="./ancestor-or-self::*[name() = $context]" /> -->
 		<error>
 			<record>
 				<xsl:value-of select="./ancestor-or-self::AIFMRecordInfo/AIFMNationalCode" />
@@ -229,12 +226,16 @@
 					</xsl:for-each>
 				</xsl:for-each>
 			</message>
-			<field>
-				<xsl:value-of select="name(exsl:node-set($context))" />
-			</field>
-			<value>
-				<xsl:value-of select="$context" />
-			</value>
+			<xsl:for-each select="exsl:node-set($context)">
+				<field>
+					<name>
+						<xsl:value-of select="name()" />
+					</name>
+					<value>
+						<xsl:value-of select="." />
+					</value>
+				</field>
+			</xsl:for-each>
 		</error>
 	</xsl:template>
 

@@ -1254,15 +1254,14 @@
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification">
 
 		<xsl:if test="not(EntityName) and EntityIdentificationLEI">
-			<error>
-				<record></record>
-				<code>CAF-064</code>
-				<message>The LEI code is not consistent with the counterparty name.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="EntityIdentificationLEI" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-064'" />
+				<xsl:with-param
+						name="context"
+						select="EntityName|EntityIdentificationLEI" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
@@ -1270,93 +1269,86 @@
 				select="EntityIdentificationLEI" />
 
 		<xsl:if test="not(my:ISO17442($lei))">
-			<error>
-				<record></record>
-				<code>CAF-065</code>
-				<message>The check digits of the LEI code are not correct.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="$lei" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-065'" />
+				<xsl:with-param
+						name="context"
+						select="EntityIdentificationLEI" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="not(EntityName) and EntityIdentificationBIC">
-			<error>
-				<record></record>
-				<code>CAF-066</code>
-				<message>The BIC code is not consistent with the counterparty name.</message>
-				<field>EntityIdentificationBIC</field>
-				<value>
-					<xsl:value-of select="EntityIdentificationBIC" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-066'" />
+				<xsl:with-param
+						name="context"
+						select="EntityName|EntityIdentificationBIC" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/MostImportantConcentration/PortfolioConcentrations/PortfolioConcentration">
 
 		<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(PositionType)">
-			<error>
-				<record></record>
-				<code>CAF-067</code>
-				<message>The position type is not consistent with the asset type.</message>
-				<field>PositionType</field>
-				<value>
-					<xsl:value-of select="PositionType" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-067'" />
+				<xsl:with-param
+						name="context"
+						select="AssetType|PositionType" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(MarketIdentification/MarketCodeType)">
-			<error>
-				<record></record>
-				<code>CAF-068</code>
-				<message>TThe market code type is not consistent with the asset type.</message>
-				<field>MarketCodeType</field>
-				<value>
-					<xsl:value-of select="MarketIdentification/MarketCodeType" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-068'" />
+				<xsl:with-param
+						name="context"
+						select="AssetType|MarketIdentification/MarketCode" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
 				name="mic"
 				select="MarketIdentification/MarketCode" />
 		<xsl:if test="$mic and not($micregister[. = $mic])">
-			<error>
-				<record></record>
-				<code>CAF-069</code>
-				<message>The MIC code is not correct</message>
-				<field>MarketIdentification</field>
-				<value>
-					<xsl:value-of select="$mic" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-069'" />
+				<xsl:with-param
+						name="context"
+						select="MarketIdentification/MarketCode" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(MarketIdentification/MarketCodeType = 'MIC') != boolean(MarketIdentification/MarketCode)">
-			<error>
-				<record></record>
-				<code>CAF-070</code>
-				<message>The MIC code is not consistent with the market code type.</message>
-				<field>MarketCode</field>
-				<value>
-					<xsl:value-of select="MarketCode" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-070'" />
+				<xsl:with-param
+						name="context"
+						select="MarketIdentification/MarketCodeType|MarketIdentification/MarketCode" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(AggregatedValueAmount)">
-			<error>
-				<record></record>
-				<code>CAF-071</code>
-				<message>The aggregated value is not consistent with the asset type.</message>
-				<field>AggregatedValueAmount</field>
-				<value>
-					<xsl:value-of select="AggregatedValueAmount" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-071'" />
+				<xsl:with-param
+						name="context"
+						select="AssetType|AggregatedValueAmount" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
@@ -1366,111 +1358,98 @@
 				name="value"
 				select="AggregatedValueAmount" />
 		<xsl:if test="$value &lt; ../PortfolioConcentration[Ranking=($rank + 1)]/AggregatedValueAmount">
-			<error>
-				<record></record>
-				<code>CAF-072</code>
-				<message>The reported value is not consistent with the rank.</message>
-				<field>AggregatedValueAmount</field>
-				<value>
-					<xsl:value-of select="$value" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-072'" />
+				<xsl:with-param
+						name="context"
+						select="Ranking|AggregatedValueAmount" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(AssetType = 'NTA_NTA') = boolean(AggregatedValueRate)">
-			<error>
-				<record></record>
-				<code>CAF-073</code>
-				<message>The aggregated value percentage is not consistent with the asset type.</message>
-				<field>AggregatedValueRate</field>
-				<value>
-					<xsl:value-of select="AggregatedValueRate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-073'" />
+				<xsl:with-param
+						name="context"
+						select="AssetType|AggregatedValueRate" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC') and boolean(CounterpartyIdentification/EntityName)">
-			<error>
-				<record></record>
-				<code>CAF-074</code>
-				<message>The counterparty name is not consistent with the market code type.</message>
-				<field>EntityName</field>
-				<value>
-					<xsl:value-of select="EntityName" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-074'" />
+				<xsl:with-param
+						name="context"
+						select="MarketIdentification/MarketCodeType|CounterpartyIdentification/EntityName" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="(not(CounterpartyIdentification/EntityName) or not(MarketIdentification/MarketCodeType = 'OTC')) and boolean(CounterpartyIdentification/EntityIdentificationLEI)">
-			<error>
-				<record></record>
-				<code>CAF-075</code>
-				<message>The LEI code is not consistent with the counterparty name.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="CounterpartyIdentification/EntityIdentificationLEI" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-075'" />
+				<xsl:with-param
+						name="context"
+						select="CounterpartyIdentification/EntityName|MarketIdentification/MarketCodeType|CounterpartyIdentification/EntityIdentificationLEI" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="not(CounterpartyIdentification/EntityName) and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
-			<error>
-				<record></record>
-				<code>CAF-077</code>
-				<message>The BIC code is not consistent with the counterparty name.</message>
-				<field>EntityIdentificationBIC</field>
-				<value>
-					<xsl:value-of select="CounterPartyIdentification/EntityIdentificationBIC" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-077'" />
+				<xsl:with-param
+						name="context"
+						select="CounterpartyIdentification/EntityName|CounterpartyIdentification/EntityIdentificationBIC" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="not(MarketIdentification/MarketCodeType = 'OTC') and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
-			<error>
-				<record></record>
-				<code>CAF-078</code>
-				<message>The counterparty BIC code is not consistent with the counterparty name.</message>
-				<field>EntityIdentificationBIC</field>
-				<value>
-					<xsl:value-of select="CounterpartyIdentification/EntityIdentificationBIC" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-078'" />
+				<xsl:with-param
+						name="context"
+						select="MarketIdentification/MarketCodeType|CounterpartyIdentification/EntityIdentificationBIC" />
+			</xsl:call-template>
 		</xsl:if>
 		<xsl:apply-templates />
 	</xsl:template>
 
 	<xsl:template match="CounterpartyIdentification/EntityIdentificationLEI">
 
-		<xsl:variable
-				name="lei"
-				select="." />
-
-		<xsl:if test="not(my:ISO17442($lei))">
-			<error>
-				<record></record>
-				<code>CAF-076</code>
-				<message>The counterparty LEI code is not consistent with the counterparty name.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="$lei" />
-				</value>
-			</error>
+		<xsl:if test="not(my:ISO17442(.))">
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-076'" />
+				<xsl:with-param
+						name="context"
+						select="." />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo">
 
-
 		<xsl:if test="boolean(AIFDescription/PredominantAIFType = 'PEQF') != boolean(MostImportantConcentration/TypicalPositionSize)">
-			<error>
-				<record></record>
-				<code>CAF-079</code>
-				<message>The position size type is not consistent with the predominant AIF type.</message>
-				<field>TypicalPositionSize</field>
-				<value>
-					<xsl:value-of select="MostImportantConcentration/TypicalPositionSize" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-079'" />
+				<xsl:with-param
+						name="context"
+						select="AIFDescription/PredominantAIFType|MostImportantConcentration/TypicalPositionSize" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:apply-templates />
@@ -1482,40 +1461,38 @@
 		<xsl:variable
 				name="mic"
 				select="MarketIdentification/MarketCode" />
+
 		<xsl:if test="$mic and not($micregister[. = $mic])">
-			<error>
-				<record></record>
-				<code>CAF-080</code>
-				<message>The MIC code is not correct</message>
-				<field>MarketCode</field>
-				<value>
-					<xsl:value-of select="$mic" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-080'" />
+				<xsl:with-param
+						name="context"
+						select="MarketIdentification/MarketCode" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(MarketIdentification/MarketCodeType = 'MIC') != boolean($mic)">
-			<error>
-				<record></record>
-				<code>CAF-081</code>
-				<message>The MIC code is not consistent with the market code type.</message>
-				<field>MarketCode</field>
-				<value>
-					<xsl:value-of select="$mic" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-081'" />
+				<xsl:with-param
+						name="context"
+						select="MarketIdentification/MarketCodeType|MarketIdentification/MarketCode" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(MarketIdentification/MarketCodeType = 'NOT') = boolean(AggregatedValueAmount)">
-			<error>
-				<record></record>
-				<code>CAF-082</code>
-				<message>The aggregated value is not consistent with the market code type.</message>
-				<field>AggregatedValueAmount</field>
-				<value>
-					<xsl:value-of select="AggregatedValueAmount" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-082'" />
+				<xsl:with-param
+						name="context"
+						select="MarketIdentification/MarketCodeType|AggregatedValueAmount" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
@@ -1525,15 +1502,14 @@
 				name="value"
 				select="AggregatedValueAmount" />
 		<xsl:if test="$value &lt; ../AIFPrincipalMarket[Ranking=($rank + 1)]/AggregatedValueAmount">
-			<error>
-				<record></record>
-				<code>CAF-083</code>
-				<message>The reported value is not consistent with the rank.</message>
-				<field>AggregatedValueAmount</field>
-				<value>
-					<xsl:value-of select="$value" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-083'" />
+				<xsl:with-param
+						name="context"
+						select="Ranking|AggregatedValueAmount" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -1543,15 +1519,14 @@
 				name="ratesum"
 				select="ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate" />
 		<xsl:if test="$ratesum != 100 and $ratesum != 0">
-			<error>
-				<record></record>
-				<code>CAF-084</code>
-				<message>The sum of the percentages should be equal to 0% or 100%.</message>
-				<field>ProfessionalInvestorConcentrationRate + RetailInvestorConcentrationRate</field>
-				<value>
-					<xsl:value-of select="$ratesum" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-084'" />
+				<xsl:with-param
+						name="context"
+						select="ProfessionalInvestorConcentrationRate|RetailInvestorConcentrationRate" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -1560,39 +1535,36 @@
 		<xsl:choose>
 			<xsl:when test="SubAssetType='DER_FEX_INVT' or SubAssetType='DER_FEX_HEDG' or SubAssetType='DER_IRD_INTR'">
 				<xsl:if test="LongValue">
-					<error>
-						<record></record>
-						<code>CAF-086</code>
-						<message>The long value is not consistent with the sub-asset type.</message>
-						<field>LongValue</field>
-						<value>
-							<xsl:value-of select="LongValue" />
-						</value>
-					</error>
+					<xsl:call-template name="AIFError">
+						<xsl:with-param
+								name="code"
+								select="'CAF-086'" />
+						<xsl:with-param
+								name="context"
+								select="LongValue" />
+					</xsl:call-template>
 				</xsl:if>
 				<xsl:if test="ShortValue">
-					<error>
-						<record></record>
-						<code>CAF-087</code>
-						<message>The short value is not consistent with the sub-asset type.</message>
-						<field>ShortValue</field>
-						<value>
-							<xsl:value-of select="ShortValue" />
-						</value>
-					</error>
+					<xsl:call-template name="AIFError">
+						<xsl:with-param
+								name="code"
+								select="'CAF-087'" />
+						<xsl:with-param
+								name="context"
+								select="ShortValue" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:if test="GrossValue">
-					<error>
-						<record></record>
-						<code>CAF-085</code>
-						<message>The gross value is not consistent with the sub-asset type.</message>
-						<field>GrossValue</field>
-						<value>
-							<xsl:value-of select="GrossValue" />
-						</value>
-					</error>
+					<xsl:call-template name="AIFError">
+						<xsl:with-param
+								name="code"
+								select="'CAF-085'" />
+						<xsl:with-param
+								name="context"
+								select="GrossValue" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:otherwise>
 		</xsl:choose>
@@ -1605,15 +1577,14 @@
 				select="TurnoverSubAssetType" />
 		<xsl:if test="not($t='DER_EQD_EQD' or $t='DER_FEX_INV' or $t='DER_EQD_EQD' or $t='DER_CDS_CDS' or $t='DER_FEX_HED' or $t='DER_IRD_IRD' or $t='DER_CTY_CTY' or $t='DER_OTH_OTH')">
 			<xsl:if test="NotionalValue">
-				<error>
-					<record></record>
-					<code>CAF-088</code>
-					<message>The notional value is not consistent with the sub-asset type.</message>
-					<field>NotionalValue</field>
-					<value>
-						<xsl:value-of select="NotionalValue" />
-					</value>
-				</error>
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'CAF-088'" />
+					<xsl:with-param
+							name="context"
+							select="NotionalValue" />
+				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
 	</xsl:template>
@@ -1626,39 +1597,36 @@
 		<xsl:choose>
 			<xsl:when test="$currency">
 				<xsl:if test="not($currencycodes[. = $currency])">
-					<error>
-						<record></record>
-						<code>CAF-089</code>
-						<message>The currency code is not correct.</message>
-						<field>ExposureCurrency</field>
-						<value>
-							<xsl:value-of select="$currency" />
-						</value>
-					</error>
+					<xsl:call-template name="AIFError">
+						<xsl:with-param
+								name="code"
+								select="'CAF-089'" />
+						<xsl:with-param
+								name="context"
+								select="$currency" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:if test="LongPositionValue">
-					<error>
-						<record></record>
-						<code>CAF-090</code>
-						<message>The long position value is not consistent with the currency of exposure.</message>
-						<field>LongPositionValue</field>
-						<value>
-							<xsl:value-of select="LongPositionValue" />
-						</value>
-					</error>
+					<xsl:call-template name="AIFError">
+						<xsl:with-param
+								name="code"
+								select="'CAF-090'" />
+						<xsl:with-param
+								name="context"
+								select="LongPositionValue" />
+					</xsl:call-template>
 				</xsl:if>
 				<xsl:if test="ShortPositionValue">
-					<error>
-						<record></record>
-						<code>CAF-091</code>
-						<message>The short position value is not consistent with the currency of exposure.</message>
-						<field>ShortPositionValue</field>
-						<value>
-							<xsl:value-of select="ShortPositionValue" />
-						</value>
-					</error>
+					<xsl:call-template name="AIFError">
+						<xsl:with-param
+								name="code"
+								select="'CAF-091'" />
+						<xsl:with-param
+								name="context"
+								select="ShortPositionValue" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:otherwise>
 		</xsl:choose>
@@ -1752,7 +1720,7 @@
 						select="'CAF-099'" />
 				<xsl:with-param
 						name="context"
-						select="RiskMeasureValue" />
+						select="RiskMeasureType|RiskMeasureValue" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1764,7 +1732,7 @@
 						select="'CAF-100'" />
 				<xsl:with-param
 						name="context"
-						select="BucketRiskMeasureValues/LessFiveYearsRiskMeasureValue" />
+						select="RiskMeasureType|BucketRiskMeasureValues/LessFiveYearsRiskMeasureValue" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1775,7 +1743,7 @@
 						select="'CAF-101'" />
 				<xsl:with-param
 						name="context"
-						select="BucketRiskMeasureValues/FifthteenYearsRiskMeasureValue" />
+						select="RiskMeasureType|BucketRiskMeasureValues/FifthteenYearsRiskMeasureValue" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1786,7 +1754,7 @@
 						select="'CAF-102'" />
 				<xsl:with-param
 						name="context"
-						select="BucketRiskMeasureValues/MoreFifthteenYearsRiskMeasureValue" />
+						select="RiskMeasureType|BucketRiskMeasureValues/MoreFifthteenYearsRiskMeasureValue" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1797,7 +1765,7 @@
 						select="'CAF-103'" />
 				<xsl:with-param
 						name="context"
-						select="VegaRiskMeasureValues/CurrentMarketRiskMeasureValue" />
+						select="RiskMeasureType|VegaRiskMeasureValues/CurrentMarketRiskMeasureValue" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1808,7 +1776,7 @@
 						select="'CAF-104'" />
 				<xsl:with-param
 						name="context"
-						select="VegaRiskMeasureValues/LowerMarketRiskMeasureValue" />
+						select="RiskMeasureType|VegaRiskMeasureValues/LowerMarketRiskMeasureValue" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1819,7 +1787,7 @@
 						select="'CAF-105'" />
 				<xsl:with-param
 						name="context"
-						select="VegaRiskMeasureValues/HigherMarketRiskMeasureValue" />
+						select="RiskMeasureType|VegaRiskMeasureValues/HigherMarketRiskMeasureValue" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1830,7 +1798,7 @@
 						select="'CAF-106'" />
 				<xsl:with-param
 						name="context"
-						select="VARRiskMeasureValues/VARValue" />
+						select="RiskMeasureType|VARRiskMeasureValues/VARValue" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1841,7 +1809,7 @@
 						select="'CAF-107'" />
 				<xsl:with-param
 						name="context"
-						select="VARRiskMeasureValues/VARCalculationMethodCodeType" />
+						select="RiskMeasureType|VARRiskMeasureValues/VARCalculationMethodCodeType" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1880,7 +1848,7 @@
 						select="'CAF-111'" />
 				<xsl:with-param
 						name="context"
-						select="TradedDerivatives" />
+						select="RegulatedMarketRate|OTCRate" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -1894,7 +1862,7 @@
 						select="'WAF-001'" />
 				<xsl:with-param
 						name="context"
-						select="ClearedDerivativesRate" />
+						select="CCPRate|BilateralClearingRate" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -1908,7 +1876,7 @@
 						select="'WAF-002'" />
 				<xsl:with-param
 						name="context"
-						select="ClearedReposRate" />
+						select="CCPRate|BilateralClearingRate|TriPartyRepoClearingRate" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -1998,7 +1966,7 @@
 						select="'CAF-119'" />
 				<xsl:with-param
 						name="context"
-						select="$ciename" />
+						select="CounterpartyIdentification/EntityName" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -2012,7 +1980,7 @@
 						select="'CAF-120'" />
 				<xsl:with-param
 						name="context"
-						select="$lei" />
+						select="CounterpartyIdentification/EntityIdentificationLEI" />
 			</xsl:call-template>
 		</xsl:if>
 
