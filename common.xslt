@@ -170,9 +170,9 @@
 		</xsl:choose>
 	</func:function>
 
-	<!-- <xsl:variable
+	<xsl:variable
 			name="errors"
-			select="document('data/cam-errors.xml')/errors" /> -->
+			select="document('data/cam-errors.xml')" />
 
 	<xsl:key
 			name="errorlookup"
@@ -181,7 +181,7 @@
 
 	<xsl:template name="Error">
 		<xsl:param name="code" />
-		<xsl:param name="node" />
+		<xsl:param name="context" />
 		<error>
 			<record>
 				<xsl:value-of select="./ancestor-or-self::AIFMRecordInfo/AIFMNationalCode" />
@@ -190,17 +190,17 @@
 				<xsl:value-of select="$code" />
 			</code>
 			<message>
-				<xsl:for-each select="document('data/cam-errors.xml')">
+				<xsl:for-each select="$errors">
 					<xsl:for-each select="key('errorlookup', $code)">
 						<xsl:value-of select="message" />
 					</xsl:for-each>
 				</xsl:for-each>
 			</message>
 			<field>
-				<xsl:value-of select="name(exsl:node-set($node))" />
+				<xsl:value-of select="name(exsl:node-set($context))" />
 			</field>
 			<value>
-				<xsl:value-of select="$node" />
+				<xsl:value-of select="$context" />
 			</value>
 		</error>
 	</xsl:template>
