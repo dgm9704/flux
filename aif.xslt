@@ -749,67 +749,62 @@
 				name="thirdfundingsourcecountry"
 				select="." />
 		<xsl:if test="$thirdfundingsourcecountry and not($countrycodes[. = $thirdfundingsourcecountry])">
-			<error>
-				<record></record>
-				<code>CAF-035</code>
-				<message>The third funding country is not correct.</message>
-				<field>ThirdFundingSourceCountry</field>
-				<value>
-					<xsl:value-of select="$thirdfundingsourcecountry" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-035'" />
+				<xsl:with-param
+						name="context"
+						select="." />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/HedgeFundInvestmentStrategies/HedgeFundStrategy">
 		<xsl:if test="(HedgeFundStrategyType = 'MULT_HFND') and boolean(StrategyNAVRate)">
-			<error>
-				<record></record>
-				<code>CAF-040</code>
-				<message>There is no NAV percentage reported for multi strategies investment strategies.</message>
-				<field>StrategyNAVRate</field>
-				<value>
-					<xsl:value-of select="StrategyNAVRate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-040'" />
+				<xsl:with-param
+						name="context"
+						select="HedgeFundStrategyType|StrategyNAVRate" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="(HedgeFundStrategyType = 'OTHER_HFND') != boolean(StrategyTypeOtherDescription)">
-			<error>
-				<record></record>
-				<code>CAF-041</code>
-				<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
-				<field>StrategyTypeOtherDescription</field>
-				<value>
-					<xsl:value-of select="StrategyTypeOtherDescription" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-041'" />
+				<xsl:with-param
+						name="context"
+						select="HedgeFundStrategyType|StrategyTypeOtherDescription" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="HedgeFundStrategyType = 'MULT_HFND'">
 
 			<xsl:if test="count(../HedgeFundStrategy[HedgeFundStrategyType != 'MULT_HFND']) &lt; 2">
-				<error>
-					<record></record>
-					<code>CAF-037</code>
-					<message>The investment strategy code is not allowed.</message>
-					<field>HedgeFundStrategyType</field>
-					<value>
-						<xsl:value-of select="HedgeFundStrategyType" />
-					</value>
-				</error>
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'CAF-037'" />
+					<xsl:with-param
+							name="context"
+							select="../HedgeFundStrategy/HedgeFundStrategyType" />
+				</xsl:call-template>
 			</xsl:if>
 
 			<xsl:if test="PrimaryStrategyFlag != 'true'">
-				<error>
-					<record></record>
-					<code>CAF-038</code>
-					<message>Multi strategies investment strategies should be primary strategies.</message>
-					<field>PrimaryStrategyFlag</field>
-					<value>
-						<xsl:value-of select="PrimaryStrategyFlag" />
-					</value>
-				</error>
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'CAF-038'" />
+					<xsl:with-param
+							name="context"
+							select="HedgeFundStrategyType|PrimaryStrategyFlag" />
+				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
 
@@ -818,106 +813,98 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy">
 		<xsl:if test="(PrivateEquityFundStrategyType = 'MULT_PEQF') and boolean(StrategyNAVRate)">
-			<error>
-				<record></record>
-				<code>CAF-040</code>
-				<message>There is no NAV percentage reported for multi strategies investment strategies.</message>
-				<field>StrategyNAVRate</field>
-				<value>
-					<xsl:value-of select="StrategyNAVRate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-040'" />
+				<xsl:with-param
+						name="context"
+						select="PrivateEquityFundStrategyType|StrategyNAVRate" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="(PrivateEquityFundStrategyType = 'OTHR_PEQF') != boolean(StrategyTypeOtherDescription)">
-			<error>
-				<record></record>
-				<code>CAF-041</code>
-				<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
-				<field>StrategyTypeOtherDescription</field>
-				<value>
-					<xsl:value-of select="StrategyTypeOtherDescription" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-041'" />
+				<xsl:with-param
+						name="context"
+						select="PrivateEquityFundStrategyType|StrategyTypeOtherDescription" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="PrivateEquityFundStrategyType = 'MULT_PEQF'">
 
 			<xsl:if test="count(../PrivateEquityFundInvestmentStrategy[PrivateEquityFundStrategyType != 'MULT_PEQF']) &lt; 2">
-				<error>
-					<record></record>
-					<code>CAF-037</code>
-					<message>The investment strategy code is not allowed.</message>
-					<field>PrivateEquityFundStrategyType</field>
-					<value>
-						<xsl:value-of select="PrivateEquityFundStrategyType" />
-					</value>
-				</error>
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'CAF-037'" />
+					<xsl:with-param
+							name="context"
+							select="../PrivateEquityFundInvestmentStrategy/PrivateEquityFundStrategyType" />
+				</xsl:call-template>
 			</xsl:if>
 
 			<xsl:if test="PrimaryStrategyFlag != 'true'">
-				<error>
-					<record></record>
-					<code>CAF-038</code>
-					<message>Multi strategies investment strategies should be primary strategies.</message>
-					<field>PrimaryStrategyFlag</field>
-					<value>
-						<xsl:value-of select="PrimaryStrategyFlag" />
-					</value>
-				</error>
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'CAF-038'" />
+					<xsl:with-param
+							name="context"
+							select="PrivateEquityFundStrategyType|PrimaryStrategyFlag" />
+				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/RealEstateFundInvestmentStrategies/RealEstateFundStrategy">
 		<xsl:if test="(RealEstateFundStrategyType = 'MULT_REST') and boolean(StrategyNAVRate)">
-			<error>
-				<record></record>
-				<code>CAF-040</code>
-				<message>There is no NAV percentage reported for multi strategies investment strategies.</message>
-				<field>StrategyNAVRate</field>
-				<value>
-					<xsl:value-of select="$strategynavrate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-040'" />
+				<xsl:with-param
+						name="context"
+						select="RealEstateFundStrategyType|StrategyNAVRate" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="(RealEstateFundStrategyType = 'OTHR_REST') != boolean(StrategyTypeOtherDescription)">
-			<error>
-				<record></record>
-				<code>CAF-041</code>
-				<message>The investement strategy code description is not consistent with the reported investment strategy code.</message>
-				<field>StrategyTypeOtherDescription</field>
-				<value>
-					<xsl:value-of select="StrategyTypeOtherDescription" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-041'" />
+				<xsl:with-param
+						name="context"
+						select="RealEstateFundStrategyType|StrategyTypeOtherDescription" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="RealEstateFundStrategyType = 'MULT_REST'">
 
 			<xsl:if test="count(../RealEstateFundStrategy[RealEstateFundStrategyType != 'MULT_REST']) &lt; 2">
-				<error>
-					<record></record>
-					<code>CAF-037</code>
-					<message>The investment strategy code is not allowed.</message>
-					<field>RealEstateFundStrategyType</field>
-					<value>
-						<xsl:value-of select="RealEstateFundStrategyType" />
-					</value>
-				</error>
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'CAF-037'" />
+					<xsl:with-param
+							name="context"
+							select="../RealEstateFundStrategy/RealEstateFundStrategyType" />
+				</xsl:call-template>
 			</xsl:if>
 
 			<xsl:if test="PrimaryStrategyFlag != 'true'">
-				<error>
-					<record></record>
-					<code>CAF-038</code>
-					<message>Multi strategies investment strategies should be primary strategies.</message>
-					<field>PrimaryStrategyFlag</field>
-					<value>
-						<xsl:value-of select="PrimaryStrategyFlag" />
-					</value>
-				</error>
+				<xsl:call-template name="AIFError">
+					<xsl:with-param
+							name="code"
+							select="'CAF-038'" />
+					<xsl:with-param
+							name="context"
+							select="RealEstateFundStrategyType|PrimaryStrategyFlag" />
+				</xsl:call-template>
 			</xsl:if>
 
 		</xsl:if>
@@ -938,15 +925,14 @@
 				name="hascodetype"
 				select="boolean($instrumentcodetype)" />
 		<xsl:if test="$hascodetype = $isnota">
-			<error>
-				<record></record>
-				<code>CAF-042</code>
-				<message>The instrument code type is not consistent with the sub-asset type.</message>
-				<field>InstrumentCodeType</field>
-				<value>
-					<xsl:value-of select="$instrumentcodetype" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-042'" />
+				<xsl:with-param
+						name="context"
+						select="SubAssetType|InstrumentCodeType" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
@@ -956,93 +942,83 @@
 				name="hasname"
 				select="boolean($instrumentname)" />
 		<xsl:if test="$hasname = $isnota">
-			<error>
-				<record></record>
-				<code>CAF-043</code>
-				<message>The instrument name is not consistent with the sub-asset type.</message>
-				<field>InstrumentName</field>
-				<value>
-					<xsl:value-of select="$instrumentname" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-043'" />
+				<xsl:with-param
+						name="context"
+						select="SubAssetType|InstrumentName" />
+			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:variable
-				name="isin"
-				select="ISINInstrumentIdentification" />
-		<xsl:if test="not(my:ISO6166($isin))">
-			<error>
-				<record></record>
-				<code>CAF-044</code>
-				<message>The check digit of the ISIN code is not correct.</message>
-				<field>ISINInstrumentIdentification</field>
-				<value>
-					<xsl:value-of select="$isin" />
-				</value>
-			</error>
+		<xsl:if test="not(my:ISO6166(ISINInstrumentIdentification))">
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-044'" />
+				<xsl:with-param
+						name="context"
+						select="ISINInstrumentIdentification" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(InstrumentCodeType = 'ISIN') != boolean(ISINInstrumentIdentification)">
-			<error>
-				<record></record>
-				<code>CAF-045</code>
-				<message>The instrument ISIN code is not consistent with the instrument code type.</message>
-				<field>ISINInstrumentIdentification</field>
-				<value>
-					<xsl:value-of select="ISINInstrumentIdentification" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-045'" />
+				<xsl:with-param
+						name="context"
+						select="InstrumentCodeType|ISINInstrumentIdentification" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
 				name="mic"
 				select="AIIInstrumentIdentification/AIIExchangeCode" />
 		<xsl:if test="$mic and not($micregister[. = $mic])">
-			<error>
-				<record></record>
-				<code>CAF-046</code>
-				<message>The MIC code is not correct</message>
-				<field>AIIExchangeCode</field>
-				<value>
-					<xsl:value-of select="$mic" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-046'" />
+				<xsl:with-param
+						name="context"
+						select="AIIInstrumentIdentification/AIIExchangeCode" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean($mic)">
-			<error>
-				<record></record>
-				<code>CAF-047</code>
-				<message>The instrument AII exchange code is not consistent with the instrument code type.</message>
-				<field>AIIExchangeCode</field>
-				<value>
-					<xsl:value-of select="AIIInstrumentIdentification/AIIExchangeCode" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-047'" />
+				<xsl:with-param
+						name="context"
+						select="InstrumentCodeType|AIIInstrumentIdentification/AIIExchangeCode" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIProductCode)">
-			<error>
-				<record></record>
-				<code>CAF-048</code>
-				<message>The instrument AII exchange product code is not consistent with the instrument code type.</message>
-				<field>AIIProductCode</field>
-				<value>
-					<xsl:value-of select="AIIInstrumentIdentification/AIIProductCode" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-048'" />
+				<xsl:with-param
+						name="context"
+						select="InstrumentCodeType|AIIInstrumentIdentification/AIIProductCode" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIDerivativeType)">
-			<error>
-				<record></record>
-				<code>CAF-049</code>
-				<message>The instrument AII derivative type is not consistent with the instrument code type.</message>
-				<field>AIIDerivativeType</field>
-				<value>
-					<xsl:value-of select="AIIInstrumentIdentification/AIIDerivativeType" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-049'" />
+				<xsl:with-param
+						name="context"
+						select="InstrumentCodeType|AIIInstrumentIdentification/AIIDerivativeType" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIPutCallIdentifier)">
