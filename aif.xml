@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AIFReportingInfo
-		ReportingMemberState="FR"
+		ReportingMemberState="ZZ"
 		Version="1.2"
 		CreationDateAndTime="2001-12-17T09:30:47.0Z"
 		xsi:noNamespaceSchemaLocation="schema/AIFMD_DATAIF_V1.2.xsd"

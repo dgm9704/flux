@@ -23,7 +23,7 @@
 							select="'FIL-015'" />
 					<xsl:with-param
 							name="context"
-							select="$reportingmemberstate" />
+							select="@ReportingMemberState" />
 				</xsl:call-template>
 			</xsl:if>
 			<xsl:apply-templates />
@@ -31,10 +31,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFRecordInfo">
-		<xsl:variable
-				name="noreporting"
-				select="AIFNoReportingFlag" />
-		<xsl:if test="$noreporting = 'false'">
+		<xsl:if test="AIFNoReportingFlag = 'false'">
 			<xsl:variable name="contenterror">
 				<xsl:if test="(AIFContentType = '2' or AIFContentType = '4') and not(AIFCompleteDescription/AIFIndividualInfo)">true</xsl:if>
 				<xsl:if test="(AIFContentType = '2' or AIFContentType = '4') and not(AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2)">true</xsl:if>
@@ -47,7 +44,7 @@
 							select="'CAF-002'" />
 					<xsl:with-param
 							name="context"
-							select="AIFContentType" />
+							select="AIFNoReportingFlag|AIFContentType" />
 				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
@@ -95,7 +92,7 @@
 						select="'CAF-003'" />
 				<xsl:with-param
 						name="context"
-						select="$reportingperiodstartdate" />
+						select="ReportingPeriodStartDate" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -145,7 +142,7 @@
 						select="'CAF-004'" />
 				<xsl:with-param
 						name="context"
-						select="$reportingperiodenddate" />
+						select="ReportingPeriodEndDate" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -156,36 +153,29 @@
 						select="'CAF-006'" />
 				<xsl:with-param
 						name="context"
-						select="AIFReportingObligationChangeQuarter" />
+						select="AIFReportingObligationChangeFrequencyCode|AIFReportingObligationChangeContentsCode|AIFReportingObligationChangeQuarter" />
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:variable
-				name="manager"
-				select="AIFMNationalCode" />
-		<xsl:if test="not($aifmregister[. = $manager])">
+		<xsl:if test="not($aifmregister[. = AIFMNationalCode])">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
 						select="'CAF-007'" />
 				<xsl:with-param
 						name="context"
-						select="$manager" />
+						select="AIFMNationalCode" />
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:variable
-				name="fund"
-				select="./ancestor-or-self::AIFRecordInfo/AIFNationalCode" />
-
-		<xsl:if test="not($aifregister[. = $fund])">
+		<xsl:if test="not($aifregister[. = AIFNationalCode])">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
 						select="'CAF-008'" />
 				<xsl:with-param
 						name="context"
-						select="$fund" />
+						select="AIFNationalCode" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:variable
@@ -205,7 +195,7 @@
 						select="'CAF-009'" />
 				<xsl:with-param
 						name="context"
-						select="AIFEEAFlag" />
+						select="AIFEEAFlag|AIFDomicile" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -216,7 +206,7 @@
 						select="'CAF-010'" />
 				<xsl:with-param
 						name="context"
-						select="$domicile" />
+						select="AIFDomicile" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -230,7 +220,7 @@
 						select="'CAF-011'" />
 				<xsl:with-param
 						name="context"
-						select="InceptionDate" />
+						select="InceptionDate|ReportingPeriodStartDate" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -241,18 +231,11 @@
 						select="'CAF-012'" />
 				<xsl:with-param
 						name="context"
-						select="AIFNoReportingFlag" />
+						select="AIFNoReportingFlag|AIFCompleteDescription" />
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:apply-templates>
-			<xsl:with-param
-					name="periodtype"
-					select="$periodtype" />
-			<xsl:with-param
-					name="noreporting"
-					select="$noreporting" />
-		</xsl:apply-templates>
+		<xsl:apply-templates />
 
 	</xsl:template>
 
@@ -502,18 +485,10 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo">
-		<xsl:param name="periodtype" />
-		<xsl:param name="noreporting" />
 		<xsl:variable
 				name="shareclassflag"
 				select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'" />
 		<xsl:apply-templates>
-			<xsl:with-param
-					name="periodtype"
-					select="$periodtype" />
-			<xsl:with-param
-					name="noreporting"
-					select="$noreporting" />
 			<xsl:with-param
 					name="shareclassflag"
 					select="$shareclassflag" />
@@ -657,56 +632,54 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFBaseCurrencyDescription">
-		<xsl:param name="noreporting" />
+		<xsl:variable
+				name="noreporting"
+				select="AIFNoReportingFlag" />
 		<xsl:variable
 				name="basecurrency"
 				select="BaseCurrency" />
 		<xsl:if test="not($currencycodes[. = $basecurrency])">
-			<error>
-				<record></record>
-				<code>CAF-029</code>
-				<message>The currency code is not correct.</message>
-				<field>BaseCurrency</field>
-				<value>
-					<xsl:value-of select="$basecurrency" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-029'" />
+				<xsl:with-param
+						name="context"
+						select="BaseCurrency" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="($noreporting = 'false' and not($basecurrency = 'EUR')) != boolean(FXEURRate)">
-			<error>
-				<record></record>
-				<code>CAF-030</code>
-				<message></message>
-				<field>FXEURRate</field>
-				<value>
-					<xsl:value-of select="FXEURRate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-030'" />
+				<xsl:with-param
+						name="context"
+						select="BaseCurrency|FXEURRate" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="($noreporting = 'false' and not($basecurrency = 'EUR')) != boolean(FXEURReferenceRateType)">
-			<error>
-				<record></record>
-				<code>CAF-031</code>
-				<message></message>
-				<field>FXEURReferenceRateType</field>
-				<value>
-					<xsl:value-of select="FXEURReferenceRateType" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-031'" />
+				<xsl:with-param
+						name="context"
+						select="BaseCurrency|FXEURReferenceRateType" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="(FXEURReferenceRateType = 'OTH') != boolean(FXEUROtherReferenceRateDescription)">
-			<error>
-				<record></record>
-				<code>CAF-032</code>
-				<message></message>
-				<field>FXEUROtherReferenceRateDescription</field>
-				<value>
-					<xsl:value-of select="FXEUROtherReferenceRateDescription" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-032'" />
+				<xsl:with-param
+						name="context"
+						select="FXEURReferenceRateType|FXEUROtherReferenceRateDescription" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -715,15 +688,14 @@
 				name="firstfundingsourcecountry"
 				select="." />
 		<xsl:if test="$firstfundingsourcecountry and not($countrycodes[. = $firstfundingsourcecountry])">
-			<error>
-				<record></record>
-				<code>CAF-033</code>
-				<message>The first funding country is not correct.</message>
-				<field>FirstFundingSourceCountry</field>
-				<value>
-					<xsl:value-of select="$firstfundingsourcecountry" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-033'" />
+				<xsl:with-param
+						name="context"
+						select="." />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -732,15 +704,14 @@
 				name="secondfundingsourcecountry"
 				select="." />
 		<xsl:if test="$secondfundingsourcecountry and not($countrycodes[. = $secondfundingsourcecountry])">
-			<error>
-				<record></record>
-				<code>CAF-034</code>
-				<message>The second funding country is not correct.</message>
-				<field>SecondFundingSourceCountry</field>
-				<value>
-					<xsl:value-of select="$secondfundingsourcecountry" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-034'" />
+				<xsl:with-param
+						name="context"
+						select="." />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -2000,10 +1971,10 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile">
 
-		<xsl:param name="periodtype" />
 		<xsl:variable
 				name="directclearing"
 				select="string(ClearTransactionsThroughCCPFlag)" />
+
 		<xsl:if test="$directclearing = 'true' and not(AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure[Ranking = 1])">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
@@ -2015,9 +1986,6 @@
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:apply-templates>
-			<xsl:with-param
-					name="periodtype"
-					select="$periodtype" />
 			<xsl:with-param
 					name="directclearing"
 					select="$directclearing" />
@@ -2154,13 +2122,15 @@
 						select="'CAF-133'" />
 				<xsl:with-param
 						name="context"
-						select="FinancingLiquidityProfile" />
+						select="*[not(self::TotalFinancingAmount)]" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/GrossInvestmentReturnsRate">
-		<xsl:param name="periodtype" />
+		<xsl:variable
+				name="periodtype"
+				select="./ancestor-or-self::AIFRecordInfo/ReportingPeriodType" />
 		<xsl:variable name="error">
 			<xsl:choose>
 				<xsl:when test="$periodtype = 'Q1'">
@@ -2196,7 +2166,7 @@
 						select="'CAF-134'" />
 				<xsl:with-param
 						name="context"
-						select="GrossInvestmentReturnsRate" />
+						select="$periodtype|*" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
