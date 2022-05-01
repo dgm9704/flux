@@ -182,6 +182,9 @@
 	<xsl:template name="AIFMError">
 		<xsl:param name="code" />
 		<xsl:param name="context" />
+		<!-- <xsl:variable
+				name="foo"
+				select="./ancestor-or-self::*[name() = $context]" /> -->
 		<error>
 			<record>
 				<xsl:value-of select="./ancestor-or-self::AIFMRecordInfo/AIFMNationalCode" />

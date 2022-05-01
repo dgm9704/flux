@@ -2184,7 +2184,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/LiquidityRiskProfile/InvestorLiquidityProfile">
-		<xsl:variable name="fund" />
+
 		<xsl:variable
 				name="liquiditysum"
 				select="InvestorLiquidityInDays0to1Rate + InvestorLiquidityInDays2to7Rate + InvestorLiquidityInDays8to30Rate + InvestorLiquidityInDays31to90Rate + InvestorLiquidityInDays91to180Rate + InvestorLiquidityInDays181to365Rate + InvestorLiquidityInDays365MoreRate" />
@@ -2202,62 +2202,60 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/LiquidityRiskProfile/InvestorRedemption">
-		<xsl:variable name="fund" />
+
 		<xsl:if test="ProvideWithdrawalRightsFlag = 'false' and boolean(InvestorRedemptionFrequency)">
-			<error>
-				<record></record>
-				<code>CAF-130</code>
-				<message>The investor redemption frequency is not consistent with the withdrawal redemption rights flag.</message>
-				<field>InvestorRedemptionFrequency</field>
-				<value>
-					<xsl:value-of select="InvestorRedemptionFrequency" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-130'" />
+				<xsl:with-param
+						name="context"
+						select="InvestorRedemptionFrequency" />
+			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:if test="ProvideWithdrawalRightsFlag = 'false' and boolean(InvestorRedemptionNoticePeriod)">
-			<error>
-				<record></record>
-				<code>CAF-131</code>
-				<message>The investor redemption notice period is not consistent with the withdrawal redemption rights flag.</message>
-				<field>InvestorRedemptionNoticePeriod</field>
-				<value>
-					<xsl:value-of select="InvestorRedemptionNoticePeriod" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-131'" />
+				<xsl:with-param
+						name="context"
+						select="InvestorRedemptionNoticePeriod" />
+			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:if test="ProvideWithdrawalRightsFlag = 'false' and boolean(InvestorRedemptionLockUpPeriod)">
-			<error>
-				<record></record>
-				<code>CAF-132</code>
-				<message>The investor redemption lock-up is not consistent with the withdrawal redemption rights flag.</message>
-				<field>InvestorRedemptionLockUpPeriod</field>
-				<value>
-					<xsl:value-of select="InvestorRedemptionLockUpPeriod" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-132'" />
+				<xsl:with-param
+						name="context"
+						select="InvestorRedemptionLockUpPeriod" />
+			</xsl:call-template>
 		</xsl:if>
+
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/LiquidityRiskProfile/FinancingLiquidityProfile">
-		<xsl:variable name="fund" />
+
 		<xsl:variable
 				name="financingsum"
 				select="TotalFinancingInDays0to1Rate + TotalFinancingInDays2to7Rate + TotalFinancingInDays8to30Rate + TotalFinancingInDays31to90Rate + TotalFinancingInDays91to180Rate + TotalFinancingInDays181to365Rate + TotalFinancingInDays365MoreRate" />
 		<xsl:if test="$financingsum != 100">
-			<error>
-				<record></record>
-				<code>CAF-133</code>
-				<message>The sum of the percentages should be equal to 100%.</message>
-				<field>FinancingLiquidityProfile</field>
-				<value>
-					<xsl:value-of select="$financingsum" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-133'" />
+				<xsl:with-param
+						name="context"
+						select="FinancingLiquidityProfile" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/GrossInvestmentReturnsRate">
-		<xsl:param name="fund" />
 		<xsl:param name="periodtype" />
 		<xsl:variable name="error">
 			<xsl:choose>
@@ -2288,20 +2286,18 @@
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:if test="$error = 'true'">
-			<error>
-				<record></record>
-				<code>CAF-134</code>
-				<message>The month rate is not consistent with the reporting period.</message>
-				<field>GrossInvestmentReturnsRate</field>
-				<value>
-					<xsl:value-of select="GrossInvestmentReturnsRate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-134'" />
+				<xsl:with-param
+						name="context"
+						select="GrossInvestmentReturnsRate" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/NetInvestmentReturnsRate">
-		<xsl:param name="fund" />
 		<xsl:param name="periodtype" />
 		<xsl:variable name="error">
 			<xsl:choose>
@@ -2332,20 +2328,18 @@
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:if test="$error = 'true'">
-			<error>
-				<record></record>
-				<code>CAF-135</code>
-				<message>The month rate is not consistent with the reporting period.</message>
-				<field>NetInvestmentReturnsRate</field>
-				<value>
-					<xsl:value-of select="NetInvestmentReturnsRate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-135'" />
+				<xsl:with-param
+						name="context"
+						select="NetInvestmentReturnsRate" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/NAVChangeRate">
-		<xsl:param name="fund" />
 		<xsl:param name="periodtype" />
 		<xsl:variable name="error">
 			<xsl:choose>
@@ -2376,15 +2370,14 @@
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:if test="$error = 'true'">
-			<error>
-				<record></record>
-				<code>CAF-136</code>
-				<message>The month rate is not consistent with the reporting period.</message>
-				<field>NAVChangeRate</field>
-				<value>
-					<xsl:value-of select="NAVChangeRate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-136'" />
+				<xsl:with-param
+						name="context"
+						select="NAVChangeRate" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -2420,30 +2413,30 @@
 			</xsl:choose>
 		</xsl:variable>
 		<xsl:if test="$error = 'true'">
-			<error>
-				<record></record>
-				<code>CAF-137</code>
-				<message>The month rate is not consistent with the reporting period.</message>
-				<field>Subscription</field>
-				<value>
-					<xsl:value-of select="Subscription" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-137'" />
+				<xsl:with-param
+						name="context"
+						select="Subscription" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-2">
-		<xsl:param name="fund" />
-		<xsl:if test="AllCounterpartyCollateralRehypothecationFlag = 'false' and AllCounterpartyCollateralRehypothecatedRate">
-			<error>
-				<record></record>
-				<code>CAF-139</code>
-				<message>The field is forbidden for rehypothecation flag false and optional otherwise.</message>
-				<field>AllCounterpartyCollateralRehypothecatedRate</field>
-				<value>
-					<xsl:value-of select="AllCounterpartyCollateralRehypothecatedRate" />
-				</value>
-			</error>
+		<xsl:variable
+				name="accrrate"
+				select="AllCounterpartyCollateralRehypothecatedRate" />
+		<xsl:if test="AllCounterpartyCollateralRehypothecationFlag = 'false' and $accrrate ">
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-139'" />
+				<xsl:with-param
+						name="context"
+						select="$accrrate" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:apply-templates />
@@ -2451,9 +2444,8 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/Redemption">
-		<xsl:param name="fund" />
 		<xsl:param name="periodtype" />
-		<xsl:variable name="error">
+		<xsl:variable name="caf-138">
 			<xsl:choose>
 				<xsl:when test="$periodtype = 'Q1'">
 					<xsl:if test="QuantityApril or QuantityMay or QuantityJune or QuantityJuly or QuantityAugust or QuantitySeptember or QuantityOctober or QuantityNovember or QuantityDecember">true</xsl:if>
@@ -2481,16 +2473,15 @@
 				</xsl:when>
 			</xsl:choose>
 		</xsl:variable>
-		<xsl:if test="$error = 'true'">
-			<error>
-				<record></record>
-				<code>CAF-138</code>
-				<message>The month rate is not consistent with the reporting period.</message>
-				<field>Redemption</field>
-				<value>
-					<xsl:value-of select="Redemption" />
-				</value>
-			</error>
+		<xsl:if test="$caf-138 = 'true'">
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-138'" />
+				<xsl:with-param
+						name="context"
+						select="Redemption" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -2500,15 +2491,14 @@
 				name="lei"
 				select="." />
 		<xsl:if test="not(my:ISO17442($lei))">
-			<error>
-				<record></record>
-				<code>CAF-140</code>
-				<message>The check digits of the LEI code are not correct.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="$lei" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-140'" />
+				<xsl:with-param
+						name="context"
+						select="$lei" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -2518,61 +2508,67 @@
 				name="lei"
 				select="SourceIdentification/EntityIdentificationLEI" />
 
-		<xsl:if test="boolean(BorrowingSourceFlag = 'true') != boolean(SourceIdentification/EntityName)">
-			<error>
-				<record></record>
-				<code>CAF-141</code>
-				<message>Within each ranking, Mandatory for Borrowing source flag equal to "true" Else Forbidden</message>
-				<field>EntityName</field>
-				<value>
-					<xsl:value-of select="SourceIdentification/EntityName" />
-				</value>
-			</error>
+		<xsl:variable
+				name="siename"
+				select="SourceIdentification/EntityName" />
+		<xsl:if test="boolean(BorrowingSourceFlag = 'true') != boolean($siename)">
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-141'" />
+				<xsl:with-param
+						name="context"
+						select="$siename" />
+			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:if test="not(my:ISO17442($lei))">
-			<error>
-				<record></record>
-				<code>CAF-142</code>
-				<message>The check digits of the LEI code are not correct.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="$lei" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-142'" />
+				<xsl:with-param
+						name="context"
+						select="$lei" />
+			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:if test="boolean(BorrowingSourceFlag = 'false') and $lei">
-			<error>
-				<record></record>
-				<code>CAF-143</code>
-				<message>The LEI code is not consistent with the borrowing source flag.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="$lei" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-143'" />
+				<xsl:with-param
+						name="context"
+						select="$lei" />
+			</xsl:call-template>
 		</xsl:if>
-		<xsl:if test="boolean(BorrowingSourceFlag = 'false') and SourceIdentification/EntityIdentificationBIC">
-			<error>
-				<record></record>
-				<code>CAF-144</code>
-				<message>The BIC code is not consistent with the borrowing source flag.</message>
-				<field>EntityIdentificationBIC</field>
-				<value>
-					<xsl:value-of select="SourceIdentification/EntityIdentificationBIC" />
-				</value>
-			</error>
+
+		<xsl:variable
+				name="eibic"
+				select="SourceIdentification/EntityIdentificationBIC" />
+		<xsl:if test="boolean(BorrowingSourceFlag = 'false') and $eibic">
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-144'" />
+				<xsl:with-param
+						name="context"
+						select="$eibic" />
+			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:if test="boolean(BorrowingSourceFlag = 'true') != LeverageAmount">
-			<error>
-				<record></record>
-				<code>CAF-145</code>
-				<message>The leverage amount is not consistent with the borrowing source flag.</message>
-				<field>LeverageAmount</field>
-				<value>
-					<xsl:value-of select="LeverageAmount" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-145'" />
+				<xsl:with-param
+						name="context"
+						select="LeverageAmount" />
+			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:variable
 				name="rank"
 				select="Ranking" />
@@ -2580,15 +2576,15 @@
 				name="value"
 				select="LeverageAmount" />
 		<xsl:if test="$value &lt; ../BorrowingSource[Ranking=($rank + 1)]/LeverageAmount">
-			<error>
-				<record></record>
-				<code>CAF-146</code>
-				<message>The reported value is not consistent with the rank.</message>
-				<field>LeverageAmount</field>
-				<value>
-					<xsl:value-of select="$value" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-146'" />
+				<xsl:with-param
+						name="context"
+						select="$value" />
+			</xsl:call-template>
+
 		</xsl:if>
 	</xsl:template>
 
