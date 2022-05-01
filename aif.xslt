@@ -1046,63 +1046,58 @@
 		</xsl:if>
 
 		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIPutCallIdentifier)">
-			<error>
-				<record></record>
-				<code>CAF-050</code>
-				<message>The instrument put/call identifier is not consistent with the instrument code type.</message>
-				<field>AIIPutCallIdentifier</field>
-				<value>
-					<xsl:value-of select="AIIInstrumentIdentification/AIIPutCallIdentifier" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-050'" />
+				<xsl:with-param
+						name="context"
+						select="InstrumentCodeType|AIIInstrumentIdentification/AIIPutCallIdentifier" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIExpiryDate)">
-			<error>
-				<record></record>
-				<code>CAF-051</code>
-				<message>The instrument AII expiry date is not consistent with the instrument code type.</message>
-				<field>AIIExpiryDate</field>
-				<value>
-					<xsl:value-of select="AIIInstrumentIdentification/AIIExpiryDate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-051'" />
+				<xsl:with-param
+						name="context"
+						select="InstrumentCodeType|AIIInstrumentIdentification/AIIExpiryDate" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(InstrumentCodeType = 'AII') != boolean(AIIInstrumentIdentification/AIIStrikePrice)">
-			<error>
-				<record></record>
-				<code>CAF-052</code>
-				<message>The instrument AII strike price is not consistent with the instrument code type.</message>
-				<field>AIIStrikePrice</field>
-				<value>
-					<xsl:value-of select="AIIInstrumentIdentification/AIIStrikePrice" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-052'" />
+				<xsl:with-param
+						name="context"
+						select="InstrumentCodeType|AIIInstrumentIdentification/AIIStrikePrice" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(SubAssetType = 'NTA_NTA_NOTA') = boolean(PositionType)">
-			<error>
-				<record></record>
-				<code>CAF-053</code>
-				<message>The position type is not consistent with the sub-asset type.</message>
-				<field>PositionType</field>
-				<value>
-					<xsl:value-of select="PositionType" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-053'" />
+				<xsl:with-param
+						name="context"
+						select="SubAssetType|PositionType" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(SubAssetType = 'NTA_NTA_NOTA') = boolean(PositionValue)">
-			<error>
-				<record></record>
-				<code>CAF-054</code>
-				<message>The position value is not consistent with the sub-asset type.</message>
-				<field>PositionValue</field>
-				<value>
-					<xsl:value-of select="PositionValue" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-054'" />
+				<xsl:with-param
+						name="context"
+						select="SubAssetType|PositionValue" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
@@ -1112,27 +1107,25 @@
 				name="value"
 				select="PositionValue" />
 		<xsl:if test="$value &lt; ../MainInstrumentTraded[Ranking=($rank + 1)]/PositionValue">
-			<error>
-				<record></record>
-				<code>CAF-055</code>
-				<message>The reported value is not consistent with the rank.</message>
-				<field>PositionValue</field>
-				<value>
-					<xsl:value-of select="$value" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-055'" />
+				<xsl:with-param
+						name="context"
+						select="Ranking|PositionValue" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="not(PositionType = 'S') and boolean(ShortPositionHedgingRate)">
-			<error>
-				<record></record>
-				<code>CAF-056</code>
-				<message>The position value is not consistent with the position type.</message>
-				<field>ShortPositionHedgingRate</field>
-				<value>
-					<xsl:value-of select="ShortPositionHedgingRate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-056'" />
+				<xsl:with-param
+						name="context"
+						select="PositionType|ShortPositionHedgingRate" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:apply-templates />
@@ -1145,15 +1138,14 @@
 				name="navregions"
 				select="*" />
 		<xsl:if test="$navregions and not(sum($navregions) = 100)">
-			<error>
-				<record></record>
-				<code>CAF-057</code>
-				<message>The sum of the percentages should be equal to 100%.</message>
-				<field>NAVGeographicalFocus</field>
-				<value>
-					<xsl:value-of select="sum($navregions)" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-057'" />
+				<xsl:with-param
+						name="context"
+						select="*" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -1163,54 +1155,50 @@
 				name="aumregions"
 				select="*" />
 		<xsl:if test="$aumregions and not(sum($aumregions) = 100)">
-			<error>
-				<record></record>
-				<code>CAF-058</code>
-				<message>The sum of the percentages should be equal to 100%.</message>
-				<field>AUMGeographicalFocus</field>
-				<value>
-					<xsl:value-of select="sum($aumregions)" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-058'" />
+				<xsl:with-param
+						name="context"
+						select="*" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure">
 
 		<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(SubAssetType)">
-			<error>
-				<record></record>
-				<code>CAF-059</code>
-				<message>The sub-asset type is not consistent with the macro-asset type.</message>
-				<field>SubAssetType</field>
-				<value>
-					<xsl:value-of select="SubAssetType" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-059'" />
+				<xsl:with-param
+						name="context"
+						select="AssetMacroType|SubAssetType" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(PositionType)">
-			<error>
-				<record></record>
-				<code>CAF-060</code>
-				<message>The position type is not consistent with the macro-asset type.</message>
-				<field>PositionType</field>
-				<value>
-					<xsl:value-of select="PositionType" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-060'" />
+				<xsl:with-param
+						name="context"
+						select="AssetMacroType|PositionType" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(AggregatedValueAmount)">
-			<error>
-				<record></record>
-				<code>CAF-061</code>
-				<message>The aggregated value is not consistent with the macro-asset type.</message>
-				<field>AggregatedValueAmount</field>
-				<value>
-					<xsl:value-of select="AggregatedValueAmount" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-061'" />
+				<xsl:with-param
+						name="context"
+						select="AssetMacroType|AggregatedValueAmount" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
@@ -1220,35 +1208,28 @@
 				name="value"
 				select="AggregatedValueAmount" />
 		<xsl:if test="$value &lt; ../PrincipalExposure[Ranking=($rank + 1)]/AggregatedValueAmount">
-			<error>
-				<record></record>
-				<code>CAF-062</code>
-				<message>The reported value is not consistent with the rank.</message>
-				<field>AggregatedValueAmount</field>
-				<value>
-					<xsl:value-of select="$value" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-062'" />
+				<xsl:with-param
+						name="context"
+						select="Ranking|AggregatedValueAmount" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="boolean(AssetMacroType = 'NTA') = boolean(AggregatedValueRate)">
-			<error>
-				<record></record>
-				<code>CAF-063</code>
-				<message>The aggregated value percentage is not consistent with the macro-asset type.</message>
-				<field>AggregatedValueRate</field>
-				<value>
-					<xsl:value-of select="AggregatedValueRate" />
-				</value>
-			</error>
+			<xsl:call-template name="AIFError">
+				<xsl:with-param
+						name="code"
+						select="'CAF-063'" />
+				<xsl:with-param
+						name="context"
+						select="AssetMacroType|AggregatedValueRate" />
+			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:apply-templates>
-			<with-param
-					name="fund"
-					select="$fund" />
-		</xsl:apply-templates>
-
+		<xsl:apply-templates />
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/PrincipalExposures/PrincipalExposure/CounterpartyIdentification">

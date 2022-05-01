@@ -226,16 +226,18 @@
 					</xsl:for-each>
 				</xsl:for-each>
 			</message>
-			<xsl:for-each select="exsl:node-set($context)">
-				<field>
-					<name>
-						<xsl:value-of select="name()" />
-					</name>
-					<value>
-						<xsl:value-of select="." />
-					</value>
-				</field>
-			</xsl:for-each>
+			<context>
+				<xsl:for-each select="exsl:node-set($context)">
+					<field>
+						<name>
+							<xsl:value-of select="name()" />
+						</name>
+						<value>
+							<xsl:value-of select="." />
+						</value>
+					</field>
+				</xsl:for-each>
+			</context>
 		</error>
 	</xsl:template>
 
