@@ -1484,7 +1484,7 @@
 								select="'CAF-085'" />
 						<xsl:with-param
 								name="context"
-								select="GrossValue" />
+								select="SubAssetType|GrossValue" />
 					</xsl:call-template>
 				</xsl:if>
 			</xsl:otherwise>
@@ -1504,7 +1504,7 @@
 							select="'CAF-088'" />
 					<xsl:with-param
 							name="context"
-							select="NotionalValue" />
+							select="TurnoverSubAssetType|NotionalValue" />
 				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
@@ -1536,7 +1536,7 @@
 								select="'CAF-090'" />
 						<xsl:with-param
 								name="context"
-								select="LongPositionValue" />
+								select="ExposureCurrency|LongPositionValue" />
 					</xsl:call-template>
 				</xsl:if>
 				<xsl:if test="ShortPositionValue">
@@ -1546,7 +1546,7 @@
 								select="'CAF-091'" />
 						<xsl:with-param
 								name="context"
-								select="ShortPositionValue" />
+								select="ExposureCurrency|ShortPositionValue" />
 					</xsl:call-template>
 				</xsl:if>
 			</xsl:otherwise>
@@ -1555,7 +1555,9 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/IndividualExposure/CompaniesDominantInfluence/CompanyDominantInfluence">
 
-		<xsl:param name="predominantaiftype" />
+		<xsl:variable
+				name="predominantaiftype"
+				select="./ancestor::AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/PredominantAIFType" />
 
 		<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(CompanyIdentification/EntityName)">
 			<xsl:call-template name="AIFError">
@@ -1564,13 +1566,13 @@
 						select="'CAF-092'" />
 				<xsl:with-param
 						name="context"
-						select="CompanyIdentification/EntityName" />
+						select="$predominantaiftype|CompanyIdentification/EntityName" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:variable
 				name="lei"
 				select="CompanyIdentification/EntityIdentificationLEI" />
-		<xsl:if test="not(my:ISO17442($lei))">
+		<xsl:if test="boolean($lei) and not(my:ISO17442($lei))">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
@@ -1587,7 +1589,7 @@
 						select="'CAF-094'" />
 				<xsl:with-param
 						name="context"
-						select="$lei" />
+						select="$predominantaiftype|$lei" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="$predominantaiftype!='PEQF' and boolean(CompanyIdentification/EntityIdentificationBIC)">
@@ -1597,7 +1599,7 @@
 						select="'CAF-095'" />
 				<xsl:with-param
 						name="context"
-						select="CompanyIdentification/EntityIdentificationBIC" />
+						select="$predominantaiftype|CompanyIdentification/EntityIdentificationBIC" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(TransactionType)">
@@ -1607,7 +1609,7 @@
 						select="'CAF-096'" />
 				<xsl:with-param
 						name="context"
-						select="TransactionType" />
+						select="$predominantaiftype|TransactionType" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="boolean(TransactionType='OTHR') != boolean(OtherTransactionTypeDescription)">
@@ -1617,7 +1619,7 @@
 						select="'CAF-097'" />
 				<xsl:with-param
 						name="context"
-						select="OtherTransactionTypeDescription" />
+						select="TransactionType|OtherTransactionTypeDescription" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="boolean($predominantaiftype='PEQF') != boolean(VotingRightsRate)">
@@ -1627,7 +1629,7 @@
 						select="'CAF-098'" />
 				<xsl:with-param
 						name="context"
-						select="VotingRightsRate" />
+						select="$predominantaiftype|VotingRightsRate" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -1741,7 +1743,7 @@
 						select="'CAF-108'" />
 				<xsl:with-param
 						name="context"
-						select="RiskMeasureDescription" />
+						select="RiskMeasureValue|RiskMeasureDescription" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -1752,10 +1754,10 @@
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
-						select="'CAF-113'" />
+						select="'CAF-111'" />
 				<xsl:with-param
 						name="context"
-						select="TradedSecurities" />
+						select="RegulatedMarketRate|OTCRate" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -1811,13 +1813,13 @@
 						select="'CAF-113'" />
 				<xsl:with-param
 						name="context"
-						select="CounterpartyIdentification/EntityName" />
+						select="CounterpartyExposureFlag|CounterpartyIdentification/EntityName" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:variable
 				name="lei"
 				select="CounterpartyIdentification/EntityIdentificationLEI" />
-		<xsl:if test="not(my:ISO17442($lei))">
+		<xsl:if test="boolean($lei) and not(my:ISO17442($lei))">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
@@ -1834,7 +1836,7 @@
 						select="'CAF-115'" />
 				<xsl:with-param
 						name="context"
-						select="CounterpartyIdentification/EntityIdentificationLEI" />
+						select="CounterpartyExposureFlag|CounterpartyIdentification/EntityIdentificationLEI" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="boolean(CounterpartyExposureFlag='false') and boolean(CounterpartyIdentification/EntityIdentificationBIC)">
@@ -1844,7 +1846,7 @@
 						select="'CAF-116'" />
 				<xsl:with-param
 						name="context"
-						select="CounterpartyIdentification/EntityIdentificationBIC" />
+						select="CounterpartyExposureFlag|CounterpartyIdentification/EntityIdentificationBIC" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="boolean(CounterpartyExposureFlag='true') != boolean(CounterpartyTotalExposureRate)">
@@ -1854,7 +1856,7 @@
 						select="'CAF-117'" />
 				<xsl:with-param
 						name="context"
-						select="CounterpartyTotalExposureRate" />
+						select="CounterpartyExposureFlag|CounterpartyTotalExposureRate" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:variable
@@ -1870,7 +1872,7 @@
 						select="'CAF-118'" />
 				<xsl:with-param
 						name="context"
-						select="$value" />
+						select="Ranking|CounterpartyTotalExposureRate" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -1887,14 +1889,14 @@
 						select="'CAF-119'" />
 				<xsl:with-param
 						name="context"
-						select="CounterpartyIdentification/EntityName" />
+						select="CounterpartyExposureFlag|CounterpartyIdentification/EntityName" />
 			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
 				name="lei"
 				select="CounterpartyIdentification/EntityIdentificationLEI" />
-		<xsl:if test="not(my:ISO17442($lei))">
+		<xsl:if test="boolean($lei) and not(my:ISO17442($lei))">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
