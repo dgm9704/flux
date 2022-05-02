@@ -92,7 +92,7 @@
 						select="'CAF-003'" />
 				<xsl:with-param
 						name="context"
-						select="ReportingPeriodStartDate" />
+						select="ReportingPeriodType|ReportingPeriodStartDate" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -142,7 +142,7 @@
 						select="'CAF-004'" />
 				<xsl:with-param
 						name="context"
-						select="ReportingPeriodEndDate" />
+						select="ReportingPeriodType|ReportingPeriodEndDate" />
 			</xsl:call-template>
 		</xsl:if>
 
