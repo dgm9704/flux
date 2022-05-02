@@ -231,7 +231,7 @@
 						select="'CAF-012'" />
 				<xsl:with-param
 						name="context"
-						select="AIFNoReportingFlag|AIFCompleteDescription" />
+						select="AIFNoReportingFlag" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -332,7 +332,7 @@
 						select="'CAF-039'" />
 				<xsl:with-param
 						name="context"
-						select="$ratesum" />
+						select="*/*/StrategyNAVRate" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -348,7 +348,7 @@
 						select="'CAF-041'" />
 				<xsl:with-param
 						name="context"
-						select="StrategyTypeOtherDescription" />
+						select="FundOfFundsStrategyType|StrategyTypeOtherDescription" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -362,7 +362,7 @@
 						select="'CAF-041'" />
 				<xsl:with-param
 						name="context"
-						select="StrategyTypeOtherDescription" />
+						select="OtherFundStrategyType|StrategyTypeOtherDescription" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -374,7 +374,7 @@
 				select="AIFName" />
 		<xsl:variable
 				name="masterfeederstatus"
-				select="AIFCompleteDescription/AIFPrincipalInfo/AIFDescription/AIFMasterFeederStatus" />
+				select="../../AIFMasterFeederStatus" />
 		<xsl:if test="($masterfeederstatus = 'FEEDER') != boolean($aifname)">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
@@ -382,7 +382,7 @@
 						select="'CAF-024'" />
 				<xsl:with-param
 						name="context"
-						select="$aifname" />
+						select="../../AIFMasterFeederStatus|AIFName" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -396,7 +396,7 @@
 						select="'CAF-025'" />
 				<xsl:with-param
 						name="context"
-						select="$aifmemberstate" />
+						select="AIFIdentifierNCA/ReportingMemberState" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:if test="not($masterfeederstatus = 'FEEDER')">
@@ -407,7 +407,7 @@
 							select="'CAF-026'" />
 					<xsl:with-param
 							name="context"
-							select="$aifmemberstate" />
+							select="../../AIFMasterFeederStatus|AIFIdentifierNCA/ReportingMemberState" />
 				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
@@ -422,7 +422,7 @@
 							select="'CAF-027'" />
 					<xsl:with-param
 							name="context"
-							select="$aifnationalcode" />
+							select="../../AIFMasterFeederStatus|AIFIdentifierNCA/AIFNationalCode" />
 				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
@@ -431,9 +431,6 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/AIFIdentification/AIFIdentifierLEI">
-		<xsl:variable
-				name="fund"
-				select="./ancestor-or-self::AIFRecordInfo/AIFNationalCode" />
 		<xsl:variable
 				name="lei"
 				select="." />
@@ -444,7 +441,7 @@
 						select="'CAF-013'" />
 				<xsl:with-param
 						name="context"
-						select="$lei" />
+						select="." />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -460,7 +457,7 @@
 						select="'CAF-014'" />
 				<xsl:with-param
 						name="context"
-						select="$isin" />
+						select="." />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
