@@ -253,7 +253,7 @@
 								select="'CAF-036'" />
 						<xsl:with-param
 								name="context"
-								select="HedgeFundStrategy" />
+								select="PredominantAIFType|HedgeFundInvestmentStrategies/HedgeFundStrategy" />
 					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
@@ -265,7 +265,7 @@
 								select="'CAF-036'" />
 						<xsl:with-param
 								name="context"
-								select="PrivateEquityFundInvestmentStrategy" />
+								select="PredominantAIFType|PrivateEquityFundInvestmentStrategies/PrivateEquityFundInvestmentStrategy" />
 					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
@@ -277,7 +277,7 @@
 								select="'CAF-036'" />
 						<xsl:with-param
 								name="context"
-								select="RealEstateFundStrategy" />
+								select="PredominantAIFType|RealEstateFundInvestmentStrategies/RealEstateFundStrategy" />
 					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
@@ -289,7 +289,7 @@
 								select="'CAF-036'" />
 						<xsl:with-param
 								name="context"
-								select="FundOfFundsStrategy" />
+								select="PredominantAIFType|FundOfFundsInvestmentStrategies/FundOfFundsStrategy" />
 					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
@@ -301,7 +301,7 @@
 								select="'CAF-036'" />
 						<xsl:with-param
 								name="context"
-								select="OtherFundStrategy" />
+								select="PredominantAIFType|OtherFundInvestmentStrategies/OtherFundStrategy" />
 					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
@@ -317,7 +317,7 @@
 							select="'CAF-037'" />
 					<xsl:with-param
 							name="context"
-							select="''" />
+							select="PredominantAIFType|.//*[contains(local-name(), 'FundStrategyType')]" />
 				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
