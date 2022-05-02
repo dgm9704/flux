@@ -62,13 +62,25 @@ or
 xsltproc aifmd.xslt aif.xml
 ``` 
 
-Sample output for aifmsample.xml:
+Sample output for aif validation errors:
 
-"CAM-002" is ESMA error code
-
-111111 AIFMNationalCode of the offending manager
+111111#001 AIFNationalCode of the offending fund
 ```
-<error><record>111111</record><code>CAM-002</code><message>The reporting period start date is not allowed.</message><field>ReportingPeriodStartDate</field><value>2014-09-01</value></error>
+  <error>
+    <record>111111#001</record>
+    <code>CAF-146</code>
+    <message>The reported value is not consistent with the rank.</message>
+    <context>
+      <field>
+        <name>Ranking</name>
+        <value>2</value>
+      </field>
+      <field>
+        <name>LeverageAmount</name>
+        <value>222222</value>
+      </field>
+    </context>
+  </error>
 
 ```
 
