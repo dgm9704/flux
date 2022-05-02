@@ -1917,7 +1917,7 @@
 						select="'CAF-121'" />
 				<xsl:with-param
 						name="context"
-						select="$eilei" />
+						select="CounterpartyExposureFlag|$eilei" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1931,7 +1931,7 @@
 						select="'CAF-122'" />
 				<xsl:with-param
 						name="context"
-						select="$eibic" />
+						select="CounterpartyExposureFlag|$eibic" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1942,7 +1942,7 @@
 						select="'CAF-123'" />
 				<xsl:with-param
 						name="context"
-						select="CounterpartyTotalExposureRate" />
+						select="CounterpartyExposureFlag|CounterpartyTotalExposureRate" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1959,7 +1959,7 @@
 						select="'CAF-124'" />
 				<xsl:with-param
 						name="context"
-						select="CounterpartyTotalExposureRate" />
+						select="Ranking|CounterpartyTotalExposureRate" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -1968,7 +1968,7 @@
 
 		<xsl:variable
 				name="directclearing"
-				select="string(ClearTransactionsThroughCCPFlag)" />
+				select="ClearTransactionsThroughCCPFlag" />
 
 		<xsl:if test="$directclearing = 'true' and not(AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure[Ranking = 1])">
 			<xsl:call-template name="AIFError">
@@ -1989,31 +1989,17 @@
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure">
 
-		<xsl:param name="directclearing" />
-		<!-- <xsl:if test="$directclearing = 'false' and boolean(CCPIdentification/EntityIdentificationLEI)">
-			<error>
-				<record>
-					
-				</record>
-				<code>CAF-126</code>
-				<message>The LEI code is not consistent with the counterparty exposure flag.</message>
-				<field>EntityIdentificationLEI</field>
-				<value>
-					<xsl:value-of select="CCPIdentification/EntityIdentificationLEI" />
-				</value>
-			</error>
-		</xsl:if> -->
 		<xsl:variable
 				name="lei"
 				select="CCPIdentification/EntityIdentificationLEI" />
-		<xsl:if test="not(my:ISO17442($lei))">
+		<xsl:if test="boolean($lei) and not(my:ISO17442($lei))">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
 						select="'CAF-126'" />
 				<xsl:with-param
 						name="context"
-						select="EntityIdentificationLEI" />
+						select="$lei" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:variable
@@ -2029,7 +2015,7 @@
 						select="'CAF-127'" />
 				<xsl:with-param
 						name="context"
-						select="CCPExposureValue" />
+						select="Ranking|CCPExposureValue" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -2046,7 +2032,7 @@
 						select="'CAF-128'" />
 				<xsl:with-param
 						name="context"
-						select="$portfoliosum" />
+						select="*[not(self::UnencumberedCash)]" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -2063,7 +2049,7 @@
 						select="'CAF-129'" />
 				<xsl:with-param
 						name="context"
-						select="$liquiditysum" />
+						select="*" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -2077,7 +2063,7 @@
 						select="'CAF-130'" />
 				<xsl:with-param
 						name="context"
-						select="InvestorRedemptionFrequency" />
+						select="ProvideWithdrawalRightsFlag|InvestorRedemptionFrequency" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -2088,7 +2074,7 @@
 						select="'CAF-131'" />
 				<xsl:with-param
 						name="context"
-						select="InvestorRedemptionNoticePeriod" />
+						select="ProvideWithdrawalRightsFlag|InvestorRedemptionNoticePeriod" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -2099,7 +2085,7 @@
 						select="'CAF-132'" />
 				<xsl:with-param
 						name="context"
-						select="InvestorRedemptionLockUpPeriod" />
+						select="ProvideWithdrawalRightsFlag|InvestorRedemptionLockUpPeriod" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -2167,7 +2153,11 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/NetInvestmentReturnsRate">
-		<xsl:param name="periodtype" />
+
+		<xsl:variable
+				name="periodtype"
+				select="./ancestor-or-self::AIFRecordInfo/ReportingPeriodType" />
+
 		<xsl:variable name="error">
 			<xsl:choose>
 				<xsl:when test="$periodtype = 'Q1'">
@@ -2203,13 +2193,17 @@
 						select="'CAF-135'" />
 				<xsl:with-param
 						name="context"
-						select="NetInvestmentReturnsRate" />
+						select="$periodtype|*" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/NAVChangeRate">
-		<xsl:param name="periodtype" />
+
+		<xsl:variable
+				name="periodtype"
+				select="./ancestor-or-self::AIFRecordInfo/ReportingPeriodType" />
+
 		<xsl:variable name="error">
 			<xsl:choose>
 				<xsl:when test="$periodtype = 'Q1'">
@@ -2245,14 +2239,17 @@
 						select="'CAF-136'" />
 				<xsl:with-param
 						name="context"
-						select="NAVChangeRate" />
+						select="$periodtype|*" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/Subscription">
 
-		<xsl:param name="periodtype" />
+		<xsl:variable
+				name="periodtype"
+				select="./ancestor-or-self::AIFRecordInfo/ReportingPeriodType" />
+
 		<xsl:variable name="error">
 			<xsl:choose>
 				<xsl:when test="$periodtype = 'Q1'">
@@ -2288,7 +2285,7 @@
 						select="'CAF-137'" />
 				<xsl:with-param
 						name="context"
-						select="Subscription" />
+						select="$periodtype|*" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -2304,7 +2301,7 @@
 						select="'CAF-139'" />
 				<xsl:with-param
 						name="context"
-						select="$accrrate" />
+						select="AllCounterpartyCollateralRehypothecationFlag|$accrrate" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -2313,7 +2310,10 @@
 	</xsl:template>
 
 	<xsl:template match="AIFCompleteDescription/AIFIndividualInfo/RiskProfile/OperationalRisk/HistoricalRiskProfile/Redemption">
-		<xsl:param name="periodtype" />
+		<xsl:variable
+				name="periodtype"
+				select="./ancestor-or-self::AIFRecordInfo/ReportingPeriodType" />
+
 		<xsl:variable name="caf-138">
 			<xsl:choose>
 				<xsl:when test="$periodtype = 'Q1'">
@@ -2349,7 +2349,7 @@
 						select="'CAF-138'" />
 				<xsl:with-param
 						name="context"
-						select="Redemption" />
+						select="$periodtype|*" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -2359,7 +2359,7 @@
 		<xsl:variable
 				name="lei"
 				select="." />
-		<xsl:if test="not(my:ISO17442($lei))">
+		<xsl:if test="boolean($lei) and not(my:ISO17442($lei))">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
@@ -2387,11 +2387,11 @@
 						select="'CAF-141'" />
 				<xsl:with-param
 						name="context"
-						select="$siename" />
+						select="BorrowingSourceFlag|$siename" />
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:if test="not(my:ISO17442($lei))">
+		<xsl:if test="boolean($lei) and not(my:ISO17442($lei))">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
@@ -2409,7 +2409,7 @@
 						select="'CAF-143'" />
 				<xsl:with-param
 						name="context"
-						select="$lei" />
+						select="BorrowingSourceFlag|$lei" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -2423,7 +2423,7 @@
 						select="'CAF-144'" />
 				<xsl:with-param
 						name="context"
-						select="$eibic" />
+						select="BorrowingSourceFlag|$eibic" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -2434,7 +2434,7 @@
 						select="'CAF-145'" />
 				<xsl:with-param
 						name="context"
-						select="LeverageAmount" />
+						select="BorrowingSourceFlag|LeverageAmount" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -2451,7 +2451,7 @@
 						select="'CAF-146'" />
 				<xsl:with-param
 						name="context"
-						select="$value" />
+						select="Ranking|LeverageAmount" />
 			</xsl:call-template>
 
 		</xsl:if>
