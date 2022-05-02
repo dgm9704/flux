@@ -55,11 +55,11 @@ xmllint aif.xml --schema schema/aifmd.xsd --noout
 2) Run the transformation:
 
 ``` 
-xsltproc aifmd.xsl aifm.xml
+xsltproc aifmd.xslt aifm.xml
 ``` 
 or
 ``` 
-xsltproc aifmd.xsl aif.xml
+xsltproc aifmd.xslt aif.xml
 ``` 
 
 Sample output for aifmsample.xml:
