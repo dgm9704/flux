@@ -1,27 +1,64 @@
 <xsl:transform
 		version="1.0"
 		xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+		xmlns:exsl="http://exslt.org/common"
 		xmlns:func="http://exslt.org/functions"
 		xmlns:str="http://exslt.org/strings"
 		xmlns:my="http://example.org/my"
 		exclude-result-prefixes="my"
-		extension-element-prefixes="func str">
-
-	<xsl:include href="common.xslt" />
-
+		extension-element-prefixes="func str exsl">
 	<xsl:output
 			indent="yes"
 			method="xml" />
-
 	<xsl:variable
 			name="eeacountrycodes"
 			select="document('data/eea-countries.xml')/codes/code" />
-
 	<xsl:variable
 			name="countrycodes"
 			select="document('data/iso-3166-1.xml')/codes/code" />
+	<xsl:include href="common.xslt" />
 
-	<!-- FIL-* not applicable -->
+	<xsl:variable
+			name="csdr9rrors"
+			select="document('data/csdr9-errors.xml')" />
+
+	<xsl:key
+			name="errorlookup"
+			match="error"
+			use="code" />
+
+	<xsl:template name="CSDR9Error">
+		<xsl:param name="code" />
+		<xsl:param name="context" />
+		<error>
+			<record>
+				<!-- <xsl:value-of select="./ancestor-or-self::AIFMRecordInfo/AIFMNationalCode" /> -->
+			</record>
+			<code>
+				<xsl:value-of select="$code" />
+			</code>
+			<message>
+				<xsl:for-each select="$csdr9rrors">
+					<xsl:for-each select="key('errorlookup', $code)">
+						<xsl:value-of select="message" />
+					</xsl:for-each>
+				</xsl:for-each>
+			</message>
+			<context>
+				<xsl:for-each select="exsl:node-set($context)">
+					<field>
+						<name>
+							<xsl:value-of select="name()" />
+						</name>
+						<value>
+							<xsl:value-of select="." />
+						</value>
+					</field>
+				</xsl:for-each>
+			</context>
+		</error>
+	</xsl:template>
+
 
 	<xsl:template match="/">
 		<result>
@@ -30,11 +67,15 @@
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/RptHdr">
-		<xsl:if test="Ccy != 'EUR'">
-			<error>
- INS-001 The Currency is not valid. Only the value "EUR" is expected.
- </error>
-		</xsl:if>
+		<xsl:if test="Ccy != 'EUR'"></xsl:if>
+		<xsl:call-template name="CSDR9Error">
+			<xsl:with-param
+					name="code"
+					select="'INS-001'" />
+			<xsl:with-param
+					name="context"
+					select="Ccy" />
+		</xsl:call-template>
 
 		<xsl:variable
 				name="reportingperiod"

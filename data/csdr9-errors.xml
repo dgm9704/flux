@@ -1,0 +1,6 @@
+<errors>
+	<error>
+		<code>INS-001</code>
+		<message>The Currency is not valid. Only the value "EUR" is expected.</message>
+	</error>
+</errors>
