@@ -101,7 +101,7 @@
 				select="ReportingPeriodEndDate" />
 		<xsl:variable
 				name="enddate"
-				select="translate(reportingperiodenddate,'-','')" />
+				select="translate($reportingperiodenddate,'-','')" />
 		<xsl:variable
 				name="q1end"
 				select="concat($year,'0331')" />
@@ -119,7 +119,7 @@
 				select="LastReportingFlag='true'" />
 		<xsl:variable name="enderror">
 			<xsl:choose>
-				<xsl:when test="not($enddate&gt;$startdate)">true</xsl:when>
+				<xsl:when test="not($enddate &gt; $startdate)">true</xsl:when>
 				<xsl:when test="$periodtype='Q1'">
 					<xsl:if test="not($enddate=$q1end or ($transition and $enddate&lt;$q1end))">true</xsl:if>
 				</xsl:when>
@@ -142,7 +142,7 @@
 						select="'CAF-004'" />
 				<xsl:with-param
 						name="context"
-						select="ReportingPeriodType|ReportingPeriodEndDate" />
+						select="LastReportingFlag|ReportingPeriodType|ReportingPeriodEndDate|ReportingPeriodStartDate" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -157,7 +157,11 @@
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:if test="not($aifmregister[. = AIFMNationalCode])">
+		<xsl:variable
+				name="manager"
+				select="AIFMNationalCode" />
+
+		<xsl:if test="not($aifmregister[. = $manager])">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
@@ -168,7 +172,11 @@
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:if test="not($aifregister[. = AIFNationalCode])">
+		<xsl:variable
+				name="fund"
+				select="AIFNationalCode" />
+
+		<xsl:if test="not($aifregister[. = $fund])">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
@@ -917,7 +925,11 @@
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:if test="not(my:ISO6166(ISINInstrumentIdentification))">
+		<xsl:variable
+				name="isin"
+				select="ISINInstrumentIdentification" />
+
+		<xsl:if test="boolean($isin) and not(my:ISO6166($isin))">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
@@ -928,7 +940,7 @@
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:if test="boolean(InstrumentCodeType = 'ISIN') != boolean(ISINInstrumentIdentification)">
+		<xsl:if test="boolean(InstrumentCodeType = 'ISIN') != boolean($isin)">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
@@ -1189,7 +1201,7 @@
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:if test="not(my:ISO17442($lei))">
+		<xsl:if test="boolean($lei) and not(my:ISO17442($lei))">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
@@ -1970,7 +1982,7 @@
 				name="directclearing"
 				select="ClearTransactionsThroughCCPFlag" />
 
-		<xsl:if test="$directclearing = 'true' and not(AIFCompleteDescription/AIFIndividualInfo/RiskProfile/CounterpartyRiskProfile/CCPExposures/CCPExposure[Ranking = 1])">
+		<xsl:if test="$directclearing = 'true' and not(CCPExposures/CCPExposure[Ranking = 1])">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
