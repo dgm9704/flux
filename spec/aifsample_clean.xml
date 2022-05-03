@@ -734,14 +734,14 @@
 	</AIFRecordInfo>
 	<AIFRecordInfo>
 		<FilingType>INIT</FilingType>
-		<AIFContentType>4</AIFContentType>
+		<AIFContentType>2</AIFContentType>
 		<ReportingPeriodStartDate>2014-01-01</ReportingPeriodStartDate>
 		<ReportingPeriodEndDate>2014-12-31</ReportingPeriodEndDate>
 		<ReportingPeriodType>Y1</ReportingPeriodType>
 		<ReportingPeriodYear>2014</ReportingPeriodYear>
 		<LastReportingFlag>false</LastReportingFlag>
 		<AIFMNationalCode>222222</AIFMNationalCode>
-		<AIFNationalCode>111114</AIFNationalCode>
+		<AIFNationalCode>222222#001</AIFNationalCode>
 		<AIFName>AIFM 1 - Currency Fund 2</AIFName>
 		<AIFEEAFlag>true</AIFEEAFlag>
 		<AIFReportingCode>17</AIFReportingCode>
@@ -1084,10 +1084,10 @@
 						<TradingClearingMechanism>
 							<TradedSecurities>
 								<RegulatedMarketRate>41</RegulatedMarketRate>
-								<OTCRate>20</OTCRate>
+								<OTCRate>59</OTCRate>
 							</TradedSecurities>
 							<TradedDerivatives>
-								<RegulatedMarketRate>0</RegulatedMarketRate>
+								<RegulatedMarketRate>94.59</RegulatedMarketRate>
 								<OTCRate>5.41</OTCRate>
 							</TradedDerivatives>
 							<ClearedDerivativesRate>
@@ -1097,7 +1097,7 @@
 							<ClearedReposRate>
 								<CCPRate>25</CCPRate>
 								<BilateralClearingRate>25</BilateralClearingRate>
-								<TriPartyRepoClearingRate>25</TriPartyRepoClearingRate>
+								<TriPartyRepoClearingRate>50</TriPartyRepoClearingRate>
 							</ClearedReposRate>
 						</TradingClearingMechanism>
 						<AllCounterpartyCollateral>
@@ -1212,7 +1212,7 @@
 							<InvestorLiquidityInDays8to30Rate>10</InvestorLiquidityInDays8to30Rate>
 							<InvestorLiquidityInDays31to90Rate>0</InvestorLiquidityInDays31to90Rate>
 							<InvestorLiquidityInDays91to180Rate>20</InvestorLiquidityInDays91to180Rate>
-							<InvestorLiquidityInDays181to365Rate>30</InvestorLiquidityInDays181to365Rate>
+							<InvestorLiquidityInDays181to365Rate>20</InvestorLiquidityInDays181to365Rate>
 							<InvestorLiquidityInDays365MoreRate>0</InvestorLiquidityInDays365MoreRate>
 						</InvestorLiquidityProfile>
 						<InvestorRedemption>
@@ -1393,8 +1393,8 @@
 		<ReportingPeriodType>H2</ReportingPeriodType>
 		<ReportingPeriodYear>2014</ReportingPeriodYear>
 		<LastReportingFlag>false</LastReportingFlag>
-		<AIFMNationalCode>333333</AIFMNationalCode>
-		<AIFNationalCode>111113</AIFNationalCode>
+		<AIFMNationalCode>111111</AIFMNationalCode>
+		<AIFNationalCode>111111#003</AIFNationalCode>
 		<AIFName>AIF - Fund 1</AIFName>
 		<AIFEEAFlag>true</AIFEEAFlag>
 		<AIFReportingCode>11</AIFReportingCode>

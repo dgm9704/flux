@@ -583,4 +583,12 @@
 		<code>CAF-146</code>
 		<message>The reported value is not consistent with the rank.</message>
 	</error>
+	<error>
+		<code>WAF-001</code>
+		<message>The sum of the percentages should be equal to 100%.</message>
+	</error>
+	<error>
+		<code>WAF-002</code>
+		<message>The sum of the percentages should be equal to 100%.</message>
+	</error>
 </errors>

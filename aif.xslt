@@ -489,9 +489,9 @@
 	<xsl:template match="AIFCompleteDescription/AIFPrincipalInfo/ShareClassIdentification/ShareClassIdentifier">
 		<xsl:variable
 				name="shareclassflag"
-				select="AIFCompleteDescription/AIFPrincipalInfo/ShareClassFlag = 'true'" />
+				select="../../ShareClassFlag" />
 
-		<xsl:if test="not($shareclassflag)">
+		<xsl:if test="$shareclassflag != 'true'">
 			<xsl:if test="ShareClassNationalCode">
 				<xsl:call-template name="AIFError">
 					<xsl:with-param
@@ -499,7 +499,7 @@
 							select="'CAF-016'" />
 					<xsl:with-param
 							name="context"
-							select="../../ShareClassFlag|ShareClassNationalCode" />
+							select="$shareclassflag|ShareClassNationalCode" />
 				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
@@ -507,7 +507,7 @@
 		<xsl:variable
 				name="isin"
 				select="ShareClassIdentifierISIN" />
-		<xsl:if test="not(my:ISO6166($isin))">
+		<xsl:if test="boolean($isin) and not(my:ISO6166($isin))">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
@@ -518,77 +518,77 @@
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:if test="not($shareclassflag) and $isin">
+		<xsl:if test="($shareclassflag != 'true') and $isin">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
 						select="'CAF-018'" />
 				<xsl:with-param
 						name="context"
-						select="../../ShareClassFlag|ShareClassIdentifierISIN" />
+						select="$shareclassflag|ShareClassIdentifierISIN" />
 			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
 				name="cusip"
 				select="ShareClassIdentifierCUSIP" />
-		<xsl:if test="not($shareclassflag) and $cusip">
+		<xsl:if test="($shareclassflag != 'true') and $cusip">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
 						select="'CAF-019'" />
 				<xsl:with-param
 						name="context"
-						select="../../ShareClassFlag|ShareClassIdentifierCUSIP" />
+						select="$shareclassflag|ShareClassIdentifierCUSIP" />
 			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
 				name="sedol"
 				select="ShareClassIdentifierSEDOL" />
-		<xsl:if test="not($shareclassflag) and $sedol">
+		<xsl:if test="($shareclassflag != 'true') and $sedol">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
 						select="'CAF-020'" />
 				<xsl:with-param
 						name="context"
-						select="../../ShareClassFlag|ShareClassIdentifierSEDOL" />
+						select="$shareclassflag|ShareClassIdentifierSEDOL" />
 			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
 				name="ticker"
 				select="ShareClassIdentifierTicker" />
-		<xsl:if test="not($shareclassflag) and $ticker">
+		<xsl:if test="($shareclassflag != 'true') and $ticker">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
 						select="'CAF-021'" />
 				<xsl:with-param
 						name="context"
-						select="../../ShareClassFlag|ShareClassIdentifierTicker" />
+						select="$shareclassflag|ShareClassIdentifierTicker" />
 			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
 				name="ric"
 				select="ShareClassIdentifierRIC" />
-		<xsl:if test="not($shareclassflag) and $ric">
+		<xsl:if test="($shareclassflag != 'true') and $ric">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
 						select="'CAF-022'" />
 				<xsl:with-param
 						name="context"
-						select="../../ShareClassFlag|ShareClassIdentifierRIC" />
+						select="$shareclassflag|ShareClassIdentifierRIC" />
 			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:variable
 				name="shareclassname"
 				select="ShareClassName" />
-		<xsl:if test="$shareclassflag != boolean($shareclassname)">
+		<xsl:if test="($shareclassflag = 'true') != boolean($shareclassname)">
 			<xsl:call-template name="AIFError">
 				<xsl:with-param
 						name="code"
