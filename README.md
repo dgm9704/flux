@@ -9,7 +9,6 @@
 - Validations should be trivial to run with any XSLT processor
 - The output is very rudimentary for now. After all the rules are implemented, the output can be polished.
 - XSLT (and XPATH, XQUERY) version used is 1.0, as this provides best tooling support. Some functionality will be missing because of this.
-- Check digit calculations are not implemented, but have been replaced with lookups instead.
 
 ## Specifications
    For some reason ESMA does not provide the specifications for AIFMD validations publicly, and neither does FIN-FSA.
