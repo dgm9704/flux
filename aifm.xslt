@@ -176,17 +176,26 @@
 						select="$manager" />
 			</xsl:call-template>
 		</xsl:if>
+		<xsl:apply-templates />
+	</xsl:template>
 
-		<xsl:if test="AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency and not(AIFMCompleteDescription/AIFMBaseCurrencyDescription/BaseCurrency = 'EUR')">
+	<xsl:template match="AIFMCompleteDescription">
+
+		<xsl:variable
+				name="basecurrency"
+				select="AIFMBaseCurrencyDescription/BaseCurrency" />
+
+		<xsl:if test="$basecurrency and not($basecurrency = 'EUR')">
+
 			<xsl:variable
 					name="amountbase"
-					select="AIFMCompleteDescription/AIFMBaseCurrencyDescription/AUMAmountInBaseCurrency" />
+					select="AIFMBaseCurrencyDescription/AUMAmountInBaseCurrency" />
 			<xsl:variable
 					name="amounteuro"
-					select="AIFMCompleteDescription/AUMAmountInEuro" />
+					select="AUMAmountInEuro" />
 			<xsl:variable
 					name="rateeuro"
-					select="AIFMCompleteDescription/AIFMBaseCurrencyDescription/FXEURRate" />
+					select="AIFMBaseCurrencyDescription/FXEURRate" />
 			<xsl:variable
 					name="result"
 					select="$amounteuro * $rateeuro" />
@@ -197,7 +206,7 @@
 							select="'CAM-016'" />
 					<xsl:with-param
 							name="context"
-							select="$amountbase" />
+							select="$basecurrency|$amountbase|$amounteuro|$rateeuro" />
 				</xsl:call-template>
 			</xsl:if>
 		</xsl:if>
@@ -206,7 +215,7 @@
 	</xsl:template>
 
 	<xsl:template match="AIFMCompleteDescription/AIFMPrincipalMarkets/AIFMFivePrincipalMarket/MarketIdentification">
-		<xsl:param name="manager" />
+
 		<xsl:variable
 				name="mic"
 				select="MarketCode" />
