@@ -1449,6 +1449,7 @@
 							<FundOfFundsStrategyType>OTHR_FOFS</FundOfFundsStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>15</StrategyNAVRate>
+							<StrategyTypeOtherDescription>Description here</StrategyTypeOtherDescription>
 						</FundOfFundsStrategy>
 					</FundOfFundsInvestmentStrategies>
 					<OtherFundInvestmentStrategies>
@@ -1456,6 +1457,7 @@
 							<OtherFundStrategyType>OTHR_OTHF</OtherFundStrategyType>
 							<PrimaryStrategyFlag>false</PrimaryStrategyFlag>
 							<StrategyNAVRate>20</StrategyNAVRate>
+							<StrategyTypeOtherDescription>Description here</StrategyTypeOtherDescription>
 						</OtherFundStrategy>
 						<OtherFundStrategy>
 							<OtherFundStrategyType>OTHR_FXIF</OtherFundStrategyType>
@@ -1656,7 +1658,7 @@
 							<AssetType>DER_EQD</AssetType>
 							<PositionType>S</PositionType>
 							<MarketIdentification>
-								<MarketCodeType>XXX</MarketCodeType>
+								<MarketCodeType>OTC</MarketCodeType>
 							</MarketIdentification>
 							<AggregatedValueAmount>72000000</AggregatedValueAmount>
 							<AggregatedValueRate>28</AggregatedValueRate>
@@ -1800,12 +1802,12 @@
 					<CounterpartyRiskProfile>
 						<TradingClearingMechanism>
 							<TradedSecurities>
-								<RegulatedMarketRate>41</RegulatedMarketRate>
+								<RegulatedMarketRate>80</RegulatedMarketRate>
 								<OTCRate>20</OTCRate>
 							</TradedSecurities>
 							<TradedDerivatives>
-								<RegulatedMarketRate>0</RegulatedMarketRate>
-								<OTCRate>5.41</OTCRate>
+								<RegulatedMarketRate>94.58</RegulatedMarketRate>
+								<OTCRate>5.42</OTCRate>
 							</TradedDerivatives>
 							<ClearedDerivativesRate>
 								<CCPRate>100</CCPRate>
@@ -1813,7 +1815,7 @@
 							</ClearedDerivativesRate>
 							<ClearedReposRate>
 								<CCPRate>25</CCPRate>
-								<BilateralClearingRate>25</BilateralClearingRate>
+								<BilateralClearingRate>50</BilateralClearingRate>
 								<TriPartyRepoClearingRate>25</TriPartyRepoClearingRate>
 							</ClearedReposRate>
 						</TradingClearingMechanism>
