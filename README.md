@@ -103,6 +103,7 @@ Sample output for aif validation errors:
 	- output is very minimal
 
 ## Next steps 
+- Think about packaging, instructions etc.
 - Add richer info about the error location and related values from specifications
 - Add more info about the validation to the error (perhaps controllable via argument)
 - If possible, find out the output format that ESMA uses!
