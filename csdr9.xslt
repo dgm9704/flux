@@ -59,7 +59,6 @@
 		</error>
 	</xsl:template>
 
-
 	<xsl:template match="/">
 		<result>
 			<xsl:apply-templates />
@@ -67,16 +66,16 @@
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/RptHdr">
-		<xsl:if test="Ccy != 'EUR'"></xsl:if>
-		<xsl:call-template name="CSDR9Error">
-			<xsl:with-param
-					name="code"
-					select="'INS-001'" />
-			<xsl:with-param
-					name="context"
-					select="Ccy" />
-		</xsl:call-template>
-
+		<xsl:if test="Ccy != 'EUR'">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-001'" />
+				<xsl:with-param
+						name="context"
+						select="Ccy" />
+			</xsl:call-template>
+		</xsl:if>
 		<xsl:variable
 				name="reportingperiod"
 				select="RptgDt" />
@@ -84,11 +83,14 @@
 				name="date"
 				select="substring($reportingperiod,6,5)" />
 		<xsl:if test="not($date='03-31' or $date='06-30' or $date='09-30' or $date='12-31')">
-			<error>
-				INS-002 The date [
-				<xsl:value-of select="RptgDt" />
-				] is not valid. One of YYYY-03-31, YYYY-06-30, YYYY-09-30 or YYYY-12-31 is expected, where YYYY is the year of the report.
-			</error>
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-002'" />
+				<xsl:with-param
+						name="context"
+						select="RptgDt" />
+			</xsl:call-template>
 		</xsl:if>
 
 	</xsl:template>
@@ -97,11 +99,14 @@
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/Id">
 		<xsl:if test="not(my:ISO17442(LEI))">
-			<error>
-				INS-013 The LEI [
-				<xsl:value-of select="LEI" />
-				] is not valid according to ISO 17442.
-			</error>
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-013'" />
+				<xsl:with-param
+						name="context"
+						select="LEI" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<!-- INS-014.1 requires filename -->
@@ -113,11 +118,14 @@
 				select="BrnchId" />
 
 		<xsl:if test="boolean($branchid) and not($eeacountrycodes[. = $branchid] or $branchid = 'TS')">
-			<error>
-				INS-014.3 The branch country code [
-				<xsl:value-of select="$branchid" />
-				] is not valid, since it must relate either to an EEA country code or to a Third Country State (i.e. 'TS').
-			</error>
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-014.3'" />
+				<xsl:with-param
+						name="context"
+						select="BrnchId" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<!-- INS-015 requires external lookup -->
@@ -129,27 +137,50 @@
 	</xsl:template>
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/FinInstrm/Eqty">
+
 		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
-			<error>
-INS-021.1 For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.
- </error>
-		</xsl:if>
-		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
-			<error>
-INS-022.1 For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of settled value plus failed value is not equal to the total value.
-</error>
-		</xsl:if>
-		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
-			<error>
-INS-023.1 For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
-		</xsl:if>
-		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
-			<error>
-INS-024.1 For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-021.1'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Sttld/Vol|Aggt/Faild/Vol|Aggt/Ttl/Vol" />
+			</xsl:call-template>
 		</xsl:if>
 
+		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-022.1'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Sttld/Val|Aggt/Faild/Val|Aggt/Ttl/Val" />
+			</xsl:call-template>
+		</xsl:if>
+
+		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-023.1'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Faild/Vol|Aggt/Ttl/Vol|FaildRate/VolPctg" />
+			</xsl:call-template>
+		</xsl:if>
+
+		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-024.1'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+			</xsl:call-template>
+		</xsl:if>
 		<!-- <xsl:variable
 				name="total"
 				select="Aggt/Ttl/Vol" />
