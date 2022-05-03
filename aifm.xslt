@@ -242,7 +242,7 @@
 						select="'CAM-009'" />
 				<xsl:with-param
 						name="context"
-						select="./AIFMNationalCode" />
+						select="ReportingMemberState|AIFMNationalCode" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -269,7 +269,7 @@
 						select="'CAM-020'" />
 				<xsl:with-param
 						name="context"
-						select="FXEUROtherReferenceRateDescription" />
+						select="BaseCurrency|FXEURReferenceRateType|FXEUROtherReferenceRateDescription" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -280,7 +280,7 @@
 				name="lei"
 				select="." />
 
-		<xsl:if test="not(my:ISO17442($lei))">
+		<xsl:if test="boolean($lei) and not(my:ISO17442($lei))">
 			<xsl:call-template name="AIFMError">
 				<xsl:with-param
 						name="code"
@@ -307,7 +307,7 @@
 						select="'CAM-013'" />
 				<xsl:with-param
 						name="context"
-						select="$value" />
+						select="SubAssetType|$value" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -318,7 +318,7 @@
 						select="'CAM-014'" />
 				<xsl:with-param
 						name="context"
-						select="$value" />
+						select="Ranking|$value" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -338,7 +338,7 @@
 						select="'CAM-011'" />
 				<xsl:with-param
 						name="context"
-						select="$value" />
+						select="MarketIdentification/MarketCodeType|$value" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -349,7 +349,7 @@
 						select="'CAM-012'" />
 				<xsl:with-param
 						name="context"
-						select="$value" />
+						select="Ranking|$value" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:apply-templates />
