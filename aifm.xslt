@@ -76,7 +76,7 @@
 						select="'CAM-002'" />
 				<xsl:with-param
 						name="context"
-						select="$reportingperiodstartdate" />
+						select="$periodtype|$reportingperiodstartdate" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -126,9 +126,10 @@
 						select="'CAM-003'" />
 				<xsl:with-param
 						name="context"
-						select="$reportingperiodenddate" />
+						select="ReportingPeriodType|LastReportingFlag|ReportingPeriodStartDate|ReportingPeriodEndDate" />
 			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:variable
 				name="changequarter"
 				select="AIFMReportingObligationChangeQuarter" />
@@ -149,7 +150,7 @@
 						select="'CAM-004'" />
 				<xsl:with-param
 						name="context"
-						select="$changequarter" />
+						select="AIFMReportingObligationChangeFrequencyCode|AIFMReportingObligationChangeContentsCode|AIFMReportingObligationChangeQuarter" />
 			</xsl:call-template>
 		</xsl:if>
 		<xsl:variable
@@ -216,7 +217,7 @@
 						select="'CAM-010'" />
 				<xsl:with-param
 						name="context"
-						select="$mic" />
+						select="MarketCodeType|$mic" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>

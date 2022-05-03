@@ -1,9 +1,5 @@
 <errors>
 	<error>
-		<code>CAM-003</code>
-		<message>The reporting period end date is not allowed</message>
-	</error>
-	<error>
 		<code>FIL-009</code>
 		<message>The authority key file attribute is not consistent with the sending</message>
 	</error>
