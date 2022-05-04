@@ -605,7 +605,7 @@
 						select="'INS-033.1'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Vol|100 div Aggt/Ttl/Vol|FaildRate/VolPctg" />
+						select="Aggt/Faild/Vol|Aggt/Ttl/Vol|FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -953,36 +953,50 @@
 				select="FrstTwoCharsInstrmId" />
 
 		<xsl:if test="boolean($lei) and not(my:ISO17442($lei))">
-			<error>
-				INS-062 The LEI [
-				<xsl:value-of select="LEI" />
-				] is not valid.
-			</error>
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-062'" />
+				<xsl:with-param
+						name="context"
+						select="$lei" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:if test="not($cc) or not($countrycodes[. = $cc])">
-			<error>
-				INS-063 The ISIN code of the Issuer CSD is not valid. In case of new ISINs, please make sure to inform ESMA before submitting them in the report
-			</error>
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-063'" />
+				<xsl:with-param
+						name="context"
+						select="$cc" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:choose>
 			<xsl:when test="boolean($lei)">
 				<xsl:if test="count(../../IssrCSD/Id[LEI = $lei and FrstTwoCharsInstrmId = $cc]) &gt; 1">
-					<error>
-						INS-064 There are more than one Issuer CSDs with an ISIN Code starting with
-						<xsl:value-of select="$cc" />
-						and LEI:
-						<xsl:value-of select="$lei" />
-					</error>
+					<xsl:call-template name="CSDR9Error">
+						<xsl:with-param
+								name="code"
+								select="'INS-064'" />
+						<xsl:with-param
+								name="context"
+								select="$cc|$lei" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:when>
 			<xsl:otherwise>
 				<xsl:if test="count(../../IssrCSD/Id[FrstTwoCharsInstrmId = $cc]) &gt; 1">
-					<error>
-						INS-064 There are more than one Issuer CSDs with ISIN Code starting with:
-						<xsl:value-of select="$cc" />
-					</error>
+					<xsl:call-template name="CSDR9Error">
+						<xsl:with-param
+								name="code"
+								select="'INS-064'" />
+						<xsl:with-param
+								name="context"
+								select="$cc" />
+					</xsl:call-template>
 				</xsl:if>
 			</xsl:otherwise>
 		</xsl:choose>
