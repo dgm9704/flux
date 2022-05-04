@@ -588,9 +588,6 @@
 		</xsl:if>
 
 		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
-			<error>
-INS-032.1 For the type of transaction "Purchase or sale of securities" the sum of settled value plus failed value is not equal to the total value.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -602,9 +599,6 @@ INS-032.1 For the type of transaction "Purchase or sale of securities" the sum o
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
-			<error>
-INS-033.1 For the type of transaction "Purchase or sale of securities" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -616,9 +610,6 @@ INS-033.1 For the type of transaction "Purchase or sale of securities" the Faile
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
-			<error>
-INS-034.1 For the type of transaction "Purchase or sale of securities" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -632,9 +623,6 @@ INS-034.1 For the type of transaction "Purchase or sale of securities" the Faile
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/TxTp/CollMgmtOpr">
 		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
-			<error>
-INS-031.2 For the type of transaction "Collateral management operations" the sum of settled volume plus failed volume is not equal to the total volume.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -646,9 +634,6 @@ INS-031.2 For the type of transaction "Collateral management operations" the sum
 		</xsl:if>
 
 		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
-			<error>
-INS-032.2 For the type of transaction "Collateral management operations" the sum of settled value plus failed value is not equal to the total value.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -660,9 +645,6 @@ INS-032.2 For the type of transaction "Collateral management operations" the sum
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
-			<error>
-INS-033.2 For the type of transaction "Collateral management operations" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -674,9 +656,6 @@ INS-033.2 For the type of transaction "Collateral management operations" the Fai
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
-			<error>
-INS-034.2 For the type of transaction "Collateral management operations" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -690,9 +669,6 @@ INS-034.2 For the type of transaction "Collateral management operations" the Fai
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/TxTp/SctiesLndgOrBrrwg">
 		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
-			<error>
-INS-031.3 For the type of transaction "Securities lending and securities borrowing" the sum of settled volume plus failed volume is not equal to the total volume.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -704,9 +680,6 @@ INS-031.3 For the type of transaction "Securities lending and securities borrowi
 		</xsl:if>
 
 		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
-			<error>
-INS-032.3 For the type of transaction "Securities lending and securities borrowing" the sum of settled value plus failed value is not equal to the total value.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -718,9 +691,6 @@ INS-032.3 For the type of transaction "Securities lending and securities borrowi
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
-			<error>
-INS-033.3 For the type of transaction "Securities lending and securities borrowing" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -732,9 +702,6 @@ INS-033.3 For the type of transaction "Securities lending and securities borrowi
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
-			<error>
-INS-034.3 For the type of transaction "Securities lending and securities borrowing" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -748,9 +715,6 @@ INS-034.3 For the type of transaction "Securities lending and securities borrowi
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/TxTp/RpAgrmt">
 		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
-			<error>
-INS-031.4 For the type of transaction "Repurchase transactions" the sum of settled volume plus failed volume is not equal to the total volume.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -762,9 +726,6 @@ INS-031.4 For the type of transaction "Repurchase transactions" the sum of settl
 		</xsl:if>
 
 		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
-			<error>
-INS-032.4 For the type of transaction "Repurchase transactions" the sum of settled value plus failed value is not equal to the total value.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -776,9 +737,6 @@ INS-032.4 For the type of transaction "Repurchase transactions" the sum of settl
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
-			<error>
-INS-033.4 For the type of transaction "Repurchase transactions" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -790,9 +748,6 @@ INS-033.4 For the type of transaction "Repurchase transactions" the Failed Rate 
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
-			<error>
-INS-034.4 For the type of transaction "Repurchase transactions" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -806,9 +761,6 @@ INS-034.4 For the type of transaction "Repurchase transactions" the Failed Rate 
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/TxTp/OthrTxs">
 		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
-			<error>
-INS-031.5 For the type of transaction "Other securities transactions" the sum of settled volume plus failed volume is not equal to the total volume.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -820,9 +772,6 @@ INS-031.5 For the type of transaction "Other securities transactions" the sum of
 		</xsl:if>
 
 		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
-			<error>
-INS-032.5 For the type of transaction "Other securities transactions" the sum of settled value plus failed value is not equal to the total value.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -834,9 +783,6 @@ INS-032.5 For the type of transaction "Other securities transactions" the sum of
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
-			<error>
-INS-033.5 For the type of transaction "Other securities transactions" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -848,9 +794,6 @@ INS-033.5 For the type of transaction "Other securities transactions" the Failed
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
-			<error>
-INS-034.5 For the type of transaction "Other securities transactions" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -864,9 +807,6 @@ INS-034.5 For the type of transaction "Other securities transactions" the Failed
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/ClntTp/Prfssnl">
 		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
-			<error>
-INS-041.1 For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -878,9 +818,6 @@ INS-041.1 For the type of client "Professional clients as defined in point (10) 
 		</xsl:if>
 
 		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
-			<error>
-INS-042.1 For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the sum of settled value and failed value is not equal to the total value.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -892,9 +829,6 @@ INS-042.1 For the type of client "Professional clients as defined in point (10) 
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
-			<error>
-INS-043.1 For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -906,9 +840,6 @@ INS-043.1 For the type of client "Professional clients as defined in point (10) 
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
-			<error>
-INS-044.1 For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -922,9 +853,6 @@ INS-044.1 For the type of client "Professional clients as defined in point (10) 
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/ClntTp/Rtl">
 		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
-			<error>
-INS-041.2 For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -936,9 +864,6 @@ INS-041.2 For the type of client "Retail clients as defined in point (11) of Art
 		</xsl:if>
 
 		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
-			<error>
-INS-042.2 For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the sum of settled value and failed value is not equal to the total value.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -950,9 +875,6 @@ INS-042.2 For the type of client "Retail clients as defined in point (11) of Art
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
-			<error>
-INS-043.2 For the type of client "Retail clients as defined in point (11) ofArticle 4(1) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -964,9 +886,6 @@ INS-043.2 For the type of client "Retail clients as defined in point (11) ofArti
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
-			<error>
-INS-044.2 For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -980,9 +899,6 @@ INS-044.2 For the type of client "Retail clients as defined in point (11) of Art
 
 	<xsl:template match="/Document/SttlmIntlrRpt/SttlmIntlr/TtlCshTrf">
 		<xsl:if test="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol">
-			<error>
-INS-051 The sum of settled volume plus failed volume of the cash transfers is not equal to the total volume.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -994,9 +910,6 @@ INS-051 The sum of settled volume plus failed volume of the cash transfers is no
 		</xsl:if>
 
 		<xsl:if test="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val">
-			<error>
-INS-052 The sum of settled value and failed value of the cash transfers is not equal to the total value.
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -1008,9 +921,6 @@ INS-052 The sum of settled value and failed value of the cash transfers is not e
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg">
-			<error>
-INS-053 For cash transfers, the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Totaldata
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
@@ -1022,9 +932,6 @@ INS-053 For cash transfers, the Failed Rate Volume % is not consistent to the co
 		</xsl:if>
 
 		<xsl:if test="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val">
-			<error>
-INS-054 For cash transfers, the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Totaldata
-</error>
 			<xsl:call-template name="CSDR9Error">
 				<xsl:with-param
 						name="code"
