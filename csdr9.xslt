@@ -448,7 +448,7 @@ INS-021.7 For the financial instrument "Money market instruments other than sove
 						select="'INS-021.7'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -462,7 +462,7 @@ INS-022.7 For the financial instrument "Money market instruments other than sove
 						select="'INS-022.7'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -476,7 +476,7 @@ INS-023.7 For the financial instrument "Money market instruments other than sove
 						select="'INS-023.7'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -506,7 +506,7 @@ INS-021.8 For the financial instrument "Emission allowances" the sum of settled 
 						select="'INS-021.8'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -520,7 +520,7 @@ INS-022.8 For the financial instrument "Emission allowances" the sum of settled 
 						select="'INS-022.8'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -534,7 +534,7 @@ INS-023.8 For the financial instrument "Emission allowances" the Failed Rate Vol
 						select="'INS-023.8'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -564,7 +564,7 @@ INS-021.9 For the financial instrument "Other financial instruments" the sum of 
 						select="'INS-021.9'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -578,7 +578,7 @@ INS-022.9 For the financial instrument "Other financial instruments" the sum of 
 						select="'INS-022.9'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -592,7 +592,7 @@ INS-023.9 For the financial instrument "Other financial instruments" the Failed 
 						select="'INS-023.9'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -622,7 +622,7 @@ INS-031.1 For the type of transaction "Purchase or sale of securities" the sum o
 						select="'INS-031.1'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -636,7 +636,7 @@ INS-032.1 For the type of transaction "Purchase or sale of securities" the sum o
 						select="'INS-032.1'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -650,7 +650,7 @@ INS-033.1 For the type of transaction "Purchase or sale of securities" the Faile
 						select="'INS-033.1'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -680,7 +680,7 @@ INS-031.2 For the type of transaction "Collateral management operations" the sum
 						select="'INS-031.2'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -694,7 +694,7 @@ INS-032.2 For the type of transaction "Collateral management operations" the sum
 						select="'INS-034.2'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -708,7 +708,7 @@ INS-033.2 For the type of transaction "Collateral management operations" the Fai
 						select="'INS-033.2'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -738,7 +738,7 @@ INS-031.3 For the type of transaction "Securities lending and securities borrowi
 						select="'INS-031.3'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -752,7 +752,7 @@ INS-032.3 For the type of transaction "Securities lending and securities borrowi
 						select="'INS-032.3'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -766,7 +766,7 @@ INS-033.3 For the type of transaction "Securities lending and securities borrowi
 						select="'INS-033.3'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -780,7 +780,7 @@ INS-034.3 For the type of transaction "Securities lending and securities borrowi
 						select="'INS-034.3'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -796,7 +796,7 @@ INS-031.4 For the type of transaction "Repurchase transactions" the sum of settl
 						select="'INS-031.4'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -810,7 +810,7 @@ INS-032.4 For the type of transaction "Repurchase transactions" the sum of settl
 						select="'INS-032.4'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -824,7 +824,7 @@ INS-033.4 For the type of transaction "Repurchase transactions" the Failed Rate 
 						select="'INS-033.4'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -854,7 +854,7 @@ INS-031.5 For the type of transaction "Other securities transactions" the sum of
 						select="'INS-031.5'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -868,7 +868,7 @@ INS-032.5 For the type of transaction "Other securities transactions" the sum of
 						select="'INS-032.5'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -882,7 +882,7 @@ INS-033.5 For the type of transaction "Other securities transactions" the Failed
 						select="'INS-033.5'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -896,7 +896,7 @@ INS-034.5 For the type of transaction "Other securities transactions" the Failed
 						select="'INS-034.5'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -912,7 +912,7 @@ INS-041.1 For the type of client "Professional clients as defined in point (10) 
 						select="'INS-041.1'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -926,7 +926,7 @@ INS-042.1 For the type of client "Professional clients as defined in point (10) 
 						select="'INS-042.1'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -940,7 +940,7 @@ INS-043.1 For the type of client "Professional clients as defined in point (10) 
 						select="'INS-043.1'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -954,7 +954,7 @@ INS-044.1 For the type of client "Professional clients as defined in point (10) 
 						select="'INS-044.1'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -970,7 +970,7 @@ INS-041.2 For the type of client "Retail clients as defined in point (11) of Art
 						select="'INS-041.2'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -984,7 +984,7 @@ INS-042.2 For the type of client "Retail clients as defined in point (11) of Art
 						select="'INS-042.2'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -998,7 +998,7 @@ INS-043.2 For the type of client "Retail clients as defined in point (11) ofArti
 						select="'INS-043.2'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1012,7 +1012,7 @@ INS-044.2 For the type of client "Retail clients as defined in point (11) of Art
 						select="'INS-044.2'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
@@ -1028,7 +1028,7 @@ INS-051 The sum of settled volume plus failed volume of the cash transfers is no
 						select="'INS-051'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Vol + Aggt/Faild/Vol != Aggt/Ttl/Vol" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1042,7 +1042,7 @@ INS-052 The sum of settled value and failed value of the cash transfers is not e
 						select="'INS-052'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Sttld/Val + Aggt/Faild/Val != Aggt/Ttl/Val" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1056,7 +1056,7 @@ INS-053 For cash transfers, the Failed Rate Volume % is not consistent to the co
 						select="'INS-053'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol != FaildRate/VolPctg" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -1070,7 +1070,7 @@ INS-054 For cash transfers, the Failed Rate Value % is not consistent to the cor
 						select="'INS-054'" />
 				<xsl:with-param
 						name="context"
-						select="Aggt/Faild/Val|Aggt/Ttl/Val|FaildRate/Val" />
+						select="Aggt/Faild/Val * 100 div Aggt/Ttl/Val != FaildRate/Val" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
