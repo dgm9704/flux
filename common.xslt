@@ -12,6 +12,14 @@
 			indent="yes"
 			method="xml" />
 
+	<xsl:template name="path">
+		<xsl:for-each select="parent::*">
+			<xsl:call-template name="path" />
+		</xsl:for-each>
+		<xsl:value-of select="name()" />
+		<xsl:text>/</xsl:text>
+	</xsl:template>
+
 	<func:function name="my:ISO17442">
 		<xsl:param name="lei" />
 		<func:result select="my:modulo(my:convert($lei), 97) = 1" />

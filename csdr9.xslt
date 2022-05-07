@@ -48,7 +48,8 @@
 				<xsl:for-each select="exsl:node-set($context)">
 					<field>
 						<name>
-							<xsl:value-of select="name()" />
+							<!-- <xsl:value-of select="name()" /> -->
+							<xsl:call-template name="path" />
 						</name>
 						<value>
 							<xsl:value-of select="." />
