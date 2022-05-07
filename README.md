@@ -11,6 +11,8 @@
 - XSLT (and XPATH, XQUERY) version used is 1.0, as this provides best tooling support. Some functionality will be missing because of this.
 
 ## Specifications
+
+### AIFMD
    For some reason ESMA does not provide the specifications for AIFMD validations publicly, and neither does FIN-FSA.
    ESMA provides [technical rules for the fields](https://www.esma.europa.eu/document/aifmd-reporting-it-technical-guidance-rev-4-updated)
    I have found some versions of the AIFMD validation specifications from other sources:
@@ -33,7 +35,12 @@ https://www.fma-li.li/files/list/fma-wegleitung-2020-8-aifmd-reporting-fehlermel
    
    https://www.bafin.de/SharedDocs/Downloads/DE/Merkblatt/WA/dl_150305_merkbl_35KAGB_Anlage1_AIF_wa.pdf?__blob=publicationFile&v=1
    
- 
+### CSDR9
+
+- Technical Guidance for Settlement Internalisers – Report Validation Rules (CSDR Article 9) 
+
+https://www.esma.europa.eu/sites/default/files/library/esma65-8-6561_csdr-technical_guidance_for_settlement_internalisers_report_validation_rules.pdf
+
 ## My environment
    - [Visual Studio Code](https://code.visualstudio.com/) on [Arch Linux](https://www.archlinux.org/) for development
    - [xsltproc](http://xmlsoft.org/XSLT/xsltproc.html) for stylesheet processing

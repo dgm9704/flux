@@ -3,4 +3,312 @@
 		<code>INS-001</code>
 		<message>The Currency is not valid. Only the value "EUR" is expected.</message>
 	</error>
+	<error>
+		<code>INS-002</code>
+		<message>The date is not valid. One of YYYY-03-31, YYYY-06-30, YYYY-09-30 or YYYY-12-31 is expected, where YYYY is the year of the report.</message>
+	</error>
+	<error>
+		<code>INS-013</code>
+		<message>The LEI is not valid according to ISO 17442.</message>
+	</error>
+	<error>
+		<code>INS-014.3</code>
+		<message>The branch country code is not valid, since it must relate either to an EEA country code or to a Third Country State (i.e. 'TS').</message>
+	</error>
+	<error>
+		<code>INS-021.1</code>
+		<message>For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-022.1</code>
+		<message>For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-023.1</code>
+		<message>For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-024.1</code>
+		<message>For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-071.1</code>
+		<message>For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.</message>
+	</error>
+	<error>
+		<code>INS-021.2</code>
+		<message>For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-022.2</code>
+		<message>For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive2014/65/EU" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-023.2</code>
+		<message>For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-024.2</code>
+		<message>For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-071.2</code>
+		<message>For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.</message>
+	</error>
+	<error>
+		<code>INS-021.3</code>
+		<message>For the financial instrument "Transferable securities referred to in point (b) of Article 4(1)(44) of Directive 2014/65/EU other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-022.3</code>
+		<message>For the financial instrument "Transferable securities referred to in point (b) of Article 4(1)(44) of Directive 2014/65/EU other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-023.3</code>
+		<message>For the financial instrument "Transferable securities referred to in point (b) of Article 4(1)(44) of Directive 2014/65/EU other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-024.3</code>
+		<message>For the financial instrument "Transferable securities referred to in point (b) of Article 4(1)(44) of Directive 2014/65/EU other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-021.4</code>
+		<message>For the financial instrument "Transferable securities referred to in point (c) of Article 4(1)(44) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-022.4</code>
+		<message>For the financial instrument "Transferable securities referred to in point (c) of Article 4(1)(44) of Directive 2014/65/EU" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-023.4</code>
+		<message>For the financial instrument "Transferable securities referred to in point (c) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-024.4</code>
+		<message>For the financial instrument "Transferable securities referred to in point (c) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-021.5</code>
+		<message>For the financial instrument "Exchange-traded funds as defined in point (46) of Article 4(1) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-022.5</code>
+		<message>For the financial instrument "Exchange-traded funds as defined in point (46) of Article 4(1) of Directive 2014/65/EU" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-023.5</code>
+		<message>For the financial instrument "Exchange-traded funds as defined in point (46) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-024.5</code>
+		<message>For the financial instrument "Exchange-traded funds as defined in point (46) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-021.6</code>
+		<message>For the financial instrument "Units in collective investment undertakings other than ETFs" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-022.6</code>
+		<message>For the financial instrument "Units in collective investment undertakings other than ETFs" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-023.6</code>
+		<message>For the financial instrument "Units in collective investment undertakings other than ETFs" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-024.6</code>
+		<message>For the financial instrument "Units in collective investment undertakings other than ETFs" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-021.7</code>
+		<message>For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-022.7</code>
+		<message>For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-023.7</code>
+		<message>For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-024.7</code>
+		<message>For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-021.8</code>
+		<message>For the financial instrument "Emission allowances" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-022.8</code>
+		<message>For the financial instrument "Emission allowances" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-023.8</code>
+		<message>For the financial instrument "Emission allowances" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-024.8</code>
+		<message>For the financial instrument "Emission allowances" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-021.9</code>
+		<message>For the financial instrument "Other financial instruments" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-022.9</code>
+		<message>For the financial instrument "Other financial instruments" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-023.9</code>
+		<message>For the financial instrument "Other financial instruments" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-024.9</code>
+		<message>For the financial instrument "Other financial instruments" the FailedRate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-031.1</code>
+		<message>For the type of transaction "Purchase or sale of securities" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-032.1</code>
+		<message>For the type of transaction "Purchase or sale of securities" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-033.1</code>
+		<message>For the type of transaction "Purchase or sale of securities" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-034.1</code>
+		<message>For the type of transaction "Purchase or sale of securities" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-031.2</code>
+		<message>For the type of transaction "Collateral management operations" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-032.2</code>
+		<message>For the type of transaction "Collateral management operations" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-033.2</code>
+		<message>For the type of transaction "Collateral management operations" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-034.2</code>
+		<message>For the type of transaction "Collateral management operations" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-031.3</code>
+		<message>For the type of transaction "Securities lending and securities borrowing" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-032.3</code>
+		<message>For the type of transaction "Securities lending and securities borrowing" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-033.3</code>
+		<message>For the type of transaction "Securities lending and securities borrowing" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-034.3</code>
+		<message>For the type of transaction "Securities lending and securities borrowing" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-031.4</code>
+		<message>For the type of transaction "Repurchase transactions" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-032.4</code>
+		<message>For the type of transaction "Repurchase transactions" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-033.4</code>
+		<message>For the type of transaction "Repurchase transactions" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-034.4</code>
+		<message>For the type of transaction "Repurchase transactions" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-031.5</code>
+		<message>For the type of transaction "Other securities transactions" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-032.5</code>
+		<message>For the type of transaction "Other securities transactions" the sum of settled value plus failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-033.5</code>
+		<message>For the type of transaction "Other securities transactions" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-034.5</code>
+		<message>For the type of transaction "Other securities transactions" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-041.1</code>
+		<message>For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-042.1</code>
+		<message>For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the sum of settled value and failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-043.1</code>
+		<message>For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-044.1</code>
+		<message>For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-041.2</code>
+		<message>For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-042.2</code>
+		<message>For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the sum of settled value and failed value is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-043.2</code>
+		<message>For the type of client "Retail clients as defined in point (11) ofArticle 4(1) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-044.2</code>
+		<message>For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</message>
+	</error>
+	<error>
+		<code>INS-051</code>
+		<message>The sum of settled volume plus failed volume of the cash transfers is not equal to the total volume.</message>
+	</error>
+	<error>
+		<code>INS-052</code>
+		<message>The sum of settled value and failed value of the cash transfers is not equal to the total value.</message>
+	</error>
+	<error>
+		<code>INS-053</code>
+		<message>For cash transfers, the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Totaldata</message>
+	</error>
+	<error>
+		<code>INS-054</code>
+		<message>For cash transfers, the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Totaldata</message>
+	</error>
+	<error>
+		<code>INS-062</code>
+		<message>The LEI is not valid.</message>
+	</error>
+	<error>
+		<code>INS-063</code>
+		<message>The ISIN code of the Issuer CSD is not valid. In case of new ISINs, please make sure to inform ESMA before submitting them in the report</message>
+	</error>
+	<error>
+		<code>INS-064</code>
+		<message>There are more than one Issuer CSDs with an ISIN Code starting with and LEI</message>
+	</error>
+	<error>
+		<code>INS-064</code>
+		<message>There are more than one Issuer CSDs with ISIN Code starting with</message>
+	</error>
 </errors>
