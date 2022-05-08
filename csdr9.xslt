@@ -7,6 +7,7 @@
 		xmlns:my="http://example.org/my"
 		exclude-result-prefixes="my"
 		extension-element-prefixes="func str exsl">
+
 	<xsl:output
 			indent="yes"
 			method="xml" />
@@ -19,13 +20,13 @@
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable
-			name="csdr9rrors"
-			select="document('data/csdr9-errors.xml')" />
+			name="csdr9validations"
+			select="document('data/csdr9-validations.xml')" />
 
 	<xsl:key
-			name="errorlookup"
-			match="error"
-			use="code" />
+			name="validationlookup"
+			match="rule"
+			use="error_code" />
 
 	<xsl:template name="CSDR9Error">
 		<xsl:param name="code" />
@@ -37,18 +38,20 @@
 			<code>
 				<xsl:value-of select="$code" />
 			</code>
-			<message>
-				<xsl:for-each select="$csdr9rrors">
-					<xsl:for-each select="key('errorlookup', $code)">
-						<xsl:value-of select="message" />
-					</xsl:for-each>
+			<xsl:for-each select="$csdr9validations">
+				<xsl:for-each select="key('validationlookup', $code)">
+					<control>
+						<xsl:value-of select="control" />
+					</control>
+					<message>
+						<xsl:value-of select="error_message" />
+					</message>
 				</xsl:for-each>
-			</message>
+			</xsl:for-each>
 			<context>
 				<xsl:for-each select="exsl:node-set($context)">
 					<field>
 						<name>
-							<!-- <xsl:value-of select="name()" /> -->
 							<xsl:call-template name="path" />
 						</name>
 						<value>
@@ -59,6 +62,7 @@
 			</context>
 		</error>
 	</xsl:template>
+
 
 	<xsl:template match="/">
 		<result>
