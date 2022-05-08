@@ -897,17 +897,16 @@ If &lt;Sender&gt; + &lt;Key1&gt; combination does not exist in DB and Version !=
 	</rule>
 	<rule>
 		<number>8.2</number>
-		<control>A report with RptSts=NEWT must submit an IS entry that does not exist in the CSDR database. A report with RptSts=AMND must refer to a valid IS entry in the CSDR database. A report with RptSts=CANC must refer to a valid IS entry in the CSDR database.</control>
+		<control>A report with RptSts=NEWT must submit an IS entry that does not exist in the CSDR database. 
+			A report with RptSts=AMND must refer to a valid IS entry in the CSDR database. 
+			A report with RptSts=CANC must refer to a valid IS entry in the CSDR database.</control>
 		<error_code>INS-082</error_code>
 		<error_message>
-If RptSts=NEWT: The submitted Internalised Settlement of CA [CA] with LEI [LEI], Country code of operation [BrnchId] and Reporting period [Quarter]/[Year] already exists in the System as a valid record. If RptSts=AMND:</error_message>
+If RptSts=NEWT: The submitted Internalised Settlement of CA [CA] with LEI [LEI], Country code of operation [BrnchId] and Reporting period [Quarter]/[Year] already exists in the System as a valid record. 
+If RptSts=AMND: Internalised Settlement report of CA [CA] with LEI [LEI], Country code of operation [BrnchId] and Reporting period [Quarter]/[Year] to be updated exists in the System as a valid record. 
+If RptSts=CANC: Internalised Settlement of CA [CA] with LEI [LEI], Country code of operation [BrnchId] and Reporting period [Quarter]/[Year] to be cancelled exists in the System as a valid record.
+		</error_message>
 		<record_identifier>No</record_identifier>
-	</rule>
-	Internalised Settlement report of CA [CA] with LEI [LEI], Country code of operation [BrnchId] and Reporting period [Quarter]/[Year] to be updated exists in the System as a valid record. If RptSts=CANC:
-	<record_identifier>No</record_identifier>
-	</rule>
-	Internalised Settlement of CA [CA] with LEI [LEI], Country code of operation [BrnchId] and Reporting period [Quarter]/[Year] to be cancelled exists in the System as a valid record.
-	<record_identifier>No</record_identifier>
 	</rule>
 	<rule>
 		<number>8.4</number>
