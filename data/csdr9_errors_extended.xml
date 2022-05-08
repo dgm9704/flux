@@ -1,863 +1,928 @@
-0.1 The<Ccy>
-	element of the report
-must always contain the value
-“EUR”.
-INS-001 The Currency is not valid. Only the value “EUR” is expected. No
-0.2 The
-	<RptgDt>
-		element of the report
-must have one of the following
-values:
-YYYY-03-31
-YYYY-06-30
-YYYY-09-30 or
-YYYY-12-31
-Where YYYY, is the year of the
-report (e.g. 2018).
-INS-002 The date [Reporting period value] is not valid. One of YYYY-03-
-31, YYYY-06-30, YYYY-09-30 or YYYY-12-31 is expected, where
-YYYY is the year of the report.
-No
-The 2-character ISO country code
-retrieved from the
-		<Sender>
-			field of
-the filename must be the same as
-the
-			<AppHdr>
-				.
-				<Fr>
-					.
-					<OrgId>
-						.
-						<Id>
-							.
-							<Org Id=>
-								.
-								<Othr>
-									.
-									<Id>
-										of the Business
-Application Header
-INS-003 The Sender Country code of the filename [Country code in
-Sender] is not consistent to the Sender Country code [Id element
-in the xml] of the Settlement Internaliser Report.
-No
-1.3 The
-										<LEI>
-											must be ISO 17442 valid INS-013 The LEI [LEI] is not valid according to ISO 17442. Yes
-1.4.1* The Country code included in the
-											<Key1>
-												element of the report’s
-filename must be the same as the
-												<Ctry>
-													of the Settlement
-Internaliser report, in case the
-													<BrnchId>
-														is not provided.
-INS-014.1 The Country code of the filename [Country code in Key1] is not
-consistent to the Country code of establishment [Country code
-element in the xml] of the Settlement Internaliser Report.
-No
-1.4.2* The Country code included in the
-														<Key1>
-															element of the report’s
-filename must be the same as the
-															<BrnchId>
-																element of the
-Settlement Internaliser, if provided.
-INS-014.2 The Country code of the filename [Country code in Key1] is not
-consistent to the Country code of operation [Country code element
-in the xml] of the Settlement Internaliser Report.
-1.4.3 The
-																<BrnchId>
-																	value, if provided,
-must be either a valid EEA ISO
-3166 country code or equal to ‘TS’.
-INS-014.3 The branch country code is not valid, since it must relate either to
-an EEA country code or to a Third Country State (i.e. ‘TS’).
-No
-1.5 The
-																	<LEI>
-																		must exist in the GLEIF
-database and have status "Issued",
-"Lapsed", “Merged, "Pending
-transfer" or "Pending archival" as
-per latest record published by
-GLEIF for this LEI.
-INS-015 The LEI [LEI] is not a valid LEI. Νο
-1.6 If the country in the Legal address in
-GLEIF for this LEI is an EEA
-country, validate that it is the same
-as the
-																		<Ctry>
-																			field.
-INS-016 The Country code [Ctry] is not consistent with the country in the
-Legal address as listed in GLEIF.
-Yes
-1.7 If INS-015 has been successfully
-validated (meaning that the
-provided LEI is valid in FIRDS) and
-if the LEI_LADR_COUNTRY FIRDS
-field of this LEI is not an EEA
-country, then validate that the
-																			<Ctry>
-																				value is a valid EEA ISO
-3166 country code.
-INS-017 The Country code [Ctry] is not valid, since it must be an EEA
-country code
-Yes
-2.1.3 For Bd element INS-021.3 For the financial instrument “Transferable securities referred to in
-point (b) of Article 4(1)(44) of Directive 2014/65/EU other than
-sovereign debt referred to in Article 4(1)(61) of Directive
-2014/65/EU” the sum of settled volume plus failed volume is not
-equal to the total volume.
-Yes
-2.1.4 For OthrTrfblScties element INS-021.4 For the financial instrument “Transferable securities referred to in
-point (c) of Article 4(1)(44) of Directive 2014/65/EU” the sum of
-settled volume plus failed volume is not equal to the total volume.
-Yes
-2.1.5 For XchgTradgFnds element INS-021.5 For the financial instrument “Exchange-traded funds as defined in
-point (46) of Article 4(1) of Directive 2014/65/EU” the sum of settled
-volume plus failed volume is not equal to the total volume.
-Yes
-2.1.6 For CllctvInvstmtUdrtkgs element INS-021.6 For the financial instrument “Units in collective investment
-undertakings other than ETFs” the sum of settled volume plus failed
-volume is not equal to the total volume.
-Yes
-2.1.7 For MnyMktInstrm element INS-021.7 For the financial instrument “Money market instruments other than
-sovereign debt referred to in Article 4(1)(61) of Directive
-2014/65/EU” the sum of settled volume plus failed volume is not
-equal to the total volume.
-Yes
-2.1.8 For EmssnAllwnc element INS-021.8 For the financial instrument “Emission allowances” the sum of
-settled volume plus failed volume is not equal to the total volume.
-Yes
-2.1.9 For OthrFinInstrms element INS-021.9 For the financial instrument “Other financial instruments” the sum
-of settled volume plus failed volume is not equal to the total volume.
-Yes
-2.2.1 For Eqty element INS-022.1 For the financial instrument "Transferable securities referred to in
-point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of
-settled volume plus failed volume is not equal to the total volume.
-Yes
-2.2.2 For SvrgnDebt element INS-022.2 For the financial instrument "Sovereign debt referred to in Article
-4(1)(61) of Directive 2014/65/EU" the sum of settled volume plus
-failed volume is not equal to the total volume.
-Yes
-2.2.3 For Bd element INS-022.3 For the financial instrument "Transferable securities referred to in
-point (b) of Article 4(1)(44) of Directive 2014/65/EU other than
-sovereign debt referred to in Article 4(1)(61) of Directive
-2014/65/EU" the sum of settled volume plus failed volume is not
-equal to the total volume.
-Yes
-2.2.4 For OthrTrfblScties element INS-022.4 For the financial instrument "Transferable securities referred to in
-point (c) of Article 4(1)(44) of Directive 2014/65/EU" the sum of
-settled volume plus failed volume is not equal to the total volume.
-Yes
-2.2.5 For XchgTradgFnds element INS-022.5 For the financial instrument "Exchange-traded funds as defined in
-point (46) of Article 4(1) of Directive 2014/65/EU" the sum of settled
-volume plus failed volume is not equal to the total volume.
-Yes
-2.2.6 For CllctvInvstmtUdrtkgs element INS-022.6 For the financial instrument "Units in collective investment
-undertakings other than ETFs" the sum of settled volume plus failed
-volume is not equal to the total volume.
-Yes
-2.2.7 For MnyMktInstrm element INS-022.7 For the financial instrument "Money market instruments other than
-sovereign debt referred to in Article 4(1)(61) of Directive
-2014/65/EU" the sum of settled volume plus failed volume is not
-equal to the total volume.
-Yes
-2.2.8 For EmssnAllwnc element INS-022.8 For the financial instrument "Emission allowances" the sum of
-settled volume plus failed volume is not equal to the total volume.
-Yes
-2.2.9 For OthrFinInstrms element INS-022.9 For the financial instrument "Other financial instruments" the sum
-of settled volume plus failed volume is not equal to the total volume.
-Yes
-2.3.1 For Eqty element INS-023.1 For the financial instrument "Transferable securities referred to in
-point (a) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate
-Volume % is not consistent to the corresponding Aggregate Failed
-and Aggregate Total data.
-Yes
-2.3.2 For SvrgnDebt element INS-023.2 For the financial instrument "Sovereign debt referred to in Article
-4(1)(61) of Directive 2014/65/EU" the Failed Rate Volume % is not
-consistent to the corresponding Aggregate Failed and Aggregate
-Total data.
-Yes
-2.3.3 For Bd element INS-023.3 For the financial instrument "Transferable securities referred to in
-point (b) of Article 4(1)(44) of Directive 2014/65/EU other than
-sovereign debt referred to in Article 4(1)(61) of Directive
-2014/65/EU" the Failed Rate Volume % is not consistent to the
-corresponding Aggregate Failed and Aggregate Total data.
-Yes
-2.3.4 For OthrTrfblScties element INS-023.4 For the financial instrument "Transferable securities referred to in
-point (c) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate
-Volume % is not consistent to the corresponding Aggregate Failed
-and Aggregate Total data.
-Yes
-2.3.5 For XchgTradgFnds element INS-023.5 For the financial instrument "Exchange-traded funds as defined in
-point (46) of Article 4(1) of Directive 2014/65/EU" the Failed Rate
-Volume % is not consistent to the corresponding Aggregate Failed
-and Aggregate Total data.
-Yes
-2.3.6 For CllctvInvstmtUdrtkgs element INS-023.6 For the financial instrument "Units in collective investment
-undertakings other than ETFs" the Failed Rate Volume % is not
-consistent to the corresponding Aggregate Failed and Aggregate
-Total data.
-Yes
-2.3.7 For MnyMktInstrm element INS-023.7 For the financial instrument "Money market instruments other than
-sovereign debt referred to in Article 4(1)(61) of Directive
-2014/65/EU" the Failed Rate Volume % is not consistent to the
-corresponding Aggregate Failed and Aggregate Total data.
-Yes
-2.3.8 For EmssnAllwnc element INS-023.8 For the financial instrument "Emission allowances" the Failed Rate
-Volume % is not consistent to the corresponding Aggregate Failed
-and Aggregate Total data.
-Yes
-2.3.9 For OthrFinInstrms element INS-023.9 For the financial instrument "Other financial instruments" the Failed
-Rate Volume % is not consistent to the corresponding Aggregate
-Failed and Aggregate Total data.
-Yes
-2.4.1 For Eqty element INS-024.1 For the financial instrument "Transferable securities referred to in
-point (a) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate
-Value % is not consistent to the corresponding Aggregate Failed
-and Aggregate Total data.
-Yes
-2.4.2 For SvrgnDebt element INS-024.2 For the financial instrument "Sovereign debt referred to in Article
-4(1)(61) of Directive 2014/65/EU" the Failed Rate Value % is not
-consistent to the corresponding Aggregate Failed and Aggregate
-Total data.
-Yes
-2.4.3 For Bd element INS-024.3 For the financial instrument "Transferable securities referred to in
-point (b) of Article 4(1)(44) of Directive 2014/65/EU other than
-sovereign debt referred to in Article 4(1)(61) of Directive
-2014/65/EU" the Failed Rate Value % is not consistent to the
-corresponding Aggregate Failed and Aggregate Total data.
-Yes
-2.4.4 For OthrTrfblScties element INS-024.4 For the financial instrument "Transferable securities referred to in
-point (c) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate
-Value % is not consistent to the corresponding Aggregate Failed
-and Aggregate Total data.
-Yes
-2.4.5 For XchgTradgFnds element INS-024.5 For the financial instrument "Exchange-traded funds as defined in
-point (46) of Article 4(1) of Directive 2014/65/EU" the Failed Rate
-Value % is not consistent to the corresponding Aggregate Failed
-and Aggregate Total data.
-Yes
-2.4.6 For CllctvInvstmtUdrtkgs element INS-024.6 For the financial instrument "Units in collective investment
-undertakings other than ETFs" the Failed Rate Value % is not
-consistent to the corresponding Aggregate Failed and Aggregate
-Total data.
-Yes
-2.4.7 For MnyMktInstrm element INS-024.7 For the financial instrument "Money market instruments other than
-sovereign debt referred to in Article 4(1)(61) of Directive
-2014/65/EU" the Failed Rate Value % is not consistent to the
-corresponding Aggregate Failed and Aggregate Total data.
-Yes
-2.4.8 For EmssnAllwnc element INS-024.8 For the financial instrument "Emission allowances" the Failed Rate
-Value % is not consistent to the corresponding Aggregate Failed
-and Aggregate Total data.
-Yes
-2.4.9 For OthrFinInstrms element INS-024.9 For the financial instrument "Other financial instruments" the Failed
-Rate Value % is not consistent to the corresponding Aggregate
-Failed and Aggregate Total data.
-Yes
-3.1.1 For SctiesBuyOrSell element INS-031.1 For the type of transaction "Purchase or sale of securities" the sum
-of settled volume plus failed volume is not equal to the total volume.
-Yes
-3.1.2 For CollMgmtOpr element INS-031.2 For the type of transaction "Collateral management operations" the
-sum of settled volume plus failed volume is not equal to the total
-volume.
-Yes
-3.1.3 For SctiesLndgOrBrrwg element INS-031.3 For the type of transaction "Securities lending and securities
-borrowing" the sum of settled volume plus failed volume is not equal
-to the total volume.
-Yes
-3.1.4 For RpAgrmt element INS-031.4 For the type of transaction "Repurchase transactions" the sum of
-settled volume plus failed volume is not equal to the total volume.
-Yes
-3.1.5 For OthrTxs element INS-031.5 For the type of transaction "Other securities transactions" the sum
-of settled volume plus failed volume is not equal to the total volume.
-Yes
-3.2.1 For SctiesBuyOrSell element INS-032.1 For the type of transaction "Purchase or sale of securities" the sum
-of settled value plus failed value is not equal to the total value.
-Yes
-3.2.2 For CollMgmtOpr element INS-032.2 For the type of transaction "Collateral management operations" the
-sum of settled value plus failed value is not equal to the total value.
-Yes
-3.2.3 For SctiesLndgOrBrrwg element INS-032.3 For the type of transaction "Securities lending and securities
-borrowing" the sum of settled value plus failed value is not equal to
-the total value.
-Yes
-3.2.4 For RpAgrmt element INS-032.4 For the type of transaction "Repurchase transactions" the sum of
-settled value plus failed value is not equal to the total value.
-Yes
-3.2.5 For OthrTxs element INS-032.5 For the type of transaction "Other securities transactions" the sum
-of settled value plus failed value is not equal to the total value.
-Yes
-3.3.1 For SctiesBuyOrSell element INS-033.1 For the type of transaction "Purchase or sale of securities" the
-Failed Rate Volume % is not consistent to the corresponding
-Aggregate Failed and Aggregate Total data.
-Yes
-3.3.2 For CollMgmtOpr element INS-033.2 For the type of transaction "Collateral management operations" the
-Failed Rate Volume % is not consistent to the corresponding
-Aggregate Failed and Aggregate Total data.
-Yes
-3.3.3 For SctiesLndgOrBrrwg element INS-033.3 For the type of transaction "Securities lending and securities
-borrowing" the Failed Rate Volume % is not consistent to the
-corresponding Aggregate Failed and Aggregate Total data.
-Yes
-3.3.4 For RpAgrmt element INS-033.4 For the type of transaction "Repurchase transactions" the Failed
-Rate Volume % is not consistent to the corresponding Aggregate
-Failed and Aggregate Total data.
-Yes
-3.3.5 For OthrTxs element INS-033.5 For the type of transaction "Other securities transactions" the Failed
-Rate Volume % is not consistent to the corresponding Aggregate
-Failed and Aggregate Total data.
-Yes
-3.4.1 For SctiesBuyOrSell element INS-034.1 For the type of transaction "Purchase or sale of securities" the
-Failed Rate Value % is not consistent to the corresponding
-Aggregate Failed and Aggregate Total data.
-Yes
-46
-3.4.2 For CollMgmtOpr element INS-034.2 For the type of transaction "Collateral management operations" the
-Failed Rate Value % is not consistent to the corresponding
-Aggregate Failed and Aggregate Total data.
-Yes
-3.4.3 For SctiesLndgOrBrrwg element INS-034.3 For the type of transaction "Securities lending and securities
-borrowing" the Failed Rate Value % is not consistent to the
-corresponding Aggregate Failed and Aggregate Total data.
-Yes
-3.4.4 For RpAgrmt element INS-034.4 For the type of transaction "Repurchase transactions" the Failed
-Rate Value % is not consistent to the corresponding Aggregate
-Failed and Aggregate Total data.
-Yes
-3.4.5 For OthrTxs element INS-034.5 For the type of transaction "Other securities transactions" the Failed
-Rate Value % is not consistent to the corresponding Aggregate
-Failed and Aggregate Total data.
-Yes
-4.1.1 For Prfssnl element INS-041.1 For the type of client "Professional clients as defined in point (10)
-of Article 4(1) of Directive 2014/65/EU" the sum of settled volume
-plus failed volume is not equal to the total volume.
-Yes
-4.1.2 For Rtl element INS-041.2 For the type of client "Retail clients as defined in point (11) of Article
-4(1) of Directive 2014/65/EU" the sum of settled volume plus failed
-volume is not equal to the total volume.
-Yes
-4.2.1 For Prfssnl element INS-042.1 For the type of client "Professional clients as defined in point (10)
-of Article 4(1) of Directive 2014/65/EU" the sum of settled value and
-failed value is not equal to the total value.
-Yes
-4.2.2 For Rtl element INS-042.2 For the type of client "Retail clients as defined in point (11) of Article
-4(1) of Directive 2014/65/EU" the sum of settled value and failed
-value is not equal to the total value.
-Yes
-4.3.1 For Prfssnl element INS-043.1 For the type of client "Professional clients as defined in point (10)
-of Article 4(1) of Directive 2014/65/EU" the Failed Rate Volume %
-is not consistent to the corresponding Aggregate Failed and
-Aggregate Total data.
-Yes
-4.3.2 For Rtl element INS-043.2 For the type of client "Retail clients as defined in point (11) of Article
-4(1) of Directive 2014/65/EU" the Failed Rate Volume % is not
-consistent to the corresponding Aggregate Failed and Aggregate
-Total data.
-Yes
-4.4.1 For Prfssnl element INS-044.1 For the type of client "Professional clients as defined in point (10)
-of Article 4(1) of Directive 2014/65/EU" the Failed Rate Value % is
-not consistent to the corresponding Aggregate Failed and
-Aggregate Total data.
-Yes
-4.4.2 For Rtl element INS-044.2 For the type of client "Retail clients as defined in point (11) of Article
-4(1) of Directive 2014/65/EU" the Failed Rate Value % is not
-consistent to the corresponding Aggregate Failed and Aggregate
-Total data.
-Yes
-5.1 The sum of settled volume plus
-failed volume of the cash transfers
-must be equal to the total volume.
-																				<Aggt>
-																					.
-																					<Sttld>
-																						.
-																						<Vol>
-																							+
-																							<Aggt>
-																								.
-																								<Faild>
-																									.
-																									<Vol>
-																										=
-																										<Aggt>
-																											.
-																											<Ttl>
-																												.
-																												<Vol>
-																													INS-051 The sum of settled volume plus failed volume of the cash transfers
-is not equal to the total volume.
-Yes
-5.2 The sum of settled value and failed
-value of the cash transfers must be
-equal to the total value.
-																													<Aggt>
-																														.
-																														<Sttld>
-																															.
-																															<Val>
-																																+
-																																<Aggt>
-																																	.
-																																	<Faild>
-																																		.
-																																		<Val>
-																																			=
-																																			<Aggt>
-																																				.
-																																				<Ttl>
-																																					.
-																																					<Val>
-																																						INS-052 The sum of settled value and failed value of the cash transfers is
-not equal to the total value.
-Yes
-5.3 For cash transfers, the Failed Rate
-Volume % must be consistent to the
-corresponding Aggregate Failed
-and Aggregate Total data.
-																																						<Aggt>
-																																							.
-																																							<Faild>
-																																								.
-																																								<Vol>
-																																									* 100 /
-																																									<Aggt>
-																																										.
-																																										<Ttl>
-																																											.
-																																											<Vol>
-																																												=
-																																												<FaildRate>
-																																													.
-																																													<VolPctg>
-																																														INS-053 For cash transfers, the Failed Rate Volume % is not consistent to
-the corresponding Aggregate Failed and Aggregate Total data
-Yes
-5.4 For cash transfers, the Failed Rate
-Value % must be consistent to the
-corresponding Aggregate Failed
-and Aggregate Total data.
-																																														<Aggt>
-																																															.
-																																															<Faild>
-																																																.
-																																																<Val>
-																																																	* 100 /
-																																																	<Aggt>
-																																																		.
-																																																		<Ttl>
-																																																			.
-																																																			<Val>
-																																																				=
-																																																				<FaildRate>
-																																																					.
-																																																					<Val>
-																																																						INS-054 For cash transfers, the Failed Rate Value % is not consistent to the
-corresponding Aggregate Failed and Aggregate Total data
-Yes
-6.2 If provided, the
-																																																						<LEI>
-																																																							must be ISO
-17442 valid.
-INS-062 The LEI [LEI value] is not valid. Yes
-6.3 The first two characters of the ISIN
-code
-																																																							<FrstTwoCharsInstrmId>
-																																																								of
-the financial instruments must be
-provided. The characters pairing
-must map to a valid ISO-3166-1 2-
-characters country code. This rule is
-not applied for character pairings
-that are explicitly set as exceptions
-by the ESMA IT Administrator.
-INS-063 The ISIN code of the Issuer CSD is not valid.
-In case of new ISINs, please make sure to inform ESMA before
-submitting them in the report.
-Yes
-6.4 An Issuer CSD within the report is
-uniquely identified by the
-combination of the first two
-characters of the ISIN
-																																																								<FrstTwoCharsInstrmId>
-																																																									and the
-LEI
-																																																									<LEI>
-																																																										.
-Only one Issuer CSD block with this
-combination must exist in the report.
-INS-064 If LEI is provided:
-There are more than one Issuer CSDs with an ISIN Code starting
-with
-																																																										<FrstTwoCharsInstrmId>
-																																																											and LEI:
-																																																											<LEI>
-																																																												If LEI is not provided:
-There are more than one Issuer CSDs with ISIN Code starting with:
-																																																												<FrstTwoCharsInstrmId>
-																																																													Yes
-6.5 If provided, the
-																																																													<LEI>
-																																																														must
-• exist in the GLEIF database
-and have status
-• "Issued", "Lapsed",
-“Merged”, "Pending
-transfer" or "Pending
-archival" as per latest record
-published by GLEIF for this
-LEI
-INS-065 The LEI [LEI] is not a valid LEI . Yes
-6.6 validate that the country in Legal
-Address of this LEI is the same as
-the
-																																																														<Ctry>
-																																																															field.
-INS-066 The Issuer CSD country code [Ctry] is not consistent with the LEI
-country of location in GLEIF
-Yes
-7.1.1 For Eqty element INS-071.1 For the financial instrument "Transferable securities referred to in
-point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of total
-volumes reported for all Issuer CSDs is not equal to the overall total
-volume of this type of instrument, reported under the Settlement
-Internaliser block.
-No
-7.1.2 For SvrgnDebt element INS-071.2 For the financial instrument "Sovereign debt referred to in Article
-4(1)(61) of Directive 2014/65/EU" the sum of total volumes reported
-for all Issuer CSDs is not equal to the overall total volume of this
-type of instrument, reported under the Settlement Internaliser
-block.
-No
-7.1.3 For Bd element INS-071.3 For the financial instrument "Transferable securities referred to in
-point (b) of Article 4(1)(44) other than sovereign debt of Article
-4(1)(61) of Directive 2014/65/EU" the sum of total volumes reported
-for all Issuer CSDs is not equal to the overall total volume of this 
-type of instrument, reported under the Settlement Internaliser
-block.
-No
-7.1.4 For OthrTrfblScties element INS-071.4 For the financial instrument "Transferable securities referred to in
-point (c) of Article 4(1)(44) of Directive 2014/65/EU" the sum of total
-volumes reported for all Issuer CSDs is not equal to the overall total
-volume of this type of instrument, reported under the Settlement
-Internaliser block.
-No
-7.1.5 For XchgTradgFnds element INS-071.5 For the financial instrument "Exchange-traded funds as defined in
-point (46) of Article 4(1) of Directive 2014/65/EU" the sum of total
-volumes reported for all Issuer CSDs is not equal to the overall total
-volume of this type of instrument, reported under the Settlement
-Internaliser block.
-No
-7.1.6 For CllctvInvstmtUdrtkgs element INS-071.6 For the financial instrument "Units in collective investment
-undertakings other than ETFs" the sum of total volumes reported
-for all Issuer CSDs is not equal to the overall total volume of this
-type of instrument, reported under the Settlement Internaliser
-block.
-No
-7.1.7 For MnyMktInstrm element INS-071.7 For the financial instrument "Money market instruments other than
-sovereign debt referred to in Article 4(1)(61) of Directive
-2014/65/EU" the sum of total volumes reported for all Issuer CSDs
-is not equal to the overall total volume of this type of instrument,
-reported under the Settlement Internaliser block.
-No
-7.1.8 For EmssnAllwnc element INS-071.8 For the financial instrument "Emission allowances" the sum of total
-volumes reported for all Issuer CSDs is not equal to the overall total 
-volume of this type of instrument, reported under the Settlement
-Internaliser block.
-No
-7.1.9 For OthrFinInstrms element INS-071.9 For the financial instrument "Other financial instruments" the sum
-of total volumes reported for all Issuer CSDs is not equal to the
-overall total volume of this type of instrument, reported under the
-Settlement Internaliser block.
-No
-7.2.1 For Eqty element INS-072.1 For the financial instrument "Transferable securities referred to in
-point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of the
-total values reported for all Issuer CSDs is not equal to the overall
-total value of this type of instrument, reported under the Settlement
-Internaliser block.
-No
-7.2.2 For SvrgnDebt element INS-072.2 For the financial instrument "Sovereign debt referred to in Article
-4(1)(61) of Directive 2014/65/EU" the sum of the total values
-reported for all Issuer CSDs is not equal to the overall total value of
-this type of instrument, reported under the Settlement Internaliser
-block.
-No
-7.2.3 For Bd element INS-072.3 For the financial instrument "Transferable securities referred to in
-point (b) of Article 4(1)(44) other than sovereign debt of Article 
-4(1)(61) of Directive 2014/65/EU" the sum of the total values
-reported for all Issuer CSDs is not equal to the overall total value of
-this type of instrument, reported under the Settlement Internaliser
-block.
-No
-7.2.4 For OthrTrfblScties element INS-072.4 For the financial instrument "Transferable securities referred to in
-point (c) of Article 4(1)(44) of Directive 2014/65/EU" the sum of the
-total values reported for all Issuer CSDs is not equal to the overall
-total value of this type of instrument, reported under the Settlement
-Internaliser block.
-No
-7.2.5 For XchgTradgFnds element INS-072.5 For the financial instrument "Exchange-traded funds as defined in
-point (46) of Article 4(1) of Directive 2014/65/EU" the sum of the
-total values reported for all Issuer CSDs is not equal to the overall
-total value of this type of instrument, reported under the Settlement
-Internaliser block.
-No
-7.2.6 For CllctvInvstmtUdrtkgs element INS-072.6 For the financial instrument "Units in collective investment
-undertakings other than ETFs" the sum of the total values reported
-for all Issuer CSDs is not equal to the overall total value of this type
-of instrument, reported under the Settlement Internaliser block.
-No
-7.2.7 For MnyMktInstrm element INS-072.7 For the financial instrument "Money market instruments other than
-sovereign debt referred to in Article 4(1)(61) of Directive
-2014/65/EU" the sum of the total values reported for all Issuer
-CSDs is not equal to the overall total value of this type of
-instrument, reported under the Settlement Internaliser block.
-No
-7.2.8 For EmssnAllwnc element INS-072.8 For the financial instrument "Emission allowances" the sum of the
-total values reported for all Issuer CSDs is not equal to the overall
-total value of this type of instrument, reported under the Settlement
-Internaliser block.
-No
-7.2.9 For OthrFinInstrms element INS-072.9 For the financial instrument "Other financial instruments" the sum
-of the total values reported for all Issuer CSDs is not equal to the
-overall total value of this type of instrument, reported under the
-Settlement Internaliser block.
-No
-7.3.1 For SctiesBuyOrSell element INS-073.1 For the type of transaction "Purchase or sale of securities" the sum
-of total volumes reported for all Issuer CSDs is not equal to the
-overall total volume of this type of transaction, reported under the
-Settlement Internaliser block.
-No
-7.3.2 For CollMgmtOpr element INS-073.2 For the type of transaction "Collateral management operations" the
-sum of total volumes reported for all Issuer CSDs is not equal to
-the overall total volume of this type of transaction, reported under
-the Settlement Internaliser block.
-No
-7.3.3 For SctiesLndgOrBrrwg element INS-073.3 For the type of transaction "Securities lending and securities
-borrowing" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of transaction,
-reported under the Settlement Internaliser block.
-No
-7.3.4 For RpAgrmt element INS-073.4 For the type of transaction "Repurchase transactions" the sum of
-total volumes reported for all Issuer CSDs is not equal to the overall
-total volume of this type of transaction, reported under the
-Settlement Internaliser block.
-No
-7.3.5 For OthrTxs element INS-073.5 For the type of transaction "Other securities transactions" the sum
-of total volumes reported for all Issuer CSDs is not equal to the
-overall total volume of this type of transaction, reported under the
-Settlement Internaliser block.
-No
-7.4.1 For SctiesBuyOrSell element INS-074.1 For the type of transaction "Purchase or sale of securities" the sum
-of total values reported for all Issuer CSDs is not equal to the overall
-total value of this type of transaction, reported under the Settlement
-Internaliser block.
-No
-7.4.2 For CollMgmtOpr element INS-074.2 For the type of transaction "Collateral management operations" the
-sum of total values reported for all Issuer CSDs is not equal to the
-overall total value of this type of transaction, reported under the
-Settlement Internaliser block.
-No
-7.4.3 For SctiesLndgOrBrrwg element INS-074.3 For the type of transaction "Securities lending and securities
-borrowing" the sum of total values reported for all Issuer CSDs is
-not equal to the overall total value of this type of transaction,
-reported under the Settlement Internaliser block.
-No
-7.4.4 For RpAgrmt element INS-074.4 For the type of transaction "Repurchase transactions" the sum of
-total values reported for all Issuer CSDs is not equal to the overall
-total value of this type of transaction, reported under the Settlement
-Internaliser block.
-No
-7.4.5 For OthrTxs element INS-074.5 For the type of transaction "Other securities transactions" the sum
-of total values reported for all Issuer CSDs is not equal to the overall
-total value of this type of transaction, reported under the Settlement
-Internaliser block.
-No
-7.5.1 For Prfssnl element INS-075.1 For the type of client "Professional clients as defined in point (10)
-of Article 4(1) of Directive 2014/65/EU" the sum of total volumes
-reported for all Issuer CSDs is not equal to the overall total volume
-of this type of client, reported under the Settlement Internaliser
-block.
-No
-7.5.2 For Rtl element INS-075.2 For the type of client "Retail clients as defined in point (11) of Article
-4(1) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type
-of client, reported under the Settlement Internaliser block
-No
-7.6.1 For Prfssnl element INS-076.1 For the type of client "Professional clients as defined in point (10)
-of Article 4(1) of Directive 2014/65/EU" the sum of total values
-reported for all Issuer CSDs is not equal to the overall total value of
-this type of client, reported under the Settlement Internaliser block.
-No
-7.6.2 For Rtl element INS-076.2 For the type of client "Retail clients as defined in point (11) of Article
-4(1) of Directive 2014/65/EU" the sum of total values reported for
-all Issuer CSDs is not equal to the overall total value of this type of
-client, reported under the Settlement Internaliser block.
-No
-7.7 The sum of total volumes reported
-for all Issuer CSD blocks for cash
-transfers must be equal to the
-overall total volume of cash
-transfers reported under the
-Settlement Internaliser block
-																																																															<SttlmIntlr>
-																																																																.
-																																																																<TtlCshTrf>
-																																																																	.
-																																																																	<Aggt>
-																																																																		.
-																																																																		<T tl=>
-																																																																			.
-																																																																			<Vol>
-																																																																				= Sum of
-																																																																				<IssrCSD>
-																																																																					.
-																																																																					<TtlCshTrf>
-																																																																						.
-																																																																						<Aggt>
-																																																																							.
-																																																																							<Tt l=>
-																																																																								.
-																																																																								<Vol>
-																																																																									INS-077 The sum of total volumes reported for all Issuer CSDs for cash
-transfers is not equal to the overall total.
-No
-7.8 The sum of total value reported for
-all Issuer CSD blocks for cash
-transfers must be equal to the
-overall total value of cash transfers
-reported under the Settlement
-Internaliser block.
-																																																																									<SttlmIntlr>
-																																																																										.
-																																																																										<TtlCshTrf>
-																																																																											.
-																																																																											<Aggt>
-																																																																												.
-																																																																												<T tl=>
-																																																																													.
-																																																																													<Val>
-																																																																														= Sum of
-																																																																														<IssrCSD>
-																																																																															.
-																																																																															<TtlCshTrf>
-																																																																																.
-																																																																																<Aggt>
-																																																																																	.
-																																																																																	<Tt l=>
-																																																																																		.
-																																																																																		<Val>
-																																																																																			INS-078 The sum of total value reported for all Issuer CSDs for cash
-transfers is not equal to the overall total.
-No
-7.9.1 For SttlmIntlr element INS-079.1 The sum of total values for all types of financial instruments, all
-types of transactions, and all types of clients is not equal to the
-overall total value within the Settlement Internaliser block.
-Yes
-7.9.2 For IssrCSD element INS-079.2 The sum of total values for all types of financial instruments, all
-types of transactions, and all types of clients is not equal to the
-overall total value within the Issuer CSD block.
-Yes
-7.10.1 For SttlmIntlr element INS-0710.1 The sum of total volumes for all types of financial instruments, all
-types of transactions, and all types of clients s not equal to the
-overall total volumes within the Settlement Internaliser block.
-Yes
-7.10.2 For IssrCSD element INS-0710.2 The sum of total volumes for all types of financial instruments, all
-types of transactions, and all types of clients is not equal to the
-overall total volumes within the Issuer CSD block.
-Yes
-7.11.1 For SttlmIntlr element INS-0711.1 The Failed Rate Volume % for the Overall total is not consistent to
-the corresponding Aggregate Failed and Aggregate Total data
-within the Settlement Internaliser block.
-Yes
-7.11.2 For IssrCSD element INS-0711.2 The Failed Rate Volume % for the Overall total is not consistent to
-the corresponding Aggregate Failed and Aggregate Total data
-within the Issuer CSD block.
-Yes
-7.12.1 For SttlmIntlr element INS-712.1 The Failed Rate Value % for the Overall total is not consistent to
-the corresponding Aggregate Failed and Aggregate Total data
-within the Settlement Internaliser block.
-Yes
-7.12.2 For IssrCSD element INS-712.2 The Failed Rate Value % for the Overall total is not consistent to
-the corresponding Aggregate Failed and Aggregate Total data
-within the Issuer CSD block.
-Yes
-8.1 The filename of a newly received file
-must either relate to a new
-																																																																																			<Sender>
-																																																																																				<Key1>
-																																																																																					combination with
-																																																																																					<Key2>
-																																																																																						(i.e. version) set to “0001”,
-or a previously submitted
-																																																																																						<Sender>
-																																																																																							<Key1>
-																																																																																								combination with
-																																																																																								<Key2>
-																																																																																									(i.e. version) set to the
-previous Version increased by 1”
-(see paragraph 0).
-INS-081 If
-																																																																																									<Sender>
-																																																																																										+
-																																																																																										<Key1>
-																																																																																											combination does not exist in DB and Version
-!=1:
-It is the first time that the System receives an Internalised
-Settlement report for the given CA, Country, LEI and Quarter/Year
-and therefore its version should be set to 0001.
-If
-																																																																																											<Sender>
-																																																																																												+
-																																																																																												<Key1>
-																																																																																													combination exists in DB, and Version
-number (Key2) is less than {PreviousVersion+1}:
-Version [Key2] of the Internalised Settlement report has already
-been submitted in the past to the System. A new version may be
-submitted.
-If
-																																																																																													<Sender>
-																																																																																														+
-																																																																																														<Key1> combination exists in DB, and Version
-number (Key2) is greater than {PreviousVersion+1}:
-Version [Key2] of the Internalised Settlement report is higher than
-the expected version; its previous version received by the System
-was {PreviousVersion}.
-No
-8.2 A report with RptSts=NEWT must
-submit an IS entry that does not
-exist in the CSDR database.
-A report with RptSts=AMND must
-refer to a valid IS entry in the CSDR
-database.
-A report with RptSts=CANC must
-refer to a valid IS entry in the CSDR
-database.
-INS-082 If RptSts=NEWT:
-The submitted Internalised Settlement of CA [CA] with LEI [LEI],
-Country code of operation [BrnchId] and Reporting period
-[Quarter]/[Year] already exists in the System as a valid record.
-If RptSts=AMND:
-No Internalised Settlement report of CA [CA] with LEI [LEI], Country
-code of operation [BrnchId] and Reporting period [Quarter]/[Year]
-to be updated exists in the System as a valid record.
-If RptSts=CANC:
-No Internalised Settlement of CA [CA] with LEI [LEI], Country code
-of operation [BrnchId] and Reporting period [Quarter]/[Year] to be
-cancelled exists in the System as a valid record.
-No
-8.4 To accept an SetIn report by a CA,
-the reporting period cannot be a
-future reporting period
-INS-084 System cannot accept an Internalised Settlement report for a future
-reporting period.
-No
-8.5 To accept a SetIn report by a CA,
-the reporting period cannot be
-before July 2019
-INS-085 System cannot accept an Internalised Settlement report for a
-reporting period before July 2019, which forms the first reporting
-period.
-No
+<validation_rules>
+	<rule>
+		<number>0.1</number>
+		<control>The &lt;Ccy&gt; element of the report must always contain the value "EUR".</control>
+		<error_code>INS-001</error_code>
+		<error_message>
+The Currency is not valid. Only the value "EUR" is expected.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>0.2</number>
+		<control>The &lt;RptgDt&gt; element of the report must have one of the following values: YYYY-03-31 YYYY-06-30 YYYY-09-30 or YYYY-12-31 Where YYYY, is the year of the report (e.g. 2018).</control>
+		<error_code>INS-002</error_code>
+		<error_message>
+The date [Reporting period value] is not valid. One of YYYY-03- 31, YYYY-06-30, YYYY-09-30 or YYYY-12-31 is expected, where YYYY is the year of the report.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>0.3*</number>
+		<control>
+The 2-character ISO country code retrieved from the &lt;Sender&gt; field of the filename must be the same as the &lt;AppHdr&gt;.&lt;Fr&gt;.&lt;OrgId&gt;.&lt;Id&gt;.&lt;Org Id=&gt;.&lt;Othr&gt;.&lt;Id&gt; of the Business Application Header</control>
+		<error_code>INS-003</error_code>
+		<error_message>
+The Sender Country code of the filename [Country code in Sender] is not consistent to the Sender Country code [Id element in the xml] of the Settlement Internaliser Report.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>1.3</number>
+		<control>The &lt;LEI&gt; must be ISO 17442 valid</control>
+		<error_code>INS-013</error_code>
+		<error_message>
+The LEI [LEI] is not valid according to ISO 17442.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>1.4.1*</number>
+		<control>The Country code included in the &lt;Key1&gt; element of the report's filename must be the same as the &lt;Ctry&gt; of the Settlement Internaliser report, in case the &lt;BrnchId&gt; is not provided.</control>
+		<error_code>INS-014.1</error_code>
+		<error_message>
+The Country code of the filename [Country code in Key1] is not consistent to the Country code of establishment [Country code element in the xml] of the Settlement Internaliser Report.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>1.4.2*</number>
+		<control>The Country code included in the &lt;Key1&gt; element of the report's filename must be the same as the &lt;BrnchId&gt; element of the Settlement Internaliser, if provided.</control>
+		<error_code>INS-014.2</error_code>
+		<error_message>
+The Country code of the filename [Country code in Key1] is not consistent to the Country code of operation [Country code element in the xml] of the Settlement Internaliser Report.</error_message>
+		<record_identifier></record_identifier>
+	</rule>
+	<rule>
+		<number>1.4.3</number>
+		<control>The &lt;BrnchId&gt; value, if provided, must be either a valid EEA ISO 3166 country code or equal to 'TS'.</control>
+		<error_code>INS-014.3</error_code>
+		<error_message>
+The branch country code is not valid, since it must relate either to an EEA country code or to a Third Country State (i.e. 'TS').</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>1.5</number>
+		<control>The &lt;LEI&gt; must exist in the GLEIF database and have status "Issued", "Lapsed", "Merged, "Pending transfer" or "Pending archival" as per latest record published by GLEIF for this LEI.</control>
+		<error_code>INS-015</error_code>
+		<error_message>
+			The LEI [LEI] is not a valid LEI.
+			<record_identifier>No</record_identifier>
+		</error_message>
+		<record_identifier></record_identifier>
+	</rule>
+	<rule>
+		<number>1.6</number>
+		<control>If the country in the Legal address in GLEIF for this LEI is an EEA country, validate that it is the same as the &lt;Ctry&gt; field.</control>
+		<error_code>INS-016</error_code>
+		<error_message>
+The Country code [Ctry] is not consistent with the country in the Legal address as listed in GLEIF.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>1.7</number>
+		<control>If INS-015 has been successfully validated (meaning that the provided LEI is valid in FIRDS) and if the LEI_LADR_COUNTRY FIRDS field of this LEI is not an EEA country, then validate that the &lt;Ctry&gt; value is a valid EEA ISO 3166 country code.</control>
+		<error_code>INS-017</error_code>
+		<error_message>
+The Country code [Ctry] is not valid, since it must be an EEA country code</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.1.3</number>
+		<control>For Bd element</control>
+		<error_code>INS-021.3</error_code>
+		<error_message>
+For the financial instrument "Transferable securities referred to in point (b) of Article 4(1)(44) of Directive 2014/65/EU other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.1.4</number>
+		<control>For OthrTrfblScties element</control>
+		<error_code>INS-021.4</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (c) of Article 4(1)(44) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.1.5</number>
+		<control>For XchgTradgFnds element</control>
+		<error_code>INS-021.5</error_code>
+		<error_message>For the financial instrument "Exchange-traded funds as defined in point (46) of Article 4(1) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.1.6</number>
+		<control>For CllctvInvstmtUdrtkgs element</control>
+		<error_code>INS-021.6</error_code>
+		<error_message>For the financial instrument "Units in collective investment undertakings other than ETFs" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.1.7</number>
+		<control>For MnyMktInstrm element</control>
+		<error_code>INS-021.7</error_code>
+		<error_message>For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.1.8</number>
+		<control>For EmssnAllwnc element</control>
+		<error_code>INS-021.8</error_code>
+		<error_message>
+For the financial instrument "Emission allowances" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.1.9</number>
+		<control>For OthrFinInstrms element</control>
+		<error_code>INS-021.9</error_code>
+		<error_message>
+For the financial instrument "Other financial instruments" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.2.1</number>
+		<control>For Eqty element</control>
+		<error_code>INS-022.1</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.2.2</number>
+		<control>For SvrgnDebt element</control>
+		<error_code>INS-022.2</error_code>
+		<error_message>For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.2.3</number>
+		<control>For Bd element</control>
+		<error_code>INS-022.3</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (b) of Article 4(1)(44) of Directive 2014/65/EU other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.2.4</number>
+		<control>For OthrTrfblScties element</control>
+		<error_code>INS-022.4</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (c) of Article 4(1)(44) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.2.5</number>
+		<control>For XchgTradgFnds element</control>
+		<error_code>INS-022.5</error_code>
+		<error_message>For the financial instrument "Exchange-traded funds as defined in point (46) of Article 4(1) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.2.6</number>
+		<control>For CllctvInvstmtUdrtkgs element</control>
+		<error_code>INS-022.6</error_code>
+		<error_message>For the financial instrument "Units in collective investment undertakings other than ETFs" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.2.7</number>
+		<control>For MnyMktInstrm element</control>
+		<error_code>INS-022.7</error_code>
+		<error_message>For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.2.8</number>
+		<control>For EmssnAllwnc element</control>
+		<error_code>INS-022.8</error_code>
+		<error_message>For the financial instrument "Emission allowances" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.2.9</number>
+		<control>For OthrFinInstrms element</control>
+		<error_code>INS-022.9</error_code>
+		<error_message>For the financial instrument "Other financial instruments" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.3.1</number>
+		<control>For Eqty element</control>
+		<error_code>INS-023.1</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.3.2</number>
+		<control>For SvrgnDebt element</control>
+		<error_code>INS-023.2</error_code>
+		<error_message>For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.3.3</number>
+		<control>For Bd element</control>
+		<error_code>INS-023.3</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (b) of Article 4(1)(44) of Directive 2014/65/EU other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.3.4</number>
+		<control>For OthrTrfblScties element</control>
+		<error_code>INS-023.4</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (c) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.3.5</number>
+		<control>For XchgTradgFnds element</control>
+		<error_code>INS-023.5</error_code>
+		<error_message>For the financial instrument "Exchange-traded funds as defined in point (46) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.3.6</number>
+		<control>For CllctvInvstmtUdrtkgs element</control>
+		<error_code>INS-023.6</error_code>
+		<error_message>For the financial instrument "Units in collective investment undertakings other than ETFs" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.3.7</number>
+		<control>For MnyMktInstrm element</control>
+		<error_code>INS-023.7</error_code>
+		<error_message>For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.3.8</number>
+		<control>For EmssnAllwnc element</control>
+		<error_code>INS-023.8</error_code>
+		<error_message>For the financial instrument "Emission allowances" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.3.9</number>
+		<control>For OthrFinInstrms element</control>
+		<error_code>INS-023.9</error_code>
+		<error_message>For the financial instrument "Other financial instruments" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.4.1</number>
+		<control>For Eqty element</control>
+		<error_code>INS-024.1</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.4.2</number>
+		<control>For SvrgnDebt element</control>
+		<error_code>INS-024.2</error_code>
+		<error_message>For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.4.3</number>
+		<control>For Bd element</control>
+		<error_code>INS-024.3</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (b) of Article 4(1)(44) of Directive 2014/65/EU other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.4.4</number>
+		<control>For OthrTrfblScties element</control>
+		<error_code>INS-024.4</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (c) of Article 4(1)(44) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.4.5</number>
+		<control>For XchgTradgFnds element</control>
+		<error_code>INS-024.5</error_code>
+		<error_message>For the financial instrument "Exchange-traded funds as defined in point (46) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.4.6</number>
+		<control>For CllctvInvstmtUdrtkgs element</control>
+		<error_code>INS-024.6</error_code>
+		<error_message>For the financial instrument "Units in collective investment undertakings other than ETFs" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.4.7</number>
+		<control>For MnyMktInstrm element</control>
+		<error_code>INS-024.7</error_code>
+		<error_message>For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.4.8</number>
+		<control>For EmssnAllwnc element</control>
+		<error_code>INS-024.8</error_code>
+		<error_message>For the financial instrument "Emission allowances" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>2.4.9</number>
+		<control>For OthrFinInstrms element</control>
+		<error_code>INS-024.9</error_code>
+		<error_message>For the financial instrument "Other financial instruments" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.1.1</number>
+		<control>For SctiesBuyOrSell element</control>
+		<error_code>INS-031.1</error_code>
+		<error_message>For the type of transaction "Purchase or sale of securities" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.1.2</number>
+		<control>For CollMgmtOpr element</control>
+		<error_code>INS-031.2</error_code>
+		<error_message>For the type of transaction "Collateral management operations" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.1.3</number>
+		<control>For SctiesLndgOrBrrwg element</control>
+		<error_code>INS-031.3</error_code>
+		<error_message>For the type of transaction "Securities lending and securities borrowing" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.1.4</number>
+		<control>For RpAgrmt element</control>
+		<error_code>INS-031.4</error_code>
+		<error_message>For the type of transaction "Repurchase transactions" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.1.5</number>
+		<control>For OthrTxs element</control>
+		<error_code>INS-031.5</error_code>
+		<error_message>For the type of transaction "Other securities transactions" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.2.1</number>
+		<control>For SctiesBuyOrSell element</control>
+		<error_code>INS-032.1</error_code>
+		<error_message>For the type of transaction "Purchase or sale of securities" the sum of settled value plus failed value is not equal to the total value.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.2.2</number>
+		<control>For CollMgmtOpr element</control>
+		<error_code>INS-032.2</error_code>
+		<error_message>For the type of transaction "Collateral management operations" the sum of settled value plus failed value is not equal to the total value.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.2.3</number>
+		<control>For SctiesLndgOrBrrwg element</control>
+		<error_code>INS-032.3</error_code>
+		<error_message>For the type of transaction "Securities lending and securities borrowing" the sum of settled value plus failed value is not equal to the total value.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.2.4</number>
+		<control>For RpAgrmt element</control>
+		<error_code>INS-032.4</error_code>
+		<error_message>For the type of transaction "Repurchase transactions" the sum of settled value plus failed value is not equal to the total value.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.2.5</number>
+		<control>For OthrTxs element</control>
+		<error_code>INS-032.5</error_code>
+		<error_message>For the type of transaction "Other securities transactions" the sum of settled value plus failed value is not equal to the total value.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.3.1</number>
+		<control>For SctiesBuyOrSell element</control>
+		<error_code>INS-033.1</error_code>
+		<error_message>For the type of transaction "Purchase or sale of securities" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.3.2</number>
+		<control>For CollMgmtOpr element</control>
+		<error_code>INS-033.2</error_code>
+		<error_message>For the type of transaction "Collateral management operations" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.3.3</number>
+		<control>For SctiesLndgOrBrrwg element</control>
+		<error_code>INS-033.3</error_code>
+		<error_message>For the type of transaction "Securities lending and securities borrowing" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.3.4</number>
+		<control>For RpAgrmt element</control>
+		<error_code>INS-033.4</error_code>
+		<error_message>For the type of transaction "Repurchase transactions" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.3.5</number>
+		<control>For OthrTxs element</control>
+		<error_code>INS-033.5</error_code>
+		<error_message>For the type of transaction "Other securities transactions" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.4.1</number>
+		<control>For SctiesBuyOrSell element</control>
+		<error_code>INS-034.1</error_code>
+		<error_message>For the type of transaction "Purchase or sale of securities" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.4.2</number>
+		<control>For CollMgmtOpr element</control>
+		<error_code>INS-034.2</error_code>
+		<error_message>For the type of transaction "Collateral management operations" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.4.3</number>
+		<control>For SctiesLndgOrBrrwg element</control>
+		<error_code>INS-034.3</error_code>
+		<error_message>For the type of transaction "Securities lending and securities borrowing" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.4.4</number>
+		<control>For RpAgrmt element</control>
+		<error_code>INS-034.4</error_code>
+		<error_message>For the type of transaction "Repurchase transactions" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>3.4.5</number>
+		<control>For OthrTxs element</control>
+		<error_code>INS-034.5</error_code>
+		<error_message>For the type of transaction "Other securities transactions" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>4.1.1</number>
+		<control>For Prfssnl element</control>
+		<error_code>INS-041.1</error_code>
+		<error_message>For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>4.1.2</number>
+		<control>For Rtl element</control>
+		<error_code>INS-041.2</error_code>
+		<error_message>For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the sum of settled volume plus failed volume is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>4.2.1</number>
+		<control>For Prfssnl element</control>
+		<error_code>INS-042.1</error_code>
+		<error_message>For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the sum of settled value and failed value is not equal to the total value.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>4.2.2</number>
+		<control>For Rtl element</control>
+		<error_code>INS-042.2</error_code>
+		<error_message>For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the sum of settled value and failed value is not equal to the total value.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>4.3.1</number>
+		<control>For Prfssnl element</control>
+		<error_code>INS-043.1</error_code>
+		<error_message>For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>4.3.2</number>
+		<control>For Rtl element</control>
+		<error_code>INS-043.2</error_code>
+		<error_message>For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>4.4.1</number>
+		<control>For Prfssnl element</control>
+		<error_code>INS-044.1</error_code>
+		<error_message>For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>4.4.2</number>
+		<control>For Rtl element</control>
+		<error_code>INS-044.2</error_code>
+		<error_message>For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>5.1</number>
+		<control>The sum of settled volume plus failed volume of the cash transfers must be equal to the total volume. &lt;Aggt&gt; . &lt;Sttld&gt; . &lt;Vol&gt; + &lt;Aggt&gt; . &lt;Faild&gt; . &lt;Vol&gt; = &lt;Aggt&gt; . &lt;Ttl&gt; . &lt;Vol&gt;</control>
+		<error_code>INS-051</error_code>
+		<error_message>
+The sum of settled volume plus failed volume of the cash transfers is not equal to the total volume.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>5.2</number>
+		<control>The sum of settled value and failed value of the cash transfers must be equal to the total value. &lt;Aggt&gt; . &lt;Sttld&gt; . &lt;Val&gt; + &lt;Aggt&gt; . &lt;Faild&gt; . &lt;Val&gt; = &lt;Aggt&gt; . &lt;Ttl&gt; . &lt;Val&gt;</control>
+		<error_code>INS-052</error_code>
+		<error_message>
+The sum of settled value and failed value of the cash transfers is not equal to the total value.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>5.3</number>
+		<control>For cash transfers, the Failed Rate Volume % must be consistent to the corresponding Aggregate Failed and Aggregate Total data. &lt;Aggt&gt; . &lt;Faild&gt; . &lt;Vol&gt; * 100 / &lt;Aggt&gt; . &lt;Ttl&gt; . &lt;Vol&gt; = &lt;FaildRate&gt; . &lt;VolPctg&gt;</control>
+		<error_code>INS-053</error_code>
+		<error_message>
+For cash transfers, the Failed Rate Volume % is not consistent to the corresponding Aggregate Failed and Aggregate Total data</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>5.4</number>
+		<control>For cash transfers, the Failed Rate Value % must be consistent to the corresponding Aggregate Failed and Aggregate Total data. &lt;Aggt&gt; . &lt;Faild&gt; . &lt;Val&gt; * 100 / &lt;Aggt&gt; . &lt;Ttl&gt; . &lt;Val&gt; = &lt;FaildRate&gt; . &lt;Val&gt;</control>
+		<error_code>INS-054</error_code>
+		<error_message>
+For cash transfers, the Failed Rate Value % is not consistent to the corresponding Aggregate Failed and Aggregate Total data</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>6.2</number>
+		<control>If provided, the &lt;LEI&gt; must be ISO 17442 valid.</control>
+		<error_code>INS-062</error_code>
+		<error_message>
+The LEI [LEI value] is not valid.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>6.3</number>
+		<control>The first two characters of the ISIN code &lt;FrstTwoCharsInstrmId&gt; of the financial instruments must be provided. The characters pairing must map to a valid ISO-3166-1 2- characters country code. This rule is not applied for character pairings that are explicitly set as exceptions by the ESMA IT Administrator.</control>
+		<error_code>INS-063</error_code>
+		<error_message>
+The ISIN code of the Issuer CSD is not valid. In case of new ISINs, please make sure to inform ESMA before submitting them in the report.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>6.4</number>
+		<control>An Issuer CSD within the report is uniquely identified by the combination of the first two characters of the ISIN &lt;FrstTwoCharsInstrmId&gt; and the LEI &lt;LEI&gt; . Only one Issuer CSD block with this combination must exist in the report.</control>
+		<error_code>INS-064</error_code>
+		<error_message>
+If LEI is provided: There are more than one Issuer CSDs with an ISIN Code starting with &lt;FrstTwoCharsInstrmId&gt; and LEI: &lt;LEI&gt; If LEI is not provided: There are more than one Issuer CSDs with ISIN Code starting with: &lt;FrstTwoCharsInstrmId&gt;</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>6.5</number>
+		<control>If provided, the &lt;LEI&gt; must • exist in the GLEIF database and have status • "Issued", "Lapsed", "Merged", "Pending transfer" or "Pending archival" as per latest record published by GLEIF for this LEI</control>
+		<error_code>INS-065</error_code>
+		<error_message>
+The LEI [LEI] is not a valid LEI .</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>6.6</number>
+		<control>validate that the country in Legal Address of this LEI is the same as the &lt;Ctry&gt; field.</control>
+		<error_code>INS-066</error_code>
+		<error_message>
+The Issuer CSD country code [Ctry] is not consistent with the LEI country of location in GLEIF</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>7.1.1</number>
+		<control>For Eqty element</control>
+		<error_code>INS-071.1</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.1.2</number>
+		<control>For SvrgnDebt element</control>
+		<error_code>INS-071.2</error_code>
+		<error_message>For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.1.3</number>
+		<control>For Bd element</control>
+		<error_code>INS-071.3</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (b) of Article 4(1)(44) other than sovereign debt of Article 4(1)(61) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this  type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.1.4</number>
+		<control>For OthrTrfblScties element</control>
+		<error_code>INS-071.4</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (c) of Article 4(1)(44) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.1.5</number>
+		<control>For XchgTradgFnds element</control>
+		<error_code>INS-071.5</error_code>
+		<error_message>For the financial instrument "Exchange-traded funds as defined in point (46) of Article 4(1) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.1.6</number>
+		<control>For CllctvInvstmtUdrtkgs element</control>
+		<error_code>INS-071.6</error_code>
+		<error_message>For the financial instrument "Units in collective investment undertakings other than ETFs" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.1.7</number>
+		<control>For MnyMktInstrm element</control>
+		<error_code>INS-071.7</error_code>
+		<error_message>For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.1.8</number>
+		<control>For EmssnAllwnc element</control>
+		<error_code>INS-071.8</error_code>
+		<error_message>For the financial instrument "Emission allowances" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total  volume of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.1.9</number>
+		<control>For OthrFinInstrms element</control>
+		<error_code>INS-071.9</error_code>
+		<error_message>For the financial instrument "Other financial instruments" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.2.1</number>
+		<control>For Eqty element</control>
+		<error_code>INS-072.1</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (a) of Article 4(1)(44) of Directive 2014/65/EU" the sum of the total values reported for all Issuer CSDs is not equal to the overall total value of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.2.2</number>
+		<control>For SvrgnDebt element</control>
+		<error_code>INS-072.2</error_code>
+		<error_message>For the financial instrument "Sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of the total values reported for all Issuer CSDs is not equal to the overall total value of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.2.3</number>
+		<control>For Bd element</control>
+		<error_code>INS-072.3</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (b) of Article 4(1)(44) other than sovereign debt of Article  4(1)(61) of Directive 2014/65/EU" the sum of the total values reported for all Issuer CSDs is not equal to the overall total value of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.2.4</number>
+		<control>For OthrTrfblScties element</control>
+		<error_code>INS-072.4</error_code>
+		<error_message>For the financial instrument "Transferable securities referred to in point (c) of Article 4(1)(44) of Directive 2014/65/EU" the sum of the total values reported for all Issuer CSDs is not equal to the overall total value of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.2.5</number>
+		<control>For XchgTradgFnds element</control>
+		<error_code>INS-072.5</error_code>
+		<error_message>For the financial instrument "Exchange-traded funds as defined in point (46) of Article 4(1) of Directive 2014/65/EU" the sum of the total values reported for all Issuer CSDs is not equal to the overall total value of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.2.6</number>
+		<control>For CllctvInvstmtUdrtkgs element</control>
+		<error_code>INS-072.6</error_code>
+		<error_message>For the financial instrument "Units in collective investment undertakings other than ETFs" the sum of the total values reported for all Issuer CSDs is not equal to the overall total value of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.2.7</number>
+		<control>For MnyMktInstrm element</control>
+		<error_code>INS-072.7</error_code>
+		<error_message>For the financial instrument "Money market instruments other than sovereign debt referred to in Article 4(1)(61) of Directive 2014/65/EU" the sum of the total values reported for all Issuer CSDs is not equal to the overall total value of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.2.8</number>
+		<control>For EmssnAllwnc element</control>
+		<error_code>INS-072.8</error_code>
+		<error_message>For the financial instrument "Emission allowances" the sum of the total values reported for all Issuer CSDs is not equal to the overall total value of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.2.9</number>
+		<control>For OthrFinInstrms element</control>
+		<error_code>INS-072.9</error_code>
+		<error_message>For the financial instrument "Other financial instruments" the sum of the total values reported for all Issuer CSDs is not equal to the overall total value of this type of instrument, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.3.1</number>
+		<control>For SctiesBuyOrSell element</control>
+		<error_code>INS-073.1</error_code>
+		<error_message>For the type of transaction "Purchase or sale of securities" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of transaction, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.3.2</number>
+		<control>For CollMgmtOpr element</control>
+		<error_code>INS-073.2</error_code>
+		<error_message>For the type of transaction "Collateral management operations" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of transaction, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.3.3</number>
+		<control>For SctiesLndgOrBrrwg element</control>
+		<error_code>INS-073.3</error_code>
+		<error_message>For the type of transaction "Securities lending and securities borrowing" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of transaction, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.3.4</number>
+		<control>For RpAgrmt element</control>
+		<error_code>INS-073.4</error_code>
+		<error_message>For the type of transaction "Repurchase transactions" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of transaction, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.3.5</number>
+		<control>For OthrTxs element</control>
+		<error_code>INS-073.5</error_code>
+		<error_message>For the type of transaction "Other securities transactions" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of transaction, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.4.1</number>
+		<control>For SctiesBuyOrSell element</control>
+		<error_code>INS-074.1</error_code>
+		<error_message>For the type of transaction "Purchase or sale of securities" the sum of total values reported for all Issuer CSDs is not equal to the overall total value of this type of transaction, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.4.2</number>
+		<control>For CollMgmtOpr element</control>
+		<error_code>INS-074.2</error_code>
+		<error_message>For the type of transaction "Collateral management operations" the sum of total values reported for all Issuer CSDs is not equal to the overall total value of this type of transaction, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.4.3</number>
+		<control>For SctiesLndgOrBrrwg element</control>
+		<error_code>INS-074.3</error_code>
+		<error_message>For the type of transaction "Securities lending and securities borrowing" the sum of total values reported for all Issuer CSDs is not equal to the overall total value of this type of transaction, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.4.4</number>
+		<control>For RpAgrmt element</control>
+		<error_code>INS-074.4</error_code>
+		<error_message>For the type of transaction "Repurchase transactions" the sum of total values reported for all Issuer CSDs is not equal to the overall total value of this type of transaction, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.4.5</number>
+		<control>For OthrTxs element</control>
+		<error_code>INS-074.5</error_code>
+		<error_message>For the type of transaction "Other securities transactions" the sum of total values reported for all Issuer CSDs is not equal to the overall total value of this type of transaction, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.5.1</number>
+		<control>For Prfssnl element</control>
+		<error_code>INS-075.1</error_code>
+		<error_message>For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of client, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.5.2</number>
+		<control>For Rtl element</control>
+		<error_code>INS-075.2</error_code>
+		<error_message>For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the sum of total volumes reported for all Issuer CSDs is not equal to the overall total volume of this type of client, reported under the Settlement Internaliser block</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.6.1</number>
+		<control>For Prfssnl element</control>
+		<error_code>INS-076.1</error_code>
+		<error_message>For the type of client "Professional clients as defined in point (10) of Article 4(1) of Directive 2014/65/EU" the sum of total values reported for all Issuer CSDs is not equal to the overall total value of this type of client, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.6.2</number>
+		<control>For Rtl element</control>
+		<error_code>INS-076.2</error_code>
+		<error_message>For the type of client "Retail clients as defined in point (11) of Article 4(1) of Directive 2014/65/EU" the sum of total values reported for all Issuer CSDs is not equal to the overall total value of this type of client, reported under the Settlement Internaliser block.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.7</number>
+		<control>The sum of total volumes reported for all Issuer CSD blocks for cash transfers must be equal to the overall total volume of cash transfers reported under the Settlement Internaliser block &lt;SttlmIntlr&gt; . &lt;TtlCshTrf&gt; . &lt;Aggt&gt; . &lt;T tl=&gt; . &lt;Vol&gt; = Sum of &lt;IssrCSD&gt; . &lt;TtlCshTrf&gt; . &lt;Aggt&gt; . &lt;Tt l=&gt; . &lt;Vol&gt;</control>
+		<error_code>INS-077</error_code>
+		<error_message>
+The sum of total volumes reported for all Issuer CSDs for cash transfers is not equal to the overall total.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.8</number>
+		<control>The sum of total value reported for all Issuer CSD blocks for cash transfers must be equal to the overall total value of cash transfers reported under the Settlement Internaliser block. &lt;SttlmIntlr&gt; . &lt;TtlCshTrf&gt; . &lt;Aggt&gt; . &lt;T tl=&gt; . &lt;Val&gt; = Sum of &lt;IssrCSD&gt; . &lt;TtlCshTrf&gt; . &lt;Aggt&gt; . &lt;Tt l=&gt; . &lt;Val&gt;</control>
+		<error_code>INS-078</error_code>
+		<error_message>
+The sum of total value reported for all Issuer CSDs for cash transfers is not equal to the overall total.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>7.9.1</number>
+		<control>For SttlmIntlr element</control>
+		<error_code>INS-079.1</error_code>
+		<error_message>The sum of total values for all types of financial instruments, all types of transactions, and all types of clients is not equal to the overall total value within the Settlement Internaliser block.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>7.9.2</number>
+		<control>For IssrCSD element</control>
+		<error_code>INS-079.2</error_code>
+		<error_message>The sum of total values for all types of financial instruments, all types of transactions, and all types of clients is not equal to the overall total value within the Issuer CSD block.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>7.10.1</number>
+		<control>For SttlmIntlr element</control>
+		<error_code>INS-0710.1</error_code>
+		<error_message>The sum of total volumes for all types of financial instruments, all types of transactions, and all types of clients s not equal to the overall total volumes within the Settlement Internaliser block.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>7.10.2</number>
+		<control>For IssrCSD element</control>
+		<error_code>INS-0710.2</error_code>
+		<error_message>The sum of total volumes for all types of financial instruments, all types of transactions, and all types of clients is not equal to the overall total volumes within the Issuer CSD block.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>7.11.1</number>
+		<control>For SttlmIntlr element</control>
+		<error_code>INS-0711.1</error_code>
+		<error_message>The Failed Rate Volume % for the Overall total is not consistent to the corresponding Aggregate Failed and Aggregate Total data within the Settlement Internaliser block.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>7.11.2</number>
+		<control>For IssrCSD element</control>
+		<error_code>INS-0711.2</error_code>
+		<error_message>The Failed Rate Volume % for the Overall total is not consistent to the corresponding Aggregate Failed and Aggregate Total data within the Issuer CSD block.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>7.12.1</number>
+		<control>For SttlmIntlr element</control>
+		<error_code>INS-712.1</error_code>
+		<error_message>The Failed Rate Value % for the Overall total is not consistent to the corresponding Aggregate Failed and Aggregate Total data within the Settlement Internaliser block.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>7.12.2</number>
+		<control>For IssrCSD element</control>
+		<error_code>INS-712.2</error_code>
+		<error_message>The Failed Rate Value % for the Overall total is not consistent to the corresponding Aggregate Failed and Aggregate Total data within the Issuer CSD block.</error_message>
+		<record_identifier>Yes</record_identifier>
+	</rule>
+	<rule>
+		<number>8.1</number>
+		<control>The filename of a newly received file must either relate to a new &lt;Sender&gt; &lt;Key1&gt; combination with &lt;Key2&gt; (i.e. version) set to "0001", or a previously submitted &lt;Sender&gt; &lt;Key1&gt; combination with &lt;Key2&gt; (i.e. version) set to the previous Version increased by 1" (see paragraph 0).</control>
+		<error_code>INS-081</error_code>
+		<error_message>
+If &lt;Sender&gt; + &lt;Key1&gt; combination does not exist in DB and Version !=1: It is the first time that the System receives an Internalised Settlement report for the given CA, Country, LEI and Quarter/Year and therefore its version should be set to 0001. If &lt;Sender&gt; + &lt;Key1&gt; combination exists in DB, and Version number (Key2) is less than {PreviousVersion+1}: Version [Key2] of the Internalised Settlement report has already been submitted in the past to the System. A new version may be submitted. If &lt;Sender&gt; + &lt;Key1&gt; combination exists in DB, and Version number (Key2) is greater than {PreviousVersion+1}: Version [Key2] of the Internalised Settlement report is higher than the expected version; its previous version received by the System was {PreviousVersion}.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>8.2</number>
+		<control>A report with RptSts=NEWT must submit an IS entry that does not exist in the CSDR database. A report with RptSts=AMND must refer to a valid IS entry in the CSDR database. A report with RptSts=CANC must refer to a valid IS entry in the CSDR database.</control>
+		<error_code>INS-082</error_code>
+		<error_message>
+If RptSts=NEWT: The submitted Internalised Settlement of CA [CA] with LEI [LEI], Country code of operation [BrnchId] and Reporting period [Quarter]/[Year] already exists in the System as a valid record. If RptSts=AMND:</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	Internalised Settlement report of CA [CA] with LEI [LEI], Country code of operation [BrnchId] and Reporting period [Quarter]/[Year] to be updated exists in the System as a valid record. If RptSts=CANC:
+	<record_identifier>No</record_identifier>
+	</rule>
+	Internalised Settlement of CA [CA] with LEI [LEI], Country code of operation [BrnchId] and Reporting period [Quarter]/[Year] to be cancelled exists in the System as a valid record.
+	<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>8.4</number>
+		<control>To accept an SetIn report by a CA, the reporting period cannot be a future reporting period</control>
+		<error_code>INS-084</error_code>
+		<error_message>
+System cannot accept an Internalised Settlement report for a future reporting period.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+	<rule>
+		<number>8.5</number>
+		<control>To accept a SetIn report by a CA, the reporting period cannot be before July 2019</control>
+		<error_code>INS-085</error_code>
+		<error_message>
+System cannot accept an Internalised Settlement report for a reporting period before July 2019, which forms the first reporting period.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+</validation_rules>
