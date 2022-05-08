@@ -305,10 +305,10 @@
 	</error>
 	<error>
 		<code>INS-064</code>
-		<message>There are more than one Issuer CSDs with an ISIN Code starting with and LEI</message>
-	</error>
-	<error>
-		<code>INS-064</code>
-		<message>There are more than one Issuer CSDs with ISIN Code starting with</message>
+		<message>If LEI is provided:
+There are more than one Issuer CSDs with an ISIN Code starting with &lt;FrstTwoCharsInstrmId&gt; and LEI: &lt;LEI&gt;
+
+If LEI is not provided:
+	There are more than one Issuer CSDs with ISIN Code starting with: &lt;FrstTwoCharsInstrmId&gt;</message>
 	</error>
 </errors>
