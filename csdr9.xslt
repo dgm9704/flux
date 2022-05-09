@@ -115,7 +115,6 @@
 		</xsl:if>
 
 		<!-- INS-014.1 requires filename -->
-
 		<!-- INS-014.2 requires filename -->
 
 		<xsl:variable
@@ -134,9 +133,6 @@
 		</xsl:if>
 
 		<!-- INS-015 requires external lookup -->
-		-
-		<!-- INS-016 requires external lookup -->
-
 		<!-- INS-016 requires external lookup -->
 
 	</xsl:template>
@@ -1007,17 +1003,9 @@
 		</xsl:choose>
 
 		<!-- INS-065 requires external lookup -->
-
 		<!-- INS-066 requires external lookup -->
 
 	</xsl:template>
-
-	<!-- <SttlmIntlr>.<FinInstrm>.<Type of Financial Instrument>.<Aggt>.<Ttl>.<Vol> = Sum of <IssrCSD>.<FinInstrm>.>.<Type of Financial Instrument>.<Aggt>.<Ttl>.<Vol> -->
-	<!-- <xsl:template match="SttlmIntlr/FinInstrm/[Instrument]">
-		<xsl:if test="Aggt/Ttl/Vol != sum(../../IssrCSD/[Instrument]/Aggt/Ttl/Vol)" >
-
-		</xsl:if>
-	</xsl:template> -->
 
 	<xsl:template match="SttlmIntlr/FinInstrm/Eqty">
 		<xsl:if test="Aggt/Ttl/Vol != sum(../../../IssrCSD/FinInstrm/Eqty/Aggt/Ttl/Vol)">
@@ -1253,8 +1241,6 @@
 		</xsl:if>
 	</xsl:template>
 
-	<!-- <SttlmIntlr>.<TxTp>.<Type of Transaction>.<Aggt>.<Ttl>.<Vol> = Sum of <IssrCSD>.<TxTp>.>.<Type of Transaction>.<Aggt>.<Ttl>.<Vol> -->
-
 	<xsl:template match="SttlmIntlr/TxTp/SctiesBuyOrSell">
 		<xsl:if test="Aggt/Ttl/Vol != sum(../../../IssrCSD/TxTp/SctiesBuyOrSell/Aggt/Ttl/Vol)">
 			<xsl:call-template name="CSDR9Error">
@@ -1280,6 +1266,7 @@
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
+
 	<xsl:template match="SttlmIntlr/TxTp/SctiesLndgOrBrrwg">
 		<xsl:if test="Aggt/Ttl/Vol != sum(../../../IssrCSD/TxTp/SctiesLndgOrBrrwg/Aggt/Ttl/Vol)">
 			<xsl:call-template name="CSDR9Error">
@@ -1344,6 +1331,7 @@
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
+
 	<xsl:template match="SttlmIntlr/TxTp/SctiesLndgOrBrrwg">
 		<xsl:if test="Aggt/Ttl/Val != sum(../../../IssrCSD/TxTp/SctiesLndgOrBrrwg/Aggt/Ttl/Val)">
 			<xsl:call-template name="CSDR9Error">
@@ -1435,7 +1423,6 @@
 		</xsl:if>
 	</xsl:template>
 
-	<!-- <SttlmIntlr>.<TtlCshTrf>.<Aggt>.<Ttl>.<Vol> = Sum of <IssrCSD>.<TtlCshTrf>.<Aggt>.<Ttl>.<Vol> -->
 	<xsl:template match="SttlmIntlr/TtlCshTrf">
 		<xsl:if test="Aggt/Ttl/Vol != sum(../../IssrCSD/TtlCshTrf/Aggt/Ttl/Vol)">
 			<xsl:call-template name="CSDR9Error">
@@ -1565,6 +1552,8 @@
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
+
+	<!-- INS-081 .. INS-085 need external information to validate  -->
 
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
