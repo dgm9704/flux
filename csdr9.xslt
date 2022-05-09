@@ -32,9 +32,6 @@
 		<xsl:param name="code" />
 		<xsl:param name="context" />
 		<error>
-			<record>
-				<!-- <xsl:value-of select="./ancestor-or-self::AIFMRecordInfo/AIFMNationalCode" /> -->
-			</record>
 			<code>
 				<xsl:value-of select="$code" />
 			</code>
