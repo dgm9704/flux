@@ -1136,6 +1136,123 @@
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="SttlmIntlr/FinInstrm/Eqty">
+		<xsl:if test="Aggt/Ttl/Val != sum(../../../IssrCSD/FinInstrm/Eqty/Aggt/Ttl/Val)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-072.1'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Val|../../../IssrCSD/FinInstrm/Eqty/Aggt/Ttl/Val" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="SttlmIntlr/FinInstrm/SvrgnDebt">
+		<xsl:if test="Aggt/Ttl/Val != sum(../../../IssrCSD/FinInstrm/SvrgnDebt/Aggt/Ttl/Val)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-072.2'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Val|../../../IssrCSD/FinInstrm/SvrgnDebt/Aggt/Ttl/Val" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="SttlmIntlr/FinInstrm/Bd">
+		<xsl:if test="Aggt/Ttl/Val != sum(../../../IssrCSD/FinInstrm/Bd/Aggt/Ttl/Val)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-072.3'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Val|../../../IssrCSD/FinInstrm/Bd/Aggt/Ttl/Val" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="SttlmIntlr/FinInstrm/OthrTrfblScties">
+		<xsl:if test="Aggt/Ttl/Val != sum(../../../IssrCSD/FinInstrm/OthrTrfblScties/Aggt/Ttl/Val)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-072.4'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Val|../../../IssrCSD/FinInstrm/OthrTrfblScties/Aggt/Ttl/Val" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="SttlmIntlr/FinInstrm/XchgTradgFnds">
+		<xsl:if test="Aggt/Ttl/Val != sum(../../../IssrCSD/FinInstrm/XchgTradgFnds/Aggt/Ttl/Val)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-072.5'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Val|../../../IssrCSD/FinInstrm/XchgTradgFnds/Aggt/Ttl/Val" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="SttlmIntlr/FinInstrm/CllctvInvstmtUdrtkgs">
+		<xsl:if test="Aggt/Ttl/Val != sum(../../../IssrCSD/FinInstrm/CllctvInvstmtUdrtkgs/Aggt/Ttl/Val)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-072.6'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Val|../../../IssrCSD/FinInstrm/CllctvInvstmtUdrtkgs/Aggt/Ttl/Val" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="SttlmIntlr/FinInstrm/MnyMktInstrm">
+		<xsl:if test="Aggt/Ttl/Val != sum(../../../IssrCSD/FinInstrm/MnyMktInstrm/Aggt/Ttl/Val)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-072.7'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Val|../../../IssrCSD/FinInstrm/MnyMktInstrm/Aggt/Ttl/Val" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="SttlmIntlr/FinInstrm/EmssnAllwnc">
+		<xsl:if test="Aggt/Ttl/Val != sum(../../../IssrCSD/FinInstrm/EmssnAllwnc/Aggt/Ttl/Val)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-072.8'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Val|../../../IssrCSD/FinInstrm/EmssnAllwnc/Aggt/Ttl/Val" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="SttlmIntlr/FinInstrm/OthrFinInstrms">
+		<xsl:if test="Aggt/Ttl/Val != sum(../../../IssrCSD/FinInstrm/OthrFinInstrms/Aggt/Ttl/Val)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-072.9'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Val|../../../IssrCSD/FinInstrm/OthrFinInstrms/Aggt/Ttl/Val" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
 
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
