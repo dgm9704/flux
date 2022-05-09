@@ -91,7 +91,10 @@ Sample output for aif validation errors:
 ```
 
 ## Status
--  AIFMD validations have been implemented!
+
+### CSDR9 validations have been implemented!
+
+###  AIFMD validations have been implemented!
 
 	Exceptions: 
     - FIL-009 is a filename check
@@ -104,9 +107,6 @@ Sample output for aif validation errors:
 
 - OK to file bugs!
 
-- have started on CSDR9 validations
-	- roughly 1/3? are implemented in some way
-	- output is very minimal
 
 ## Next steps 
 - Think about packaging, instructions etc.
@@ -114,7 +114,6 @@ Sample output for aif validation errors:
 - Add more info about the validation to the error (perhaps controllable via argument)
 - If possible, find out the output format that ESMA uses!
 - There are some warnings also (WAF-*) - do they go into a "warning" element, or should there be a severity value?
-- Implement CSDR9 validations?
 - Implement CSDR7 validations?
 - Implement MMF validations?
 - Implement ESEF validations?
