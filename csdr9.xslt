@@ -1435,6 +1435,21 @@
 		</xsl:if>
 	</xsl:template>
 
+	<!-- <SttlmIntlr>.<TtlCshTrf>.<Aggt>.<Ttl>.<Vol> = Sum of <IssrCSD>.<TtlCshTrf>.<Aggt>.<Ttl>.<Vol> -->
+	<xsl:template match="SttlmIntlr/TtlCshTrf">
+		<xsl:if test="Aggt/Ttl/Vol != sum(../../IssrCSD/TtlCshTrf/Aggt/Ttl/Vol)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-077'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Vol|../../IssrCSD/TtlCshTrf/Aggt/Ttl/Vol" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
