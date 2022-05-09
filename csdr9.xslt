@@ -1253,6 +1253,71 @@
 		</xsl:if>
 	</xsl:template>
 
+	<!-- <SttlmIntlr>.<TxTp>.<Type of Transaction>.<Aggt>.<Ttl>.<Vol> = Sum of <IssrCSD>.<TxTp>.>.<Type of Transaction>.<Aggt>.<Ttl>.<Vol> -->
+
+	<xsl:template match="SttlmIntlr/TxTp/SctiesBuyOrSell">
+		<xsl:if test="Aggt/Ttl/Vol != sum(../../../IssrCSD/TxTp/SctiesBuyOrSell/Aggt/Ttl/Vol)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-073.1'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Vol|../../../IssrCSD/TxTp/SctiesBuyOrSell/Aggt/Ttl/Vol" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="SttlmIntlr/TxTp/CollMgmtOpr">
+		<xsl:if test="Aggt/Ttl/Vol != sum(../../../IssrCSD/TxTp/CollMgmtOpr/Aggt/Ttl/Vol)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-073.2'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Vol|../../../IssrCSD/TxTp/CollMgmtOpr/Aggt/Ttl/Vol" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+	<xsl:template match="SttlmIntlr/TxTp/SctiesLndgOrBrrwg">
+		<xsl:if test="Aggt/Ttl/Vol != sum(../../../IssrCSD/TxTp/SctiesLndgOrBrrwg/Aggt/Ttl/Vol)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-073.3'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Vol|../../../IssrCSD/TxTp/SctiesLndgOrBrrwg/Aggt/Ttl/Vol" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="SttlmIntlr/TxTp/RpAgrmt">
+		<xsl:if test="Aggt/Ttl/Vol != sum(../../../IssrCSD/TxTp/RpAgrmt/Aggt/Ttl/Vol)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-073.4'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Vol|../../../IssrCSD/TxTp/RpAgrmt/Aggt/Ttl/Vol" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="SttlmIntlr/TxTp/OthrTxs">
+		<xsl:if test="Aggt/Ttl/Vol != sum(../../../IssrCSD/TxTp/OthrTxs/Aggt/Ttl/Vol)">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-073.5'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Vol|../../../IssrCSD/TxTp/OthrTxs/Aggt/Ttl/Vol" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
 
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
