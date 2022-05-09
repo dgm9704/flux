@@ -1514,6 +1514,31 @@
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="SttlmIntlr/OvrllTtl">
+		<xsl:if test="(Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol) != FaildRate/VolPctg">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-0711.1'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Faild/Vol|Aggt/Ttl/Vol|FaildRate/VolPctg" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="IssrCSD/OvrllTtl">
+		<xsl:if test="(Aggt/Faild/Vol * 100 div Aggt/Ttl/Vol) != FaildRate/VolPctg">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-0711.2'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Faild/Vol|Aggt/Ttl/Vol|FaildRate/VolPctg" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
