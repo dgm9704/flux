@@ -1488,6 +1488,32 @@
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="SttlmIntlr/OvrllTtl">
+		<xsl:if test="Aggt/Ttl/Vol != (sum(../FinInstrm/*/Aggt/Ttl/Vol) + sum(../TxTp/*/Aggt/Ttl/Vol) + sum(../ClntTp/*/Aggt/Ttl/Vol))">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-0710.1'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Vol|../FinInstrm/*/Aggt/Ttl/Vol|../TxTp/*/Aggt/Ttl/Vol|../ClntTp/*/Aggt/Ttl/Vol" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="IssrCSD/OvrllTtl">
+		<xsl:if test="Aggt/Ttl/Vol != (sum(../FinInstrm/*/Aggt/Ttl/Vol) + sum(../TxTp/*/Aggt/Ttl/Vol) + sum(../ClntTp/*/Aggt/Ttl/Vol))">
+			<xsl:call-template name="CSDR9Error">
+				<xsl:with-param
+						name="code"
+						select="'INS-0710.2'" />
+				<xsl:with-param
+						name="context"
+						select="Aggt/Ttl/Vol|../FinInstrm/*/Aggt/Ttl/Vol|../TxTp/*/Aggt/Ttl/Vol|../ClntTp/*/Aggt/Ttl/Vol" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
