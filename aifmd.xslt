@@ -13,27 +13,27 @@
 			method="xml" />
 	<xsl:variable
 			name="countrycodes"
-			select="document('data/iso-3166-1.xml')/codes/code" />
+			select="document('lookup/iso-3166-1.xml')/codes/code" />
 	<xsl:variable
 			name="currencycodes"
-			select="document('data/iso-4217.xml')/codes/code" />
+			select="document('lookup/iso-4217.xml')/codes/code" />
 	<xsl:variable
 			name="eeacountrycodes"
-			select="document('data/eea-countries.xml')/codes/code" />
+			select="document('lookup/eea-countries.xml')/codes/code" />
 	<xsl:variable
 			name="aifmregister"
-			select="document('data/manager-register.xml')/codes/code" />
+			select="document('lookup/manager-register.xml')/codes/code" />
 	<xsl:variable
 			name="aifregister"
-			select="document('data/fund-register.xml')/codes/code" />
+			select="document('lookup/fund-register.xml')/codes/code" />
 	<xsl:variable
 			name="micregister"
-			select="document('data/mic-register.xml')/codes/code" />
+			select="document('lookup/mic-register.xml')/codes/code" />
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable
 			name="aifmdvalidations"
-			select="document('data/aifmd-validations.xml')" />
+			select="document('lookup/aifmd-validations.xml')" />
 
 	<xsl:key
 			name="validationlookup"
