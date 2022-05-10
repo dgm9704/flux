@@ -51,21 +51,21 @@ https://www.esma.europa.eu/sites/default/files/library/esma65-8-6561_csdr-techni
 
 If this gives errors, stop and correct them.
 ``` 
-xmllint aifm.xml --schema schema/aifmd.xsd --noout
+xmllint report/aifm.xml --schema schema/aifmd.xsd --noout
 ``` 
 or
 ``` 
-xmllint aif.xml --schema schema/aifmd.xsd --noout
+xmllint report/aif.xml --schema schema/aifmd.xsd --noout
 ``` 
 
 2) Run the transformation:
 
 ``` 
-xsltproc aifmd.xslt aifm.xml
+xsltproc aifmd.xslt report/aifm.xml
 ``` 
 or
 ``` 
-xsltproc aifmd.xslt aif.xml
+xsltproc aifmd.xslt report/aif.xml
 ``` 
 
 Sample output for aif validation errors:
@@ -75,15 +75,16 @@ Sample output for aif validation errors:
   <error>
     <record>111111#001</record>
     <code>CAF-146</code>
+    <control>The ranks that are assigned to the reported values should be consistent in relation to each other. First rank values are above or equal to the second rank values and so on.</control>
     <message>The reported value is not consistent with the rank.</message>
     <context>
       <field>
-        <name>Ranking</name>
-        <value>2</value>
+        <name>AIFReportingInfo/AIFRecordInfo/AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4/BorrowingSource/Ranking/</name>
+        <value>1</value>
       </field>
       <field>
-        <name>LeverageAmount</name>
-        <value>222222</value>
+        <name>AIFReportingInfo/AIFRecordInfo/AIFCompleteDescription/AIFLeverageInfo/AIFLeverageArticle24-4/BorrowingSource/LeverageAmount/</name>
+        <value>111111</value>
       </field>
     </context>
   </error>
