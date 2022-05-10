@@ -194,15 +194,6 @@ or
 		<error_message>The authority key file attribute is not consistent with the sending</error_message>
 	</rule>
 	<rule>
-		<id>2</id>
-		<field_name>Reporting Member state</field_name>
-		<element_name>&lt;ReportingMemberState&gt;</element_name>
-		<technical_guidance>Country code standard ISO-3166-1 of the Member State to which the AIFM reports the AIFMD reporting.</technical_guidance>
-		<error_reference>FIL-015</error_reference>
-		<control>Check that the reporting member state attribute of the report is listed in the reference table of countries and referenced as EEA country</control>
-		<error_message>The authority key file attribute is invalid and should an EU or EEA country</error_message>
-	</rule>
-	<rule>
 		<id>4</id>
 		<field_name>Filing type</field_name>
 		<element_name>&lt;FilingType&gt;</element_name>
@@ -753,70 +744,7 @@ or
 	<rule>
 		<id>78</id>
 		<field_name>Africa NAV percentage</field_name>
-		<element_name>&lt;AfricaNAVRate&gt;</element_name>
-		<technical_guidance>NAV rate expressed as a percentage for each geographical area. Certain regions may have negative values whereas other regions may have values above 100%. The sum of all the region percentages should be 100%.</technical_guidance>
-		<error_reference>CAF-057</error_reference>
-		<control>The sum of all the area NAV percentages should be equal to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>79</id>
-		<field_name>Asia Pacific (other than Middle East) NAV percentage</field_name>
-		<element_name>&lt;AsiaPacificNAVRate&gt;</element_name>
-		<technical_guidance>NAV rate expressed as a percentage for each geographical area. Certain regions may have negative values whereas other regions may have values above 100%. The sum of all the region percentages should be 100%.</technical_guidance>
-		<error_reference>CAF-057</error_reference>
-		<control>The sum of all the area NAV percentages should be equal to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>80</id>
-		<field_name>Europe (other than EEA) NAV percentage</field_name>
-		<element_name>&lt;EuropeNAVRate&gt;</element_name>
-		<technical_guidance>NAV rate expressed as a percentage for each geographical area. Certain regions may have negative values whereas other regions may have values above 100%. The sum of all the region percentages should be 100%.</technical_guidance>
-		<error_reference>CAF-057</error_reference>
-		<control>The sum of all the area NAV percentages should be equal to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>81</id>
-		<field_name>Europe EEA NAV percentage</field_name>
-		<element_name>&lt;EEANAVRate&gt;</element_name>
-		<technical_guidance>NAV rate expressed as a percentage for each geographical area. Certain regions may have negative values whereas other regions may have values above 100%. The sum of all the region percentages should be 100%.</technical_guidance>
-		<error_reference>CAF-057</error_reference>
-		<control>The sum of all the area NAV percentages should be equal to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>82</id>
-		<field_name>Middle East NAV percentage</field_name>
-		<element_name>&lt;MiddleEastNAVRate&gt;</element_name>
-		<technical_guidance>NAV rate expressed as a percentage for each geographical area. Certain regions may have negative values whereas other regions may have values above 100%. The sum of all the region percentages should be 100%.</technical_guidance>
-		<error_reference>CAF-057</error_reference>
-		<control>The sum of all the area NAV percentages should be equal to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>83</id>
-		<field_name>North America NAV percentage</field_name>
-		<element_name>&lt;NorthAmericaNAVRate&gt;</element_name>
-		<technical_guidance>NAV rate expressed as a percentage for each geographical area. Certain regions may have negative values whereas other regions may have values above 100%. The sum of all the region percentages should be 100%.</technical_guidance>
-		<error_reference>CAF-057</error_reference>
-		<control>The sum of all the area NAV percentages should be equal to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>84</id>
-		<field_name>South America NAV percentage</field_name>
-		<element_name>&lt;SouthAmericaNAVRate&gt;</element_name>
-		<technical_guidance>NAV rate expressed as a percentage for each geographical area. Certain regions may have negative values whereas other regions may have values above 100%. The sum of all the region percentages should be 100%.</technical_guidance>
-		<error_reference>CAF-057</error_reference>
-		<control>The sum of all the area NAV percentages should be equal to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>85</id>
-		<field_name>Supra National/Multiple regions NAV percentage</field_name>
-		<element_name>&lt;SupraNationalNAVRate&gt;</element_name>
+		<element_name></element_name>
 		<technical_guidance>NAV rate expressed as a percentage for each geographical area. Certain regions may have negative values whereas other regions may have values above 100%. The sum of all the region percentages should be 100%.</technical_guidance>
 		<error_reference>CAF-057</error_reference>
 		<control>The sum of all the area NAV percentages should be equal to 100%. </control>
@@ -825,70 +753,7 @@ or
 	<rule>
 		<id>86</id>
 		<field_name>Africa AuM value percentage *</field_name>
-		<element_name>&lt;AfricaAUMRate&gt;</element_name>
-		<technical_guidance>AUM rate expressed as a percentage for each geographical area. The sum of all the area percentages should be 100%</technical_guidance>
-		<error_reference>CAF-058</error_reference>
-		<control>The sum of all the area AUM percentages should be equel to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>87</id>
-		<field_name>Asia Pacific (other than Middle East) AuM value percentage *</field_name>
-		<element_name>&lt;AsiaPacificAUMRate&gt;</element_name>
-		<technical_guidance>AUM rate expressed as a percentage for each geographical area. The sum of all the area percentages should be 100%</technical_guidance>
-		<error_reference>CAF-058</error_reference>
-		<control>The sum of all the area AUM percentages should be equel to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>88</id>
-		<field_name>Europe (other than EEA) AuM value percentage *</field_name>
-		<element_name>&lt;EuropeAUMRate&gt;</element_name>
-		<technical_guidance>AUM rate expressed as a percentage for each geographical area. The sum of all the area percentages should be 100%</technical_guidance>
-		<error_reference>CAF-058</error_reference>
-		<control>The sum of all the area AUM percentages should be equel to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>89</id>
-		<field_name>Europe EEA AuM value percentage *</field_name>
-		<element_name>&lt;EEAAUMRate&gt;</element_name>
-		<technical_guidance>AUM rate expressed as a percentage for each geographical area. The sum of all the area percentages should be 100%</technical_guidance>
-		<error_reference>CAF-058</error_reference>
-		<control>The sum of all the area AUM percentages should be equel to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>90</id>
-		<field_name>Middle East AuM value percentage *</field_name>
-		<element_name>&lt;MiddleEastAUMRate&gt;</element_name>
-		<technical_guidance>AUM rate expressed as a percentage for each geographical area. The sum of all the area percentages should be 100%</technical_guidance>
-		<error_reference>CAF-058</error_reference>
-		<control>The sum of all the area AUM percentages should be equel to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>91</id>
-		<field_name>North America AuM value percentage *</field_name>
-		<element_name>&lt;NorthAmericaAUMRate&gt;</element_name>
-		<technical_guidance>AUM rate expressed as a percentage for each geographical area. The sum of all the area percentages should be 100%</technical_guidance>
-		<error_reference>CAF-058</error_reference>
-		<control>The sum of all the area AUM percentages should be equel to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>92</id>
-		<field_name>South America AuM value percentage *</field_name>
-		<element_name>&lt;SouthAmericaAUMRate&gt;</element_name>
-		<technical_guidance>AUM rate expressed as a percentage for each geographical area. The sum of all the area percentages should be 100%</technical_guidance>
-		<error_reference>CAF-058</error_reference>
-		<control>The sum of all the area AUM percentages should be equel to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>93</id>
-		<field_name>Supra National/Multiple regions AuM value percentage *</field_name>
-		<element_name>&lt;SupraNationalAUMRate&gt;</element_name>
+		<element_name></element_name>
 		<technical_guidance>AUM rate expressed as a percentage for each geographical area. The sum of all the area percentages should be 100%</technical_guidance>
 		<error_reference>CAF-058</error_reference>
 		<control>The sum of all the area AUM percentages should be equel to 100%. </control>
@@ -1122,19 +987,10 @@ or
 	<rule>
 		<id>119</id>
 		<field_name>Investor Concentration percentage by professional clients</field_name>
-		<element_name>&lt;ProfessionalInvestorConcentrationRate&gt;</element_name>
+		<element_name></element_name>
 		<technical_guidance>Rate expressed as a percentage. The sum of the percentages reported by professional clients and retail investors should be 100%  </technical_guidance>
 		<error_reference>CAF-084</error_reference>
 		<control>The sum of the percentages reported by professional clients and retail investors should be 100%  or 0%. The retail investor rate and professional investor rate should be filled in with 0% when there is no information to report. </control>
-		<error_message>The sum of the percentages should be equal to 0% or 100%.</error_message>
-	</rule>
-	<rule>
-		<id>120</id>
-		<field_name>Investor Concentration percentage by retail investors </field_name>
-		<element_name>&lt;RetailInvestorConcentrationRate&gt;</element_name>
-		<technical_guidance>Rate expressed as a percentage. The sum of the percentages reported by professional clients and retail investors should be 100%  </technical_guidance>
-		<error_reference>CAF-084</error_reference>
-		<control>The sum of the percentages reported by professional clients and retail investors should be 100%  or 0%. The retail investor rate and professional investor rate should be filled in with 0% when there is no information to report.</control>
 		<error_message>The sum of the percentages should be equal to 0% or 100%.</error_message>
 	</rule>
 	<rule>
@@ -1383,15 +1239,6 @@ or
 		<error_message>The sum of the percentages should be equal to 100%.</error_message>
 	</rule>
 	<rule>
-		<id>151</id>
-		<field_name>Percentage of trade volumes for derivatives traded on OTC</field_name>
-		<element_name>&lt;OTCRate&gt;</element_name>
-		<technical_guidance>Estimated % in terms of trade volumes of derivatives that are traded on OTC markets. Rate expressed as a percentage. The sum of the percentages reported by regulated exchanges and OTCs should be 100%  </technical_guidance>
-		<error_reference>CAF-111</error_reference>
-		<control>The sum of the regulated exchange and OTC percentages should be equal to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
 		<id>152</id>
 		<field_name>Percentage of trade volumes for derivatives cleared by a CCP</field_name>
 		<element_name>&lt;CCPRate&gt;</element_name>
@@ -1401,37 +1248,10 @@ or
 		<error_message>The sum of the percentages should be equal to 100%.</error_message>
 	</rule>
 	<rule>
-		<id>153</id>
-		<field_name>Percentage of trade volumes for derivatives cleared bilaterally</field_name>
-		<element_name>&lt;BilateralClearingRate&gt;</element_name>
-		<technical_guidance>Estimated % in terms of trade volumes of derivatives transactions that are cleared bilateraly. Rate expressed as a percentage. The sum of the percentages reported for number of trade cleared by a CCP and bilaterraly should equal 100% .</technical_guidance>
-		<error_reference>WAF-001</error_reference>
-		<control>The sum of the CCP and bilaterally percentages should be equal to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
 		<id>154</id>
 		<field_name>Percentage of market value for repos trades cleared by a CCP</field_name>
 		<element_name>&lt;CCPRate&gt;</element_name>
 		<technical_guidance>Estimated % in terms of market value of repo trades that are cleared by a CCP. Rate expressed as a percentage. The sum of the percentages reported for the market value of repo trades cleared by a CCP, bilaterraly and on a tri-party basis should equal 100% .</technical_guidance>
-		<error_reference>WAF-002</error_reference>
-		<control>The sum of the CCP triparty and bilaterally percentages should be equal to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>155</id>
-		<field_name>Percentage of market value for repos trades cleared bilaterally</field_name>
-		<element_name>&lt;BilateralClearingRate&gt;</element_name>
-		<technical_guidance>Estimated % in terms of market value of repo trades that are cleared bilateraly. Rate expressed as a percentage. The sum of the percentages reported for the market value of repo trades cleared by a CCP, bilaterraly and on a tri-party basis should equal 100% .</technical_guidance>
-		<error_reference>WAF-002</error_reference>
-		<control>The sum of the CCP triparty and bilaterally percentages should be equal to 100%. </control>
-		<error_message>The sum of the percentages should be equal to 100%.</error_message>
-	</rule>
-	<rule>
-		<id>156</id>
-		<field_name>Percentage of market value for repos trades cleared with triparty repos</field_name>
-		<element_name>&lt;TriPartyRepoClearingRate&gt;</element_name>
-		<technical_guidance>Estimated % in terms of market value of repo trades that are cleared via tri party repos. Rate expressed as a percentage. The sum of the percentages reported for the market value of repo trades cleared by a CCP, bilaterraly and on a tri-party basis should equal 100% .</technical_guidance>
 		<error_reference>WAF-002</error_reference>
 		<control>The sum of the CCP triparty and bilaterally percentages should be equal to 100%. </control>
 		<error_message>The sum of the percentages should be equal to 100%.</error_message>
@@ -1790,541 +1610,46 @@ or
 	<rule>
 		<id>219</id>
 		<field_name>Percentage of gross investment returns for January</field_name>
-		<element_name>&lt;RateJanuary&gt;</element_name>
+		<element_name></element_name>
 		<technical_guidance>Gross investment returns or IRR of the AIF for January (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the January rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
 		<error_reference>CAF-134</error_reference>
 		<control>For each calendar year, the January rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
 		<error_message>The month rate is not consistent with the reporting period.</error_message>
 	</rule>
 	<rule>
-		<id>220</id>
-		<field_name>Percentage of gross investment returns for February</field_name>
-		<element_name>&lt;RateFebruary&gt;</element_name>
-		<technical_guidance>Gross investment returns or IRR of the AIF for February (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the February rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-134</error_reference>
-		<control>For each calendar year, the February rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>221</id>
-		<field_name>Percentage of gross investment returns for March</field_name>
-		<element_name>&lt;RateMarch&gt;</element_name>
-		<technical_guidance>0</technical_guidance>
-		<error_reference>CAF-134</error_reference>
-		<control>For each calendar year, the March rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>222</id>
-		<field_name>Percentage of gross investment returns for April</field_name>
-		<element_name>&lt;RateApril&gt;</element_name>
-		<technical_guidance>Gross investment returns or IRR of the AIF for April (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the April rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-134</error_reference>
-		<control>For each calendar year, the April rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>223</id>
-		<field_name>Percentage of gross investment returns for May</field_name>
-		<element_name>&lt;RateMay&gt;</element_name>
-		<technical_guidance>Gross investment returns or IRR of the AIF for May (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the May rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-134</error_reference>
-		<control>For each calendar year, the May rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>224</id>
-		<field_name>Percentage of gross investment returns for June</field_name>
-		<element_name>&lt;RateJune&gt;</element_name>
-		<technical_guidance>Gross investment returns or IRR of the AIF for June (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the June rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-134</error_reference>
-		<control>For each calendar year, the June rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>225</id>
-		<field_name>Percentage of gross investment returns for July</field_name>
-		<element_name>&lt;RateJuly&gt;</element_name>
-		<technical_guidance>Gross investment returns or IRR of the AIF for July (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the July rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-134</error_reference>
-		<control>For each calendar year, the July rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>226</id>
-		<field_name>Percentage of gross investment returns for August</field_name>
-		<element_name>&lt;RateAugust&gt;</element_name>
-		<technical_guidance>Gross investment returns or IRR of the AIF for August (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the August rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-134</error_reference>
-		<control>For each calendar year, the August rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>227</id>
-		<field_name>Percentage of gross investment returns for September</field_name>
-		<element_name>&lt;RateSeptember&gt;</element_name>
-		<technical_guidance>Gross investment returns or IRR of the AIF for September (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the September rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-134</error_reference>
-		<control>For each calendar year, the September rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>228</id>
-		<field_name>Percentage of gross investment returns for October</field_name>
-		<element_name>&lt;RateOctober&gt;</element_name>
-		<technical_guidance>Gross investment returns or IRR of the AIF for October (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the October rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-134</error_reference>
-		<control>For each calendar year, the October rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>229</id>
-		<field_name>Percentage of gross investment returns for November</field_name>
-		<element_name>&lt;RateNovember&gt;</element_name>
-		<technical_guidance>Gross investment returns or IRR of the AIF for November (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the November rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-134</error_reference>
-		<control>For each calendar year, the November rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>230</id>
-		<field_name>Percentage of gross investment returns for December</field_name>
-		<element_name>&lt;RateDecember&gt;</element_name>
-		<technical_guidance>Gross investment returns or IRR of the AIF for December (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the December rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-134</error_reference>
-		<control>For each calendar year, the December rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
 		<id>231</id>
 		<field_name>Percentage of net investment returns for January</field_name>
-		<element_name>&lt;RateJanuary&gt;</element_name>
+		<element_name></element_name>
 		<technical_guidance>Net investment returns or IRR of the AIF for January (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the January rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
 		<error_reference>CAF-135</error_reference>
 		<control>For each calendar year, the January rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
 		<error_message>The month rate is not consistent with the reporting period.</error_message>
 	</rule>
 	<rule>
-		<id>232</id>
-		<field_name>Percentage of net investment returns for February</field_name>
-		<element_name>&lt;RateFebruary&gt;</element_name>
-		<technical_guidance>Net investment returns or IRR of the AIF for February (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the February rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-135</error_reference>
-		<control>For each calendar year, the February rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>233</id>
-		<field_name>Percentage of net investment returns for March</field_name>
-		<element_name>&lt;RateMarch&gt;</element_name>
-		<technical_guidance>Net investment returns or IRR of the AIF for March (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the March rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-135</error_reference>
-		<control>For each calendar year, the March rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>234</id>
-		<field_name>Percentage of net investment returns for April</field_name>
-		<element_name>&lt;RateApril&gt;</element_name>
-		<technical_guidance>Net investment returns or IRR of the AIF for April (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the April rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-135</error_reference>
-		<control>For each calendar year, the April rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>235</id>
-		<field_name>Percentage of net investment returns for May</field_name>
-		<element_name>&lt;RateMay&gt;</element_name>
-		<technical_guidance>Net investment returns or IRR of the AIF for May (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the May rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-135</error_reference>
-		<control>For each calendar year, the May rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>236</id>
-		<field_name>Percentage of net investment returns for June</field_name>
-		<element_name>&lt;RateJune&gt;</element_name>
-		<technical_guidance>Net investment returns or IRR of the AIF for June (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the June rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-135</error_reference>
-		<control>For each calendar year, the June rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>237</id>
-		<field_name>Percentage of net investment returns for July</field_name>
-		<element_name>&lt;RateJuly&gt;</element_name>
-		<technical_guidance>Net investment returns or IRR of the AIF for July (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the July rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-135</error_reference>
-		<control>For each calendar year, the July rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>238</id>
-		<field_name>Percentage of net investment returns for August</field_name>
-		<element_name>&lt;RateAugust&gt;</element_name>
-		<technical_guidance>Net investment returns or IRR of the AIF for August (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the August rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-135</error_reference>
-		<control>For each calendar year, the August rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>239</id>
-		<field_name>Percentage of net investment returns for September</field_name>
-		<element_name>&lt;RateSeptember&gt;</element_name>
-		<technical_guidance>Net investment returns or IRR of the AIF for September (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the September rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-135</error_reference>
-		<control>For each calendar year, the September rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>240</id>
-		<field_name>Percentage of net investment returns for October</field_name>
-		<element_name>&lt;RateOctober&gt;</element_name>
-		<technical_guidance>Net investment returns or IRR of the AIF for October (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the October rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-135</error_reference>
-		<control>For each calendar year, the October rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>241</id>
-		<field_name>Percentage of net investment returns for November</field_name>
-		<element_name>&lt;RateNovember&gt;</element_name>
-		<technical_guidance>Net investment returns or IRR of the AIF for November (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the November rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-135</error_reference>
-		<control>For each calendar year, the November rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>242</id>
-		<field_name>Percentage of net investment returns for December</field_name>
-		<element_name>&lt;RateDecember&gt;</element_name>
-		<technical_guidance>Net investment returns or IRR of the AIF for December (in %, gross of management and performance fees). Rate expressed as a percentage. For each calendar year, the December rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-135</error_reference>
-		<control>For each calendar year, the December rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
 		<id>243</id>
 		<field_name>Percentage of NAV change for January</field_name>
-		<element_name>&lt;RateJanuary&gt;</element_name>
+		<element_name></element_name>
 		<technical_guidance>December to January changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the January rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
 		<error_reference>CAF-136</error_reference>
 		<control>For each calendar year, the January rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
 		<error_message>The month rate is not consistent with the reporting period.</error_message>
 	</rule>
 	<rule>
-		<id>244</id>
-		<field_name>Percentage of NAV change for February</field_name>
-		<element_name>&lt;RateFebruary&gt;</element_name>
-		<technical_guidance>January to February changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the February rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-136</error_reference>
-		<control>For each calendar year, the February rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>245</id>
-		<field_name>Percentage of NAV change for March</field_name>
-		<element_name>&lt;RateMarch&gt;</element_name>
-		<technical_guidance>February to March changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the March rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-136</error_reference>
-		<control>For each calendar year, the March rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>246</id>
-		<field_name>Percentage of NAV change for April</field_name>
-		<element_name>&lt;RateApril&gt;</element_name>
-		<technical_guidance>March to April changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the April rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-136</error_reference>
-		<control>For each calendar year, the April rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>247</id>
-		<field_name>Percentage of NAV change for May</field_name>
-		<element_name>&lt;RateMay&gt;</element_name>
-		<technical_guidance>April to May changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the May rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-136</error_reference>
-		<control>For each calendar year, the May rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>248</id>
-		<field_name>Percentage of NAV change for June</field_name>
-		<element_name>&lt;RateJune&gt;</element_name>
-		<technical_guidance>May to June changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the June rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-136</error_reference>
-		<control>For each calendar year, the June rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>249</id>
-		<field_name>Percentage of NAV change for July</field_name>
-		<element_name>&lt;RateJuly&gt;</element_name>
-		<technical_guidance>June to July changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the July rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-136</error_reference>
-		<control>For each calendar year, the July rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>250</id>
-		<field_name>Percentage of NAV change for August</field_name>
-		<element_name>&lt;RateAugust&gt;</element_name>
-		<technical_guidance>July to August changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the August rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-136</error_reference>
-		<control>For each calendar year, the August rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>251</id>
-		<field_name>Percentage of NAV change for September</field_name>
-		<element_name>&lt;RateSeptember&gt;</element_name>
-		<technical_guidance>August to September changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the September rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-136</error_reference>
-		<control>For each calendar year, the September rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>252</id>
-		<field_name>Percentage of NAV change for October</field_name>
-		<element_name>&lt;RateOctober&gt;</element_name>
-		<technical_guidance>September to October changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the October rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-136</error_reference>
-		<control>For each calendar year, the October rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>253</id>
-		<field_name>Percentage of NAV change for November</field_name>
-		<element_name>&lt;RateNovember&gt;</element_name>
-		<technical_guidance>October to November changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the November rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-136</error_reference>
-		<control>For each calendar year, the November rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>254</id>
-		<field_name>Percentage of NAV change for December</field_name>
-		<element_name>&lt;RateDecember&gt;</element_name>
-		<technical_guidance>November to December changes in NAV including the impact of subscriptions and redemptions Rate expressed as a percentage. For each calendar year, the December rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-136</error_reference>
-		<control>For each calendar year, the December rate should be reported only once. For Q1 reporting period, only January, February and March rates may be reported. For Q2 reporting period, only April, May and June rates may be reported. For Q3 reporting period, only July, August and September rates may be reported. For Q4 reporting period, only October, November and December rates may be reported. For H1 reporting period, only January, February, March, April, May and June rates may be reported. For H2 reporting period, only July, August, September, October, November and December rates may be reported. For Y1 reporting period, all month rates may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month rate is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
 		<id>255</id>
 		<field_name>Number of subscriptions for January</field_name>
-		<element_name>&lt;QuantityJanuary&gt;</element_name>
+		<element_name></element_name>
 		<technical_guidance>Number of subscriptions during January.  Number filled in without decimal places. For each calendar year, the January quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
 		<error_reference>CAF-137</error_reference>
 		<control>For each calendar year, the January quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
 		<error_message>The month quantity is not consistent with the reporting period.</error_message>
 	</rule>
 	<rule>
-		<id>256</id>
-		<field_name>Number of subscriptions for February</field_name>
-		<element_name>&lt;QuantityFebruary&gt;</element_name>
-		<technical_guidance>Number of subscriptions during February  Number filled in without decimal places. For each calendar year, the February quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-137</error_reference>
-		<control>For each calendar year, the February quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>257</id>
-		<field_name>Number of subscriptions for March</field_name>
-		<element_name>&lt;QuantityMarch&gt;</element_name>
-		<technical_guidance>Number of subscriptions during March  Number filled in without decimal places. For each calendar year, the March quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-137</error_reference>
-		<control>For each calendar year, the March quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>258</id>
-		<field_name>Number of subscriptions for April</field_name>
-		<element_name>&lt;QuantityApril&gt;</element_name>
-		<technical_guidance>Number of subscriptions during April  Number filled in without decimal places. For each calendar year, the April quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-137</error_reference>
-		<control>For each calendar year, the April quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>259</id>
-		<field_name>Number of subscriptions for May</field_name>
-		<element_name>&lt;QuantityMay&gt;</element_name>
-		<technical_guidance>Number of subscriptions during May  Number filled in without decimal places. For each calendar year, the May quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-137</error_reference>
-		<control>For each calendar year, the May quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>260</id>
-		<field_name>Number of subscriptions for June</field_name>
-		<element_name>&lt;QuantityJune&gt;</element_name>
-		<technical_guidance>Number of subscriptions during June  Number filled in without decimal places. For each calendar year, the June quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-137</error_reference>
-		<control>For each calendar year, the June quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>261</id>
-		<field_name>Number of subscriptions for July</field_name>
-		<element_name>&lt;QuantityJuly&gt;</element_name>
-		<technical_guidance>Number of subscriptions during July  Number filled in without decimal places. For each calendar year, the July quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-137</error_reference>
-		<control>For each calendar year, the July quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>262</id>
-		<field_name>Number of subscriptions for August</field_name>
-		<element_name>&lt;QuantityAugust&gt;</element_name>
-		<technical_guidance>Number of subscriptions during August  Number filled in without decimal places. For each calendar year, the August quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-137</error_reference>
-		<control>For each calendar year, the August quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>263</id>
-		<field_name>Number of subscriptions for September</field_name>
-		<element_name>&lt;QuantitySeptember&gt;</element_name>
-		<technical_guidance>Number of subscriptions during September  Number filled in without decimal places. For each calendar year, the September quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-137</error_reference>
-		<control>For each calendar year, the September quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>264</id>
-		<field_name>Number of subscriptions for October</field_name>
-		<element_name>&lt;QuantityOctober&gt;</element_name>
-		<technical_guidance>Number of subscriptions during October  Number filled in without decimal places. For each calendar year, the October quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-137</error_reference>
-		<control>For each calendar year, the October quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>265</id>
-		<field_name>Number of subscriptions for November</field_name>
-		<element_name>&lt;QuantityNovember&gt;</element_name>
-		<technical_guidance>Number of subscriptions during November  Number filled in without decimal places. For each calendar year, the November quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-137</error_reference>
-		<control>For each calendar year, the November quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>266</id>
-		<field_name>Number of subscriptions for December</field_name>
-		<element_name>&lt;QuantityDecember&gt;</element_name>
-		<technical_guidance>Number of subscriptions during December  Number filled in without decimal places. For each calendar year, the December quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-137</error_reference>
-		<control>For each calendar year, the December quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
 		<id>267</id>
 		<field_name>Number of redemptions for January</field_name>
-		<element_name>&lt;QuantityJanuary&gt;</element_name>
+		<element_name></element_name>
 		<technical_guidance>Number of redemptions during January.  Number filled in without decimal places. For each calendar year, the January quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
 		<error_reference>CAF-138</error_reference>
 		<control>For each calendar year, the January quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>268</id>
-		<field_name>Number of redemptions for February</field_name>
-		<element_name>&lt;QuantityFebruary&gt;</element_name>
-		<technical_guidance>Number of redemptions during February  Number filled in without decimal places. For each calendar year, the February quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-138</error_reference>
-		<control>For each calendar year, the February quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>269</id>
-		<field_name>Number of redemptions for March</field_name>
-		<element_name>&lt;QuantityMarch&gt;</element_name>
-		<technical_guidance>Number of redemptions during March  Number filled in without decimal places. For each calendar year, the March quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-138</error_reference>
-		<control>For each calendar year, the March quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>270</id>
-		<field_name>Number of redemptions for April</field_name>
-		<element_name>&lt;QuantityApril&gt;</element_name>
-		<technical_guidance>Number of redemptions during April  Number filled in without decimal places. For each calendar year, the April quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-138</error_reference>
-		<control>For each calendar year, the April quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>271</id>
-		<field_name>Number of redemptions for May</field_name>
-		<element_name>&lt;QuantityMay&gt;</element_name>
-		<technical_guidance>Number of redemptions during May  Number filled in without decimal places. For each calendar year, the May quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-138</error_reference>
-		<control>For each calendar year, the May quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>272</id>
-		<field_name>Number of redemptions for June</field_name>
-		<element_name>&lt;QuantityJune&gt;</element_name>
-		<technical_guidance>Number of redemptions during June  Number filled in without decimal places. For each calendar year, the June quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-138</error_reference>
-		<control>For each calendar year, the June quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>273</id>
-		<field_name>Number of redemptions for July</field_name>
-		<element_name>&lt;QuantityJuly&gt;</element_name>
-		<technical_guidance>Number of redemptions during July  Number filled in without decimal places. For each calendar year, the July quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-138</error_reference>
-		<control>For each calendar year, the July quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>274</id>
-		<field_name>Number of redemptions for August</field_name>
-		<element_name>&lt;QuantityAugust&gt;</element_name>
-		<technical_guidance>Number of redemptions during August  Number filled in without decimal places. For each calendar year, the August quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-138</error_reference>
-		<control>For each calendar year, the August quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>275</id>
-		<field_name>Number of redemptions for September</field_name>
-		<element_name>&lt;QuantitySeptember&gt;</element_name>
-		<technical_guidance>Number of redemptions during September  Number filled in without decimal places. For each calendar year, the September quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-138</error_reference>
-		<control>For each calendar year, the September quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>276</id>
-		<field_name>Number of redemptions for October</field_name>
-		<element_name>&lt;QuantityOctober&gt;</element_name>
-		<technical_guidance>Number of redemptions during October  Number filled in without decimal places. For each calendar year, the October quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-138</error_reference>
-		<control>For each calendar year, the October quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>277</id>
-		<field_name>Number of redemptions for November</field_name>
-		<element_name>&lt;QuantityNovember&gt;</element_name>
-		<technical_guidance>Number of redemptions during November  Number filled in without decimal places. For each calendar year, the November quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-138</error_reference>
-		<control>For each calendar year, the November quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
-		<error_message>The month quantity is not consistent with the reporting period.</error_message>
-	</rule>
-	<rule>
-		<id>278</id>
-		<field_name>Number of redemptions for December</field_name>
-		<element_name>&lt;QuantityDecember&gt;</element_name>
-		<technical_guidance>Number of redemptions during December  Number filled in without decimal places. For each calendar year, the December quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</technical_guidance>
-		<error_reference>CAF-138</error_reference>
-		<control>For each calendar year, the December quantity should be reported only once. For Q1 reporting period, only January, February and March quantities may be reported. For Q2 reporting period, only April, May and June quantities may be reported. For Q3 reporting period, only July, August and September quantities may be reported. For Q4 reporting period, only October, November and December quantities may be reported. For H1 reporting period, only January, February, March, April, May and June quantities may be reported. For H2 reporting period, only July, August, September, October, November and December quantities may be reported. For Y1 reporting period, all month quantities may be reported. For X1 reporting period, only January, February, March, April, May, June, July, August and September rates may be reported. For X2 reporting period, only April, May, June, July, August, September, October, November and December rates may be reported.</control>
 		<error_message>The month quantity is not consistent with the reporting period.</error_message>
 	</rule>
 	<rule>

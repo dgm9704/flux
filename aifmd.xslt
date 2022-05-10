@@ -32,11 +32,11 @@
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable
-			name="aifmderrors"
+			name="aifmdvalidations"
 			select="document('data/aifmd-validations.xml')" />
 
 	<xsl:key
-			name="errorlookup"
+			name="validationlookup"
 			match="rule"
 			use="error_reference" />
 
@@ -50,13 +50,16 @@
 			<code>
 				<xsl:value-of select="$code" />
 			</code>
-			<message>
-				<xsl:for-each select="$aifmderrors">
-					<xsl:for-each select="key('errorlookup', $code)">
-						<xsl:value-of select="message" />
-					</xsl:for-each>
+			<xsl:for-each select="$aifmdvalidations">
+				<xsl:for-each select="key('validationlookup', $code)">
+					<control>
+						<xsl:value-of select="control" />
+					</control>
+					<message>
+						<xsl:value-of select="error_message" />
+					</message>
 				</xsl:for-each>
-			</message>
+			</xsl:for-each>
 			<context>
 				<xsl:for-each select="exsl:node-set($context)">
 					<field>
@@ -82,13 +85,16 @@
 			<code>
 				<xsl:value-of select="$code" />
 			</code>
-			<message>
-				<xsl:for-each select="$aifmderrors">
-					<xsl:for-each select="key('errorlookup', $code)">
-						<xsl:value-of select="message" />
-					</xsl:for-each>
+			<xsl:for-each select="$aifmdvalidations">
+				<xsl:for-each select="key('validationlookup', $code)">
+					<control>
+						<xsl:value-of select="control" />
+					</control>
+					<message>
+						<xsl:value-of select="error_message" />
+					</message>
 				</xsl:for-each>
-			</message>
+			</xsl:for-each>
 			<context>
 				<xsl:for-each select="exsl:node-set($context)">
 					<field>
