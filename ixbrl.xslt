@@ -16,14 +16,15 @@
 		xmlns:ixt="http://www.xbrl.org/inlineXBRL/transformation/2020-02-12" 
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
 		xmlns:ifrs-full="http://xbrl.ifrs.org/taxonomy/2019-03-27/ifrs-full" 
-		xmlns:esef_cor="http://www.esma.europa.eu/taxonomy/2019-03-27/esef_cor" 
+		xmlns:esef_cor="http://www.esma.europa.eu/taxonomy/2019-03-27/esef_cor"
+		xmlns:math="http://exslt.org/math"
 		exclude-result-prefixes="my"
-		extension-element-prefixes="func str exsl">
+		extension-element-prefixes="func str exsl math">
 
 	<xsl:output
 			indent="yes"
 			method="xml" />
-	
+
 	<!-- report -->
 	<xsl:template match="/">
 		<xbrli:xbrl>
@@ -49,20 +50,32 @@
 	<!-- fact -->
 	<xsl:template match="ix:*[@contextRef!='']">
 		<xsl:element name="{@name}">
+
 			<xsl:attribute name="contextRef">
 				<xsl:value-of select="@contextRef"/>
 			</xsl:attribute>
+
 			<xsl:if test="@unitRef">
 				<xsl:attribute name="unitRef">
 					<xsl:value-of select="@unitRef"/>
 				</xsl:attribute>
 			</xsl:if>
+
 			<xsl:if test="@decimals">
 				<xsl:attribute name="decimals">
 					<xsl:value-of select="@decimals"/>
 				</xsl:attribute>
 			</xsl:if>
-     		<xsl:value-of select="."/>
+
+			<xsl:choose>
+				<xsl:when test="@scale and @scale != '0'">
+					<xsl:value-of select="number(translate(.,',','')) * math:power(10, @scale)"/>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:value-of select="."/>
+				</xsl:otherwise>
+			</xsl:choose>     	
+
    		</xsl:element>		
 	</xsl:template>
 
