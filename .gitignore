@@ -294,3 +294,4 @@ __pycache__/
 
 output_*.xml
 *_out.xml
+output.xbrl

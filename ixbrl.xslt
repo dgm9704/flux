@@ -32,23 +32,36 @@
 	</xsl:template>
 
 	<!-- entrypoint -->
-    <!-- <xsl:template match="ix:header/ix:references/link:schemaRef">
+    <xsl:template match="ix:header/ix:references/link:schemaRef">
 		<xsl:copy-of select="."/>
-	</xsl:template> -->
-
-	<!-- context -->
-    <!-- <xsl:template match="ix:header/ix:resources/xbrli:context">
-		<xsl:copy-of select="."/> 
-    </xsl:template> -->
+	</xsl:template>
 
 	<!-- unit -->
-	<!-- <xsl:template match="ix:header/ix:resources/xbrli:unit">
+	<xsl:template match="ix:header/ix:resources/xbrli:unit">
 		<xsl:copy-of select="."/>
-	</xsl:template> -->
+	</xsl:template>
+
+	<!-- context -->
+    <xsl:template match="ix:header/ix:resources/xbrli:context">
+		<xsl:copy-of select="."/> 
+    </xsl:template>
 
 	<!-- fact -->
 	<xsl:template match="ix:*[@contextRef!='']">
 		<xsl:element name="{@name}">
+			<xsl:attribute name="contextRef">
+				<xsl:value-of select="@contextRef"/>
+			</xsl:attribute>
+			<xsl:if test="@unitRef">
+				<xsl:attribute name="unitRef">
+					<xsl:value-of select="@unitRef"/>
+				</xsl:attribute>
+			</xsl:if>
+			<xsl:if test="@decimals">
+				<xsl:attribute name="decimals">
+					<xsl:value-of select="@decimals"/>
+				</xsl:attribute>
+			</xsl:if>
      		<xsl:value-of select="."/>
    		</xsl:element>		
 	</xsl:template>
