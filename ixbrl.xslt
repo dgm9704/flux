@@ -24,21 +24,35 @@
 			indent="yes"
 			method="xml" />
 	
+	<!-- report -->
 	<xsl:template match="/">
-		<result>
+		<xbrli:xbrl>
 			<xsl:apply-templates />
-		</result>
+		</xbrli:xbrl>
 	</xsl:template>
 
-    <xsl:template match="xbrli:context">
-		<xsl:copy-of select="."/> 
-    </xsl:template>
-
-	<xsl:template match="xbrli:unit">
+	<!-- entrypoint -->
+    <!-- <xsl:template match="ix:header/ix:references/link:schemaRef">
 		<xsl:copy-of select="."/>
+	</xsl:template> -->
+
+	<!-- context -->
+    <!-- <xsl:template match="ix:header/ix:resources/xbrli:context">
+		<xsl:copy-of select="."/> 
+    </xsl:template> -->
+
+	<!-- unit -->
+	<!-- <xsl:template match="ix:header/ix:resources/xbrli:unit">
+		<xsl:copy-of select="."/>
+	</xsl:template> -->
+
+	<!-- fact -->
+	<xsl:template match="ix:*[@contextRef!='']">
+		<xsl:element name="{@name}">
+     		<xsl:value-of select="."/>
+   		</xsl:element>		
 	</xsl:template>
-	
-	<!-- <xsl:template match="text()|@*"> -->
+
 	<xsl:template match="text()">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
