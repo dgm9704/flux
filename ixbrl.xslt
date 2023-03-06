@@ -61,20 +61,24 @@
 				</xsl:attribute>
 			</xsl:if>
 
-			<xsl:if test="@decimals">
-				<xsl:attribute name="decimals">
-					<xsl:value-of select="@decimals"/>
-				</xsl:attribute>
-			</xsl:if>
-
 			<xsl:choose>
-				<xsl:when test="@scale and @scale != '0'">
-					<xsl:value-of select="number(translate(.,',','')) * math:power(10, @scale)"/>
+				<xsl:when test="@decimals">
+					<xsl:attribute name="decimals">
+						<xsl:value-of select="@decimals"/>
+					</xsl:attribute>
+					<xsl:choose>
+						<xsl:when test="@scale and @scale != '0'">
+							<xsl:value-of select="number(translate(.,',','')) * math:power(10, @scale)"/>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:value-of select="number(translate(.,',',''))"/>
+						</xsl:otherwise>
+					</xsl:choose>
 				</xsl:when>
 				<xsl:otherwise>
 					<xsl:value-of select="."/>
 				</xsl:otherwise>
-			</xsl:choose>     	
+			</xsl:choose>
 
    		</xsl:element>		
 	</xsl:template>
