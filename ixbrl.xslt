@@ -62,19 +62,23 @@
 			</xsl:if>
 
 			<xsl:choose>
+				<!-- numeric facts -->
 				<xsl:when test="@decimals">
 					<xsl:attribute name="decimals">
 						<xsl:value-of select="@decimals"/>
 					</xsl:attribute>
 					<xsl:choose>
+						<!-- scaled values -->
 						<xsl:when test="@scale and @scale != '0'">
 							<xsl:value-of select="number(translate(.,',','')) * math:power(10, @scale)"/>
 						</xsl:when>
+						<!-- non-scaled values -->
 						<xsl:otherwise>
 							<xsl:value-of select="number(translate(.,',',''))"/>
 						</xsl:otherwise>
 					</xsl:choose>
 				</xsl:when>
+				<!-- non-numeric facts -->
 				<xsl:otherwise>
 					<xsl:value-of select="."/>
 				</xsl:otherwise>
