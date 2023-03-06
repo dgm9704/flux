@@ -27,6 +27,7 @@
 
 	<!-- report -->
 	<xsl:template match="/">
+		<xsl:comment> extracted with ixbrl.xslt from https://github.com/dgm9704/flux </xsl:comment>
 		<xbrli:xbrl>
 			<xsl:apply-templates />
 		</xbrli:xbrl>
