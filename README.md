@@ -93,9 +93,11 @@ Sample output for aif validation errors:
 
 ## Status
 
+### Started implementing ESEF validations 
+
 ### CSDR9 validations have been implemented!
 
-###  AIFMD validations have been implemented!
+### AIFMD validations have been implemented!
 
 	Exceptions: 
     - FIL-009 is a filename check
