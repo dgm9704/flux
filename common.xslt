@@ -1,12 +1,12 @@
-<xsl:transform
+<xsl:stylesheet
 		version="1.0"
 		xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 		xmlns:exsl="http://exslt.org/common"
 		xmlns:func="http://exslt.org/functions"
 		xmlns:str="http://exslt.org/strings"
 		xmlns:my="http://example.org/my"
-		exclude-result-prefixes="my"
 		extension-element-prefixes="func str exsl">
+		<!-- exclude-result-prefixes="my" -->
 
 	<xsl:output
 			indent="yes"
@@ -179,4 +179,4 @@
 	</func:function>
 
 
-</xsl:transform>
+</xsl:stylesheet>

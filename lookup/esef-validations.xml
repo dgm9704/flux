@@ -1,0 +1,8 @@
+<validation_rules>
+	<rule>
+		<number>2.1.1</number>
+		<control>The scheme attribute of the xbrli:identifier element shall have "http://standards.iso.org/iso/17442" as its content.</control>
+		<error_code>G2_1_1</error_code>
+		<error_message>invalidIdentifierFormat</error_message>
+	</rule>
+</validation_rules>

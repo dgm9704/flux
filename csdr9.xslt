@@ -13,15 +13,15 @@
 			method="xml" />
 	<xsl:variable
 			name="eeacountrycodes"
-			select="document('data/eea-countries.xml')/codes/code" />
+			select="document('lookup/eea-countries.xml')/codes/code" />
 	<xsl:variable
 			name="countrycodes"
-			select="document('data/iso-3166-1.xml')/codes/code" />
+			select="document('lookup/iso-3166-1.xml')/codes/code" />
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable
 			name="csdr9validations"
-			select="document('data/csdr9-validations.xml')" />
+			select="document('lookup/csdr9-validations.xml')" />
 
 	<xsl:key
 			name="validationlookup"
