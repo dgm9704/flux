@@ -1,13 +1,8 @@
-<xsl:transform version="1.0" 
-	xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:exsl="http://exslt.org/common" 
-	xmlns:func="http://exslt.org/functions"
-	xmlns:str="http://exslt.org/strings" 
-	xmlns:my="http://example.org/my"
-	
-	xmlns:ix="http://www.xbrl.org/2013/inlineXBRL" 
-	xmlns:xbrli="http://www.xbrl.org/2003/instance"
-
+<xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:exsl="http://exslt.org/common" xmlns:func="http://exslt.org/functions"
+	xmlns:str="http://exslt.org/strings" xmlns:my="http://example.org/my"
+	xmlns:ix="http://www.xbrl.org/2013/inlineXBRL" xmlns:xbrli="http://www.xbrl.org/2003/instance"
+	xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
 	exclude-result-prefixes="my" extension-element-prefixes="func str exsl">
 
 	<xsl:output indent="yes" method="xml" />
@@ -63,6 +58,33 @@
 			<xsl:call-template name="ESEFError">
 				<xsl:with-param name="code" select="'G2_1_1'" />
 				<xsl:with-param name="context" select="@scheme" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template
+		match="ix:resources/xbrli:context/xbrli:period/xbrli:startDate|xbrli:endDate|xbrli:instant">
+		<xsl:variable name="date" select="." />
+		<xsl:if test="string-length($date) != 10">
+			<xsl:call-template name="ESEFError">
+				<xsl:with-param name="code" select="'G2_1_2'" />
+				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="ix:resources/xbrli:context/xbrli:entity/xbrli:segment">
+		<xsl:call-template name="ESEFError">
+			<xsl:with-param name="code" select="'G2_1_3_1'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="ix:resources/xbrli:context/xbrli:scenario/*">
+		<xsl:if test="not(name() = 'xbrldi:explicitMember' or name() = 'xbrldi:typedMember')">
+			<xsl:call-template name="ESEFError">
+				<xsl:with-param name="code" select="'G2_1_3_2'" />
+				<xsl:with-param name="context" select="." />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
