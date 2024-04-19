@@ -116,15 +116,38 @@
 	</xsl:template>
 
 	<xsl:template match="ix:*[@contextRef!=''][@format]">
-			<xsl:variable name="prefix"
-				select="substring-before(@format, ':')" /> 			
-			<xsl:variable name="uri"
-				select="namespace::node()[local-name()=$prefix]" /> 
-			 <xsl:if
-			test="$uri != 'http://www.xbrl.org/inlineXBRL/transformation/2020-02-12'">
+		<xsl:variable name="prefix" select="substring-before(@format, ':')" />
+		<xsl:variable name="uri" select="namespace::node()[local-name()=$prefix]" />
+		<xsl:if test="$uri != 'http://www.xbrl.org/inlineXBRL/transformation/2020-02-12'">
 			<xsl:call-template name="ESEFError">
 				<xsl:with-param name="code" select="'G2_2_3'" />
 				<xsl:with-param name="context" select="$uri" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="ix:*[@contextRef!='' and @decimals]">
+		<xsl:variable name="metric" select="@name" />
+		<xsl:variable name="context" select="@contextRef" />
+		<xsl:variable name="value" select="." />
+		<xsl:variable name="other" select="//*[@name=$metric and @contextRef=$context]" />
+		<xsl:if test="$other[1] != $value">
+			<xsl:call-template name="ESEFError">
+				<xsl:with-param name="code" select="'G2_2_4_1'" />
+				<xsl:with-param name="context" select="$metric|$context|$value|$other" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="ix:nonNumeric[@contextRef!='']">
+		<xsl:variable name="metric" select="@name" />
+		<xsl:variable name="context" select="@contextRef" />
+		<xsl:variable name="value" select="." />
+		<xsl:variable name="other" select="//ix:nonNumeric[@name=$metric and @contextRef=$context]" />
+		<xsl:if test="$other[1] != $value" > 
+			<xsl:call-template name="ESEFError">
+				<xsl:with-param name="code" select="'G2_2_4_2'" />
+				<xsl:with-param name="context" select="$metric|$context|$value|$other" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>

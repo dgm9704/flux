@@ -46,4 +46,17 @@
 		<error_code>G2_2_3</error_code>
 		<error_message>incorrectTransformationRuleApplied</error_message>
 	</rule>
+	<rule>
+		<number>2.2.4</number>
+		<control>Inconsistent duplicate numeric facts MUST NOT appear in the content of an inline XBRL document.</control>
+		<error_code>G2_2_4_1</error_code>
+		<error_message>inconsistentDuplicateNumericFactInInlineXbrlDocument</error_message>
+	</rule>
+	<rule>
+		<number>2.2.4</number>
+		<control>Inconsistent duplicate non-numeric facts SHOULD NOT appear in the content of an inline XBRL document.</control>
+		<error_code>G2_2_4_2</error_code>
+		<error_message>inconsistentDuplicateNonnumericFactInInlineXbrlDocument</error_message>
+	</rule>
+
 </validation_rules>
