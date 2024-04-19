@@ -1,0 +1,9 @@
+<validation_rules>
+	<rule>
+		<number>0.1</number>
+		<control>The lt;RptgPrd&gt;.&lt;FrDt&gt; must be in the form YYYY-MM-01.</control>
+		<error_code>MSF-001</error_code>
+		<error_message>The Reporting From date is not valid.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
+</validation_rules>

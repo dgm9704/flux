@@ -23,5 +23,10 @@
 		<error_code>G2_1_3_2</error_code>
 		<error_message>scenarioContainsNonDimensionalContent</error_message>
 	</rule>
-
+	<rule>
+		<number>2.1.4</number>
+		<control>All entity identifiers and schemes in contexts MUST have identical content</control>
+		<error_code>G2_1_4</error_code>
+		<error_message>multipleIdentifiers</error_message>
+	</rule>
 </validation_rules>

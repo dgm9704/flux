@@ -2,8 +2,8 @@
 	xmlns:exsl="http://exslt.org/common" xmlns:func="http://exslt.org/functions"
 	xmlns:str="http://exslt.org/strings" xmlns:my="http://example.org/my"
 	xmlns:ix="http://www.xbrl.org/2013/inlineXBRL" xmlns:xbrli="http://www.xbrl.org/2003/instance"
-	xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
-	exclude-result-prefixes="my" extension-element-prefixes="func str exsl">
+	xmlns:xbrldi="http://xbrl.org/2006/xbrldi" exclude-result-prefixes="my"
+	extension-element-prefixes="func str exsl">
 
 	<xsl:output indent="yes" method="xml" />
 	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
@@ -85,6 +85,25 @@
 			<xsl:call-template name="ESEFError">
 				<xsl:with-param name="code" select="'G2_1_3_2'" />
 				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="ix:resources/xbrli:context/xbrli:entity/xbrli:identifier">
+		<xsl:variable name="firstValue"
+			select="//ix:resources/xbrli:context[1]/xbrli:entity/xbrli:identifier" />
+		<xsl:if test=". != $firstValue">
+			<xsl:call-template name="ESEFError">
+				<xsl:with-param name="code" select="'G2_1_4'" />
+				<xsl:with-param name="context" select="$firstValue|." />
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:variable name="firstScheme"
+			select="//ix:resources/xbrli:context[1]/xbrli:entity/xbrli:identifier/@scheme" />
+		<xsl:if test="@scheme != $firstScheme">
+			<xsl:call-template name="ESEFError">
+				<xsl:with-param name="code" select="'G2_1_4'" />
+				<xsl:with-param name="context" select="$firstScheme|@scheme" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
