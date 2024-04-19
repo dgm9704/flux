@@ -108,6 +108,27 @@
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="ix:*[@contextRef!=''][@precision]">
+		<xsl:call-template name="ESEFError">
+			<xsl:with-param name="code" select="'G2_2_1'" />
+			<xsl:with-param name="context" select=".|@precision" />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="ix:*[@contextRef!=''][@format]">
+			<xsl:variable name="prefix"
+				select="substring-before(@format, ':')" /> 			
+			<xsl:variable name="uri"
+				select="namespace::node()[local-name()=$prefix]" /> 
+			 <xsl:if
+			test="$uri != 'http://www.xbrl.org/inlineXBRL/transformation/2020-02-12'">
+			<xsl:call-template name="ESEFError">
+				<xsl:with-param name="code" select="'G2_2_3'" />
+				<xsl:with-param name="context" select="$uri" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
