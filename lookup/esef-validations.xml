@@ -58,5 +58,11 @@
 		<error_code>G2_2_4_2</error_code>
 		<error_message>inconsistentDuplicateNonnumericFactInInlineXbrlDocument</error_message>
 	</rule>
+	<rule>
+		<number>2.3.1</number>
+		<control>Every nonempty link:footnote element SHOULD be linked to at least one fact.</control>
+		<error_code>G2_3_1</error_code>
+		<error_message>“unusedFootnote”</error_message>
+	</rule>
 
 </validation_rules>

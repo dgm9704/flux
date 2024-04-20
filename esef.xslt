@@ -152,6 +152,16 @@
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="ix:footnote">
+		<xsl:variable name="id" select="@id" />
+		<xsl:if test="not(//ix:relationship[@toRefs=$id])" > 
+			<xsl:call-template name="ESEFError">
+				<xsl:with-param name="code" select="'G2_3_1'" />
+				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
