@@ -62,7 +62,18 @@
 		<number>2.3.1</number>
 		<control>Every nonempty link:footnote element SHOULD be linked to at least one fact.</control>
 		<error_code>G2_3_1</error_code>
-		<error_message>“unusedFootnote”</error_message>
+		<error_message>unusedFootnote</error_message>
 	</rule>
-
+	<rule>
+		<number>2.3.2</number>
+		<control>Each footnote MUST have or inherit an 'xml:lang' attribute whose value corresponds to the language of content of at least one textual fact present in the inline XBRL document</control>
+		<error_code>G2_3_2</error_code>
+		<error_message>footnoteInLanguagesOtherThanLanguageOfContentOfAnyTextualFact</error_message>
+	</rule>
+	<rule>
+		<number>2.3.3</number>
+		<control>Each footnote relationship MUST have at least one footnote in the language of the report.</control>
+		<error_code>G2_3_3</error_code>
+		<error_message>footnoteOnlyInLanguagesOtherThanLanguageOfAReport</error_message>
+	</rule>
 </validation_rules>

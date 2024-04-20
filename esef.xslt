@@ -1,9 +1,10 @@
-<xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-	xmlns:exsl="http://exslt.org/common" xmlns:func="http://exslt.org/functions"
-	xmlns:str="http://exslt.org/strings" xmlns:my="http://example.org/my"
-	xmlns:ix="http://www.xbrl.org/2013/inlineXBRL" xmlns:xbrli="http://www.xbrl.org/2003/instance"
-	xmlns:xbrldi="http://xbrl.org/2006/xbrldi" exclude-result-prefixes="my"
-	extension-element-prefixes="func str exsl">
+<xsl:transform version="1.0" xmlns:xml="http://www.w3.org/XML/1998/namespace"
+	xmlns:xsl="http://www.w3.org/1999/XSL/Transform" xmlns:exsl="http://exslt.org/common"
+	xmlns:func="http://exslt.org/functions" xmlns:str="http://exslt.org/strings"
+	xmlns:my="http://example.org/my" xmlns:ix="http://www.xbrl.org/2013/inlineXBRL"
+	xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
+	xmlns:xhtml="http://www.w3.org/1999/xhtml"
+	exclude-result-prefixes="my ix xbrli xbrldi xhtml" extension-element-prefixes="func str exsl">
 
 	<xsl:output indent="yes" method="xml" />
 	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
@@ -144,7 +145,7 @@
 		<xsl:variable name="context" select="@contextRef" />
 		<xsl:variable name="value" select="." />
 		<xsl:variable name="other" select="//ix:nonNumeric[@name=$metric and @contextRef=$context]" />
-		<xsl:if test="$other[1] != $value" > 
+		<xsl:if test="$other[1] != $value">
 			<xsl:call-template name="ESEFError">
 				<xsl:with-param name="code" select="'G2_2_4_2'" />
 				<xsl:with-param name="context" select="$metric|$context|$value|$other" />
@@ -154,10 +155,33 @@
 
 	<xsl:template match="ix:footnote">
 		<xsl:variable name="id" select="@id" />
-		<xsl:if test="not(//ix:relationship[@toRefs=$id])" > 
+		<xsl:if test="not(//ix:relationship[@toRefs=$id])">
 			<xsl:call-template name="ESEFError">
 				<xsl:with-param name="code" select="'G2_3_1'" />
 				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<!-- <xsl:template match="ix:relationship">
+		<xsl:variable name="id" select="@id" />
+		<xsl:if test="not(//ix:relationship[@toRefs=$id])" > 
+			<xsl:call-template name="ESEFError">
+				<xsl:with-param name="code" select="'G2_3_2'" />
+				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template> -->
+
+	<xsl:template match="ix:relationship">
+		<xsl:variable name="lang" select="/xhtml:html/@xml:lang" />
+		<xsl:variable name="foo" select="/*/@xml:lang" />
+		<xsl:variable name="id" select="@toRefs" />
+		<xsl:variable name="footnote" select="//ix:footnote[@id=$id]" />
+		<xsl:if test="$footnote/@xml:lang != $lang" >
+			<xsl:call-template name="ESEFError">
+				<xsl:with-param name="code" select="'G2_3_3'" />
+				<xsl:with-param name="context" select="$lang|$footnote" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
