@@ -252,6 +252,14 @@
 		</xsl:call-template>
 	</xsl:template>
 	
+	<xsl:template
+		match="xhtml:link[@rel='stylesheet']">
+		<xsl:call-template name="ESEFError">
+			<xsl:with-param name="code" select="'G2_5_4_1'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>

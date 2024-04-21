@@ -94,4 +94,10 @@
 		<error_code>G2_5_3_1</error_code>
 		<error_message>targetAttributeUsedForESEFContents</error_message>
 	</rule>
+	<rule>
+		<number>2.5.4</number>
+		<control>Where an Inline XBRL document set contains a single document, the CSS SHOULD be embedded within the document.</control>
+		<error_code>G2_5_4_1</error_code>
+		<error_message>externalCssFileForSingleIXbrlDocument</error_message>
+	</rule>
 </validation_rules>
