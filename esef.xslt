@@ -163,12 +163,9 @@
 		</xsl:if>
 	</xsl:template>
 
-	<!-- Each footnote MUST have or inherit an ‘xml:lang’ attribute whose value corresponds to
-the language of content of at least one textual fact present in the inline XBRL document -->
-
 	<xsl:template match="ix:footnote">
 		<xsl:variable name="lang" select="@xml:lang" />
-		<xsl:if test="not(//ix:nonNumeric[@xml:lang=$lang])" > 
+		<xsl:if test="not(//ix:nonNumeric[@xml:lang=$lang])">
 			<xsl:call-template name="ESEFError">
 				<xsl:with-param name="code" select="'G2_3_2'" />
 				<xsl:with-param name="context" select="." />
@@ -187,6 +184,35 @@ the language of content of at least one textual fact present in the inline XBRL 
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
+
+	<xsl:template match="ix:tuple">
+		<xsl:call-template name="ESEFError">
+			<xsl:with-param name="code" select="'G2_4_1_1'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="ix:fraction">
+		<xsl:call-template name="ESEFError">
+			<xsl:with-param name="code" select="'G2_4_1_1'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="xhtml:base">
+		<xsl:call-template name="ESEFError">
+			<xsl:with-param name="code" select="'G2_4_2'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="*[@xml:base]">
+		<xsl:call-template name="ESEFError">
+			<xsl:with-param name="code" select="'G2_4_2'" />
+			<xsl:with-param name="context" select="@xml:base" />
+		</xsl:call-template>
+	</xsl:template>
+	
 
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->

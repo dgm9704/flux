@@ -76,4 +76,16 @@
 		<error_code>G2_3_3</error_code>
 		<error_message>footnoteOnlyInLanguagesOtherThanLanguageOfAReport</error_message>
 	</rule>
+	<rule>
+		<number>2.4.1</number>
+		<control>Each footnote relationship MUST have at least one footnote in the language of the report.</control>
+		<error_code>G2_4_1_1</error_code>
+		<error_message>tupleElementUsed</error_message>
+	</rule>
+	<rule>
+		<number>2.4.2</number>
+		<control>The HTML &lt;base&gt; elements and xml:base attributes MUST NOT be used in the Inline XBRL document.</control>
+		<error_code>G2_4_2</error_code>
+		<error_message>htmlOrXmlBaseUsed</error_message>
+	</rule>
 </validation_rules>
