@@ -155,7 +155,7 @@
 
 	<xsl:template match="ix:footnote">
 		<xsl:variable name="id" select="@id" />
-		<xsl:if test="not(//ix:relationship[@toRefs=$id])">
+		<xsl:if test="not(//ix:relationship[str:split(@toRefs,' ')=$id])">
 			<xsl:call-template name="ESEFError">
 				<xsl:with-param name="code" select="'G2_3_1'" />
 				<xsl:with-param name="context" select="." />
@@ -163,15 +163,18 @@
 		</xsl:if>
 	</xsl:template>
 
-	<!-- <xsl:template match="ix:relationship">
-		<xsl:variable name="id" select="@id" />
-		<xsl:if test="not(//ix:relationship[@toRefs=$id])" > 
+	<!-- Each footnote MUST have or inherit an ‘xml:lang’ attribute whose value corresponds to
+the language of content of at least one textual fact present in the inline XBRL document -->
+
+	<xsl:template match="ix:footnote">
+		<xsl:variable name="lang" select="@xml:lang" />
+		<xsl:if test="not(//ix:nonNumeric[@xml:lang=$lang])" > 
 			<xsl:call-template name="ESEFError">
 				<xsl:with-param name="code" select="'G2_3_2'" />
 				<xsl:with-param name="context" select="." />
 			</xsl:call-template>
 		</xsl:if>
-	</xsl:template> -->
+	</xsl:template>
 
 	<xsl:template match="ix:resources/ix:relationship">
 		<xsl:variable name="lang" select="/xhtml:html/@xml:lang" />
