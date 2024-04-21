@@ -7,13 +7,17 @@
 	extension-element-prefixes="func str exsl">
 
 	<xsl:output indent="yes" method="xml" />
-	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
-	<xsl:variable name="countrycodes" select="document('lookup/iso-3166-1.xml')/codes/code" />
+	<xsl:variable name="eeacountrycodes"
+		select="document('lookup/eea-countries.xml')/codes/code" />
+	<xsl:variable name="countrycodes"
+		select="document('lookup/iso-3166-1.xml')/codes/code" />
 	<xsl:include href="common.xslt" />
 
-	<xsl:variable name="esefvalidations" select="document('lookup/esef-validations.xml')" />
+	<xsl:variable
+		name="esefvalidations" select="document('lookup/esef-validations.xml')" />
 
-	<xsl:key name="validationlookup" match="rule" use="error_code" />
+	<xsl:key
+		name="validationlookup" match="rule" use="error_code" />
 
 	<xsl:template name="ESEFError">
 		<xsl:param name="code" />
@@ -48,13 +52,15 @@
 	</xsl:template>
 
 
-	<xsl:template match="/">
+	<xsl:template
+		match="/">
 		<result>
 			<xsl:apply-templates />
 		</result>
 	</xsl:template>
 
-	<xsl:template match="ix:resources/xbrli:context/xbrli:entity/xbrli:identifier">
+	<xsl:template
+		match="ix:resources/xbrli:context/xbrli:entity/xbrli:identifier">
 		<xsl:if test="@scheme != 'http://standards.iso.org/iso/17442'">
 			<xsl:call-template name="ESEFError">
 				<xsl:with-param name="code" select="'G2_1_1'" />
@@ -74,14 +80,16 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="ix:resources/xbrli:context/xbrli:entity/xbrli:segment">
+	<xsl:template
+		match="ix:resources/xbrli:context/xbrli:entity/xbrli:segment">
 		<xsl:call-template name="ESEFError">
 			<xsl:with-param name="code" select="'G2_1_3_1'" />
 			<xsl:with-param name="context" select="." />
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="ix:resources/xbrli:context/xbrli:scenario/*">
+	<xsl:template
+		match="ix:resources/xbrli:context/xbrli:scenario/*">
 		<xsl:if test="not(name() = 'xbrldi:explicitMember' or name() = 'xbrldi:typedMember')">
 			<xsl:call-template name="ESEFError">
 				<xsl:with-param name="code" select="'G2_1_3_2'" />
@@ -90,7 +98,8 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="ix:resources/xbrli:context/xbrli:entity/xbrli:identifier">
+	<xsl:template
+		match="ix:resources/xbrli:context/xbrli:entity/xbrli:identifier">
 		<xsl:variable name="firstValue"
 			select="//ix:resources/xbrli:context[1]/xbrli:entity/xbrli:identifier" />
 		<xsl:if test=". != $firstValue">
@@ -109,14 +118,16 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="ix:*[@contextRef!=''][@precision]">
+	<xsl:template
+		match="ix:*[@contextRef!=''][@precision]">
 		<xsl:call-template name="ESEFError">
 			<xsl:with-param name="code" select="'G2_2_1'" />
 			<xsl:with-param name="context" select=".|@precision" />
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="ix:*[@contextRef!=''][@format]">
+	<xsl:template
+		match="ix:*[@contextRef!=''][@format]">
 		<xsl:variable name="prefix" select="substring-before(@format, ':')" />
 		<xsl:variable name="uri" select="namespace::node()[local-name()=$prefix]" />
 		<xsl:if test="$uri != 'http://www.xbrl.org/inlineXBRL/transformation/2020-02-12'">
@@ -127,7 +138,8 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="ix:*[@contextRef!='' and @decimals]">
+	<xsl:template
+		match="ix:*[@contextRef!='' and @decimals]">
 		<xsl:variable name="metric" select="@name" />
 		<xsl:variable name="context" select="@contextRef" />
 		<xsl:variable name="value" select="." />
@@ -140,7 +152,8 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="ix:nonNumeric[@contextRef!='']">
+	<xsl:template
+		match="ix:nonNumeric[@contextRef!='']">
 		<xsl:variable name="metric" select="@name" />
 		<xsl:variable name="context" select="@contextRef" />
 		<xsl:variable name="value" select="." />
@@ -153,7 +166,8 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="ix:footnote">
+	<xsl:template
+		match="ix:footnote">
 		<xsl:variable name="id" select="@id" />
 		<xsl:if test="not(//ix:relationship[str:split(@toRefs,' ')=$id])">
 			<xsl:call-template name="ESEFError">
@@ -163,7 +177,8 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="ix:footnote">
+	<xsl:template
+		match="ix:footnote">
 		<xsl:variable name="lang" select="@xml:lang" />
 		<xsl:if test="not(//ix:nonNumeric[@xml:lang=$lang])">
 			<xsl:call-template name="ESEFError">
@@ -173,7 +188,8 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="ix:resources/ix:relationship">
+	<xsl:template
+		match="ix:resources/ix:relationship">
 		<xsl:variable name="lang" select="/xhtml:html/@xml:lang" />
 		<xsl:variable name="refs" select="str:split(@toRefs,' ')" />
 		<xsl:variable name="footnotes" select="//ix:footnote[@id=$refs and @xml:lang=$lang]" />
@@ -185,35 +201,57 @@
 		</xsl:if>
 	</xsl:template>
 
-	<xsl:template match="ix:tuple">
+	<xsl:template
+		match="ix:tuple">
 		<xsl:call-template name="ESEFError">
 			<xsl:with-param name="code" select="'G2_4_1_1'" />
 			<xsl:with-param name="context" select="." />
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="ix:fraction">
+	<xsl:template
+		match="ix:fraction">
 		<xsl:call-template name="ESEFError">
 			<xsl:with-param name="code" select="'G2_4_1_1'" />
 			<xsl:with-param name="context" select="." />
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="xhtml:base">
+	<xsl:template
+		match="xhtml:base">
 		<xsl:call-template name="ESEFError">
 			<xsl:with-param name="code" select="'G2_4_2'" />
 			<xsl:with-param name="context" select="." />
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="*[@xml:base]">
+	<xsl:template
+		match="*[@xml:base]">
 		<xsl:call-template name="ESEFError">
 			<xsl:with-param name="code" select="'G2_4_2'" />
 			<xsl:with-param name="context" select="@xml:base" />
 		</xsl:call-template>
 	</xsl:template>
-	
 
+	<xsl:template
+		match="ix:footnote[text() != '']">
+		<xsl:variable name="id" select="@id" />
+		<xsl:if test="not(//ix:relationship[@toRefs=$id])">
+			<xsl:call-template name="ESEFError">
+				<xsl:with-param name="code" select="'G2_5_1_3'" />
+				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template
+		match="ix:references[@target != '']">
+		<xsl:call-template name="ESEFError">
+			<xsl:with-param name="code" select="'G2_5_3_1'" />
+			<xsl:with-param name="context" select="@target" />
+		</xsl:call-template>
+	</xsl:template>
+	
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
