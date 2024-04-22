@@ -6,4 +6,11 @@
 		<error_message>The Reporting From date is not valid.</error_message>
 		<record_identifier>No</record_identifier>
 	</rule>
+	<rule>
+		<number>0.2</number>
+		<control>The &lt;RptgPrd&gt;.&lt;ToDt&gt; must be in the form YYYY-MM-DD, where DD must be the last calendar day of the MM month.</control>
+		<error_code>MSF-002</error_code>
+		<error_message>The Reporting To date is not valid.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
 </validation_rules>

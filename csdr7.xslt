@@ -53,11 +53,22 @@
 	</xsl:template>
 
 	<xsl:template match="p:RptgPrd/p:FrDt">
-	<xsl:variable name="d" select="date:date()" />
-		<xsl:if test="not(date:day-in-month($d) = 1)">
-		<!-- <xsl:if test="true()"> -->
+		<xsl:if test="date:day-in-month(.) != 1">
 			<xsl:call-template name="CSDR7Error">
 				<xsl:with-param name="code" select="'MSF-001'" />
+				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="p:RptgPrd/p:ToDt">
+		<xsl:variable name="date" select="." />
+		<xsl:variable name="monthadded" select="date:add($date, 'P1M')" />
+		<xsl:variable name="firstofnext" select="concat(date:year($monthadded),'-',str:align(date:month-in-year($monthadded),'00', 'right'),'-01')" /> 
+		<xsl:variable name="lastofmonth" select="date:add($firstofnext,'-P1D')" />
+		<xsl:if test="$date != $lastofmonth">
+			<xsl:call-template name="CSDR7Error">
+				<xsl:with-param name="code" select="'MSF-002'" />
 				<xsl:with-param name="context" select="." />
 			</xsl:call-template>
 		</xsl:if>

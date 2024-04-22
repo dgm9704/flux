@@ -177,6 +177,4 @@
 			</xsl:otherwise>
 		</xsl:choose>
 	</func:function>
-
-
 </xsl:stylesheet>
