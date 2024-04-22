@@ -13,4 +13,11 @@
 		<error_message>The Reporting To date is not valid.</error_message>
 		<record_identifier>No</record_identifier>
 	</rule>
+	<rule>
+		<number>0.3</number>
+		<control>The &lt;RptgPrd&gt;.&lt;ToDt&gt; must be the last calendar day of the month that the report concenrs</control>
+		<error_code>MSF-003</error_code>
+		<error_message>The Reporting To date is not valid.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
 </validation_rules>
