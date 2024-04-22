@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- <Document xmlns="urn:iso:std:iso:20022:tech:xsd:auth.072.001.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:auth.072.001.01 SettlementInternaliserReportV01_auth_072.001.01.xsd"> -->
-<Document>
+<Document xmlns="urn:iso:std:iso:20022:tech:xsd:auth.072.001.01"
+ xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+ xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:auth.072.001.01 ../schema/csdr9.xsd">
 	<SttlmIntlrRpt>
 		<RptHdr>
 			<CreDtTm>2006-07-04T18:13:51.0</CreDtTm>

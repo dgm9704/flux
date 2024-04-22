@@ -2,7 +2,6 @@
 		CreationDateAndTime="2014-01-26T15:55:02"
 		Version="1.2"
 		ReportingMemberState="GB"
-		xsi:noNamespaceSchemaLocation="schema/AIFMD_DATMAN_V1.2.xsd"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>

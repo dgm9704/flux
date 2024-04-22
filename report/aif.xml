@@ -3,7 +3,6 @@
 		ReportingMemberState="ZZ"
 		Version="1.2"
 		CreationDateAndTime="2001-12-17T09:30:47.0Z"
-		xsi:noNamespaceSchemaLocation="schema/AIFMD_DATAIF_V1.2.xsd"
 		xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
 	<AIFRecordInfo>
 		<FilingType>INIT</FilingType>

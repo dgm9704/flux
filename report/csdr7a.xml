@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<p:Document xmlns:p="urn:iso:std:iso:20022:tech:xsd:auth.101.001.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <p:SttlmFlsAnlRpt>
+    <p:RptHdr>
+      <p:CreDtTm>2022-01-05T12:00:00</p:CreDtTm>
+      <p:RptgPrd>
+        <p:FrDt>2021-01-01</p:FrDt>
+        <p:ToDt>2021-12-31</p:ToDt>
+      </p:RptgPrd>
+      <p:Ccy>EUR</p:Ccy>
+      <p:RptSts>NEWT</p:RptSts>
+      <p:SctiesSttlmSys>
+        <p:SysId>8156000B4AE6EC975390IT01</p:SysId>
+        <p:SysNm>LDSNCGROUP</p:SysNm>
+        <p:CtryOfJursdctn>IT</p:CtryOfJursdctn>
+        <p:CSDLglNm>LEIDI GROUP</p:CSDLglNm>
+        <p:LEI>8156000B4AE6EC975390</p:LEI>
+        <p:RspnsblPty>
+          <p:Nm>Carlo Leidi</p:Nm>
+          <p:PhneNb>+39-035691153</p:PhneNb>
+          <p:EmailAdr>info@leidigroup.com</p:EmailAdr>
+          <p:Fctn>Function</p:Fctn>
+        </p:RspnsblPty>
+      </p:SctiesSttlmSys>
+    </p:RptHdr>
+    <p:AnlAggt>
+      <p:Ttl>
+        <p:Sttld>
+          <p:Vol>1500</p:Vol>
+          <p:Val>10500000</p:Val>
+        </p:Sttld>
+        <p:Faild>
+          <p:Vol>100</p:Vol>
+          <p:Val>200000</p:Val>
+        </p:Faild>
+        <p:Ttl>
+          <p:Vol>1600</p:Vol>
+          <p:Val>10700000</p:Val>
+        </p:Ttl>
+        <p:FaildRate>
+          <p:Vol>6.25</p:Vol>
+          <p:Val>1.87</p:Val>
+        </p:FaildRate>
+      </p:Ttl>
+      <p:FailrRsn>
+        <p:Desc>
+          <p:MainRsns>Main reasons for settlement fails during the reporting period.</p:MainRsns>
+          <p:EffcncyImprvmt>Measures to improve settlement efficiency.</p:EffcncyImprvmt>
+        </p:Desc>
+      </p:FailrRsn>
+      <p:ElgblForDrgtn>
+        <p:ElgbltyInd>true</p:ElgbltyInd>
+        <p:Justfn>
+          <p:Val>300</p:Val>
+          <p:Rate>
+            <p:NbOfInstrs>20.0</p:NbOfInstrs>
+          </p:Rate>
+        </p:Justfn>
+      </p:ElgblForDrgtn>
+    </p:AnlAggt>
+  </p:SttlmFlsAnlRpt>
+</p:Document>
