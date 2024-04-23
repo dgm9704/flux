@@ -1,0 +1,8 @@
+<validation_rules>
+	<rule>
+		<number>1</number>
+		<control>1. To organisation should be equal to "EU"</control>
+		<error_code>1</error_code>
+		<error_message></error_message>
+	</rule>
+</validation_rules>

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- edited with XMLSpy v2014 (http://www.altova.com) by sgosso (esma) -->
 <xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" elementFormDefault="qualified" attributeFormDefault="unqualified">
-	<xs:include schemaLocation="AIFMD_REPORTING_DataTypes_V1.2.xsd"/>
+	<xs:include schemaLocation="aifmd_types.xsd"/>
 	<!--	
 ******************************************************************************
 	AIFMReporting

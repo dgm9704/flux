@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<BizData xmlns="urn:iso:std:iso:20022:tech:xsd:head.003.001.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+<!--Sample file containing a cancellation on national code <20200911-00000001> for reporting period Q1 to Q4 2020 and recreation for reporting period Q1 to Q2 2020.
+MMF report does not contain quantitative information and <DataSetActn>NOTX</DataSetActn> is reported.
+-->
+	<Hdr>
+		<AppHdr xmlns="urn:iso:std:iso:20022:tech:xsd:head.001.001.01" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:head.001.001.01 schema.xsd" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+			<Fr>
+				<OrgId>
+					<Id>
+						<OrgId>
+							<Othr>
+								<Id>XX</Id>
+							</Othr>
+						</OrgId>
+					</Id>
+				</OrgId>
+			</Fr>
+			<To>
+				<OrgId>
+					<Id>
+						<OrgId>
+							<Othr>
+								<Id>EU</Id>
+							</Othr>
+						</OrgId>
+					</Id>
+				</OrgId>
+			</To>
+			<BizMsgIdr>NCAXX_DATM37_MMF37_000017_20</BizMsgIdr>
+			<MsgDefIdr>DRAFT6auth.093.001.01</MsgDefIdr>
+			<CreDt>2021-01-29T10:28:59Z</CreDt>
+		</AppHdr>
+	</Hdr>
+	<Pyld>
+		<Document xmlns="urn:iso:std:iso:20022:tech:xsd:DRAFT6auth.093.001.01" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="urn:iso:std:iso:20022:tech:xsd:DRAFT6auth.093.001.01
+ schema.xsd">
+			<MnyMktFndRpt>
+				<FndRpt>
+				<Cxl>
+					<RptgYr>2020</RptgYr>
+					<RptgPrdFrToQrtr>
+						<FrPrd>QTR1</FrPrd>
+						<ToPrd>QTR4</ToPrd>
+					</RptgPrdFrToQrtr>
+					<NtlRegnNb>
+						<Id>20200911-00000001</Id>
+						<Issr>XX</Issr>
+					</NtlRegnNb>
+				</Cxl>
+					<Upd>
+						<RptgYr>2020</RptgYr>
+						<RptgPrdFrToQrtr>
+							<FrPrd>QTR1</FrPrd>
+							<ToPrd>QTR2</ToPrd>
+						</RptgPrdFrToQrtr>
+						<RptgPrd>
+							<FrDtToDt>
+								<FrDt>2020-01-01</FrDt>
+								<ToDt>2020-05-28</ToDt>
+							</FrDtToDt>
+						</RptgPrd>
+						<FndData>
+							<FndNttyId>
+								<LEI>00987654321009876543</LEI>
+								<NtlRegnNb>
+									<Id>220200911-00000001</Id>
+									<Issr>XX</Issr>
+								</NtlRegnNb>
+								<AltrnId>
+									<Id>ECB-O00000866-00000021</Id>
+									<Issr>ECB</Issr>
+								</AltrnId>
+								<Nm>TEST name 2</Nm>
+								<CtryOfDmcl>
+									<Ctry>XX</Ctry>
+								</CtryOfDmcl>
+							</FndNttyId>
+							<FndMgmtCpny>
+								<LEI>00987654321009876543</LEI>
+								<FndAuthrtyRegnNb>
+									<Id>TEST00000498</Id>
+								</FndAuthrtyRegnNb>
+								<FndMgmtCpnyAuthrtyRegnNb>
+									<Id>TEST00000498</Id>
+									<Issr>XX</Issr>
+								</FndMgmtCpnyAuthrtyRegnNb>
+								<!--<AltrnId>
+									<Id>ECB-S00000964</Id>
+									<Issr>ECB</Issr>
+								</AltrnId>-->
+								<Nm>TEST NAME</Nm>
+							</FndMgmtCpny>
+							<FndAttrbts>
+								<LglFrmwk>
+									<Cd>AIFD</Cd>
+								</LglFrmwk>
+								<StffWthSvgsPlan>true</StffWthSvgsPlan>
+								<RegdDstrbtnCtry>
+								<NonEurpnCtry>true</NonEurpnCtry>
+									<!--<Ctry>LU</Ctry>
+									<Ctry>FR</Ctry>
+									<Ctry>DE</Ctry>-->
+								</RegdDstrbtnCtry>
+								<BaseCcy>EUR</BaseCcy>
+								<DpstryId>
+									<LEI>00987654321009876543</LEI>
+									<NtlRegnNb>
+										<Id>DEP-TEST1</Id>
+									</NtlRegnNb>
+									<Nm>TEST NAME</Nm>
+								</DpstryId>
+								<MnyMktFndTp>
+									<Cd>STCN</Cd>
+								</MnyMktFndTp>
+								<MstrFnd>FDER</MstrFnd>
+								<MstrFndList>
+									<LEI>00987654321009876543</LEI>
+									<NtlRegnNb>
+										<Id>MASTER_TEST1</Id>
+										<Issr>XX</Issr>
+									</NtlRegnNb>
+									<Nm>TEST NAME</Nm>
+								</MstrFndList>
+								<ShrClssInd>false</ShrClssInd>
+								<ShrClss>
+									<!--<ShrClssList>
+										<Id>
+											<ISIN>LU0345758782</ISIN>
+											<Nm>MULTI SHARE CLASS 1</Nm>
+										</Id>
+										<Ccy>EUR</Ccy>
+										<HghstNetAsstVal>true</HghstNetAsstVal>
+									</ShrClssList>
+									<ShrClssList>
+										<Id>
+											<ISIN>SI0021401516</ISIN>
+											<Nm>MULTI SHARE CLASS 2</Nm>
+										</Id>
+										<Ccy>EUR</Ccy>
+										<HghstNetAsstVal>false</HghstNetAsstVal>
+									</ShrClssList>-->
+									<NoShrClssInf>
+										<Id>
+											<ISIN>GB0000000000</ISIN>
+											<!--<Nm>MONO SHARE CLASS 1</Nm>-->
+										</Id>
+									</NoShrClssInf>
+								</ShrClss>
+								<FndRltdEvt>
+									<!--<IncptnDt>2019-12-31</IncptnDt>-->
+									<!--<MrgrDt>2020-12-31</MrgrDt>-->
+									<!--<LqdtnDt>2020-05-27</LqdtnDt>-->
+									<LastRptSnt>false</LastRptSnt>
+								</FndRltdEvt>
+							</FndAttrbts>
+						</FndData>
+						<RptData>
+							<DataSetActn>NOTX</DataSetActn>
+						</RptData>
+					</Upd>
+					<ElmtJustfn>
+						<PlcAndNm>/Document/MnyMktFndRpt/FndRpt/Upd/FndData/FndAttrbts/RegdDstrbtnCtry/NonEurpnCtry</PlcAndNm>
+						<Justfn>
+							<Nm>NonEuropeanCountry</Nm>
+							<Val>Reason for non-European country</Val>
+						</Justfn>
+					</ElmtJustfn>
+				</FndRpt>
+			</MnyMktFndRpt>
+		</Document>
+		</Pyld>
+		</BizData>
+		
