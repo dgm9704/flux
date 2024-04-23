@@ -112,7 +112,23 @@
 				<xsl:with-param name="context" select="p:Faild/p:Vol|p:Ttl/p:Vol|p:FaildRate/p:Vol" />
 			</xsl:call-template>
 		</xsl:if>
+		<xsl:if test="p:Sttld/p:Val + p:Faild/p:Val != p:Ttl/p:Val ">
+			<xsl:call-template name="CSDR7Error">
+				<xsl:with-param name="code" select="'MSF-013'" />
+				<xsl:with-param name="context" select="p:Ttl/p:Val|p:Sttld/p:Val|p:Faild/p:Val" />
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="p:Faild/p:Val div p:Ttl/p:Val != p:FaildRate/p:Val">
+			<xsl:call-template name="CSDR7Error">
+				<xsl:with-param name="code" select="'MSF-014'" />
+				<xsl:with-param name="context" select="p:Faild/p:Val|p:Ttl/p:Val|p:FaildRate/p:Val" />
+			</xsl:call-template>
+		</xsl:if>
 	</xsl:template>
+
+	<!-- MSF-015 requires LEI check -->
+
+	<!-- MSF-016 requires lookup -->
 
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
