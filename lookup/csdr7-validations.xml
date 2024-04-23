@@ -20,4 +20,11 @@
 		<error_message>The Reporting To date is not valid.</error_message>
 		<record_identifier>No</record_identifier>
 	</rule>
+	<rule>
+		<number>0.4</number>
+		<control>The &lt;SctiesSttlmSys&gt;.&lt;SysId&gt; must be identical to the 0.4 corresponding SSS ID contained in the filename of the report, as stored in the CSDR7 system.</control>
+		<error_code>MSF-004</error_code>
+		<error_message>The SSS ID provided in the header is not the same as the one provided in the filename.</error_message>
+		<record_identifier>No</record_identifier>
+	</rule>
 </validation_rules>

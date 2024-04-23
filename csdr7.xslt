@@ -3,7 +3,7 @@
 	xmlns:str="http://exslt.org/strings" xmlns:my="http://example.org/my"
 	xmlns:date="http://exslt.org/dates-and-times"
 	xmlns:p="urn:iso:std:iso:20022:tech:xsd:auth.100.001.01" exclude-result-prefixes="my p"
-	extension-element-prefixes="func str exsl">
+	extension-element-prefixes="func str exsl date">
 
 	<xsl:output indent="yes" method="xml" />
 	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
@@ -85,9 +85,34 @@
 		</xsl:choose>
 	</xsl:template>
 
-	<!-- <xsl:template match="p:RptgPrd/p:ToDt">
+	<!-- MSF-004 requires filename -->
 
-	</xsl:template> -->
+	<!-- MSF-005 requires lookup -->
+
+	<!-- MSF-006 requires LEI check -->
+
+	<!-- MSF-007 requires lookup -->
+
+	<!-- MSF-008 requires lookup -->
+
+	<!-- MSF-009 requires lookup -->
+
+	<!-- MSF-010 requires lookup -->
+
+	<xsl:template match="p:MnthlyAggt/p:Ttl">
+		<xsl:if test="p:Sttld/p:Vol + p:Faild/p:Vol != p:Ttl/p:Vol ">
+			<xsl:call-template name="CSDR7Error">
+				<xsl:with-param name="code" select="'MSF-011'" />
+				<xsl:with-param name="context" select="p:Ttl/p:Vol|p:Sttld/p:Vol|p:Faild/p:Vol" />
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="p:Faild/p:Vol div p:Ttl/p:Vol != p:FaildRate/p:Vol">
+			<xsl:call-template name="CSDR7Error">
+				<xsl:with-param name="code" select="'MSF-012'" />
+				<xsl:with-param name="context" select="p:Faild/p:Vol|p:Ttl/p:Vol|p:FaildRate/p:Vol" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
 
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->

@@ -36,25 +36,31 @@
 	</rule>
 	<rule>
 		<number>2.2.1</number>
-		<control>The accuracy of numeric facts MUST be defined with the 'decimals' attribute rather	than the 'precision' attribute.</control>
+		<control>The accuracy of numeric facts MUST be defined with the 'decimals' attribute rather
+			than the 'precision' attribute.</control>
 		<error_code>G2_2_1</error_code>
 		<error_message>precisionAttributeUsed</error_message>
 	</rule>
 	<rule>
 		<number>2.2.3</number>
-		<control>Transformation rule applied on facts in ESEF document MUST be defined either in https://www.xbrl.org/Specification/inlineXBRL-transformationRegistry/REC-2020-02-12/inlineXBRL-transformationRegistry-REC-2020-02-12.html or a more recent version of the Transformation Rules Registry provided with a 'Recommendation' status.</control>
+		<control>Transformation rule applied on facts in ESEF document MUST be defined either in
+			https://www.xbrl.org/Specification/inlineXBRL-transformationRegistry/REC-2020-02-12/inlineXBRL-transformationRegistry-REC-2020-02-12.html
+			or a more recent version of the Transformation Rules Registry provided with a
+			'Recommendation' status.</control>
 		<error_code>G2_2_3</error_code>
 		<error_message>incorrectTransformationRuleApplied</error_message>
 	</rule>
 	<rule>
 		<number>2.2.4</number>
-		<control>Inconsistent duplicate numeric facts MUST NOT appear in the content of an inline XBRL document.</control>
+		<control>Inconsistent duplicate numeric facts MUST NOT appear in the content of an inline
+			XBRL document.</control>
 		<error_code>G2_2_4_1</error_code>
 		<error_message>inconsistentDuplicateNumericFactInInlineXbrlDocument</error_message>
 	</rule>
 	<rule>
 		<number>2.2.4</number>
-		<control>Inconsistent duplicate non-numeric facts SHOULD NOT appear in the content of an inline XBRL document.</control>
+		<control>Inconsistent duplicate non-numeric facts SHOULD NOT appear in the content of an
+			inline XBRL document.</control>
 		<error_code>G2_2_4_2</error_code>
 		<error_message>inconsistentDuplicateNonnumericFactInInlineXbrlDocument</error_message>
 	</rule>
@@ -66,37 +72,44 @@
 	</rule>
 	<rule>
 		<number>2.3.2</number>
-		<control>Each footnote MUST have or inherit an 'xml:lang' attribute whose value corresponds to the language of content of at least one textual fact present in the inline XBRL document</control>
+		<control>Each footnote MUST have or inherit an 'xml:lang' attribute whose value corresponds
+			to the language of content of at least one textual fact present in the inline XBRL
+			document</control>
 		<error_code>G2_3_2</error_code>
 		<error_message>footnoteInLanguagesOtherThanLanguageOfContentOfAnyTextualFact</error_message>
 	</rule>
 	<rule>
 		<number>2.3.3</number>
-		<control>Each footnote relationship MUST have at least one footnote in the language of the report.</control>
+		<control>Each footnote relationship MUST have at least one footnote in the language of the
+			report.</control>
 		<error_code>G2_3_3</error_code>
 		<error_message>footnoteOnlyInLanguagesOtherThanLanguageOfAReport</error_message>
 	</rule>
 	<rule>
 		<number>2.4.1</number>
-		<control>Each footnote relationship MUST have at least one footnote in the language of the report.</control>
+		<control>Each footnote relationship MUST have at least one footnote in the language of the
+			report.</control>
 		<error_code>G2_4_1_1</error_code>
 		<error_message>tupleElementUsed</error_message>
 	</rule>
 	<rule>
 		<number>2.4.2</number>
-		<control>The HTML &lt;base&gt; elements and xml:base attributes MUST NOT be used in the Inline XBRL document.</control>
+		<control>The HTML &lt;base&gt; elements and xml:base attributes MUST NOT be used in the
+			Inline XBRL document.</control>
 		<error_code>G2_4_2</error_code>
 		<error_message>htmlOrXmlBaseUsed</error_message>
 	</rule>
 	<rule>
 		<number>2.5.3</number>
-		<control>Target attribute SHOULD not be used unless explicitly required by local jurisdictions.</control>
+		<control>Target attribute SHOULD not be used unless explicitly required by local
+			jurisdictions.</control>
 		<error_code>G2_5_3_1</error_code>
 		<error_message>targetAttributeUsedForESEFContents</error_message>
 	</rule>
 	<rule>
 		<number>2.5.4</number>
-		<control>Where an Inline XBRL document set contains a single document, the CSS SHOULD be embedded within the document.</control>
+		<control>Where an Inline XBRL document set contains a single document, the CSS SHOULD be
+			embedded within the document.</control>
 		<error_code>G2_5_4_1</error_code>
 		<error_message>externalCssFileForSingleIXbrlDocument</error_message>
 	</rule>
