@@ -12,11 +12,9 @@
     <xbrli:period>
       <xbrli:instant>2023-12-31</xbrli:instant>
     </xbrli:period>
-    <xbrli:scenario>
-      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
-    </xbrli:scenario>
   </xbrli:context>
   <find:fIndicators>
+    <find:filingIndicator contextRef="c1">S_00.01</find:filingIndicator>    
     <find:filingIndicator contextRef="c1">C_111.00</find:filingIndicator>
     <find:filingIndicator contextRef="c1">C_112.00</find:filingIndicator>
     <find:filingIndicator contextRef="c1">C_113.00</find:filingIndicator>

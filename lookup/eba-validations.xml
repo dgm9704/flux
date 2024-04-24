@@ -1,9 +1,20 @@
 <validation_rules>
 	<rule>
-		<number>1.5</number>
-		<control>multipleSchemaRefs: Reporting entities MUST reference only one xsd entry point ("module", link:schemaRef element), as specified in the applicable taxonomy, per XBRL report. [SBR13, p. 6]</control>
 		<error_code>1.5.a</error_code>
 		<error_message>multipleSchemaRefs</error_message>
 		<severity>ERROR</severity>
+		<control>Reporting entities MUST reference only one xsd entry point ("module", link:schemaRef element), as specified in the applicable taxonomy, per XBRL report. [SBR13, p. 6]</control>
+	</rule>
+	<rule>
+		<error_code>1.6.c</error_code>
+		<error_message>invalidContextForFilingIndicator</error_message>
+		<severity>ERROR</severity>
+		<control>he context referenced by the filing indicator elements MUST NOT contain xbrli:segment or xbrli:scenario elements.</control>
+	</rule>
+	<rule>
+		<error_code>1.6.1</error_code>
+		<error_message>duplicateFilingIndicator</error_message>
+		<severity>ERROR</severity>
+		<control>XBRL reports MUST contain only one filing indicator element for a given reporting unit ("template").</control>
 	</rule>
 </validation_rules>

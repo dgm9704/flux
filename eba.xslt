@@ -71,10 +71,22 @@
 			select="//find:filingIndicator[not(@contextRef=preceding::find:filingIndicator/@contextRef)]/@contextRef" />
 		<xsl:for-each select="$contextRefs">
 			<xsl:variable name="id" select="." />
-			<xsl:if test="/xbrli:xbrl/xbrli:context[@id=$id]/xbrli:scenario|xbrli:segment"> 
+			<xsl:if test="/xbrli:xbrl/xbrli:context[@id=$id]/xbrli:scenario|xbrli:segment">
 				<xsl:call-template name="EBAError">
 					<xsl:with-param name="code" select="'1.6.c'" />
 					<xsl:with-param name="context" select="." />
+				</xsl:call-template>
+			</xsl:if>
+		</xsl:for-each>
+
+		<xsl:variable name="templates"
+			select="//find:filingIndicator[not(text()=preceding::find:filingIndicator/text())]" />
+		<xsl:for-each select="$templates">
+			<xsl:variable name="template" select="." />
+			<xsl:if test="count(/xbrli:xbrl/find:fIndicators/find:filingIndicator[text()=$template]) &gt; 1">
+				<xsl:call-template name="EBAError">
+					<xsl:with-param name="code" select="'1.6.1'" />
+					<xsl:with-param name="context" select="$template" />
 				</xsl:call-template>
 			</xsl:if>
 		</xsl:for-each>
