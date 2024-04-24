@@ -71,4 +71,12 @@
 		<severity>WARNING</severity>
 		<control>Relevant business data MUST only be contained in contexts, units, schemaRef and facts. A footnote MUST not have any impact on the regulatory content of a report.</control>
 	</rule>
+	<rule>
+		<error_code>2.26</error_code>
+		<error_message>missingOrIncorrectSoftwareInformation</error_message>
+		<severity>WARNING</severity>
+		<control>Information on the software component used for production of the XBRL report SHOULD be included as an XML Processing Instruction at the beginning of the file, after the XML version and encoding declaration. It SHOULD have at least the &lt;?instance-generator&gt; instructions and the variables: id, version and creationdate.</control>
+	</rule>
+	
+
 </validation_rules>

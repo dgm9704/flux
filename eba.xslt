@@ -162,7 +162,7 @@
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="comment()">
+	<xsl:template match="xbrli:xbrl/comment()">
 		<xsl:call-template name="EBAError">
 			<xsl:with-param name="code" select="'2.5'" />
 			<xsl:with-param name="context" select="." />
@@ -176,9 +176,18 @@
 		</xsl:call-template>
 	</xsl:template>
 
-
 	<xsl:template match="/">
 		<result>
+			<xsl:variable name="pi" select="processing-instruction('instance-generator')" />
+			<xsl:variable name="id" select="substring-before(substring-after($pi,'id=&quot;'),'&quot;')"/>
+			<xsl:variable name="version" select="substring-before(substring-after($pi,'version=&quot;'),'&quot;')"/>
+			<xsl:variable name="creationdate" select="substring-before(substring-after($pi,'creationdate=&quot;'),'&quot;')"/>
+			<xsl:if test="not($pi) or not($id) or not($version) or not($creationdate)">
+				<xsl:call-template name="EBAError">
+					<xsl:with-param name="code" select="'2.26'" />
+					<xsl:with-param name="context" select="$pi" />
+				</xsl:call-template>
+			</xsl:if>
 			<xsl:apply-templates />
 			<xsl:apply-templates select="//@*" />
 		</result>
