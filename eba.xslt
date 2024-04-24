@@ -5,7 +5,8 @@
 	xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xml="http://www.w3.org/XML/1998/namespace"
-	exclude-result-prefixes="my xbrli link find xsi xi" extension-element-prefixes="func str exsl">
+	xmlns:xlink="http://www.w3.org/1999/xlink"
+	exclude-result-prefixes="my xbrli link find xsi xi xlink" extension-element-prefixes="func str exsl">
 
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
 	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
@@ -140,15 +141,28 @@
 		</xsl:call-template>
 	</xsl:template>
 
+	<xsl:template match="/xbrli:xbrl/link:schemaRef">
+		<xsl:variable name="href" select="@xlink:href" />
+		<xsl:if test="not(starts-with($href,'http://'))">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.2'" />
+				<xsl:with-param name="context" select="$href" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+
 	<xsl:template match="/">
 		<result>
 			<xsl:apply-templates />
+			<xsl:apply-templates select="//@*" />
 		</result>
 	</xsl:template>
 
-	<xsl:template match="/">
-		<xsl:apply-templates select="//@*" />
-	</xsl:template>
+	<!-- <xsl:template match="/">
+		
+
+	</xsl:template> -->
 
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->

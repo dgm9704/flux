@@ -41,5 +41,11 @@
 		<severity>ERROR</severity>
 		<control>XBRL reports MUST NOT use the XInclude specification (xi:include element).</control>
 	</rule>
-	
+	<rule>
+		<error_code>2.2</error_code>
+		<error_message>inappropriateSchemaRef</error_message>
+		<severity>ERROR</severity>
+		<control>The link:schemaRef element in submitted reports MUST resolve to the full published xsd entry point URL (absolute URL).</control>
+	</rule>
+
 </validation_rules>
