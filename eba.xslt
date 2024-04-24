@@ -4,9 +4,9 @@
 	xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase"
 	xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
-	xmlns:xml="http://www.w3.org/XML/1998/namespace"
-	xmlns:xlink="http://www.w3.org/1999/xlink"
-	exclude-result-prefixes="my xbrli link find xsi xi xlink" extension-element-prefixes="func str exsl">
+	xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink"
+	exclude-result-prefixes="my xbrli link find xsi xi xlink"
+	extension-element-prefixes="func str exsl">
 
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
 	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
@@ -60,7 +60,11 @@
 		<xsl:if test="count(//link:schemaRef) &gt; 1">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'1.5.a'" />
-				<xsl:with-param name="context" select="//link:schemaRef" />
+				<xsl:with-param name="context" select="//link:schemaRef/@xlink:href" />
+			</xsl:call-template>
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.3'" />
+				<xsl:with-param name="context" select="//link:schemaRef/@xlink:href" />
 			</xsl:call-template>
 		</xsl:if>
 		<!-- 1.5.2 requires lookup -->
@@ -151,6 +155,27 @@
 		</xsl:if>
 	</xsl:template>
 
+	<xsl:template match="link:linkbaseRef">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'2.4'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="comment()">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'2.5'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="link:footnote">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'2.25'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
 
 	<xsl:template match="/">
 		<result>
@@ -158,11 +183,6 @@
 			<xsl:apply-templates select="//@*" />
 		</result>
 	</xsl:template>
-
-	<!-- <xsl:template match="/">
-		
-
-	</xsl:template> -->
 
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->

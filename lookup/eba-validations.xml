@@ -47,5 +47,28 @@
 		<severity>ERROR</severity>
 		<control>The link:schemaRef element in submitted reports MUST resolve to the full published xsd entry point URL (absolute URL).</control>
 	</rule>
-
+	<rule>
+		<error_code>2.3</error_code>
+		<error_message>multipleSchemaRefs</error_message>
+		<severity>ERROR</severity>
+		<control>Any xBRL-XML report MUST contain only one xbrli:xbrl/link:schemaRef element.</control>
+	</rule>
+	<rule>
+		<error_code>2.4</error_code>
+		<error_message>linkbaseRefUsed</error_message>
+		<severity>ERROR</severity>
+		<control>Reference from an report to the taxonomy MUST only be by means of the link:schemaRef element. The element link:linkbaseRef MUST NOT be used in any report document.</control>
+	</rule>
+	<rule>
+		<error_code>2.5</error_code>
+		<error_message>CommentsAreIgnored</error_message>
+		<severity>WARNING</severity>
+		<control>Relevant business data MUST only be contained in contexts, units, schemaRef and facts. A comment MUST not have any impact on the content of a report.</control>
+	</rule>
+	<rule>
+		<error_code>2.25</error_code>
+		<error_message>xbrlFootnotesAreIgnored</error_message>
+		<severity>WARNING</severity>
+		<control>Relevant business data MUST only be contained in contexts, units, schemaRef and facts. A footnote MUST not have any impact on the regulatory content of a report.</control>
+	</rule>
 </validation_rules>
