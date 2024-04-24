@@ -1,0 +1,93 @@
+<xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
+	xmlns:exsl="http://exslt.org/common" xmlns:func="http://exslt.org/functions"
+	xmlns:str="http://exslt.org/strings" xmlns:my="http://example.org/my"
+	xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase"
+	xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
+	exclude-result-prefixes="my xbrli link find" extension-element-prefixes="func str exsl">
+
+	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
+	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
+	<xsl:variable name="countrycodes" select="document('lookup/iso-3166-1.xml')/codes/code" />
+	<xsl:include href="common.xslt" />
+
+	<xsl:variable name="ebavalidations" select="document('lookup/eba-validations.xml')" />
+
+	<xsl:key name="validationlookup" match="rule" use="error_code" />
+
+	<xsl:template name="EBAError">
+		<xsl:param name="code" />
+		<xsl:param name="context" />
+		<error>
+			<code>
+				<xsl:value-of select="$code" />
+			</code>
+			<xsl:for-each select="$ebavalidations">
+				<xsl:for-each select="key('validationlookup', $code)">
+					<control>
+						<xsl:value-of select="control" />
+					</control>
+					<message>
+						<xsl:value-of select="error_message" />
+					</message>
+					<severity>
+						<xsl:value-of select="severity" />
+					</severity>
+				</xsl:for-each>
+			</xsl:for-each>
+			<context>
+				<xsl:for-each select="exsl:node-set($context)">
+					<field>
+						<name>
+							<xsl:call-template name="path" />
+						</name>
+						<value>
+							<xsl:value-of select="." />
+						</value>
+					</field>
+				</xsl:for-each>
+			</context>
+		</error>
+	</xsl:template>
+
+	<!-- 1.1 requires file name -->
+
+	<!-- 1.4 requires XML declaration -->
+
+	<xsl:template match="xbrli:xbrl">
+		<xsl:if test="count(//link:schemaRef) &gt; 1">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'1.5.a'" />
+				<xsl:with-param name="context" select="//link:schemaRef" />
+			</xsl:call-template>
+		</xsl:if>
+		<!-- 1.5.2 requires lookup -->
+
+		<xsl:apply-templates />
+
+	</xsl:template>
+
+	<xsl:template match="find:fIndicators">
+		<xsl:variable name="contextRefs"
+			select="//find:filingIndicator[not(@contextRef=preceding::find:filingIndicator/@contextRef)]/@contextRef" />
+		<xsl:for-each select="$contextRefs">
+			<xsl:variable name="id" select="." />
+			<xsl:if test="/xbrli:xbrl/xbrli:context[@id=$id]/xbrli:scenario|xbrli:segment"> 
+				<xsl:call-template name="EBAError">
+					<xsl:with-param name="code" select="'1.6.c'" />
+					<xsl:with-param name="context" select="." />
+				</xsl:call-template>
+			</xsl:if>
+		</xsl:for-each>
+	</xsl:template>
+
+	<xsl:template match="/">
+		<result>
+			<xsl:apply-templates />
+		</result>
+	</xsl:template>
+
+	<xsl:template match="text()|@*">
+		<!-- <xsl:value-of select="."/> -->
+	</xsl:template>
+
+</xsl:transform>

@@ -1,0 +1,9 @@
+<validation_rules>
+	<rule>
+		<number>1.5</number>
+		<control>multipleSchemaRefs: Reporting entities MUST reference only one xsd entry point ("module", link:schemaRef element), as specified in the applicable taxonomy, per XBRL report. [SBR13, p. 6]</control>
+		<error_code>1.5.a</error_code>
+		<error_message>multipleSchemaRefs</error_message>
+		<severity>ERROR</severity>
+	</rule>
+</validation_rules>
