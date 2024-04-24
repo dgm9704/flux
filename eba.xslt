@@ -3,8 +3,8 @@
 	xmlns:str="http://exslt.org/strings" xmlns:my="http://example.org/my"
 	xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase"
 	xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
+	xmlns:xml="http://www.w3.org/XML/1998/namespace"
 	exclude-result-prefixes="my xbrli link find xsi xi" extension-element-prefixes="func str exsl">
 
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
@@ -133,10 +133,21 @@
 		</xsl:call-template>
 	</xsl:template>
 
+	<xsl:template match="@xml:base">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'2.1'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
 	<xsl:template match="/">
 		<result>
 			<xsl:apply-templates />
 		</result>
+	</xsl:template>
+
+	<xsl:template match="/">
+		<xsl:apply-templates select="//@*" />
 	</xsl:template>
 
 	<xsl:template match="text()|@*">

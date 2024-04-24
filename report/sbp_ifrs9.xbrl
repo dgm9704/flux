@@ -1,6 +1,7 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <!--(C) EBA-->
-<xbrli:xbrl xmlns:xbrli="http://www.xbrl.org/2003/instance"
+<xbrli:xbrl xmlns:xml="http://www.w3.org/XML/1998/namespace"
+xmlns:xbrli="http://www.xbrl.org/2003/instance"
   xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink"
   xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
   xmlns:eba_model="http://www.eba.europa.eu/xbrl/ext/model"
@@ -9064,7 +9065,7 @@
     <xbrli:period>
       <xbrli:instant>2023-12-31</xbrli:instant>
     </xbrli:period>
-    <xbrli:scenario>
+    <xbrli:scenario xml:base="foo">
       <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
       <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x997</xbrldi:explicitMember>
       <xbrldi:explicitMember dimension="eba_dim:RPE">eba_RF:x82</xbrldi:explicitMember>
