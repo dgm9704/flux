@@ -77,6 +77,18 @@
 		<severity>WARNING</severity>
 		<control>Information on the software component used for production of the XBRL report SHOULD be included as an XML Processing Instruction at the beginning of the file, after the XML version and encoding declaration. It SHOULD have at least the &lt;?instance-generator&gt; instructions and the variables: id, version and creationdate.</control>
 	</rule>
-	
+	<rule>
+		<error_code>2.6.a</error_code>
+		<error_message>noSemanticsinID:</error_message>
+		<severity>WARNING</severity>
+		<control>Semantics SHOULD NOT be expressed in the xbrli:context/@id attribute.</control>
+	</rule>
+	<rule>
+		<error_code>2.6.b</error_code>
+		<error_message>longXmlIdAttribute</error_message>
+		<severity>WARNING</severity>
+		<control>The values of each @id attribute SHOULD not be excessively long.</control>
+	</rule>
+
 
 </validation_rules>

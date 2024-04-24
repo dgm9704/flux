@@ -193,6 +193,18 @@
 		</result>
 	</xsl:template>
 
+	<xsl:template match="xbrli:context">
+		<xsl:if test="string-length(@id) &gt; 40"> 
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.6.a'" />
+				<xsl:with-param name="context" select="@id" />
+			</xsl:call-template>
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.6.b'" />
+				<xsl:with-param name="context" select="@id" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>
