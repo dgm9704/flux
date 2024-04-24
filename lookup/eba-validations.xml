@@ -23,4 +23,23 @@
 		<severity>WARNING</severity>
 		<control>For flexibility, reported XBRL reports MAY include different filing indicators in several separate fIndicators tuple elements, for simplicity this SHOULD in general be avoided where not necessary.</control>
 	</rule>
+	<rule>
+		<error_code>1.14.a</error_code>
+		<error_message>schemaLocationAttributeUsed</error_message>
+		<severity>ERROR</severity>
+		<control>@xsd:schemaLocation or @xsd:noNamespaceSchemaLocation MUST NOT be used.</control>
+	</rule>
+	<rule>
+		<error_code>1.14.b</error_code>
+		<error_message>noNamespaceSchemaLocationAttributeUsed</error_message>
+		<severity>ERROR</severity>
+		<control>@xsd:schemaLocation or @xsd:noNamespaceSchemaLocation MUST NOT be used.</control>
+	</rule>
+	<rule>
+		<error_code>1.15</error_code>
+		<error_message>xIncludeUsed</error_message>
+		<severity>ERROR</severity>
+		<control>XBRL reports MUST NOT use the XInclude specification (xi:include element).</control>
+	</rule>
+	
 </validation_rules>

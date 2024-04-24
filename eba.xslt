@@ -3,7 +3,9 @@
 	xmlns:str="http://exslt.org/strings" xmlns:my="http://example.org/my"
 	xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase"
 	xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
-	exclude-result-prefixes="my xbrli link find" extension-element-prefixes="func str exsl">
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:xi="http://www.w3.org/2001/XInclude"
+	exclude-result-prefixes="my xbrli link find xsi xi" extension-element-prefixes="func str exsl">
 
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
 	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
@@ -63,10 +65,24 @@
 		<!-- 1.5.2 requires lookup -->
 
 		<xsl:if test="count(//find:fIndicators) &gt; 1">
-		<xsl:call-template name="EBAError">
-			<xsl:with-param name="code" select="'1.6.2'" />
-			<xsl:with-param name="context" select="//find:fIndicators" />
-		</xsl:call-template>
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'1.6.2'" />
+				<xsl:with-param name="context" select="//find:fIndicators" />
+			</xsl:call-template>
+		</xsl:if>
+
+		<xsl:if test="@xsi:schemaLocation">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'1.14.a'" />
+				<xsl:with-param name="context" select="@xsi:schemaLocation" />
+			</xsl:call-template>
+		</xsl:if>
+
+		<xsl:if test="@xsi:noNamespaceSchemaLocation">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'1.14.b'" />
+				<xsl:with-param name="context" select="@xsi:noNamespaceSchemaLocation" />
+			</xsl:call-template>
 		</xsl:if>
 
 		<xsl:apply-templates />
@@ -98,6 +114,23 @@
 				</xsl:call-template>
 			</xsl:if>
 		</xsl:for-each>
+	</xsl:template>
+
+	<!-- 1.6.3 requires taxonomy -->
+	<!-- 1.7.a requires taxonomy -->
+	<!-- 1.7.b requires taxonomy -->
+	<!-- 1.7.1 requires taxonomy -->
+	<!-- 1.9 requires schema validations -->
+	<!-- 1.10 requires content validations -->
+	<!-- 1.11 requires lookup/taxonomy -->
+	<!-- 1.12 requires information outside the report -->
+	<!-- 1.13 requires information not available in xslt -->
+
+	<xsl:template match="xi:include">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'1.15'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template match="/">
