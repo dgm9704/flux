@@ -17,4 +17,10 @@
 		<severity>ERROR</severity>
 		<control>XBRL reports MUST contain only one filing indicator element for a given reporting unit ("template").</control>
 	</rule>
+	<rule>
+		<error_code>1.6.2</error_code>
+		<error_message>filingIndicatorInMultipleTuples</error_message>
+		<severity>WARNING</severity>
+		<control>For flexibility, reported XBRL reports MAY include different filing indicators in several separate fIndicators tuple elements, for simplicity this SHOULD in general be avoided where not necessary.</control>
+	</rule>
 </validation_rules>
