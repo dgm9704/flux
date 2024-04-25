@@ -149,4 +149,10 @@
 		<severity>ERROR</severity>
 		<control>If an xbrli:scenario element appears in a xbrli:context, then its children MUST only be one or more xbrldi:explicitMember and/or xbrldi:typedMember elements, and MUST NOT contain any other content. [EFM13, p. 6-8]</control>
 	</rule>
+	<rule>
+		<error_code>2.16</error_code>
+		<error_message>duplicateFactXBRL-XML</error_message>
+		<severity>ERROR</severity>
+		<control>XBRL-XML reports MUST NOT contain duplicate business facts. [EFM13, p. 6-10]</control>
+	</rule>
 </validation_rules>

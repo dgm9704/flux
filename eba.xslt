@@ -6,7 +6,8 @@
 	xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink"
-	exclude-result-prefixes="my xbrli xbrldi link find xsi xi xlink"
+	xmlns:eba_met="http://www.eba.europa.eu/xbrl/crr/dict/met"
+	exclude-result-prefixes="my xbrli xbrldi link find xsi xi xlink eba_met"
 	extension-element-prefixes="func str exsl my">
 
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
@@ -33,6 +34,10 @@
 		<func:result select="substring($result, 1, string-length($result)-1)" />
 	</func:function>
 
+	<func:function name="my:cid-byref">
+		<xsl:param name="id" />
+		<func:result select="my:cid(/xbrli:xbrl/xbrli:context[@id=$id][1])" />
+	</func:function>
 
 	<!-- <func:function name="my:cid">
 		<xsl:param name="context" />
@@ -223,7 +228,7 @@
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="xbrli:xbrl/comment()">
+	<xsl:template match="xbrli:xbrl//comment()">
 		<xsl:call-template name="EBAError">
 			<xsl:with-param name="code" select="'2.5'" />
 			<xsl:with-param name="context" select="." />
@@ -270,7 +275,7 @@
 		</xsl:if>
 		<xsl:variable name="id" select="@id" />
 		<xsl:if
-			test="not(/xbrli:xbrl/*[@contextRef=$id] or /xbrli:xbrl/find:fIndicators/find:filingIndicator[@contextRef=$id])">
+			test="not(/xbrli:xbrl/eba_met:*[@contextRef=$id] or /xbrli:xbrl/find:fIndicators/find:filingIndicator[@contextRef=$id])">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'2.7.a'" />
 				<xsl:with-param name="context" select="$id" />
@@ -330,11 +335,29 @@
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="/xbrli:xbrl/xbrli:context/xbrli:scenario[child::*[not(name()='xbrldi:explicitMember' or name()='xbrldi:typedMember')]]">
+	<xsl:template
+		match="/xbrli:xbrl/xbrli:context/xbrli:scenario[child::*[not(name()='xbrldi:explicitMember' or name()='xbrldi:typedMember')]]">
 		<xsl:call-template name="EBAError">
 			<xsl:with-param name="code" select="'2.15'" />
-			<xsl:with-param name="context" select="child::*[not(name()='xbrldi:explicitMember' or name()='xbrldi:typedMember')]" />
+			<xsl:with-param name="context"
+				select="child::*[not(name()='xbrldi:explicitMember' or name()='xbrldi:typedMember')]" />
 		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="/xbrli:xbrl/eba_met:pi472">
+		<xsl:variable name="cid" select="my:cid-byref(@contextRef)" />
+		<xsl:variable name="metric" select="name()" />
+		<xsl:variable name="unitRef" select="@unitRef" />
+		<xsl:variable name="contextRef" select="@contextRef" />
+		<xsl:variable name="id" select="generate-id()" />
+		<xsl:variable name="matches"
+			select="preceding::eba_met:*[generate-id()!=$id and name()=$metric and @unitRef=$unitRef and (@contextRef=$contextRef or my:cid-byref(@contextRef)=$cid)]" /> 
+		<xsl:if test="$matches">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.16'" />
+				<xsl:with-param name="context" select=".|exsl:node-set($matches)|exsl:node-set($cid)|$contextRef|$matches/@contextRef" />
+			</xsl:call-template>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="text()|@*">
