@@ -148,14 +148,7 @@
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:variable name="noninstants"
-			select="xbrli:context/xbrli:period/*[name()!='xbrli:instant']" />
-		<xsl:if test="noninstants">
-			<xsl:call-template name="EBAError">
-				<xsl:with-param name="code" select="'2.13.b'" />
-				<xsl:with-param name="context" select="$noninstants" />
-			</xsl:call-template>
-		</xsl:if>
+
 		<!-- /root/*[not(name()='terminate')] -->
 
 		<xsl:apply-templates />
@@ -323,10 +316,24 @@
 		</xsl:call-template>
 	</xsl:template>
 
+	<xsl:template match="/xbrli:xbrl/xbrli:context/xbrli:period[child::*[name()!='xbrli:instant']]">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'2.13.b'" />
+			<xsl:with-param name="context" select="*" />
+		</xsl:call-template>
+	</xsl:template>
+
 	<xsl:template match="xbrli:segment">
 		<xsl:call-template name="EBAError">
 			<xsl:with-param name="code" select="'2.14'" />
 			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="/xbrli:xbrl/xbrli:context/xbrli:scenario[child::*[not(name()='xbrldi:explicitMember' or name()='xbrldi:typedMember')]]">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'2.15'" />
+			<xsl:with-param name="context" select="child::*[not(name()='xbrldi:explicitMember' or name()='xbrldi:typedMember')]" />
 		</xsl:call-template>
 	</xsl:template>
 

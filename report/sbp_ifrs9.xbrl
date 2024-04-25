@@ -9065,6 +9065,8 @@
     </xbrli:entity>
     <xbrli:period>
       <xbrli:instant>2023-12-31</xbrli:instant>
+      <!-- <xbrli:startDate>2000-01-01</xbrli:startDate>
+      <xbrli:endDate>2000-01-01</xbrli:endDate> -->
     </xbrli:period>
     <xbrli:scenario>
       <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
@@ -9073,6 +9075,7 @@
       <xbrldi:explicitMember dimension="eba_dim:PSB">eba_PL:x823</xbrldi:explicitMember>
       <xbrldi:explicitMember dimension="eba_dim:ESC">eba_ZZ:x416</xbrldi:explicitMember>
       <xbrldi:explicitMember dimension="eba_dim:FLI">eba_GA:AE</xbrldi:explicitMember>
+      <!-- <foo>bar</foo> -->
     </xbrli:scenario>
   </xbrli:context>
   <eba_met:pi471 unitRef="uPURE" decimals="4" contextRef="c479">52.33</eba_met:pi471>
