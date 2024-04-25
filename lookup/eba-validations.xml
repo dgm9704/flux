@@ -104,8 +104,43 @@
 	<rule>
 		<error_code>2.9</error_code>
 		<error_message>multipleIdentifiers</error_message>
-		<severity>WARNING</severity>
+		<severity>ERROR</severity>
 		<control>All xbrli:identifier content and @scheme attributes in an report MUST be identical. [EFM13, p. 6-8]</control>
 	</rule>
-
+	<rule>
+		<error_code>2.10.a</error_code>
+		<error_message>periodWithTimeContent</error_message>
+		<severity>ERROR</severity>
+		<control>All xbrli:period date elements MUST be valid against the xs:date data type, and reported without a timezone. [GFM11, p. 16]</control>
+	</rule>
+	<rule>
+		<error_code>2.10.b</error_code>
+		<error_message>periodWithTimezone</error_message>
+		<severity>ERROR</severity>
+		<control>All xbrli:period date elements MUST be valid against the xs:date data type, and reported without a timezone. [GFM11, p. 16]</control>
+	</rule>
+	<rule>
+		<error_code>2.11</error_code>
+		<error_message>foreverUsed</error_message>
+		<severity>ERROR</severity>
+		<control>The element 'xbrli:forever' MUST NOT be used. [GFM11, p. 19]</control>
+	</rule>
+	<rule>
+		<error_code>2.13.a</error_code>
+		<error_message>multiplePeriodsUsed</error_message>
+		<severity>ERROR</severity>
+		<control>All xbrl periods in a XBRL report MUST refer to the (same) reference date instant.</control>
+	</rule>
+	<rule>
+		<error_code>2.13.b</error_code>
+		<error_message>nonInstantPeriodUsed</error_message>
+		<severity>ERROR</severity>
+		<control>All xbrl periods MUST be instants.</control>
+	</rule>
+	<rule>
+		<error_code>2.14</error_code>
+		<error_message>segmentUsed</error_message>
+		<severity>ERROR</severity>
+		<control>xbrli:segment elements MUST NOT be used.</control>
+	</rule>
 </validation_rules>

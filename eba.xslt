@@ -138,6 +138,26 @@
 			</xsl:call-template>
 		</xsl:if>
 
+		<xsl:variable name="instants" select="xbrli:context/xbrli:period/xbrli:instant" />
+		<xsl:variable name="distinct_instants"
+			select="$instants[not(text()=preceding::xbrli:instant/text())]" />
+		<xsl:if test="count($distinct_instants) &gt; 1">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.13.a'" />
+				<xsl:with-param name="context" select="$distinct_instants" />
+			</xsl:call-template>
+		</xsl:if>
+
+		<xsl:variable name="noninstants"
+			select="xbrli:context/xbrli:period/*[name()!='xbrli:instant']" />
+		<xsl:if test="noninstants">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.13.b'" />
+				<xsl:with-param name="context" select="$noninstants" />
+			</xsl:call-template>
+		</xsl:if>
+		<!-- /root/*[not(name()='terminate')] -->
+
 		<xsl:apply-templates />
 
 	</xsl:template>
@@ -271,12 +291,44 @@
 				<xsl:with-param name="context" select="exsl:node-set($cid)|$matching/@id" />
 			</xsl:call-template>
 		</xsl:if>
+
+		<xsl:apply-templates />
 	</xsl:template>
 
 	<!-- 2.8.a requires lookup etc -->
 	<!-- 2.8.b requires lookup etc -->
 	<!-- 2.8.c requires lookup etc -->
 
+	<xsl:template match="/xbrli:xbrl/xbrli:context/xbrli:period/xbrli:instant">
+		<xsl:if test="contains(text(),'T')">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.10.a'" />
+				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if
+			test="contains(substring-after(text(),'T'), '+') or contains(substring-after(text(),'T'), '-') or contains(substring-after(text(),'T'), 'Z')">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.10.b'" />
+				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:if>
+
+	</xsl:template>
+
+	<xsl:template match="xbrli:forever">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'2.11'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
+
+	<xsl:template match="xbrli:segment">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'2.14'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template>
 
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
