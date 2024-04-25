@@ -1,12 +1,13 @@
 <xsl:transform version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
 	xmlns:exsl="http://exslt.org/common" xmlns:func="http://exslt.org/functions"
 	xmlns:str="http://exslt.org/strings" xmlns:my="http://example.org/my"
-	xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase"
+	xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
+	xmlns:link="http://www.xbrl.org/2003/linkbase"
 	xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink"
-	exclude-result-prefixes="my xbrli link find xsi xi xlink"
-	extension-element-prefixes="func str exsl">
+	exclude-result-prefixes="my xbrli xbrldi link find xsi xi xlink"
+	extension-element-prefixes="func str exsl my">
 
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
 	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
@@ -16,6 +17,34 @@
 	<xsl:variable name="ebavalidations" select="document('lookup/eba-validations.xml')" />
 
 	<xsl:key name="validationlookup" match="rule" use="error_code" />
+
+	<xsl:key name="scenario" match="/xbrli:xbrl/xbrli:context" use="my:cid(.)" />
+
+	<func:function name="my:cid">
+		<xsl:param name="context" />
+		<xsl:variable name="result">
+			<xsl:for-each select="$context/xbrli:scenario/xbrldi:explicitMember">
+				<xsl:value-of select="substring-after(@dimension, ':')" />=<xsl:value-of
+					select="text()" />,</xsl:for-each>
+			<xsl:for-each select="$context/xbrli:scenario/xbrldi:typedMember">
+				<xsl:value-of select="substring-after(@dimension, ':')" />=<xsl:value-of
+					select="*[1]/text()" />,</xsl:for-each>
+		</xsl:variable>
+		<func:result select="substring($result, 1, string-length($result)-1)" />
+	</func:function>
+
+
+	<!-- <func:function name="my:cid">
+		<xsl:param name="context" />
+		<xsl:variable name="result">
+			<xsl:for-each select="$context/xbrli:scenario/xbrldi:explicitMember">
+				<xsl:value-of select="@dimension" />=<xsl:value-of select="text()" />,</xsl:for-each>
+			<xsl:for-each select="$context/xbrli:scenario/xbrldi:typedMember">
+				<xsl:value-of select="@dimension" />=<xsl:value-of select="name(*[1])" />:<xsl:value-of
+					select="*[1]/text()" />,</xsl:for-each>
+		</xsl:variable>
+		<func:result select="substring($result, 1, string-length($result)-1)" />
+	</func:function> -->
 
 	<xsl:template name="EBAError">
 		<xsl:param name="code" />
@@ -87,6 +116,25 @@
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'1.14.b'" />
 				<xsl:with-param name="context" select="@xsi:noNamespaceSchemaLocation" />
+			</xsl:call-template>
+		</xsl:if>
+
+		<xsl:variable name="identifiers" select="xbrli:context/xbrli:entity/xbrli:identifier" />
+		<xsl:variable name="distinct_identifiers"
+			select="$identifiers[not(text()=preceding::xbrli:identifier/text())]" />
+		<xsl:if test="count($distinct_identifiers) &gt; 1">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.9'" />
+				<xsl:with-param name="context" select="$distinct_identifiers" />
+			</xsl:call-template>
+		</xsl:if>
+
+		<xsl:variable name="distinct_schemes"
+			select="$identifiers[not(@scheme=preceding::xbrli:identifier/@scheme)]/@scheme" />
+		<xsl:if test="count($distinct_schemes) &gt; 1">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.9'" />
+				<xsl:with-param name="context" select="$distinct_schemes" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -179,9 +227,12 @@
 	<xsl:template match="/">
 		<result>
 			<xsl:variable name="pi" select="processing-instruction('instance-generator')" />
-			<xsl:variable name="id" select="substring-before(substring-after($pi,'id=&quot;'),'&quot;')"/>
-			<xsl:variable name="version" select="substring-before(substring-after($pi,'version=&quot;'),'&quot;')"/>
-			<xsl:variable name="creationdate" select="substring-before(substring-after($pi,'creationdate=&quot;'),'&quot;')"/>
+			<xsl:variable name="id"
+				select="substring-before(substring-after($pi,'id=&quot;'),'&quot;')" />
+			<xsl:variable name="version"
+				select="substring-before(substring-after($pi,'version=&quot;'),'&quot;')" />
+			<xsl:variable name="creationdate"
+				select="substring-before(substring-after($pi,'creationdate=&quot;'),'&quot;')" />
 			<xsl:if test="not($pi) or not($id) or not($version) or not($creationdate)">
 				<xsl:call-template name="EBAError">
 					<xsl:with-param name="code" select="'2.26'" />
@@ -193,8 +244,8 @@
 		</result>
 	</xsl:template>
 
-	<xsl:template match="xbrli:context">
-		<xsl:if test="string-length(@id) &gt; 40"> 
+	<xsl:template match="/xbrli:xbrl/xbrli:context">
+		<xsl:if test="string-length(@id) &gt; 40">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'2.6.a'" />
 				<xsl:with-param name="context" select="@id" />
@@ -204,7 +255,29 @@
 				<xsl:with-param name="context" select="@id" />
 			</xsl:call-template>
 		</xsl:if>
+		<xsl:variable name="id" select="@id" />
+		<xsl:if
+			test="not(/xbrli:xbrl/*[@contextRef=$id] or /xbrli:xbrl/find:fIndicators/find:filingIndicator[@contextRef=$id])">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.7.a'" />
+				<xsl:with-param name="context" select="$id" />
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:variable name="cid" select="my:cid(.)" />
+		<xsl:variable name="matching" select="key('scenario', $cid)" />
+		<xsl:if test="count($matching) &gt; 1 and $matching[1]/@id=$id">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.7.b'" />
+				<xsl:with-param name="context" select="exsl:node-set($cid)|$matching/@id" />
+			</xsl:call-template>
+		</xsl:if>
 	</xsl:template>
+
+	<!-- 2.8.a requires lookup etc -->
+	<!-- 2.8.b requires lookup etc -->
+	<!-- 2.8.c requires lookup etc -->
+
+
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="."/> -->
 	</xsl:template>

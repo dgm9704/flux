@@ -89,6 +89,23 @@
 		<severity>WARNING</severity>
 		<control>The values of each @id attribute SHOULD not be excessively long.</control>
 	</rule>
-
+	<rule>
+		<error_code>2.7.a</error_code>
+		<error_message>unusedContext</error_message>
+		<severity>WARNING</severity>
+		<control>Unused xbrli:context nodes SHOULD NOT be present in the report.</control>
+	</rule>
+	<rule>
+		<error_code>2.7.b</error_code>
+		<error_message>duplicateContext</error_message>
+		<severity>WARNING</severity>
+		<control>An report document SHOULD NOT contain duplicated context, unless required for technical reasons, e.g. to support XBRL streaming.</control>
+	</rule>
+	<rule>
+		<error_code>2.9</error_code>
+		<error_message>multipleIdentifiers</error_message>
+		<severity>WARNING</severity>
+		<control>All xbrli:identifier content and @scheme attributes in an report MUST be identical. [EFM13, p. 6-8]</control>
+	</rule>
 
 </validation_rules>

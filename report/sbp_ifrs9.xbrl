@@ -6968,7 +6968,7 @@
       <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x945</xbrldi:explicitMember>
       <xbrldi:explicitMember dimension="eba_dim:PSB">eba_PL:x823</xbrldi:explicitMember>
       <xbrldi:typedMember dimension="eba_dim:PBE">
-        <eba_typ:IS>1</eba_typ:IS>
+        <eba_typ:IS>11</eba_typ:IS>
       </xbrldi:typedMember>
     </xbrli:scenario>
   </xbrli:context>
@@ -6985,7 +6985,7 @@
       <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x945</xbrldi:explicitMember>
       <xbrldi:explicitMember dimension="eba_dim:PSB">eba_PL:x823</xbrldi:explicitMember>
       <xbrldi:typedMember dimension="eba_dim:PBE">
-        <eba_typ:IS>2</eba_typ:IS>
+        <eba_typ:IS>22</eba_typ:IS>
       </xbrldi:typedMember>
     </xbrli:scenario>
   </xbrli:context>
@@ -7002,7 +7002,7 @@
       <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x945</xbrldi:explicitMember>
       <xbrldi:explicitMember dimension="eba_dim:PSB">eba_PL:x823</xbrldi:explicitMember>
       <xbrldi:typedMember dimension="eba_dim:PBE">
-        <eba_typ:IS>3</eba_typ:IS>
+        <eba_typ:IS>33</eba_typ:IS>
       </xbrldi:typedMember>
     </xbrli:scenario>
   </xbrli:context>
@@ -9058,7 +9058,7 @@
     </xbrli:scenario>
   </xbrli:context>
   <eba_met:pi471 unitRef="uPURE" decimals="4" contextRef="c478">34.35</eba_met:pi471>
-  <eba_met:pi472 unitRef="uPURE" decimals="4" contextRef="c478">97.92</eba_met:pi472>
+  <eba_met:pi472 unitRef="uPURE" decimals="4" contextRef="c0">97.92</eba_met:pi472>
   <xbrli:context id="c479">
     <xbrli:entity>
       <xbrli:identifier scheme="https://eurofiling.info/eu/rs">DUMMYLEI123456789012.CON</xbrli:identifier>
