@@ -9075,6 +9075,23 @@
       <xbrldi:explicitMember dimension="eba_dim:FLI">eba_GA:AE</xbrldi:explicitMember>
     </xbrli:scenario>
   </xbrli:context>
+  <xbrli:context id="d479">
+    <xbrli:entity>
+      <xbrli:identifier scheme="https://eurofiling.info/eu/rs">DUMMYLEI123456789012.CON</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2023-12-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x997</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:RPE">eba_RF:x82</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:PSB">eba_PL:x823</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:ESC">eba_ZZ:x416</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:FLI">eba_GA:AE</xbrldi:explicitMember>
+    </xbrli:scenario>
+  </xbrli:context>
   <eba_met:pi471 unitRef="uPURE" decimals="4" contextRef="c479">52.33</eba_met:pi471>
-  <eba_met:pi472 unitRef="uPURE" decimals="4" contextRef="c479">43.43</eba_met:pi472>
+  <eba_met:pi472 unitRef="uEUR" decimals="4" contextRef="c479">43.43</eba_met:pi472>
+  <eba_met:pi472 unitRef="uPURE" decimals="4" contextRef="d479">43.43</eba_met:pi472>
 </xbrli:xbrl>

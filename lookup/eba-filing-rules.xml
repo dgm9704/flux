@@ -155,4 +155,10 @@
 		<severity>ERROR</severity>
 		<control>XBRL-XML reports MUST NOT contain duplicate business facts. [EFM13, p. 6-10]</control>
 	</rule>
+	<rule>
+		<error_code>2.16.1</error_code>
+		<error_message>factsDifferingOnlyByUnit</error_message>
+		<severity>ERROR</severity>
+		<control>XBRL reports MUST NOT contain business facts which would be duplicates were their units not different</control>
+	</rule>
 </validation_rules>

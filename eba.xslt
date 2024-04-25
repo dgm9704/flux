@@ -15,7 +15,7 @@
 	<xsl:variable name="countrycodes" select="document('lookup/iso-3166-1.xml')/codes/code" />
 	<xsl:include href="common.xslt" />
 
-	<xsl:variable name="ebavalidations" select="document('lookup/eba-validations.xml')" />
+	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
 
 	<xsl:key name="validationlookup" match="rule" use="error_code" />
 
@@ -344,20 +344,32 @@
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="/xbrli:xbrl/eba_met:pi472">
+	<xsl:template match="/xbrli:xbrl/eba_met:*">
 		<xsl:variable name="cid" select="my:cid-byref(@contextRef)" />
 		<xsl:variable name="metric" select="name()" />
 		<xsl:variable name="unitRef" select="@unitRef" />
 		<xsl:variable name="contextRef" select="@contextRef" />
 		<xsl:variable name="id" select="generate-id()" />
 		<xsl:variable name="matches"
-			select="preceding::eba_met:*[generate-id()!=$id and name()=$metric and @unitRef=$unitRef and (@contextRef=$contextRef or my:cid-byref(@contextRef)=$cid)]" /> 
+			select="preceding::eba_met:*[generate-id()!=$id and name()=$metric and @unitRef=$unitRef and (@contextRef=$contextRef or my:cid-byref(@contextRef)=$cid)]" />
 		<xsl:if test="$matches">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'2.16'" />
-				<xsl:with-param name="context" select=".|exsl:node-set($matches)|exsl:node-set($cid)|$contextRef|$matches/@contextRef" />
+				<xsl:with-param name="context"
+					select=".|exsl:node-set($matches)|exsl:node-set($cid)|$contextRef|$matches/@contextRef" />
 			</xsl:call-template>
 		</xsl:if>
+
+		<xsl:variable name="partial_matches"
+			select="preceding::eba_met:*[generate-id()!=$id and name()=$metric and @unitRef!=$unitRef and (@contextRef=$contextRef or my:cid-byref(@contextRef)=$cid)]" />
+		<xsl:if test="$partial_matches">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.16.1'" />
+				<xsl:with-param name="context"
+					select=".|$unitRef|exsl:node-set($matches)|exsl:node-set($cid)|$contextRef|$partial_matches/@contextRef|$partial_matches/@unitRef" />
+			</xsl:call-template>
+		</xsl:if>
+
 	</xsl:template>
 
 	<xsl:template match="text()|@*">
