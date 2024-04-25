@@ -161,4 +161,10 @@
 		<severity>ERROR</severity>
 		<control>XBRL reports MUST NOT contain business facts which would be duplicates were their units not different</control>
 	</rule>
+	<rule>
+		<error_code>2.17</error_code>
+		<error_message>precisionUsed</error_message>
+		<severity>ERROR</severity>
+		<control>@decimals MUST be used as the only means for expressing precision on a fact. [EFM13,p. 6-12]</control>
+	</rule>
 </validation_rules>

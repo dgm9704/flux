@@ -370,6 +370,14 @@
 			</xsl:call-template>
 		</xsl:if>
 
+		<xsl:if test="@precision and not(@decimals)">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.17'" />
+				<xsl:with-param name="context"
+					select="@precision" />
+			</xsl:call-template>
+		</xsl:if>
+
 	</xsl:template>
 
 	<xsl:template match="text()|@*">
