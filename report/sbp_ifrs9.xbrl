@@ -5,7 +5,6 @@
   xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase"
   xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
   xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
-  xmlns:eba_model="http://www.eba.europa.eu/xbrl/ext/model"
   xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
   xmlns:eba_dim="http://www.eba.europa.eu/xbrl/crr/dict/dim"
   xmlns:eba_BA="http://www.eba.europa.eu/xbrl/crr/dict/dom/BA"
@@ -9077,4 +9076,4 @@
   </xbrli:context>
   <eba_met:pi471 unitRef="uPURE" decimals="4" contextRef="c479">52.33</eba_met:pi471>
   <eba_met:pi472 unitRef="uPURE" decimals="4" contextRef="c479">43.43</eba_met:pi472>
-</xbrli:xbrl>
+  </xbrli:xbrl>

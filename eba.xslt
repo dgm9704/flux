@@ -5,7 +5,7 @@
 	xmlns:link="http://www.xbrl.org/2003/linkbase"
 	xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
-	xmlns:xml="http://www.w3.org/XML/1998/namespace" xmlns:xlink="http://www.w3.org/1999/xlink"
+	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:eba_met="http://www.eba.europa.eu/xbrl/crr/dict/met"
 	exclude-result-prefixes="my xbrli xbrldi link find xsi xi xlink eba_met"
 	extension-element-prefixes="func str exsl my">
@@ -38,18 +38,6 @@
 		<xsl:param name="id" />
 		<func:result select="my:cid(/xbrli:xbrl/xbrli:context[@id=$id][1])" />
 	</func:function>
-
-	<!-- <func:function name="my:cid">
-		<xsl:param name="context" />
-		<xsl:variable name="result">
-			<xsl:for-each select="$context/xbrli:scenario/xbrldi:explicitMember">
-				<xsl:value-of select="@dimension" />=<xsl:value-of select="text()" />,</xsl:for-each>
-			<xsl:for-each select="$context/xbrli:scenario/xbrldi:typedMember">
-				<xsl:value-of select="@dimension" />=<xsl:value-of select="name(*[1])" />:<xsl:value-of
-					select="*[1]/text()" />,</xsl:for-each>
-		</xsl:variable>
-		<func:result select="substring($result, 1, string-length($result)-1)" />
-	</func:function> -->
 
 	<xsl:template name="EBAError">
 		<xsl:param name="code" />
@@ -86,11 +74,10 @@
 		</error>
 	</xsl:template>
 
-	<!-- 1.1 requires file name -->
+	<xsl:template match="/xbrli:xbrl">
 
-	<!-- 1.4 requires XML declaration -->
+		<xsl:apply-templates select="@*" />
 
-	<xsl:template match="xbrli:xbrl">
 		<xsl:if test="count(//link:schemaRef) &gt; 1">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'1.5.a'" />
@@ -101,7 +88,6 @@
 				<xsl:with-param name="context" select="//link:schemaRef/@xlink:href" />
 			</xsl:call-template>
 		</xsl:if>
-		<!-- 1.5.2 requires lookup -->
 
 		<xsl:if test="count(//find:fIndicators) &gt; 1">
 			<xsl:call-template name="EBAError">
@@ -153,12 +139,39 @@
 			</xsl:call-template>
 		</xsl:if>
 
-
-		<!-- /root/*[not(name()='terminate')] -->
+		<xsl:for-each select="namespace::*">
+			<xsl:if test="not(local-name()='xml')">
+				<xsl:if test="not(//*[namespace-uri()=current()])">
+					<xsl:if
+						test="not(/xbrli:xbrl/xbrli:context/xbrli:scenario/xbrldi:explicitMember[substring-before(.,':')=local-name(current())])">
+						<xsl:if
+							test="not(/xbrli:xbrl//*[substring-before(.,':')=local-name(current())])">
+							<xsl:if
+								test="not(/*//*[substring-before(@dimension,':')=local-name(current())])">
+								<xsl:if test="not(/*//@*[namespace-uri()=current()])">
+									<xsl:call-template name="EBAError">
+										<xsl:with-param name="code" select="'3.4'" />
+										<xsl:with-param name="context" select="." />
+									</xsl:call-template>
+								</xsl:if>
+							</xsl:if>
+						</xsl:if>
+					</xsl:if>
+				</xsl:if>
+			</xsl:if>
+		</xsl:for-each>
 
 		<xsl:apply-templates />
 
+
 	</xsl:template>
+
+	<!-- <xsl:template match="/namespace()">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'3.4'" />
+			<xsl:with-param name="context" select="." />
+		</xsl:call-template>
+	</xsl:template> -->
 
 	<xsl:template match="find:fIndicators">
 		<xsl:variable name="contextRefs"
@@ -186,16 +199,6 @@
 			</xsl:if>
 		</xsl:for-each>
 	</xsl:template>
-
-	<!-- 1.6.3 requires taxonomy -->
-	<!-- 1.7.a requires taxonomy -->
-	<!-- 1.7.b requires taxonomy -->
-	<!-- 1.7.1 requires taxonomy -->
-	<!-- 1.9 requires schema validations -->
-	<!-- 1.10 requires content validations -->
-	<!-- 1.11 requires lookup/taxonomy -->
-	<!-- 1.12 requires information outside the report -->
-	<!-- 1.13 requires information not available in xslt -->
 
 	<xsl:template match="xi:include">
 		<xsl:call-template name="EBAError">
@@ -293,10 +296,6 @@
 		<xsl:apply-templates />
 	</xsl:template>
 
-	<!-- 2.8.a requires lookup etc -->
-	<!-- 2.8.b requires lookup etc -->
-	<!-- 2.8.c requires lookup etc -->
-
 	<xsl:template match="/xbrli:xbrl/xbrli:context/xbrli:period/xbrli:instant">
 		<xsl:if test="contains(text(),'T')">
 			<xsl:call-template name="EBAError">
@@ -373,15 +372,57 @@
 		<xsl:if test="@precision and not(@decimals)">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'2.17'" />
-				<xsl:with-param name="context"
-					select="@precision" />
+				<xsl:with-param name="context" select="@precision" />
 			</xsl:call-template>
 		</xsl:if>
+		<xsl:if test="contains('impr', substring(local-name(),1,1)) and not(@decimals)">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.18.a'" />
+				<xsl:with-param name="context" select=".|./@*" />
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="@xsi:nil">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.19.a'" />
+				<xsl:with-param name="context" select=".|./@*" />
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if test="starts-with(local-name(),'s') and not(string(.))">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.19.b'" />
+				<xsl:with-param name="context" select=".|./@*" />
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:if
+			test="contains('ipr', substring(local-name(),1,1)) and not(/xbrli:xbrl/xbrli:unit[@id=current()/@unitRef]/xbrli:measure/text()='xbrli:pure')">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'3.2.a'" />
+				<xsl:with-param name="context"
+					select=".|./@*|/xbrli:xbrl/xbrli:unit[@id=current()/@unitRef]/xbrli:measure/text()" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
 
+	<xsl:template match="/xbrli:xbrl/xbrli:unit">
+		<xsl:variable name="measure" select="xbrli:measure/text()" />
+		<xsl:variable name="matches" select="preceding::xbrli:unit[xbrli:measure/text()=$measure]" />
+		<xsl:if test="$matches">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.21'" />
+				<xsl:with-param name="context" select="$measure|@id|$matches/@id" />
+			</xsl:call-template>
+		</xsl:if>
+	</xsl:template>
+
+	<xsl:template match="/xbrli:xbrl/xbrli:unit[not(/xbrli:xbrl/eba_met:*[@unitRef=current()/@id])]">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'2.22'" />
+			<xsl:with-param name="context" select=".|./@*" />
+		</xsl:call-template>
 	</xsl:template>
 
 	<xsl:template match="text()|@*">
-		<!-- <xsl:value-of select="."/> -->
+		<!-- <xsl:value-of select="." /> -->
 	</xsl:template>
 
 </xsl:transform>
