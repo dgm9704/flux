@@ -161,6 +161,13 @@
 			</xsl:if>
 		</xsl:for-each>
 
+		<xsl:for-each select="//*[not(contains(name(),':'))]">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'3.9'" />
+				<xsl:with-param name="context" select="exsl:node-set(namespace-uri(.))|." />
+			</xsl:call-template>
+		</xsl:for-each>
+
 		<xsl:apply-templates />
 
 

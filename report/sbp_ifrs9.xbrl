@@ -21,8 +21,10 @@
   xmlns:eba_ZZ="http://www.eba.europa.eu/xbrl/crr/dict/dom/ZZ"
   xmlns:eba_IM="http://www.eba.europa.eu/xbrl/crr/dict/dom/IM"
   xmlns:eba_CS="http://www.eba.europa.eu/xbrl/crr/dict/dom/CS">
-  <link:schemaRef xlink:type="simple"
+
+  <schemaRef xmlns="http://www.xbrl.org/2003/linkbase" xlink:type="simple"
     xlink:href="http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cir-2070-2016/2023-07-31/mod/sbp_ifrs9.xsd" />
+
   <xbrli:unit id="uPURE">
     <xbrli:measure>xbrli:pure</xbrli:measure>
   </xbrli:unit>

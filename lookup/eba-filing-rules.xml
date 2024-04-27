@@ -284,5 +284,19 @@
 			document.</control>
 	</rule>
 
+	<!-- 3.5 requires lookup -->
+
+	<!-- 3.6 TLDR -->
+
+	<!-- 3.7 unclear -->
+
+	<!-- 3.8 unclear -->
+
+	<rule>
+		<error_code>3.9</error_code>
+		<error_message>unexpectedNamespaceDeclarations</error_message>
+		<severity>WARNING</severity>
+		<control>Namespace prefixes declarations SHOULD be restricted to the document element.</control>
+	</rule>
 
 </validation_rules>
