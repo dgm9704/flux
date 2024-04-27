@@ -78,6 +78,7 @@
 
 		<xsl:apply-templates select="@*" />
 
+
 		<xsl:if test="count(//link:schemaRef) &gt; 1">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'1.5.a'" />
@@ -173,12 +174,6 @@
 
 	</xsl:template>
 
-	<!-- <xsl:template match="/namespace()">
-		<xsl:call-template name="EBAError">
-			<xsl:with-param name="code" select="'3.4'" />
-			<xsl:with-param name="context" select="." />
-		</xsl:call-template>
-	</xsl:template> -->
 
 	<xsl:template match="find:fIndicators">
 		<xsl:variable name="contextRefs"
@@ -299,6 +294,16 @@
 				<xsl:with-param name="context" select="exsl:node-set($cid)|$matching/@id" />
 			</xsl:call-template>
 		</xsl:if>
+
+		<!-- <xsl:template match="/xbrli:xbrl/xbrli:context"> -->
+		<xsl:if test="@id='c2'">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'3.9'" />
+				<!-- <xsl:with-param name="context" select="exsl:node-set(namespace-uri(.))|." /> -->
+				<xsl:with-param name="context" select="@*" />
+			</xsl:call-template>
+		</xsl:if>
+		<!-- </xsl:template> -->
 
 		<xsl:apply-templates />
 	</xsl:template>
@@ -430,6 +435,16 @@
 
 	<xsl:template match="text()|@*">
 		<!-- <xsl:value-of select="." /> -->
+	</xsl:template>
+
+	<xsl:template match="*">
+		<xsl:for-each select="namespace::node()[not(. = ../ancestor::*/namespace::node())]">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'3.9'" />
+				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:for-each>
+		<xsl:apply-templates />
 	</xsl:template>
 
 </xsl:transform>
