@@ -7,7 +7,8 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xi="http://www.w3.org/2001/XInclude"
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:eba_met="http://www.eba.europa.eu/xbrl/crr/dict/met"
-	exclude-result-prefixes="my xbrli xbrldi link find xsi xi xlink eba_met"
+	xmlns:eba_typ="http://www.eba.europa.eu/xbrl/crr/dict/typ"
+	exclude-result-prefixes="my xbrli xbrldi link find xsi xi xlink eba_met eba_typ"
 	extension-element-prefixes="func str exsl my">
 
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
@@ -160,6 +161,13 @@
 					</xsl:if>
 				</xsl:if>
 			</xsl:if>
+			<!-- <xsl:if test=". != preceding::xbrli:xbrl/namespace::node()/text()"> -->
+			<!-- <xsl:if test="true()">
+				<xsl:call-template name="EBAError">
+					<xsl:with-param name="code" select="'3.10'" />
+					<xsl:with-param name="context" select="exsl:node-set(namespace-uri(.))" />
+				</xsl:call-template>
+			</xsl:if> -->
 		</xsl:for-each>
 
 		<xsl:for-each select="//*[not(contains(name(),':'))]">
@@ -423,8 +431,12 @@
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template match="text()|@*">
-		<!-- <xsl:value-of select="." /> -->
+	<xsl:template
+		match="eba_met:*[starts-with(local-name(),'s') and normalize-space(.) != text()] | eba_typ:*[normalize-space(.) != text()]">
+		<xsl:call-template name="EBAError">
+			<xsl:with-param name="code" select="'3.11'" />
+			<xsl:with-param name="context" select="text()|./@*" />
+		</xsl:call-template>
 	</xsl:template>
 
 	<!-- this produces the correct error but for the offending node AND all it's children -->
@@ -435,7 +447,12 @@
 				<xsl:with-param name="context" select="." />
 			</xsl:call-template>
 		</xsl:for-each>
+
 		<xsl:apply-templates />
+	</xsl:template>
+
+	<xsl:template match="text()|@*">
+		<!-- <xsl:value-of select="." /> -->
 	</xsl:template>
 
 </xsl:transform>

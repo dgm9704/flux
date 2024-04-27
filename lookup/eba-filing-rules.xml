@@ -292,11 +292,21 @@
 
 	<!-- 3.8 unclear -->
 
+	<!-- this produces the correct error but for the offending node AND all it's children -->
 	<rule>
 		<error_code>3.9</error_code>
 		<error_message>unexpectedNamespaceDeclarations</error_message>
 		<severity>WARNING</severity>
 		<control>Namespace prefixes declarations SHOULD be restricted to the document element.</control>
+	</rule>
+
+	<!-- 3.10 save for later :( -->
+
+	<rule>
+		<error_code>3.11</error_code>
+		<error_message>leadingOrTrailingSpacesInText</error_message>
+		<severity>ERROR</severity>
+		<control>String facts, and string typed domain values, SHOULD not start or end with whitespace characters (i.e. MUST not do so unless, exceptionally, the whitespace is part of the data intended to be conveyed). [EIOPA15-S.2.21]</control>
 	</rule>
 
 </validation_rules>

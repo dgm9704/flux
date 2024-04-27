@@ -2,9 +2,9 @@
 <?instance-generator id="EBA Data Gen" version="2015.8.28.0" creationdate="2015-09-15T16:53:43:00+02:00"?>
 <!-- xmlns:eba_dim="http://www.eba.europa.eu/xbrl/crr/dict/dim" -->
 <xbrli:xbrl xmlns:xml="http://www.w3.org/XML/1998/namespace"
-  xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns:link="http://www.xbrl.org/2003/linkbase"
-  xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
-  xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
+  xmlns:xbrli="http://www.xbrl.org/2003/instance" xmlns="http://www.xbrl.org/2003/instance"
+  xmlns:link="http://www.xbrl.org/2003/linkbase" xmlns:xlink="http://www.w3.org/1999/xlink"
+  xmlns:xbrldi="http://xbrl.org/2006/xbrldi" xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
   xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"
   xmlns:eba_BA="http://www.eba.europa.eu/xbrl/crr/dict/dom/BA"
   xmlns:eba_AS="http://www.eba.europa.eu/xbrl/crr/dict/dom/AS"
@@ -72,7 +72,7 @@
   </xbrli:unit>
   <eba_met:mi136 unitRef="uEUR" decimals="-3" contextRef="c3">8712000</eba_met:mi136>
   <eba_met:mi115 unitRef="uEUR" decimals="-3" contextRef="c3">1196000</eba_met:mi115>
-  <xbrli:context xmlns:eba_dim="http://www.eba.europa.eu/xbrl/crr/dict/dim" id="c4">
+  <xbrli:context id="c4">
     <xbrli:entity>
       <xbrli:identifier scheme="https://eurofiling.info/eu/rs">DUMMYLEI123456789012.CON</xbrli:identifier>
     </xbrli:entity>
