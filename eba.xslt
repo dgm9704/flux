@@ -295,16 +295,6 @@
 			</xsl:call-template>
 		</xsl:if>
 
-		<!-- <xsl:template match="/xbrli:xbrl/xbrli:context"> -->
-		<xsl:if test="@id='c2'">
-			<xsl:call-template name="EBAError">
-				<xsl:with-param name="code" select="'3.9'" />
-				<!-- <xsl:with-param name="context" select="exsl:node-set(namespace-uri(.))|." /> -->
-				<xsl:with-param name="context" select="@*" />
-			</xsl:call-template>
-		</xsl:if>
-		<!-- </xsl:template> -->
-
 		<xsl:apply-templates />
 	</xsl:template>
 
@@ -437,8 +427,9 @@
 		<!-- <xsl:value-of select="." /> -->
 	</xsl:template>
 
+	<!-- this produces the correct error but for the offending node AND all it's children -->
 	<xsl:template match="*">
-		<xsl:for-each select="namespace::node()[not(. = ../ancestor::*/namespace::node())]">
+		<xsl:for-each select="namespace::node()[not(. = /xbrli:xbrl/namespace::node())]">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'3.9'" />
 				<xsl:with-param name="context" select="." />

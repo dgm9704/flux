@@ -20,7 +20,7 @@
   xmlns:eba_ZZ="http://www.eba.europa.eu/xbrl/crr/dict/dom/ZZ"
   xmlns:eba_IM="http://www.eba.europa.eu/xbrl/crr/dict/dom/IM"
   xmlns:eba_CS="http://www.eba.europa.eu/xbrl/crr/dict/dom/CS">
-  
+
 
   <link:schemaRef xlink:type="simple"
     xlink:href="http://www.eba.europa.eu/eu/fr/xbrl/crr/fws/sbp/cir-2070-2016/2023-07-31/mod/sbp_ifrs9.xsd" />
@@ -47,17 +47,6 @@
     <find:filingIndicator contextRef="c1">C_118.00</find:filingIndicator>
     <find:filingIndicator contextRef="c1">S_00.01</find:filingIndicator>
   </find:fIndicators>
-  <xbrli:context xmlns:eba_dim="http://www.eba.europa.eu/xbrl/crr/dict/dim" id="c2">
-    <xbrli:entity id="foo">
-      <xbrli:identifier scheme="https://eurofiling.info/eu/rs">DUMMYLEI123456789012.CON</xbrli:identifier>
-    </xbrli:entity>
-    <xbrli:period>
-      <xbrli:instant>2023-12-31</xbrli:instant>
-    </xbrli:period>
-    <xbrli:scenario>
-      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
-    </xbrli:scenario>
-  </xbrli:context>
   <eba_met:ei4 contextRef="c2">eba_AS:x2</eba_met:ei4>
   <eba_met:ei207 contextRef="c2">eba_SC:x7</eba_met:ei207>
   <xbrli:context id="c3">
@@ -83,7 +72,7 @@
   </xbrli:unit>
   <eba_met:mi136 unitRef="uEUR" decimals="-3" contextRef="c3">8712000</eba_met:mi136>
   <eba_met:mi115 unitRef="uEUR" decimals="-3" contextRef="c3">1196000</eba_met:mi115>
-  <xbrli:context id="c4">
+  <xbrli:context xmlns:eba_dim="http://www.eba.europa.eu/xbrl/crr/dict/dim" id="c4">
     <xbrli:entity>
       <xbrli:identifier scheme="https://eurofiling.info/eu/rs">DUMMYLEI123456789012.CON</xbrli:identifier>
     </xbrli:entity>
@@ -9078,4 +9067,15 @@
   </xbrli:context>
   <eba_met:pi471 unitRef="uPURE" decimals="4" contextRef="c479">52.33</eba_met:pi471>
   <eba_met:pi472 unitRef="uPURE" decimals="4" contextRef="c479">43.43</eba_met:pi472>
-  </xbrli:xbrl>
+  <xbrli:context id="c2">
+    <xbrli:entity>
+      <xbrli:identifier scheme="https://eurofiling.info/eu/rs">DUMMYLEI123456789012.CON</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2023-12-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+    </xbrli:scenario>
+  </xbrli:context>
+</xbrli:xbrl>
