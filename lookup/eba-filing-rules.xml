@@ -49,8 +49,6 @@
 			avoided where not necessary.</control>
 	</rule>
 
-	<!-- 1.6.3 requires taxonomy -->
-
 	<rule>
 		<error_code>1.6.3</error_code>
 		<error_message>invalidFilingIndicatorValue</error_message>

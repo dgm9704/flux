@@ -14,7 +14,8 @@
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
 	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
 	<xsl:variable name="countrycodes" select="document('lookup/iso-3166-1.xml')/codes/code" />
-	<xsl:variable name="entrypoints" select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
+	<xsl:variable name="entrypoints"
+		select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
@@ -184,7 +185,7 @@
 	</xsl:template>
 
 
-	<xsl:template match="find:fIndicators">
+	<xsl:template match="/xbrli:xbrl/find:fIndicators">
 		<xsl:variable name="contextRefs"
 			select="//find:filingIndicator[not(@contextRef=preceding::find:filingIndicator/@contextRef)]/@contextRef" />
 		<xsl:for-each select="$contextRefs">
@@ -209,6 +210,18 @@
 				</xsl:call-template>
 			</xsl:if>
 		</xsl:for-each>
+
+		<xsl:apply-templates />
+	</xsl:template>
+
+	<xsl:template match="/xbrli:xbrl/find:fIndicators/find:filingIndicator">
+		<xsl:variable name="href" select="/xbrli:xbrl/link:schemaRef/@xlink:href" />
+		<xsl:if test="not($entrypoints[./href=$href]/filing-indicators[./code=current()])">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'1.6.3'" />
+				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="xi:include">
