@@ -13,7 +13,6 @@
 			[SBR13, p. 6]</control>
 	</rule>
 
-	<!-- 1.5.b requires lookup -->
 	<rule>
 		<error_code>1.5.b</error_code>
 		<error_message>inappropriateSchemaRef</error_message>
@@ -22,6 +21,10 @@
 			reference date of an XBRL report, drawn from the list of xsd entry points published by
 			the EBA2.[EBA14]</control>
 	</rule>
+
+	<!-- 1.6.a unclear -->
+
+	<!-- 1.6.b unclear -->
 
 	<rule>
 		<error_code>1.6.c</error_code>
@@ -47,6 +50,17 @@
 	</rule>
 
 	<!-- 1.6.3 requires taxonomy -->
+
+	<rule>
+		<error_code>1.6.3</error_code>
+		<error_message>invalidFilingIndicatorValue</error_message>
+		<severity>ERROR</severity>
+		<control>The values of filing indicators MUST only be those given by the label resources
+			with the role http://www.eurofiling.info/xbrl/role/filing-indicator-code applied to the
+			relevant tables in the XBRL taxonomy4 for that reporting module (entry point). Filing
+			indicator values must be formatted correctly (for example including any underscore
+			characters).</control>
+	</rule>
 
 	<!-- 1.7.a requires taxonomy -->
 

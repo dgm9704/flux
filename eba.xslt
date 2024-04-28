@@ -14,7 +14,7 @@
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
 	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
 	<xsl:variable name="countrycodes" select="document('lookup/iso-3166-1.xml')/codes/code" />
-	<xsl:variable name="entrypoints" select="document('lookup/eba-entrypoints.xml')/codes/code" />
+	<xsl:variable name="entrypoints" select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
@@ -233,7 +233,7 @@
 				<xsl:with-param name="context" select="$href" />
 			</xsl:call-template>
 		</xsl:if>
-		<xsl:if test="not($entrypoints[. = $href])">
+		<xsl:if test="not($entrypoints[./href = $href])">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'1.5.b'" />
 				<xsl:with-param name="context" select="$href" />
