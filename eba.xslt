@@ -27,10 +27,11 @@
 
 	<xsl:key name="scenario" match="/xbrli:xbrl/xbrli:context" use="my:cid(.)" />
 	<xsl:key name="context" match="/xbrli:xbrl/xbrli:context" use="@id" />
+	<xsl:key name="cid-fact" match="eba_met:*" use="my:cid-byref(@contextRef)" />
 
 	<xsl:variable name="reportcurrency" select="'iso4217:EUR'" />
 
-	<func:function name="my:cid">
+	<func:function name="my:cid" cache="yes">
 		<xsl:param name="context" />
 		<xsl:variable name="result">
 			<xsl:for-each select="$context/xbrli:scenario/xbrldi:explicitMember">
@@ -43,7 +44,7 @@
 		<func:result select="substring($result, 1, string-length($result)-1)" />
 	</func:function>
 
-	<func:function name="my:cid-byref">
+	<func:function name="my:cid-byref" cache="yes">
 		<xsl:param name="id" />
 		<func:result select="my:cid(/xbrli:xbrl/xbrli:context[@id=$id][1])" />
 	</func:function>
@@ -169,13 +170,6 @@
 					</xsl:if>
 				</xsl:if>
 			</xsl:if>
-			<!-- <xsl:if test=". != preceding::xbrli:xbrl/namespace::node()/text()"> -->
-			<!-- <xsl:if test="true()">
-				<xsl:call-template name="EBAError">
-					<xsl:with-param name="code" select="'3.10'" />
-					<xsl:with-param name="context" select="exsl:node-set(namespace-uri(.))" />
-				</xsl:call-template>
-			</xsl:if> -->
 		</xsl:for-each>
 
 		<xsl:for-each select="//*[not(contains(name(),':'))]">
@@ -388,23 +382,24 @@
 		<xsl:variable name="unitRef" select="@unitRef" />
 		<xsl:variable name="contextRef" select="@contextRef" />
 		<xsl:variable name="id" select="generate-id()" />
-		<xsl:variable name="matches"
-			select="preceding::eba_met:*[generate-id()!=$id and name()=$metric and @unitRef=$unitRef and (@contextRef=$contextRef or my:cid-byref(@contextRef)=$cid)]" />
+
+		<!-- matches and partial matches give errors for each occurrence of the duplicate, but performance is at least order of magnitude better -->
+
+		<xsl:variable name="context-facts" select="key('cid-fact', my:cid-byref(@contextRef))[generate-id()!=$id]" />
+		<xsl:variable name="matches" select="$context-facts[name()=$metric and @unitRef=$unitRef]" />
+
 		<xsl:if test="$matches">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'2.16'" />
-				<xsl:with-param name="context"
-					select=".|exsl:node-set($matches)|exsl:node-set($cid)|$contextRef|$matches/@contextRef" />
+				<xsl:with-param name="context" select=".|exsl:node-set($matches)|exsl:node-set($cid)|$contextRef|$matches/@contextRef" />
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:variable name="partial_matches"
-			select="preceding::eba_met:*[generate-id()!=$id and name()=$metric and @unitRef!=$unitRef and (@contextRef=$contextRef or my:cid-byref(@contextRef)=$cid)]" />
+		<xsl:variable name="partial_matches" select="$context-facts[@unitRef!=$unitRef and name()=$metric]" />
 		<xsl:if test="$partial_matches">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'2.16.1'" />
-				<xsl:with-param name="context"
-					select=".|$unitRef|exsl:node-set($matches)|exsl:node-set($cid)|$contextRef|$partial_matches/@contextRef|$partial_matches/@unitRef" />
+				<xsl:with-param name="context" select=".|$unitRef|exsl:node-set($matches)|exsl:node-set($cid)|$contextRef|$partial_matches/@contextRef|$partial_matches/@unitRef" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -439,8 +434,7 @@
 		<xsl:if test="contains('ipr', substring(local-name(),1,1)) and not(/xbrli:xbrl/xbrli:unit[@id=current()/@unitRef]/xbrli:measure/text()='xbrli:pure')">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'3.2.a'" />
-				<xsl:with-param name="context"
-					select=".|./@*|/xbrli:xbrl/xbrli:unit[@id=current()/@unitRef]/xbrli:measure/text()" />
+				<xsl:with-param name="context" select=".|./@*|/xbrli:xbrl/xbrli:unit[@id=current()/@unitRef]/xbrli:measure/text()" />
 			</xsl:call-template>
 		</xsl:if>
 
@@ -497,15 +491,14 @@
 						</xsl:call-template>
 					</xsl:if>
 				</xsl:otherwise>
-
-
 			</xsl:choose>
 		</xsl:if>
+		<xsl:apply-templates />
+		<xsl:apply-templates select="@*" />
 	</xsl:template>
 
 	<xsl:template match="/xbrli:xbrl/xbrli:unit">
 		<xsl:variable name="measure" select="xbrli:measure/text()" />
-		<xsl:value-of select="namespace-uri($measure)" />
 		<xsl:variable name="matches" select="preceding::xbrli:unit[xbrli:measure/text()=$measure]" />
 		<xsl:if test="$matches">
 			<xsl:call-template name="EBAError">

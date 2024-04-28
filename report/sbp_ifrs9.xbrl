@@ -65,6 +65,24 @@
       </xbrldi:typedMember>
     </xbrli:scenario>
   </xbrli:context>
+
+  <xbrli:context id="d3">
+    <xbrli:entity>
+      <xbrli:identifier scheme="https://eurofiling.info/eu/rs">DUMMYLEI123456789012.CON</xbrli:identifier>
+    </xbrli:entity>
+    <xbrli:period>
+      <xbrli:instant>2023-12-31</xbrli:instant>
+    </xbrli:period>
+    <xbrli:scenario>
+      <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:MCY">eba_MC:x945</xbrldi:explicitMember>
+      <xbrldi:explicitMember dimension="eba_dim:PSB">eba_PL:x824</xbrldi:explicitMember>
+      <xbrldi:typedMember dimension="eba_dim:INC">
+        <eba_typ:CC>1</eba_typ:CC>
+      </xbrldi:typedMember>
+    </xbrli:scenario>
+  </xbrli:context>
+
   <eba_met:ii460 unitRef="uPURE" decimals="0" contextRef="c3">545000</eba_met:ii460>
   <eba_met:ei461 contextRef="c3">eba_GA:x31</eba_met:ei461>
   <xbrli:unit id="uEUR">
@@ -9078,4 +9096,9 @@
       <xbrldi:explicitMember dimension="eba_dim:BAS">eba_BA:x17</xbrldi:explicitMember>
     </xbrli:scenario>
   </xbrli:context>
+
+  <eba_met:mi136 unitRef="uEUR" decimals="-3" contextRef="d3">8712000</eba_met:mi136>
+  <eba_met:mi115 unitRef="uPURE" decimals="-3" contextRef="d3">1196000</eba_met:mi115>
+
+
 </xbrli:xbrl>
