@@ -8,7 +8,8 @@
 	xmlns:xlink="http://www.w3.org/1999/xlink"
 	xmlns:eba_met="http://www.eba.europa.eu/xbrl/crr/dict/met"
 	xmlns:eba_typ="http://www.eba.europa.eu/xbrl/crr/dict/typ"
-	exclude-result-prefixes="my xbrli xbrldi link find xsi xi xlink eba_met eba_typ"
+	xmlns:utr="http://www.xbrl.org/2009/utr"
+	exclude-result-prefixes="my xbrli xbrldi link find xsi xi xlink eba_met eba_typ utr"
 	extension-element-prefixes="func str exsl my">
 
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
@@ -16,6 +17,7 @@
 	<xsl:variable name="countrycodes" select="document('lookup/iso-3166-1.xml')/codes/code" />
 	<xsl:variable name="entrypoints"
 		select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
+	<xsl:variable name="units" select="document('lookup/utr.xml')/utr:utr/utr:units/utr:unit/utr:unitId" />
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
@@ -251,6 +253,10 @@
 				<xsl:with-param name="code" select="'1.5.b'" />
 				<xsl:with-param name="context" select="$href" />
 			</xsl:call-template>
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'1.11'" />
+				<xsl:with-param name="context" select="$href" />
+			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>
 
@@ -440,6 +446,16 @@
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'2.21'" />
 				<xsl:with-param name="context" select="$measure|@id|$matches/@id" />
+			</xsl:call-template>
+		</xsl:if>
+		<xsl:apply-templates />
+	</xsl:template>
+
+	<xsl:template match="/xbrli:xbrl/xbrli:unit/xbrli:measure">
+		<xsl:if test="not($units[. = substring-after(current(),':')])">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'2.23'" />
+				<xsl:with-param name="context" select=".|@*" />
 			</xsl:call-template>
 		</xsl:if>
 	</xsl:template>

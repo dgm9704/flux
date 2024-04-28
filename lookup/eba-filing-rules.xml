@@ -33,6 +33,7 @@
 		<control>he context referenced by the filing indicator elements MUST NOT contain
 			xbrli:segment or xbrli:scenario elements.</control>
 	</rule>
+
 	<rule>
 		<error_code>1.6.1</error_code>
 		<error_message>duplicateFilingIndicator</error_message>
@@ -40,6 +41,7 @@
 		<control>XBRL reports MUST contain only one filing indicator element for a given reporting
 			unit ("template").</control>
 	</rule>
+
 	<rule>
 		<error_code>1.6.2</error_code>
 		<error_message>filingIndicatorInMultipleTuples</error_message>
@@ -70,7 +72,12 @@
 
 	<!-- 1.10 requires content validations -->
 
-	<!-- 1.11 requires lookup/taxonomy -->
+	<rule>
+		<error_code>1.11</error_code>
+		<error_message>inappropriateSchemaRef</error_message>
+		<severity>ERROR</severity>
+		<control>xBRL-XML reports MUST reference only a XSD entry point specified by the supervisor (i.e. reporters MUST NOT reference their own extension taxonomies).</control>
+	</rule>
 
 	<!-- 1.12 requires information outside the report -->
 
@@ -82,18 +89,21 @@
 		<severity>ERROR</severity>
 		<control>@xsd:schemaLocation or @xsd:noNamespaceSchemaLocation MUST NOT be used.</control>
 	</rule>
+
 	<rule>
 		<error_code>1.14.b</error_code>
 		<error_message>noNamespaceSchemaLocationAttributeUsed</error_message>
 		<severity>ERROR</severity>
 		<control>@xsd:schemaLocation or @xsd:noNamespaceSchemaLocation MUST NOT be used.</control>
 	</rule>
+
 	<rule>
 		<error_code>1.15</error_code>
 		<error_message>xIncludeUsed</error_message>
 		<severity>ERROR</severity>
 		<control>XBRL reports MUST NOT use the XInclude specification (xi:include element).</control>
 	</rule>
+
 	<rule>
 		<error_code>2.2</error_code>
 		<error_message>inappropriateSchemaRef</error_message>
@@ -101,12 +111,14 @@
 		<control>The link:schemaRef element in submitted reports MUST resolve to the full published
 			xsd entry point URL (absolute URL).</control>
 	</rule>
+
 	<rule>
 		<error_code>2.3</error_code>
 		<error_message>multipleSchemaRefs</error_message>
 		<severity>ERROR</severity>
 		<control>Any xBRL-XML report MUST contain only one xbrli:xbrl/link:schemaRef element.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.4</error_code>
 		<error_message>linkbaseRefUsed</error_message>
@@ -115,6 +127,7 @@
 			link:schemaRef element. The element link:linkbaseRef MUST NOT be used in any report
 			document.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.5</error_code>
 		<error_message>CommentsAreIgnored</error_message>
@@ -122,6 +135,7 @@
 		<control>Relevant business data MUST only be contained in contexts, units, schemaRef and
 			facts. A comment MUST not have any impact on the content of a report.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.25</error_code>
 		<error_message>xbrlFootnotesAreIgnored</error_message>
@@ -129,6 +143,7 @@
 		<control>Relevant business data MUST only be contained in contexts, units, schemaRef and
 			facts. A footnote MUST not have any impact on the regulatory content of a report.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.26</error_code>
 		<error_message>missingOrIncorrectSoftwareInformation</error_message>
@@ -139,24 +154,28 @@
 			&lt;?instance-generator&gt; instructions and the variables: id, version and
 			creationdate.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.6.a</error_code>
-		<error_message>noSemanticsinID:</error_message>
+		<error_message>noSemanticsinID</error_message>
 		<severity>WARNING</severity>
 		<control>Semantics SHOULD NOT be expressed in the xbrli:context/@id attribute.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.6.b</error_code>
 		<error_message>longXmlIdAttribute</error_message>
 		<severity>WARNING</severity>
 		<control>The values of each @id attribute SHOULD not be excessively long.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.7.a</error_code>
 		<error_message>unusedContext</error_message>
 		<severity>WARNING</severity>
 		<control>Unused xbrli:context nodes SHOULD NOT be present in the report.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.7.b</error_code>
 		<error_message>duplicateContext</error_message>
@@ -178,6 +197,7 @@
 		<control>All xbrli:identifier content and @scheme attributes in an report MUST be identical.
 			[EFM13, p. 6-8]</control>
 	</rule>
+
 	<rule>
 		<error_code>2.10.a</error_code>
 		<error_message>periodWithTimeContent</error_message>
@@ -185,6 +205,7 @@
 		<control>All xbrli:period date elements MUST be valid against the xs:date data type, and
 			reported without a timezone. [GFM11, p. 16]</control>
 	</rule>
+
 	<rule>
 		<error_code>2.10.b</error_code>
 		<error_message>periodWithTimezone</error_message>
@@ -192,30 +213,35 @@
 		<control>All xbrli:period date elements MUST be valid against the xs:date data type, and
 			reported without a timezone. [GFM11, p. 16]</control>
 	</rule>
+
 	<rule>
 		<error_code>2.11</error_code>
 		<error_message>foreverUsed</error_message>
 		<severity>ERROR</severity>
 		<control>The element 'xbrli:forever' MUST NOT be used. [GFM11, p. 19]</control>
 	</rule>
+
 	<rule>
 		<error_code>2.13.a</error_code>
 		<error_message>multiplePeriodsUsed</error_message>
 		<severity>ERROR</severity>
 		<control>All xbrl periods in a XBRL report MUST refer to the (same) reference date instant.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.13.b</error_code>
 		<error_message>nonInstantPeriodUsed</error_message>
 		<severity>ERROR</severity>
 		<control>All xbrl periods MUST be instants.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.14</error_code>
 		<error_message>segmentUsed</error_message>
 		<severity>ERROR</severity>
 		<control>xbrli:segment elements MUST NOT be used.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.15</error_code>
 		<error_message>scenarioContainsNonDimensionContent</error_message>
@@ -224,12 +250,14 @@
 			only be one or more xbrldi:explicitMember and/or xbrldi:typedMember elements, and MUST
 			NOT contain any other content. [EFM13, p. 6-8]</control>
 	</rule>
+
 	<rule>
 		<error_code>2.16</error_code>
 		<error_message>duplicateFactXBRL-XML</error_message>
 		<severity>ERROR</severity>
 		<control>XBRL-XML reports MUST NOT contain duplicate business facts. [EFM13, p. 6-10]</control>
 	</rule>
+
 	<rule>
 		<error_code>2.16.1</error_code>
 		<error_message>factsDifferingOnlyByUnit</error_message>
@@ -237,6 +265,7 @@
 		<control>XBRL reports MUST NOT contain business facts which would be duplicates were their
 			units not different</control>
 	</rule>
+
 	<rule>
 		<error_code>2.17</error_code>
 		<error_message>precisionUsed</error_message>
@@ -244,24 +273,28 @@
 		<control>@decimals MUST be used as the only means for expressing precision on a fact.
 			[EFM13,p. 6-12]</control>
 	</rule>
+
 	<rule>
 		<error_code>2.18.a</error_code>
 		<error_message>missingDecimalsAttribute</error_message>
 		<severity>ERROR</severity>
 		<control>The accuracy of a numeric fact MUST be expressed using @decimals</control>
 	</rule>
+
 	<rule>
 		<error_code>2.19.a</error_code>
 		<error_message>nilUsed</error_message>
 		<severity>ERROR</severity>
 		<control>The @xsi:nil attribute MUST NOT be used for facts in the report.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.19.b</error_code>
 		<error_message>emptyUsed</error_message>
 		<severity>ERROR</severity>
 		<control>For string type metric, the empty string MUST NOT be reported.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.21</error_code>
 		<error_message>duplicateUnit</error_message>
@@ -269,6 +302,7 @@
 		<control>An XBRL report SHOULD NOT, in general, contain duplicated units, unless required
 			for technical reasons, e.g. to support XBRL streaming.</control>
 	</rule>
+
 	<rule>
 		<error_code>2.22</error_code>
 		<error_message>unusedUnit</error_message>
@@ -276,7 +310,12 @@
 		<control>An XBRL report SHOULD NOT contain unused xbrli:unit nodes.</control>
 	</rule>
 
-	<!-- 2.23 requires external lookup -->
+	<rule>
+		<error_code>2.23</error_code>
+		<error_message>nonUtrUnit</error_message>
+		<severity>ERROR</severity>
+		<control>xbrli:unit children MUST refer to the XBRL International Unit Type Registry (UTR). [EFM13,p. 6-17]</control>
+	</rule>
 
 	<!-- 2.24 unclear -->
 
