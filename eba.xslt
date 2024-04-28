@@ -17,7 +17,8 @@
 	<xsl:variable name="countrycodes" select="document('lookup/iso-3166-1.xml')/codes/code" />
 	<xsl:variable name="entrypoints"
 		select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
-	<xsl:variable name="units" select="document('lookup/utr.xml')/utr:utr/utr:units/utr:unit/utr:unitId" />
+	<xsl:variable name="units"
+		select="document('lookup/utr.xml')/utr:utr/utr:units/utr:unit/utr:unitId" />
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
@@ -25,6 +26,9 @@
 	<xsl:key name="validationlookup" match="rule" use="error_code" />
 
 	<xsl:key name="scenario" match="/xbrli:xbrl/xbrli:context" use="my:cid(.)" />
+	<xsl:key name="context" match="/xbrli:xbrl/xbrli:context" use="@id" />
+
+	<xsl:variable name="reportcurrency" select="'iso4217:EUR'" />
 
 	<func:function name="my:cid">
 		<xsl:param name="context" />
@@ -185,7 +189,6 @@
 
 
 	</xsl:template>
-
 
 	<xsl:template match="/xbrli:xbrl/find:fIndicators">
 		<xsl:variable name="contextRefs"
@@ -411,36 +414,98 @@
 				<xsl:with-param name="context" select="@precision" />
 			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:if test="contains('impr', substring(local-name(),1,1)) and not(@decimals)">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'2.18.a'" />
 				<xsl:with-param name="context" select=".|./@*" />
 			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:if test="@xsi:nil">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'2.19.a'" />
 				<xsl:with-param name="context" select=".|./@*" />
 			</xsl:call-template>
 		</xsl:if>
+
 		<xsl:if test="starts-with(local-name(),'s') and not(string(.))">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'2.19.b'" />
 				<xsl:with-param name="context" select=".|./@*" />
 			</xsl:call-template>
 		</xsl:if>
-		<xsl:if
-			test="contains('ipr', substring(local-name(),1,1)) and not(/xbrli:xbrl/xbrli:unit[@id=current()/@unitRef]/xbrli:measure/text()='xbrli:pure')">
+
+		<xsl:if test="contains('ipr', substring(local-name(),1,1)) and not(/xbrli:xbrl/xbrli:unit[@id=current()/@unitRef]/xbrli:measure/text()='xbrli:pure')">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'3.2.a'" />
 				<xsl:with-param name="context"
 					select=".|./@*|/xbrli:xbrl/xbrli:unit[@id=current()/@unitRef]/xbrli:measure/text()" />
 			</xsl:call-template>
 		</xsl:if>
+
+		<xsl:if test="starts-with(local-name(),'m')">
+			<xsl:variable name="context" select="key('context', @contextRef)" />
+			<xsl:variable name="currency" select="/xbrli:xbrl/xbrli:unit[@id=current()/@unitRef]/xbrli:measure" />
+			<xsl:variable name="cca" select="$context/xbrli:scenario/xbrldi:explicitMember[@dimension='eba_dim:CCA']" />
+
+			<xsl:choose>
+				<xsl:when test="$cca='eba_CA:x1'">
+					<xsl:choose>
+						<xsl:when test="$currency = $reportcurrency">
+							<xsl:call-template name="EBAError">
+								<xsl:with-param name="code" select="'3.1.b'" />
+								<xsl:with-param name="context" select=".|@*" />
+							</xsl:call-template>
+						</xsl:when>
+						<xsl:otherwise>
+							<xsl:variable name="cus" select="$context/xbrli:scenario/xbrldi:explicitMember[@dimension='eba_dim:CUS']" />
+							<xsl:if test="$cus">
+								<xsl:choose>
+									<xsl:when test="$cus='eba_CU:x46'">
+										<xsl:call-template name="EBAError">
+											<xsl:with-param name="code" select="'3.1.x'" />
+											<xsl:with-param name="context" select=".|@*|$cus" />
+										</xsl:call-template>
+									</xsl:when>
+									<xsl:when test="$cus='eba_CU:x0'">
+										<xsl:if test="$cus!=$reportcurrency">
+											<xsl:call-template name="EBAError">
+												<xsl:with-param name="code" select="'3.1.c'" />
+												<xsl:with-param name="context" select=".|@*|$cus|$cca" />
+											</xsl:call-template>
+										</xsl:if>
+									</xsl:when>
+									<xsl:otherwise>
+										<xsl:if test="$cus != $currency">
+											<xsl:call-template name="EBAError">
+												<xsl:with-param name="code" select="'3.1.c'" />
+												<xsl:with-param name="context" select=".|@*" />
+											</xsl:call-template>
+										</xsl:if>
+									</xsl:otherwise>
+								</xsl:choose>
+							</xsl:if>
+						</xsl:otherwise>
+					</xsl:choose>
+				</xsl:when>
+				<xsl:otherwise>
+					<xsl:if test="$currency != $reportcurrency">
+						<xsl:call-template name="EBAError">
+							<xsl:with-param name="code" select="'3.1.a'" />
+							<xsl:with-param name="context" select=".|@*" />
+						</xsl:call-template>
+					</xsl:if>
+				</xsl:otherwise>
+
+
+			</xsl:choose>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/xbrli:xbrl/xbrli:unit">
 		<xsl:variable name="measure" select="xbrli:measure/text()" />
+		<xsl:value-of select="namespace-uri($measure)" />
 		<xsl:variable name="matches" select="preceding::xbrli:unit[xbrli:measure/text()=$measure]" />
 		<xsl:if test="$matches">
 			<xsl:call-template name="EBAError">

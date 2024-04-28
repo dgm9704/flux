@@ -68,7 +68,7 @@
   <eba_met:ii460 unitRef="uPURE" decimals="0" contextRef="c3">545000</eba_met:ii460>
   <eba_met:ei461 contextRef="c3">eba_GA:x31</eba_met:ei461>
   <xbrli:unit id="uEUR">
-    <xbrli:measure>iso4217:EUR1</xbrli:measure>
+    <xbrli:measure>iso4217:EUR</xbrli:measure>
   </xbrli:unit>
   <eba_met:mi136 unitRef="uEUR" decimals="-3" contextRef="c3">8712000</eba_met:mi136>
   <eba_met:mi115 unitRef="uEUR" decimals="-3" contextRef="c3">1196000</eba_met:mi115>
