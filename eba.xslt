@@ -28,6 +28,7 @@
 	<xsl:key name="scenario" match="/xbrli:xbrl/xbrli:context" use="my:cid(.)" />
 	<xsl:key name="context" match="/xbrli:xbrl/xbrli:context" use="@id" />
 	<xsl:key name="cid-fact" match="eba_met:*" use="my:cid-byref(@contextRef)" />
+	<xsl:key name="namespace" match="/xbrli:xbrl/namespace::*" use="." />
 
 	<xsl:variable name="reportcurrency" select="'iso4217:EUR'" />
 
@@ -367,8 +368,7 @@
 		</xsl:call-template>
 	</xsl:template>
 
-	<xsl:template
-		match="/xbrli:xbrl/xbrli:context/xbrli:scenario[child::*[not(name()='xbrldi:explicitMember' or name()='xbrldi:typedMember')]]">
+	<xsl:template match="/xbrli:xbrl/xbrli:context/xbrli:scenario[child::*[not(name()='xbrldi:explicitMember' or name()='xbrldi:typedMember')]]">
 		<xsl:call-template name="EBAError">
 			<xsl:with-param name="code" select="'2.15'" />
 			<xsl:with-param name="context"
@@ -534,8 +534,19 @@
 	</xsl:template>
 
 	<!-- this produces the correct error but for the offending node AND all it's children -->
-	<xsl:template match="*">
+	<!-- <xsl:template match="*">
 		<xsl:for-each select="namespace::node()[not(. = /xbrli:xbrl/namespace::node())]">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="code" select="'3.9'" />
+				<xsl:with-param name="context" select="." />
+			</xsl:call-template>
+		</xsl:for-each>
+
+		<xsl:apply-templates />
+	</xsl:template> -->
+
+	<xsl:template match="*">
+		<xsl:for-each select="namespace::node()[key('namespace',.) = '']">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="code" select="'3.9'" />
 				<xsl:with-param name="context" select="." />
