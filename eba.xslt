@@ -15,15 +15,13 @@
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
 	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
 	<xsl:variable name="countrycodes" select="document('lookup/iso-3166-1.xml')/codes/code" />
-	<xsl:variable name="entrypoints"
-		select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
-	<xsl:variable name="units"
-		select="document('lookup/utr.xml')/utr:utr/utr:units/utr:unit/utr:unitId" />
+	<xsl:variable name="entrypoints" select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
+	<xsl:variable name="units" select="document('lookup/utr.xml')/utr:utr/utr:units/utr:unit/utr:unitId" />
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
 
-	<xsl:key name="validationlookup" match="rule" use="error_code" />
+	<xsl:key name="validationlookup" match="rule" use="number" />
 
 	<xsl:key name="scenario" match="/xbrli:xbrl/xbrli:context" use="my:cid(.)" />
 	<xsl:key name="context" match="/xbrli:xbrl/xbrli:context" use="@id" />
@@ -51,23 +49,23 @@
 	</func:function>
 
 	<xsl:template name="EBAError">
-		<xsl:param name="code" />
+		<xsl:param name="number" />
 		<xsl:param name="context" />
 		<error>
-			<code>
-				<xsl:value-of select="$code" />
-			</code>
 			<xsl:for-each select="$ebavalidations">
-				<xsl:for-each select="key('validationlookup', $code)">
-					<control>
-						<xsl:value-of select="control" />
-					</control>
-					<message>
-						<xsl:value-of select="error_message" />
-					</message>
+				<xsl:for-each select="key('validationlookup', $number)">
+					<number>
+						<xsl:value-of select="number" />
+					</number>
+					<code>
+						<xsl:value-of select="code" />
+					</code>
 					<severity>
 						<xsl:value-of select="severity" />
 					</severity>
+					<message>
+						<xsl:value-of select="message" />
+					</message>
 				</xsl:for-each>
 			</xsl:for-each>
 			<context>
@@ -385,10 +383,14 @@
 
 		<!-- matches and partial matches give errors for each occurrence of the duplicate, but performance is at least order of magnitude better -->
 
-		<xsl:variable name="context-facts" select="key('cid-fact', my:cid-byref(@contextRef))[generate-id()!=$id]" />
+		<!-- <xsl:variable name="context-facts" select="key('cid-fact', my:cid-byref(@contextRef))[generate-id()!=$id]" /> -->
+		<xsl:variable name="context-facts" select="key('cid-fact', my:cid-byref(@contextRef))" />
 		<xsl:variable name="matches" select="$context-facts[name()=$metric and @unitRef=$unitRef]" />
 
-		<xsl:if test="$matches">
+		<xsl:if test="count($matches) &gt; 1 and $id=generate-id($matches[last()])">
+			<!-- position:<xsl:value-of select="position()" />, 
+			last:<xsl:value-of select="$id=generate-id($matches[last()])" />,
+			count: <xsl:value-of select="count($matches)" />,   -->
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="number" select="'2.16'" />
 				<xsl:with-param name="context" select=".|exsl:node-set($matches)|exsl:node-set($cid)|$contextRef|$matches/@contextRef" />
