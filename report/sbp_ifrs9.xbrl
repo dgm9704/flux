@@ -9073,7 +9073,6 @@
   </xbrli:context>
   <eba_met:pi471 unitRef="uPURE" decimals="4" contextRef="c479">52.33</eba_met:pi471>
   <eba_met:pi472 unitRef="uPURE" decimals="4" contextRef="c479">43.43</eba_met:pi472>
-  <eba_met:pi472 unitRef="uPURE" decimals="4" contextRef="c479">43.43</eba_met:pi472>
   <xbrli:context id="c2">
     <xbrli:entity>
       <xbrli:identifier scheme="https://eurofiling.info/eu/rs">DUMMYLEI123456789012.CON</xbrli:identifier>

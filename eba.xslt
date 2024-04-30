@@ -381,27 +381,21 @@
 		<xsl:variable name="contextRef" select="@contextRef" />
 		<xsl:variable name="id" select="generate-id()" />
 
-		<!-- matches and partial matches give errors for each occurrence of the duplicate, but performance is at least order of magnitude better -->
+		<xsl:variable name="context-facts" select="key('cid-fact', my:cid-byref(@contextRef))[name()=$metric]" />
 
-		<!-- <xsl:variable name="context-facts" select="key('cid-fact', my:cid-byref(@contextRef))[generate-id()!=$id]" /> -->
-		<xsl:variable name="context-facts" select="key('cid-fact', my:cid-byref(@contextRef))" />
-		<xsl:variable name="matches" select="$context-facts[name()=$metric and @unitRef=$unitRef]" />
-
+		<xsl:variable name="matches" select="$context-facts[@unitRef=$unitRef]" />
 		<xsl:if test="count($matches) &gt; 1 and $id=generate-id($matches[last()])">
-			<!-- position:<xsl:value-of select="position()" />, 
-			last:<xsl:value-of select="$id=generate-id($matches[last()])" />,
-			count: <xsl:value-of select="count($matches)" />,   -->
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="number" select="'2.16'" />
 				<xsl:with-param name="context" select=".|exsl:node-set($matches)|exsl:node-set($cid)|$contextRef|$matches/@contextRef" />
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:variable name="partial_matches" select="$context-facts[@unitRef!=$unitRef and name()=$metric]" />
-		<xsl:if test="$partial_matches">
+		<xsl:variable name="partial_matches" select="$context-facts[@unitRef!=$unitRef or generate-id()=$id]" />
+		<xsl:if test="count($partial_matches) &gt; 1 and $partial_matches[last()]/@unitRef=$unitRef">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="number" select="'2.16.1'" />
-				<xsl:with-param name="context" select=".|$unitRef|exsl:node-set($matches)|exsl:node-set($cid)|$contextRef|$partial_matches/@contextRef|$partial_matches/@unitRef" />
+				<xsl:with-param name="context" select="$partial_matches|exsl:node-set($cid)|$partial_matches/@contextRef|$partial_matches/@unitRef" />
 			</xsl:call-template>
 		</xsl:if>
 
