@@ -13,14 +13,18 @@
 	extension-element-prefixes="func str exsl my">
 
 	<xsl:output indent="yes" method="xml" omit-xml-declaration="yes" />
+
+	<xsl:include href="common.xslt" />
+
+	<xsl:variable name="reportcurrency" select="'iso4217:EUR'" />
+
+	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
 	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
 	<xsl:variable name="countrycodes" select="document('lookup/iso-3166-1.xml')/codes/code" />
 	<xsl:variable name="entrypoints" select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
 	<xsl:variable name="units" select="document('lookup/utr.xml')/utr:utr/utr:units/utr:unit/utr:unitId" />
 	<xsl:variable name="schemes" select="document('lookup/schemes.xml')/schemes/scheme" />
-	<xsl:include href="common.xslt" />
-
-	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
+	<xsl:variable name="leiregister" select="document('lookup/lei-register.xml')/codes/code" />
 
 	<xsl:key name="validationlookup" match="rule" use="number" />
 	<xsl:key name="scenario" match="/xbrli:xbrl/xbrli:context" use="my:cid(.)" />
@@ -28,7 +32,18 @@
 	<xsl:key name="cid-fact" match="eba_met:*" use="my:cid-byref(@contextRef)" />
 	<xsl:key name="namespace" match="/xbrli:xbrl/namespace::*" use="." />
 
-	<xsl:variable name="reportcurrency" select="'iso4217:EUR'" />
+	<func:function name="my:check-identifier">
+		<xsl:param name="scheme" />
+		<xsl:param name="value" />
+		<xsl:choose>
+			<xsl:when test="$scheme='https://eurofiling.info/eu/rs'">
+				<func:result select="$leiregister[. = $value]" />
+			</xsl:when>
+			<xsl:otherwise>
+				<func:result select="false()" />
+			</xsl:otherwise>
+		</xsl:choose>
+	</func:function>
 
 	<func:function name="my:cid" cache="yes">
 		<xsl:param name="context" />
@@ -45,11 +60,6 @@
 
 	<func:function name="my:cid-byref" cache="yes">
 		<xsl:param name="id" />
-		<func:result select="my:cid(/xbrli:xbrl/xbrli:context[@id=$id][1])" />
-	</func:function>
-
-	<func:function name="my:check-scheme" cache="yes">
-		<xsl:param name="scheme" />
 		<func:result select="my:cid(/xbrli:xbrl/xbrli:context[@id=$id][1])" />
 	</func:function>
 
@@ -188,12 +198,22 @@
 	</xsl:template>
 
 	<xsl:template match="/xbrli:xbrl/xbrli:context/xbrli:entity/xbrli:identifier">
-		<xsl:if test="not($schemes[.= current()/@scheme])">
-			<xsl:call-template name="EBAError">
-				<xsl:with-param name="number" select="'2.8.a'" />
-				<xsl:with-param name="context" select=".|@*" />
-			</xsl:call-template>
-		</xsl:if>
+		<xsl:choose>
+			<xsl:when test="not($schemes[.=current()/@scheme])">
+				<xsl:call-template name="EBAError">
+					<xsl:with-param name="number" select="'2.8.a'" />
+					<xsl:with-param name="context" select=".|@*" />
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:if test="not(my:check-identifier(@scheme,text()))">
+					<xsl:call-template name="EBAError">
+						<xsl:with-param name="number" select="'2.8.b'" />
+						<xsl:with-param name="context" select=".|@*" />
+					</xsl:call-template>
+				</xsl:if>
+			</xsl:otherwise>
+		</xsl:choose>
 	</xsl:template>
 
 	<xsl:template match="/xbrli:xbrl/find:fIndicators">
