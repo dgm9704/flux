@@ -1,4 +1,5 @@
 <schemes>
     <scheme>https://eurofiling.info/eu/rs</scheme>
-    <scheme>https://example.com/foo</scheme>
+    <scheme>http://standards.iso.org/iso/17442</scheme>
+    <scheme>http://standard.iso.org/iso/17442</scheme>
 </schemes>

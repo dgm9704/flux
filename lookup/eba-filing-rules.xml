@@ -348,6 +348,14 @@
 	<!-- 3.5 requires lookup -->
 
 	<!-- 3.6 TLDR -->
+	<rule>
+		<number>3.6.a</number>
+		<code>incorrectLeiScheme</code>
+		<severity>WARNING</severity>
+		<message>producers of XBRL reports are encouraged to switch as quickly as possible to producing the correct form "http://standards.iso.org/iso/17442"</message>
+	</rule>
+	
+
 
 	<!-- 3.7 unclear -->
 

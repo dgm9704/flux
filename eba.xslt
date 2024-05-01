@@ -23,6 +23,7 @@
 	<xsl:variable name="units" select="document('lookup/utr.xml')/utr:utr/utr:units/utr:unit/utr:unitId" />
 	<xsl:variable name="schemes" select="document('lookup/schemes.xml')/schemes/scheme" />
 	<xsl:variable name="leiregister" select="document('lookup/lei-register.xml')/codes/code" />
+	<xsl:variable name="leiregisterlegacy" select="document('lookup/lei-register-legacy.xml')/codes/code" />
 
 	<xsl:key name="validationlookup" match="rule" use="number" />
 	<xsl:key name="scenario" match="/xbrli:xbrl/xbrli:context" use="my:cid(.)" />
@@ -36,6 +37,9 @@
 		<xsl:choose>
 			<xsl:when test="$scheme='https://eurofiling.info/eu/rs'">
 				<func:result select="$leiregister[. = $value]" />
+			</xsl:when>
+			<xsl:when test="$scheme='http://standard.iso.org/iso/17442' or $scheme='http://standards.iso.org/iso/17442'">
+				<func:result select="$leiregisterlegacy[. = $value]" />
 			</xsl:when>
 			<xsl:otherwise>
 				<func:result select="false()" />
@@ -196,6 +200,14 @@
 	</xsl:template>
 
 	<xsl:template match="/xbrli:xbrl/xbrli:context/xbrli:entity/xbrli:identifier">
+
+		<xsl:if test="@scheme='http://standard.iso.org/iso/17442'">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="number" select="'3.6.a'" />
+				<xsl:with-param name="context" select=".|@*" />
+			</xsl:call-template>
+		</xsl:if>
+
 		<xsl:choose>
 			<xsl:when test="not($schemes[.=current()/@scheme])">
 				<xsl:call-template name="EBAError">
