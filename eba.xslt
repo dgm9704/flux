@@ -19,8 +19,6 @@
 	<xsl:variable name="reportcurrency" select="'iso4217:EUR'" />
 
 	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
-	<xsl:variable name="eeacountrycodes" select="document('lookup/eea-countries.xml')/codes/code" />
-	<xsl:variable name="countrycodes" select="document('lookup/iso-3166-1.xml')/codes/code" />
 	<xsl:variable name="entrypoints" select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
 	<xsl:variable name="units" select="document('lookup/utr.xml')/utr:utr/utr:units/utr:unit/utr:unitId" />
 	<xsl:variable name="schemes" select="document('lookup/schemes.xml')/schemes/scheme" />
