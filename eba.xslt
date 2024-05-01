@@ -17,6 +17,8 @@
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable name="reportcurrency" select="'iso4217:EUR'" />
+	<xsl:variable name="maxContextIdLength" select="10" /> 
+	<xsl:variable name="maxStringLength" select="255" /> 
 
 	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
 	<xsl:variable name="entrypoints" select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
@@ -341,7 +343,7 @@
 	</xsl:template>
 
 	<xsl:template match="/xbrli:xbrl/xbrli:context">
-		<xsl:if test="string-length(@id) &gt; 40">
+		<xsl:if test="string-length(@id) &gt; $maxContextIdLength">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="number" select="'2.6.a'" />
 				<xsl:with-param name="context" select="@id" />
@@ -449,6 +451,14 @@
 			</xsl:call-template>
 		</xsl:if>
 
+		<xsl:if test="@id">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="number" select="'3.7'" />
+				<xsl:with-param name="context" select=".|@*" />
+			</xsl:call-template>
+		</xsl:if>
+
+
 		<xsl:if test="contains('impr', substring(local-name(),1,1)) and not(@decimals)">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="number" select="'2.18.a'" />
@@ -466,6 +476,13 @@
 		<xsl:if test="starts-with(local-name(),'s') and not(string(.))">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="number" select="'2.19.b'" />
+				<xsl:with-param name="context" select=".|./@*" />
+			</xsl:call-template>
+		</xsl:if>
+
+		<xsl:if test="starts-with(local-name(),'s') and string-length(.) &gt; $maxStringLength">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="number" select="'3.8'" />
 				<xsl:with-param name="context" select=".|./@*" />
 			</xsl:call-template>
 		</xsl:if>

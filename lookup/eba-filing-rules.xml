@@ -355,11 +355,19 @@
 		<message>producers of XBRL reports are encouraged to switch as quickly as possible to producing the correct form "http://standards.iso.org/iso/17442"</message>
 	</rule>
 	
+	<rule>
+		<number>3.7</number>
+		<code>unusedFactId</code>
+		<severity>WARNING</severity>
+		<message>The XBRL report SHOULD NOT include unused @id attributes on facts.</message>
+	</rule>
 
-
-	<!-- 3.7 unclear -->
-
-	<!-- 3.8 unclear -->
+	<rule>
+		<number>3.8</number>
+		<code>excessiveStringLength</code>
+		<severity>WARNING</severity>
+		<message>The values of each string SHOULD be as short as possible.</message>
+	</rule>
 
 	<!-- this produces the correct error but for the offending node AND all it's children -->
 	<rule>
