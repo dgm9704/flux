@@ -26,7 +26,7 @@
 		<number>1.6.c</number>
 		<code>invalidContextForFilingIndicator</code>
 		<severity>ERROR</severity>
-		<message>he context referenced by the filing indicator elements MUST NOT contain xbrli:segment or xbrli:scenario elements.</message>
+		<message>The context referenced by the filing indicator elements MUST NOT contain xbrli:segment or xbrli:scenario elements.</message>
 	</rule>
 
 	<rule>
@@ -162,11 +162,21 @@
 		<message>An report document SHOULD NOT contain duplicated context, unless required for technical reasons, e.g. to support XBRL streaming.</message>
 	</rule>
 
-	<!-- 2.8.a requires lookup etc -->
+	<rule>
+		<number>2.8.a</number>
+		<code>inappropriateScheme</code>
+		<severity>ERROR</severity>
+		<message>XBRL-XML reports MUST use a @scheme attribute that is prescribed by the supervisor. [GFM11, p. 11]</message>
+	</rule>
 
-	<!-- 2.8.b requires lookup etc -->
+	<rule>
+		<number>2.8.b</number>
+		<code>unacceptableIdentifier</code>
+		<severity>ERROR</severity>
+		<message>XBRL-XML reports MUST use an identifier acceptable to the supervisor (likely to be one recognized in their reporting system), and that corresponds to the @scheme attribute used. [GFM11, p. 11]</message>
+	</rule>
 
-	<!-- 2.8.c requires lookup etc -->
+	<!-- 2.8.c outside of scope -->
 
 	<rule>
 		<number>2.9</number>

@@ -10,7 +10,6 @@
   xmlns:xbrldi="http://xbrl.org/2006/xbrldi"
   xmlns:iso4217="http://www.xbrl.org/2003/iso4217"
   xmlns:eba_met="http://www.eba.europa.eu/xbrl/crr/dict/met"
-  xmlns:eba_dim="http://www.eba.europa.eu/xbrl/crr/dict/dim"
   xmlns:eba_typ="http://www.eba.europa.eu/xbrl/crr/dict/typ"
   xmlns:link="http://www.xbrl.org/2003/linkbase"
   xmlns:find="http://www.eurofiling.info/xbrl/ext/filing-indicators"

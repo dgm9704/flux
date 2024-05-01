@@ -17,12 +17,12 @@
 	<xsl:variable name="countrycodes" select="document('lookup/iso-3166-1.xml')/codes/code" />
 	<xsl:variable name="entrypoints" select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
 	<xsl:variable name="units" select="document('lookup/utr.xml')/utr:utr/utr:units/utr:unit/utr:unitId" />
+	<xsl:variable name="schemes" select="document('lookup/schemes.xml')/schemes/scheme" />
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
 
 	<xsl:key name="validationlookup" match="rule" use="number" />
-
 	<xsl:key name="scenario" match="/xbrli:xbrl/xbrli:context" use="my:cid(.)" />
 	<xsl:key name="context" match="/xbrli:xbrl/xbrli:context" use="@id" />
 	<xsl:key name="cid-fact" match="eba_met:*" use="my:cid-byref(@contextRef)" />
@@ -45,6 +45,11 @@
 
 	<func:function name="my:cid-byref" cache="yes">
 		<xsl:param name="id" />
+		<func:result select="my:cid(/xbrli:xbrl/xbrli:context[@id=$id][1])" />
+	</func:function>
+
+	<func:function name="my:check-scheme" cache="yes">
+		<xsl:param name="scheme" />
 		<func:result select="my:cid(/xbrli:xbrl/xbrli:context[@id=$id][1])" />
 	</func:function>
 
@@ -121,8 +126,8 @@
 		</xsl:if>
 
 		<xsl:variable name="identifiers" select="xbrli:context/xbrli:entity/xbrli:identifier" />
-		<xsl:variable name="distinct_identifiers"
-			select="$identifiers[not(text()=preceding::xbrli:identifier/text())]" />
+		<xsl:variable name="distinct_identifiers" select="$identifiers[not(text()=preceding::xbrli:identifier/text())]" />
+
 		<xsl:if test="count($distinct_identifiers) &gt; 1">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="number" select="'2.9'" />
@@ -130,8 +135,7 @@
 			</xsl:call-template>
 		</xsl:if>
 
-		<xsl:variable name="distinct_schemes"
-			select="$identifiers[not(@scheme=preceding::xbrli:identifier/@scheme)]/@scheme" />
+		<xsl:variable name="distinct_schemes" select="$identifiers[not(@scheme=preceding::xbrli:identifier/@scheme)]/@scheme" />
 		<xsl:if test="count($distinct_schemes) &gt; 1">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="number" select="'2.9'" />
@@ -181,6 +185,15 @@
 		<xsl:apply-templates />
 
 
+	</xsl:template>
+
+	<xsl:template match="/xbrli:xbrl/xbrli:context/xbrli:entity/xbrli:identifier">
+		<xsl:if test="not($schemes[.= current()/@scheme])">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="number" select="'2.8.a'" />
+				<xsl:with-param name="context" select=".|@*" />
+			</xsl:call-template>
+		</xsl:if>
 	</xsl:template>
 
 	<xsl:template match="/xbrli:xbrl/find:fIndicators">
