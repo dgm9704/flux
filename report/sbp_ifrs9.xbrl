@@ -1,7 +1,6 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <?instance-generator id="EBA Data Gen" version="2015.8.28.0" creationdate="2015-09-15T16:53:43:00+02:00"?>
 
-
 <xbrli:xbrl
   xmlns="http://www.xbrl.org/2003/instance"
   xmlns:xml="http://www.w3.org/XML/1998/namespace"
@@ -42,6 +41,7 @@
     </xbrli:period>
   </xbrli:context>
   <find:fIndicators>
+    <find:filingIndicator contextRef="c1">S_00.01</find:filingIndicator>
     <find:filingIndicator contextRef="c1">C_111.00</find:filingIndicator>
     <find:filingIndicator contextRef="c1">C_112.00</find:filingIndicator>
     <find:filingIndicator contextRef="c1">C_113.00</find:filingIndicator>
@@ -50,7 +50,6 @@
     <find:filingIndicator contextRef="c1">C_116.00</find:filingIndicator>
     <find:filingIndicator contextRef="c1">C_117.00</find:filingIndicator>
     <find:filingIndicator contextRef="c1">C_118.00</find:filingIndicator>
-    <find:filingIndicator contextRef="c1">S_00.01</find:filingIndicator>
   </find:fIndicators>
   <eba_met:ei4 contextRef="c2">eba_AS:x2</eba_met:ei4>
   <eba_met:ei207 contextRef="c2">eba_SC:x7</eba_met:ei207>

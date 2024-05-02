@@ -30,6 +30,13 @@
 	</rule>
 
 	<rule>
+		<number>1.6.d</number>
+		<code>missingFilingIndicators</code>
+		<severity>ERROR</severity>
+		<message>An XBRL report MUST provide a filing indicator (either positive or negative) for each reporting unit ("template") defined in the reporting module to which the XBRL reports refers.</message>
+	</rule>
+
+	<rule>
 		<number>1.6.1</number>
 		<code>duplicateFilingIndicator</code>
 		<severity>ERROR</severity>

@@ -17,8 +17,8 @@
 	<xsl:include href="common.xslt" />
 
 	<xsl:variable name="reportcurrency" select="'iso4217:EUR'" />
-	<xsl:variable name="maxContextIdLength" select="10" /> 
-	<xsl:variable name="maxStringLength" select="255" /> 
+	<xsl:variable name="maxContextIdLength" select="10" />
+	<xsl:variable name="maxStringLength" select="255" />
 
 	<xsl:variable name="ebavalidations" select="document('lookup/eba-filing-rules.xml')" />
 	<xsl:variable name="entrypoints" select="document('lookup/eba-entrypoints.xml')/entrypoints/entrypoint" />
@@ -106,7 +106,6 @@
 
 		<xsl:apply-templates select="@*" />
 
-
 		<xsl:if test="count(//link:schemaRef) &gt; 1">
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="number" select="'1.5.a'" />
@@ -122,6 +121,17 @@
 			<xsl:call-template name="EBAError">
 				<xsl:with-param name="number" select="'1.6.2'" />
 				<xsl:with-param name="context" select="//find:fIndicators" />
+			</xsl:call-template>
+		</xsl:if>
+
+		<xsl:variable name="module" select="//link:schemaRef/@xlink:href" />
+		<xsl:variable name="module_tables" select="$entrypoints[./href=$module]/filing-indicators/code" />
+		<xsl:variable name="indicators" select="//find:fIndicators/find:filingIndicator" />
+		<xsl:variable name="missing_indicators" select="$module_tables[not(.=$indicators)]" />
+		<xsl:if test="$missing_indicators">
+			<xsl:call-template name="EBAError">
+				<xsl:with-param name="number" select="'1.6.d'" />
+				<xsl:with-param name="context" select="$missing_indicators" />
 			</xsl:call-template>
 		</xsl:if>
 
