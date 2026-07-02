@@ -1,0 +1,7 @@
+<entrypoints>
+    <entrypoint>
+        <href>http://eiopa.europa.eu/eu/xbrl/s2md/fws/solvency/solvency2/2023-07-15/mod/qes.xsd</href>
+        <filing-indicators>
+        </filing-indicators>
+    </entrypoint>
+</entrypoints>

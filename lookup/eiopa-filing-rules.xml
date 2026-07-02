@@ -1,0 +1,12 @@
+<validation_rules>
+
+	<!-- 1.1.(a) requires file name -->
+
+	<rule>
+		<number>1.5.(a)</number>
+		<code>multipleSchemaRefsOrInapproriateSchemaRef</code>
+		<severity>ERROR</severity>
+		<message>An instance document MUST reference only one entry point schema file ("module"), with the full absolute URL, as specified in the relevant EIOPA XBRL Taxonomy and be applicable for the reference date of the instance document.</message>
+	</rule>
+
+</validation_rules>
