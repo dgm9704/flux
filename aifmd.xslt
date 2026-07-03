@@ -158,7 +158,7 @@
 			<xsl:choose>
 				<xsl:when test="not($day='01') or not($year=$reportingyear)">true</xsl:when>
 				<xsl:when test="$periodtype='Q1' or $periodtype='Q2' or $periodtype='Q3' or $periodtype='Q4'">
-					<xsl:if test="not($month='10' or $month='07' or $month='01')">true</xsl:if>
+					<xsl:if test="not($month='10' or $month='07' or $month='04' or $month='01')">true</xsl:if>
 				</xsl:when>
 				<xsl:when test="$periodtype='H1' or $periodtype='H2'">
 					<xsl:if test="not($month='07' or $month='01')">true</xsl:if>
@@ -527,7 +527,7 @@
 			<xsl:choose>
 				<xsl:when test="not($day='01') or not($year=$reportingyear)">true</xsl:when>
 				<xsl:when test="$periodtype='Q1' or $periodtype='Q2' or $periodtype='Q3' or $periodtype='Q4'">
-					<xsl:if test="not($month='10' or $month='07' or $month='01')">true</xsl:if>
+					<xsl:if test="not($month='10' or $month='07' or $month='04' or $month='01')">true</xsl:if>
 				</xsl:when>
 				<xsl:when test="$periodtype='H1' or $periodtype='H2'">
 					<xsl:if test="not($month='07' or $month='01')">true</xsl:if>
