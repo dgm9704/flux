@@ -34,7 +34,7 @@
 		<element_name>&lt;ReportingPeriodStartDate&gt;</element_name>
 		<technical_guidance>The start date of the reporting period should begin on  the first calendar of January, April, July or October. yyyy-mm-dd (ISO 8601 Date Format)</technical_guidance>
 		<error_reference>CAM-002</error_reference>
-		<control>For quarterly reporting (Q1, Q2, Q3, Q4) Validate that the reporting start date is the beginning of a quarter. Allowed values are YYYY-10-01, YYYY-07-01, YYYY-04-01, YYYY-01-01 For half-yearly reporting (H1, H2) Validate that the reporting start date is the beginning of a half-yearly period (H1, H2) Allowed values are YYYY-07-01, YYYY-01-01 For yearly reporting (Y1) Validate that the reporting start date is the beginning of the calendar year (Y1) Allowed value is YYYY-01-01</control>
+		<control>For quarterly reporting (Q1, Q2, Q3, Q4) Validate that the reporting start date is the beginning of a quarter. Allowed values are YYYY-10-01, YYYY-07-01, YYYY-04-01, YYYY-01-01. For half-yearly reporting (H1, H2) Validate that the reporting start date is the beginning of a half-yearly period (H1, H2) Allowed values are YYYY-07-01, YYYY-01-01 For yearly reporting (Y1) Validate that the reporting start date is the beginning of the calendar year (Y1) Allowed value is YYYY-01-01</control>
 		<error_message>The reporting period start date is not allowed.</error_message>
 	</rule>
 	<rule>

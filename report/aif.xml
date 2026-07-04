@@ -1828,4 +1828,21 @@
 		<CancelledReportingPeriodYear>2014</CancelledReportingPeriodYear>
 		<CancelledRecordFlag>C</CancelledRecordFlag>
 	</CancellationAIFRecordInfo>
+	<AIFRecordInfo>
+		<FilingType>INIT</FilingType>
+		<AIFContentType>2</AIFContentType>
+		<ReportingPeriodStartDate>2014-04-01</ReportingPeriodStartDate>
+		<ReportingPeriodEndDate>2014-06-30</ReportingPeriodEndDate>
+		<ReportingPeriodType>Q2</ReportingPeriodType>
+		<ReportingPeriodYear>2014</ReportingPeriodYear>
+		<LastReportingFlag>false</LastReportingFlag>
+		<AIFMNationalCode>888888</AIFMNationalCode>
+		<AIFNationalCode>888888#008</AIFNationalCode>
+		<AIFName>AIF 8</AIFName>
+		<AIFEEAFlag>true</AIFEEAFlag>
+		<AIFReportingCode>11</AIFReportingCode>
+		<AIFDomicile>FR</AIFDomicile>
+		<InceptionDate>2006-12-01</InceptionDate>
+		<AIFNoReportingFlag>true</AIFNoReportingFlag>
+	</AIFRecordInfo>
 </AIFReportingInfo>

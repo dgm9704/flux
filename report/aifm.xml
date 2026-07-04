@@ -234,6 +234,27 @@
 	<AIFMRecordInfo>
 		<FilingType>INIT</FilingType>
 		<AIFMContentType>2</AIFMContentType>
+		<ReportingPeriodStartDate>2014-04-01</ReportingPeriodStartDate>
+		<ReportingPeriodEndDate>2014-06-30</ReportingPeriodEndDate>
+		<ReportingPeriodType>Q2</ReportingPeriodType>
+		<ReportingPeriodYear>2014</ReportingPeriodYear>
+		<LastReportingFlag>false</LastReportingFlag>
+		<Assumptions>
+			<Assumption>
+				<QuestionNumber>25</QuestionNumber>
+				<AssumptionDescription>Free text</AssumptionDescription>
+			</Assumption>
+		</Assumptions>
+		<AIFMReportingCode>4</AIFMReportingCode>
+		<AIFMJurisdiction>GB</AIFMJurisdiction>
+		<AIFMNationalCode>888888</AIFMNationalCode>
+		<AIFMName>AIFM 8</AIFMName>
+		<AIFMEEAFlag>true</AIFMEEAFlag>
+		<AIFMNoReportingFlag>true</AIFMNoReportingFlag>
+	</AIFMRecordInfo>
+	<AIFMRecordInfo>
+		<FilingType>INIT</FilingType>
+		<AIFMContentType>2</AIFMContentType>
 		<ReportingPeriodStartDate>2014-10-02</ReportingPeriodStartDate>
 		<ReportingPeriodEndDate>2014-12-31</ReportingPeriodEndDate>
 		<ReportingPeriodType>Q3</ReportingPeriodType>
