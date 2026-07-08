@@ -298,7 +298,9 @@
 			<xsl:variable
 					name="result"
 					select="$amounteuro * $rateeuro" />
-			<xsl:if test="not($amountbase = $result)">
+			<!-- AUMAmountInEuro is a whole number of euros, so allow a rounding
+			     tolerance of up to one euro (i.e. the FX rate in base currency) -->
+			<xsl:if test="($result - $amountbase &gt;= $rateeuro) or ($amountbase - $result &gt;= $rateeuro)">
 				<xsl:call-template name="AIFMError">
 					<xsl:with-param
 							name="code"
